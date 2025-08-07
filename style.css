@@ -254,3 +254,45 @@ footer button:hover {
   text-align: center;
   color: #666;
 }
+/* 响应式：手机屏幕适配 */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .hero {
+    padding: 20px 10px;
+    text-align: center;
+  }
+
+  .hero img {
+    width: 100%;
+    height: auto;
+  }
+
+  .content, .pricing, .contact, footer {
+    padding: 15px;
+  }
+
+  .content img, .pricing img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  h1, h2 {
+    font-size: 1.5em;
+  }
+
+  p {
+    font-size: 1em;
+  }
+}
