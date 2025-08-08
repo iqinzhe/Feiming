@@ -1,84 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Website</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AX斧标贝斯</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="header">
-        <div class="header__left">
-            <button class="menu-button mobile-only" id="menuButton">☰</button>
-            <button class="search-button mobile-only" id="searchButton">🔍</button>
-            <nav class="desktop-nav desktop-only">
-                <ul class="nav-list">
-                         <li class="header__nav-item"><a class="header__nav-link" href="index.html">Home</a></li>
+  <header class="header">
+    <nav>
+      <ul class="header__nav-list">
+        <li class="header__nav-item"><a class="header__nav-link" href="index.html">Home</a></li>
         <li class="header__nav-item"><a class="header__nav-link" href="instruments.html">Instruments</a></li>
         <li class="header__nav-item"><a class="header__nav-link" href="pricing.html">Pricing & Options</a></li>
         <li class="header__nav-item"><a class="header__nav-link" href="about.html">About US</a></li>
         <li class="header__nav-item"><a class="header__nav-link" href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-        
-        <div class="header__center">
-            <a href="index.html">
-                <img src="images/logo.png" alt="Site Logo" class="header__logo">
-            </a>
-        </div>
-        
-        <div class="header__right">
-            <button class="share-button" id="shareButton">↗</button>
-            <div class="header__search desktop-only">
-                <form class="search-form">
-                    <input type="text" placeholder="Search...">
-                    <button type="submit">🔍</button>
-                </form>
-            </div>
-        </div>
-    </header>
+      </ul>
+    </nav>
+  </header>
 
-    <!-- 移动端搜索栏 (默认隐藏) -->
-    <div class="mobile-search" id="mobileSearch">
-        <form class="search-form">
-            <input type="text" placeholder="Search...">
-            <button type="submit">Search</button>
-        </form>
+  <section class="hero">
+    <img class="hero__img" src="images/Ibanez7.jpg" alt="Hero Image">
+    <h1 class="hero__title">ax斧标bass</h1>
+    <p class="hero__subtitle">ax品牌创始人，先10年就职于国内知名OEM吉他代工厂技术开发，再10年就职于海外某吉他品牌公司从事吉他生产工艺和产品设计，20年的经验技术累积，量变引起质变，最终促成ax品牌的诞生.</p>
+  </section>
+
+  <section class="products-overview">
+    <div class="products-overview__card">
+      <img class="products-overview__img" src="images/ltd8s.jpg" alt="Model A">
+      <h2 class="products-overview__title">Model A</h2>
+      <p>Ergonomic bass with twisted neck design.</p>
+      <a class="products-overview__link" href="instruments.html">Learn More</a>
     </div>
+  </section>
 
-    <!-- 移动端菜单 (默认隐藏) -->
-    <div class="mobile-menu" id="mobileMenu">
-        <ul>
-            <li><a href="#">Series</a></li>
-            <li><a href="#">Models</a></li>
-            <li><a href="#">Support</a></li>
-        </ul>
-    </div>
-
-    <main class="content">
-        <!-- 您的主要内容放在这里 -->
-        <div class="series-overview">
-            <!-- 卡片内容 -->
-        </div>
-    </main>
-
-    <script>
-        // 添加交互功能
-        document.getElementById('menuButton').addEventListener('click', function() {
-            document.getElementById('mobileMenu').classList.toggle('active');
-            document.getElementById('mobileSearch').classList.remove('active');
-        });
-
-        document.getElementById('searchButton').addEventListener('click', function() {
-            document.getElementById('mobileSearch').classList.toggle('active');
-            document.getElementById('mobileMenu').classList.remove('active');
-        });
-
-        document.getElementById('shareButton').addEventListener('click', function() {
-            alert('Share function will be implemented here');
-            // 实际项目中可以替换为真实的分享功能
-        });
-    </script>
+  <footer class="footer">
+    <form class="footer__form">
+      <label>Email for updates:</label>
+      <input class="footer__input" type="email" placeholder="Your email">
+      <button class="footer__btn" type="submit">Subscribe</button>
+    </form>
+    <p>© 2025 ax guitar Brand. All rights reserved.</p>
+  </footer>
 </body>
 </html>
