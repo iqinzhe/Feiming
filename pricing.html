@@ -1,16 +1,574 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <title>Pricing</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ax guitar 定价和选项</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .section-title {
+            background-color: #e6e6e6;
+            font-weight: bold;
+        }
+        .price {
+            text-align: right;
+            white-space: nowrap;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .total {
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: right;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-  <section class="pricing">
-    <h1>Pricing & Options</h1>
-    <p>Base price of each instrument: [your price]</p>
-    <p>Optional upgrades: wood upgrades +$XXX, pickups +$XXX, custom finishes +$XXX</p>
-    <p>Payment methods: PayPal, Credit Card, Bank Transfer.</p>
-  </section>
+    <h1>2025 ax guitar 定价和选项(吉他价格表)</h1>
+
+    <form>
+        <div class="form-group">
+            <label for="name">姓名：</label>
+            <input type="text" id="name" name="name">
+        </div>
+        <div class="form-group">
+            <label for="number">编号：</label>
+            <input type="text" id="number" name="number">
+        </div>
+
+        <h2>琴型</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr>
+                <td>A-系列</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>B-系列</td>
+                <td class="price">¥1000</td>
+            </tr>
+            <tr>
+                <td>C-系列</td>
+                <td class="price">¥1500</td>
+            </tr>
+            <tr>
+                <td>D-系列</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>AX Handmade Workshop</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>E-无头系列</td>
+                <td class="price">¥1500</td>
+            </tr>
+        </table>
+
+        <h2>弦数</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr>
+                <td>6弦</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>7弦</td>
+                <td class="price">¥1500</td>
+            </tr>
+        </table>
+
+        <h2>连接方式</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr>
+                <td>粘接</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>栓接</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>通颈</td>
+                <td class="price">¥0</td>
+            </tr>
+        </table>
+
+        <h2>琴颈木材</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr>
+                <td>桤木</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>桃花芯</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>沼泽梣木</td>
+                <td class="price">¥700</td>
+            </tr>
+            <tr>
+                <td>安格斯</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>黑胡桃</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>其他</td>
+                <td class="price">¥0</td>
+            </tr>
+        </table>
+
+        <h2>琴体木材</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr>
+                <td>虎纹枫木</td>
+                <td class="price">¥1800</td>
+            </tr>
+            <tr>
+                <td>絮状枫木</td>
+                <td class="price">¥3000</td>
+            </tr>
+            <tr>
+                <td>七叶树瘤</td>
+                <td class="price">¥4000</td>
+            </tr>
+            <tr>
+                <td>黑胡桃树瘤</td>
+                <td class="price">¥1900</td>
+            </tr>
+            <tr>
+                <td>渍纹枫木</td>
+                <td class="price">¥1700</td>
+            </tr>
+            <tr>
+                <td>其他</td>
+                <td class="price">¥0</td>
+            </tr>
+        </table>
+
+        <h2>贴面木材</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr>
+                <td>枫木</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>多拼枫木</td>
+                <td class="price">¥600</td>
+            </tr>
+            <tr>
+                <td>多拼虎纹枫木</td>
+                <td class="price">¥1600</td>
+            </tr>
+            <tr>
+                <td>雀眼枫木</td>
+                <td class="price">¥1500</td>
+            </tr>
+            <tr>
+                <td>加拿大枫木</td>
+                <td class="price">¥600</td>
+            </tr>
+            <tr>
+                <td>烤枫木</td>
+                <td class="price">¥400</td>
+            </tr>
+            <tr>
+                <td>鸡翅木</td>
+                <td class="price">¥900</td>
+            </tr>
+            <tr>
+                <td>碳纤维 (仅无头琴)</td>
+                <td class="price">¥7000</td>
+            </tr>
+            <tr>
+                <td>雀眼枫木</td>
+                <td class="price">¥500</td>
+            </tr>
+            <tr>
+                <td>印度玫瑰木</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>乌木</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>十二雄蕊破布木</td>
+                <td class="price">¥400</td>
+            </tr>
+            <tr>
+                <td>烤雀眼枫木</td>
+                <td class="price">¥600</td>
+            </tr>
+            <tr>
+                <td>其他</td>
+                <td class="price">¥0</td>
+            </tr>
+        </table>
+
+        <h2>指板木材</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr>
+                <td>标准</td>
+                <td class="price">¥0</td>
+            </tr>
+        </table>
+
+        <h2>定制选项</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr>
+                <td>ax 3-Piece Body</td>
+                <td class="price">¥1500</td>
+            </tr>
+            <tr>
+                <td>Or Tone-block</td>
+                <td class="price">¥1000</td>
+            </tr>
+        </table>
+
+        <h2>品数</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr>
+                <td>22品</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>24品</td>
+                <td class="price">¥0</td>
+            </tr>
+        </table>
+
+        <h2>品丝规格</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr>
+                <td>标准</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>不锈钢</td>
+                <td class="price">¥1500</td>
+            </tr>
+        </table>
+
+        <h2>品丝宽度</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr>
+                <td>品丝宽度 2.4</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>品丝宽度 2.7</td>
+                <td class="price">¥0</td>
+            </tr>
+          <tr>
+                <td>品丝宽度 2.9</td>
+                <td class="price">¥0</td>
+             </tr>
+        </table>
+
+        <h2>中间木材</h2>
+        <table>
+            <tr>
+                <td>标准</td>
+                <td class="price">¥0</td>
+            </tr>
+        </table>
+
+        <h2>两侧木材</h2>
+        <table>
+            <tr>
+                <td>标准</td>
+                <td class="price">¥0</td>
+            </tr>
+        </table>
+
+        <h2>指板弧度</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr>
+                <td>标准 10"</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>Custom: 7.25" 9.5" 12" 14"</td>
+                <td class="price">¥500</td>
+            </tr>
+            <tr>
+                <td>混合弧度</td>
+                <td class="price">¥1000</td>
+            </tr>
+        </table>
+
+        <h2>品记</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr>
+                <td>鲍鱼壳圆点</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>白贝圆点</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>鲍鱼壳方块</td>
+                <td class="price">¥1200</td>
+            </tr>
+            <tr>
+                <td>白贝方块</td>
+                <td class="price">¥700</td>
+            </tr>
+            <tr>
+                <td>贴面木质方块</td>
+                <td class="price">¥700</td>
+            </tr>
+            <tr>
+                <td>其他木质方块</td>
+                <td class="price">¥1000</td>
+            </tr>
+            <tr>
+                <td>定制镶嵌</td>
+                <td class="price">¥0</td>
+            </tr>
+        </table>
+
+        <h2>旋钮以及拾音器外壳</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr>
+                <td>标准</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>木制旋钮</td>
+                <td class="price">¥500</td>
+            </tr>
+            <tr>
+                <td>木制拾音器壳</td>
+                <td class="price">¥1000</td>
+            </tr>
+            <tr>
+                <td>原位拾音器壳</td>
+                <td class="price">¥1500</td>
+            </tr>
+            <tr>
+                <td>木制后盖板</td>
+                <td class="price">¥700</td>
+            </tr>
+        </table>
+
+        <h2>琴桥和卷弦器</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr>
+                <td>固定</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>两点单摇颤音</td>
+                <td class="price">¥500</td>
+            </tr>
+            <tr>
+                <td>六点单摇颤音</td>
+                <td class="price">¥500</td>
+            </tr>
+            <tr>
+                <td>双摇颤音</td>
+                <td class="price">¥1000</td>
+            </tr>
+            <tr>
+                <td>标准</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>其他</td>
+                <td class="price">¥300</td>
+            </tr>
+        </table>
+
+        <h2>拾音器</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr>
+                <td>FishMan</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>Seymour Duncan</td>
+                <td class="price">¥50</td>
+            </tr>
+            <tr>
+                <td>Dimarzio</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>EMG</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>标准拾音器列表</td>
+                <td class="price">¥0</td>
+            </tr>
+        </table>
+
+        <h2>电路</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr>
+                <td>标准</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>主动电路定制</td>
+                <td class="price">¥200</td>
+            </tr>
+            <tr>
+                <td>被动电路定制</td>
+                <td class="price">¥100</td>
+            </tr>
+        </table>
+
+        <h2>油漆质感</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr>
+                <td>哑光</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>亮光</td>
+                <td class="price">¥1200</td>
+            </tr>
+            <tr>
+                <td>超薄哑光</td>
+                <td class="price">¥700</td>
+            </tr>
+        </table>
+
+        <h2>颜色</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr>
+                <td>标准</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>金色</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>镀铬</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr>
+                <td>黑色</td>
+                <td class="price">¥0</td>
+            </tr>
+        </table>
+
+        <div class="form-group">
+            <label for="notes">备注：</label>
+            <textarea id="notes" name="notes" rows="4" cols="50"></textarea>
+        </div>
+
+        <div class="total">
+            报价: ¥ ?- ¥ ?
+        </div>
+    </form>
 </body>
 </html>
