@@ -4,7 +4,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
@@ -12,60 +11,53 @@ body {
   color: #333;
 }
 
-/* ========== 导航栏 ========== */
-header {
+/* ========== 导航栏（全站通用） ========== */
+.header {
   background-color: #111;
   padding: 1rem 0;
 }
-
-nav ul {
+.header__nav-list {
   display: flex;
   justify-content: center;
   list-style: none;
 }
-
-nav ul li {
+.header__nav-item {
   margin: 0 20px;
 }
-
-nav ul li a {
+.header__nav-link {
   color: #fff;
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s;
 }
-
-nav ul li a:hover {
+.header__nav-link:hover {
   color: #f39c12;
 }
 
-/* ========== Hero 区块 ========== */
+/* ========== Hero 区块（首页） ========== */
 .hero {
   text-align: center;
   padding: 4rem 2rem;
   background: linear-gradient(to right, #222, #444);
   color: white;
 }
-
-.hero img {
+.hero__img {
   max-width: 100%;
   height: auto;
   margin-bottom: 2rem;
   border-radius: 12px;
 }
-
-.hero h1 {
+.hero__title {
   font-size: 2.5rem;
   margin-bottom: 1rem;
 }
-
-.hero p {
+.hero__subtitle {
   font-size: 1.2rem;
   max-width: 700px;
   margin: 0 auto;
 }
 
-/* ========== 产品卡片区域 ========== */
+/* ========== 产品卡片区域（首页） ========== */
 .products-overview {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -73,58 +65,93 @@ nav ul li a:hover {
   padding: 4rem 2rem;
   background-color: #fff;
 }
-
-.product-card {
+.products-overview__card {
   background-color: #f4f4f4;
   padding: 1.5rem;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.05);
   text-align: center;
 }
-
-.product-card img {
+.products-overview__img {
   width: 100%;
   border-radius: 8px;
   margin-bottom: 1rem;
 }
-
-.product-card h2 {
+.products-overview__title {
   margin-bottom: 0.5rem;
   font-size: 1.5rem;
 }
-
-.product-card a {
+.products-overview__link {
   display: inline-block;
   margin-top: 1rem;
   color: #f39c12;
   text-decoration: none;
   font-weight: bold;
 }
-
-.product-card a:hover {
+.products-overview__link:hover {
   text-decoration: underline;
 }
 
-/* ========== Footer 区块 ========== */
-footer {
+/* ========== 乐器系列总览与型号详情（乐器页面专用） ========== */
+.instrument-header {
+  text-align: center;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.instrument-header__logo {
+  max-width: 150px;
+  opacity: 0.8;
+}
+.instrument-series,
+.instrument-model-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding: 20px;
+}
+.instrument-series__card,
+.instrument-model__card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 8px;
+  background: white;
+  text-align: center;
+}
+.instrument-series__img,
+.instrument-model__img {
+  max-width: 100%;
+  border-radius: 5px;
+}
+.instrument-btn {
+  display: inline-block;
+  padding: 8px 12px;
+  background: black;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+/* ========== Footer ========== */
+.footer {
   background-color: #222;
   color: #ccc;
   padding: 2rem;
   text-align: center;
 }
-
-footer form {
+.footer__form {
   margin-bottom: 1rem;
 }
-
-footer input[type="email"] {
+.footer__input {
   padding: 0.5rem;
   border-radius: 5px;
   border: none;
   width: 200px;
 }
-
-footer button {
+.footer__btn {
   padding: 0.5rem 1rem;
   background-color: #f39c12;
   color: white;
@@ -133,278 +160,33 @@ footer button {
   margin-left: 0.5rem;
   cursor: pointer;
 }
-
-footer button:hover {
+.footer__btn:hover {
   background-color: #d9820f;
 }
 
-/* ========== 响应式 ========== */
+/* ========== 响应式（统一媒体查询） ========== */
 @media (max-width: 768px) {
-  nav ul {
+  /* 导航栏 */
+  .header__nav-list {
     flex-direction: column;
     gap: 1rem;
+    align-items: flex-start;
   }
-
-  .hero h1 {
+  .hero__title {
     font-size: 2rem;
   }
-
   .products-overview {
     grid-template-columns: 1fr;
   }
-}
-/* ========== Instrument Detail 页面 ========== */
-.instrument-detail {
-  max-width: 900px;
-  margin: 4rem auto;
-  padding: 2rem;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.05);
-  text-align: center;
-}
-
-.instrument-detail img {
-  width: 100%;
-  max-height: 400px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
-}
-
-.instrument-detail h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.instrument-detail p {
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-  color: #555;
-}
-
-.instrument-detail ul {
-  list-style: disc;
-  text-align: left;
-  max-width: 600px;
-  margin: 0 auto;
-  padding-left: 1.5rem;
-  color: #444;
-}
-
-/* ========== Pricing 页面 ========== */
-.pricing {
-  max-width: 800px;
-  margin: 4rem auto;
-  padding: 2rem;
-  background-color: #fafafa;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.04);
-}
-
-.pricing h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-.pricing p {
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-  line-height: 1.6;
-}
-
-/* ========== About 页面 ========== */
-.about {
-  max-width: 800px;
-  margin: 4rem auto;
-  padding: 2rem;
-  background-color: #ffffff;
-  border-left: 5px solid #f39c12;
-  box-shadow: 0 0 8px rgba(0,0,0,0.03);
-}
-
-.about h1 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-}
-
-.about p {
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-  color: #444;
-  line-height: 1.8;
-}
-
-/* ========== Contact 页面 ========== */
-.contact {
-  max-width: 600px;
-  margin: 4rem auto;
-  padding: 2rem;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
-}
-
-.contact h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-.contact form {
-  display: flex;
-  flex-direction: column;
-}
-
-.contact form label {
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-}
-
-.contact form input,
-.contact form textarea {
-  padding: 0.7rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-}
-
-.contact form textarea {
-  height: 150px;
-  resize: vertical;
-}
-
-.contact form button {
-  margin-top: 1.5rem;
-  padding: 0.8rem;
-  background-color: #f39c12;
-  color: #fff;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.contact form button:hover {
-  background-color: #d9820f;
-}
-
-.contact p {
-  margin-top: 2rem;
-  text-align: center;
-  color: #666;
-}
-
-/* ========== 其他辅助样式 ========== */
-.text-center {
-  text-align: center;
-}
-
-.mb-2 {
-  margin-bottom: 0.5rem;
-}
-
-.mt-4 {
-  margin-top: 2rem;
-}
-/* 响应式：手机屏幕适配 */
-@media (max-width: 768px) {
-  body {
-    padding: 10px;
-    font-size: 16px;
-  }
-
-  nav ul {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-
-  .hero {
-    padding: 20px 10px;
-    text-align: center;
-  }
-
-  .hero img {
-    width: 100%;
-    height: auto;
-  }
-
-  .content, .pricing, .contact, footer {
-    padding: 15px;
-  }
-
-  .content img, .pricing img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-  }
-
-  h1, h2 {
-    font-size: 1.5em;
-  }
-
-  p {
-    font-size: 1em;
+  /* 乐器页面布局 */
+  .instrument-series,
+  .instrument-model-list {
+    grid-template-columns: 1fr;
   }
 }
-/* 固定半透明 Logo */
-.site-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.7);
-  text-align: center;
-  padding: 10px 0;
-  z-index: 1000;
-}
-
-.site-header .logo {
-  height: 50px;
-  object-fit: contain;
-}
-
-/* 页面主体留出顶部空间 */
-.product-page {
-  padding-top: 80px;
-}
-
-/* 系列标题 */
-.series h2 {
-  font-size: 1.4em;
-  margin: 15px 0 10px;
-  padding: 0 10px;
-}
-
-/* 产品布局（移动优先） */
-.product-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 15px;
-  padding: 0 10px;
-}
-
-.product {
-  background: #fff;
-  border-radius: 8px;
-  padding: 10px;
-  text-align: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.product img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
-/* 响应式：平板及以上 */
 @media (min-width: 768px) {
-  .product-grid {
+  .instrument-series,
+  .instrument-model-list {
     grid-template-columns: repeat(2, 1fr);
   }
 }
