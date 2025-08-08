@@ -103,8 +103,9 @@ body {
   z-index: 1000;
 }
 .instrument-header__logo {
-  max-width: 150px;
-  opacity: 0.8;
+    max-width: 15vw; /* 视口宽度的15% */
+    height: auto;
+  opacity: 0.5;
 }
 .instrument-series,
 .instrument-model-list {
