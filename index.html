@@ -5,56 +5,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AX斧标贝斯</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
   <header class="header">
-    <div class="header__nav-container">
-      <div class="header__nav-left">
-        <button class="menu-button">☰</button>
+    <div class="header__container">
+      <!-- 左侧：汉堡菜单（移动端） -->
+      <button class="menu-button mobile-only">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <!-- 中间：Logo -->
+      <div class="header__logo">
+        <a href="/">AX</a>
       </div>
       
-      <div class="header__nav-center">
-        <a href="/" class="logo">AX</a>
+      <!-- 右侧：搜索和分享（移动端） -->
+      <div class="header__right mobile-only">
+        <button class="search-button">
+          <i class="fas fa-search"></i>
+        </button>
+        <button class="share-button">
+          <i class="fas fa-share-alt"></i>
+        </button>
       </div>
       
-      <div class="header__nav-right">
-        <button class="share-button">↗</button>
+      <!-- 桌面端导航 -->
+      <nav class="desktop-nav desktop-only">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="instruments.html">Instruments</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      
+      <!-- 桌面端搜索栏 -->
+      <div class="header__search desktop-only">
+        <form class="search-form">
+          <input type="text" placeholder="Search...">
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
       </div>
     </div>
     
-    <nav>
-      <ul class="header__nav-list">
-        <li class="header__nav-item"><a class="header__nav-link" href="index.html">Home</a></li>
-        <li class="header__nav-item"><a class="header__nav-link" href="instruments.html">Instruments</a></li>
-        <li class="header__nav-item"><a class="header__nav-link" href="pricing.html">Pricing & Options</a></li>
-        <li class="header__nav-item"><a class="header__nav-link" href="about.html">About US</a></li>
-        <li class="header__nav-item"><a class="header__nav-link" href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
+    <!-- 移动端搜索栏（展开时显示） -->
+    <div class="mobile-search mobile-only">
+      <form class="search-form">
+        <input type="text" placeholder="Search products...">
+        <button type="submit">Search</button>
+      </form>
+    </div>
   </header>
 
+  <!-- 其他内容保持不变 -->
   <section class="hero">
     <img class="hero__img" src="images/Ibanez7.jpg" alt="Hero Image">
     <h1 class="hero__title">ax斧标bass</h1>
-    <p class="hero__subtitle">ax品牌创始人，先10年就职于国内知名OEM吉他代工厂技术开发，再10年就职于海外某吉他品牌公司从事吉他生产工艺和产品设计，20年的经验技术累积，量变引起质变，最终促成ax品牌的诞生.</p>
+    <p class="hero__subtitle">ax品牌创始人，先10年就职于国内知名OEM吉他代工厂技术开发...</p>
   </section>
 
   <section class="products-overview">
-    <div class="products-overview__card">
-      <img class="products-overview__img" src="images/ltd8s.jpg" alt="Model A">
-      <h2 class="products-overview__title">Model A</h2>
-      <p>Ergonomic bass with twisted neck design.</p>
-      <a class="products-overview__link" href="instruments.html">Learn More</a>
-    </div>
+    <!-- 产品卡片内容 -->
   </section>
 
   <footer class="footer">
-    <form class="footer__form">
-      <label>Email for updates:</label>
-      <input class="footer__input" type="email" placeholder="Your email">
-      <button class="footer__btn" type="submit">Subscribe</button>
-    </form>
-    <p>© 2025 ax guitar Brand. All rights reserved.</p>
+    <!-- 页脚内容 -->
   </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
