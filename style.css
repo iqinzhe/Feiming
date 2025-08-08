@@ -45,3 +45,48 @@ body {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+/* ========== 乐器系列总览和型号详情 ========== */
+.site-header {
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.logo {
+    max-width: 150px;
+    opacity: 0.8;
+}
+.series-overview, .model-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+}
+.series-card, .model-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    background: white;
+    text-align: center;
+}
+.series-card img, .model-card img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+.btn {
+    display: inline-block;
+    padding: 8px 12px;
+    background: black;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+@media (min-width: 768px) {
+    .series-overview, .model-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
