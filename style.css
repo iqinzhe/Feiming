@@ -296,3 +296,59 @@ footer button:hover {
     font-size: 1em;
   }
 }
+/* 固定半透明 Logo */
+.site-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  padding: 10px 0;
+  z-index: 1000;
+}
+
+.site-header .logo {
+  height: 50px;
+  object-fit: contain;
+}
+
+/* 页面主体留出顶部空间 */
+.product-page {
+  padding-top: 80px;
+}
+
+/* 系列标题 */
+.series h2 {
+  font-size: 1.4em;
+  margin: 15px 0 10px;
+  padding: 0 10px;
+}
+
+/* 产品布局（移动优先） */
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  padding: 0 10px;
+}
+
+.product {
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.product img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* 响应式：平板及以上 */
+@media (min-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
