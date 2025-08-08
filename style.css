@@ -177,3 +177,35 @@ body {
         grid-template-columns: 1fr;
     }
 }
+/* ===== 导航列表 ===== */
+.nav-list {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+.nav-item {
+    margin: 0 10px;
+}
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+.nav-link:hover {
+    color: #f39c12;
+}
+
+/* ===== 移动端优化 ===== */
+@media (max-width: 768px) {
+    .nav-list {
+        flex-direction: column;
+        align-items: center;
+    }
+    .series-card {
+        padding: 10px;
+    }
+    .series-card img {
+        border-radius: 5px;
+    }
+}
