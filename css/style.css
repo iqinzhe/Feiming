@@ -98,14 +98,17 @@ body {
   padding: 10px;
   background-color: rgba(0, 0, 0, 0.6);
   color: white;
-  position: sticky;
+  position: absolute; 
+  left: 50%;               /* 水平居中 */
+  transform: translateX(-50%); /* 微调精确居中 */
   top: 0;
   z-index: 1000;
 }
-.instrument-header__logo {
+.site-header.instrument-header__logo {
     max-width: 15vw; 
     height: auto;
   opacity: 0.5;
+  margin: 8px;
 }
 .instrument-series,
 .instrument-model-list {
