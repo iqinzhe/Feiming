@@ -103,7 +103,7 @@ body {
   z-index: 1000;
 }
 .instrument-header__logo {
-    max-width: 15vw; /* 视口宽度的15% */
+    max-width: 15vw; 
     height: auto;
   opacity: 0.5;
 }
