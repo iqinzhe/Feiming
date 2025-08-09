@@ -1,30 +1,95 @@
 <!DOCTYPE html>
+
 <html lang="zh-CN">
 <head>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Feiming</title>
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Feiming</title>
+<link href="css/style.css" rel="stylesheet"/>
 </head>
-  <meta charset="UTF-8">
-  <title>About</title>
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="utf-8"/>
+<title>About</title>
+<link href="css/style.css" rel="stylesheet"/>
 </head>
 <body>
-  <section class="about">
-    <h1>About AX Guitar</h1>
-  <p><strong>我们坚信：</strong>扎实的底子 + 丰富的经验 = 成就经典的声音与演奏体验。</p>
+<header class="site-topbar">
+<div class="topbar__left">
+<button aria-label="Menu" class="topbar__btn topbar__btn--menu" id="topbarMenuBtn">☰</button>
+</div>
+<div class="topbar__center">
+<a class="topbar__logo-link" href="index.html">
+<img alt="Logo" class="topbar__logo" src="images/logo.png"/>
+</a>
+</div>
+<div class="topbar__right">
+<button aria-label="Search" class="topbar__btn topbar__btn--search" id="topbarSearchBtn">🔍</button>
+<button aria-label="Share" class="topbar__btn topbar__btn--share" id="topbarShareBtn">⤴</button>
+</div>
+</header>
+<nav class="mobile-nav" id="mobileNav">
+<ul class="mobile-nav__list">
+<li><a href="index.html">Home</a></li>
+<li><a href="instruments.html">Instruments</a></li>
+<li><a href="pricing.html">Pricing &amp; Options</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+</nav>
 
-  <ul>
-    <li>传统技法与 CNC 加工中心结合。</li>
-    <li>根据木材特色与弹奏者的体型，精确调整我们的琴体形状。</li>
-    <li>自主设计斧形琴头，保证了 AX 贝斯的独有特色。</li>
-    <li>...</li>
-  </ul>
+<section class="about">
+<h1>About AX Guitar</h1>
+<p><strong>我们坚信：</strong>扎实的底子 + 丰富的经验 = 成就经典的声音与演奏体验。</p>
+<ul>
+<li>传统技法与 CNC 加工中心结合。</li>
+<li>根据木材特色与弹奏者的体型，精确调整我们的琴体形状。</li>
+<li>自主设计斧形琴头，保证了 AX 贝斯的独有特色。</li>
+<li>...</li>
+</ul>
+<p><strong>飞哥 Tel：</strong>+86 15737603114</p>
+<p><strong>鸣弟 Tel：</strong>+86 15703770846</p>
+</section>
 
-  <p><strong>飞哥 Tel：</strong>+86 15737603114</p>
-  <p><strong>鸣弟 Tel：</strong>+86 15703770846</p>
-  </section>
+<footer class="site-bottombar">
+<div class="bottombar__top">
+<button aria-label="Page Top" class="bottombar__to-top" id="toTopBtn">▲<span class="sr-only">Page Top</span></button>
+<div class="bottombar__label">PAGE TOP</div>
+</div>
+<div class="bottombar__logo-wrap">
+<img alt="Logo" class="bottombar__logo" src="images/logo.png"/>
+</div>
+</footer>
+
+<script>
+// Mobile menu toggle and utilities
+(function(){
+  var menuBtn = document.getElementById('topbarMenuBtn');
+  var mobileNav = document.getElementById('mobileNav');
+  var searchBtn = document.getElementById('topbarSearchBtn');
+  var toTopBtn = document.getElementById('toTopBtn');
+  var shareBtn = document.getElementById('topbarShareBtn');
+  if(menuBtn && mobileNav){
+    menuBtn.addEventListener('click', function(){
+      mobileNav.classList.toggle('mobile-nav--open');
+    });
+  }
+  if(toTopBtn){
+    toTopBtn.addEventListener('click', function(){
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+  if(shareBtn){
+    shareBtn.addEventListener('click', function(){
+      try{ if(navigator.share){ navigator.share({ title: document.title, url: location.href }); } else { alert('Share not supported'); } }catch(e){ alert('Share error'); }
+    });
+  }
+  if(searchBtn){
+    searchBtn.addEventListener('click', function(){
+      var q = prompt('Enter search term');
+      if(q) alert('Search not implemented. You searched for: ' + q);
+    });
+  }
+})();
+</script>
 </body>
 </html>

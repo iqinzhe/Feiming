@@ -1,44 +1,192 @@
-/* Base styles created by optimizer */
+/* ========== 基础通用设置 ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #333;
+}
 
-/* ===== Topbar (transparent white icons/text) ===== */
-.site-topbar{
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 64px;
+/* ========== 导航栏（全站通用） ========== */
+.header {
+  background-color: #111;
+  padding: 1rem 0;
+}
+.header__nav-list {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 12px;
-  background: rgba(0,0,0,0.45);
-  color: rgba(255,255,255,0.95);
-  z-index: 1200;
+  justify-content: center;
+  list-style: none;
 }
-.topbar__left, .topbar__center, .topbar__right{
-  display:flex; align-items:center;
+.header__nav-item {
+  margin: 0 20px;
 }
-.topbar__center{ flex:1; justify-content:center; }
-.topbar__logo{ height:40px; opacity:0.95; display:block; margin:0 auto; }
-.topbar__btn{ background:none; border:none; color:inherit; font-size:1.4rem; margin:0 6px; padding:6px; cursor:pointer; }
-/* Mobile nav (hidden by default) */
-.mobile-nav{ position:fixed; top:64px; left:0; right:0; background: rgba(0,0,0,0.9); color:white; display:none; z-index:1100; padding:12px; }
-.mobile-nav--open{ display:block; }
-.mobile-nav__list{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; }
-.mobile-nav__list a{ color:white; text-decoration:none; font-size:1rem; padding:8px 6px; display:block; }
+.header__nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+.header__nav-link:hover {
+  color: #f39c12;
+}
 
-/* ===== Footer (PAGE TOP + logo) ===== */
-.site-bottombar{ position:fixed; left:0; right:0; bottom:0; background: rgba(0,0,0,0.45); color: rgba(255,255,255,0.9); padding:10px 8px; text-align:center; z-index:1200; }
-.bottombar__top{ display:flex; flex-direction:column; align-items:center; justify-content:center; }
-.bottombar__to-top{ background:none; border:none; color:inherit; font-size:1.4rem; cursor:pointer; }
-.bottombar__label{ font-size:0.85rem; margin-top:4px; opacity:0.9; }
-.bottombar__logo{ height:36px; opacity:0.85; margin-top:6px; }
+/* ========== Hero 区块（首页） ========== */
+.hero {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(to right, #222, #444);
+  color: white;
+}
+.hero__img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 2rem;
+  border-radius: 12px;
+}
+.hero__title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.hero__subtitle {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
 
-/* ===== Responsive images and layout spacing ===== */
-img{ max-width:100%; height:auto; display:block; }
-.content{ padding: 84px 12px 84px; box-sizing:border-box; } /* reserve top and bottom fixed bars */
-@media (min-width: 900px){
-  .mobile-nav{ display:none !important; }
-  .site-topbar{ height:72px; }
-  .content{ padding:92px 24px 92px; }
+/* ========== 产品卡片区域（首页） ========== */
+.products-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  padding: 4rem 2rem;
+  background-color: #fff;
+}
+.products-overview__card {
+  background-color: #f4f4f4;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  text-align: center;
+}
+.products-overview__img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+.products-overview__title {
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+.products-overview__link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #f39c12;
+  text-decoration: none;
+  font-weight: bold;
+}
+.products-overview__link:hover {
+  text-decoration: underline;
+}
+
+/* ========== 乐器系列总览与型号详情（乐器页面专用） ========== */
+.instrument-header {
+  text-align: center;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.instrument-header__logo {
+  max-width: 150px;
+  opacity: 0.8;
+}
+.instrument-series,
+.instrument-model-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding: 20px;
+}
+.instrument-series__card,
+.instrument-model__card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 8px;
+  background: white;
+  text-align: center;
+}
+.instrument-series__img,
+.instrument-model__img {
+  max-width: 100%;
+  border-radius: 5px;
+}
+.instrument-btn {
+  display: inline-block;
+  padding: 8px 12px;
+  background: black;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+/* ========== Footer ========== */
+.footer {
+  background-color: #222;
+  color: #ccc;
+  padding: 2rem;
+  text-align: center;
+}
+.footer__form {
+  margin-bottom: 1rem;
+}
+.footer__input {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  width: 200px;
+}
+.footer__btn {
+  padding: 0.5rem 1rem;
+  background-color: #f39c12;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-left: 0.5rem;
+  cursor: pointer;
+}
+.footer__btn:hover {
+  background-color: #d9820f;
+}
+
+/* ========== 响应式（统一媒体查询） ========== */
+@media (max-width: 768px) {
+  /* 导航栏 */
+  .header__nav-list {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .hero__title {
+    font-size: 2rem;
+  }
+  .products-overview {
+    grid-template-columns: 1fr;
+  }
+  /* 乐器页面布局 */
+  .instrument-series,
+  .instrument-model-list {
+    grid-template-columns: 1fr;
+  }
+}
+@media (min-width: 768px) {
+  .instrument-series,
+  .instrument-model-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
