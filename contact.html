@@ -10,7 +10,9 @@
         :root {
             --topbar-height: 60px;
             --bottombar-height: 80px;
-            --neutral-gray: #333;
+            --neutral-gray: #808080; /* RGB 128,128,128 */
+            --text-white: #ffffff;
+            --glass-bg: rgba(128, 128, 128, 0.85); /* 毛玻璃基础色 */
         }
         
         * {
@@ -37,7 +39,7 @@
             width: 100%;
             height: var(--topbar-height);
             background-color: var(--neutral-gray);
-            color: white;
+            color: var(--text-white);
             z-index: 1000;
             padding: 0 20px;
         }
@@ -58,12 +60,13 @@
         .topbar__logo {
             height: 30px;
             width: auto;
+            filter: brightness(0) invert(1);
         }
         
         .topbar__btn {
             background: none;
             border: none;
-            color: white;
+            color: var(--text-white);
             font-size: 20px;
             cursor: pointer;
             padding: 5px;
@@ -76,8 +79,9 @@
             top: var(--topbar-height);
             left: 0;
             width: 100%;
-            background: rgba(51, 51, 51, 0.95);
+            background: var(--glass-bg);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             z-index: 999;
             padding: 10px 0;
         }
@@ -102,9 +106,10 @@
         }
         
         .mobile-nav__list a {
-            color: white;
+            color: var(--text-white);
             text-decoration: none;
             display: block;
+            font-weight: 500;
         }
         
         /* ===== 内容区 ===== */
@@ -283,7 +288,7 @@
             align-items: center;
             justify-content: center;
             background-color: var(--neutral-gray);
-            color: white;
+            color: var(--text-white);
             z-index: 100;
         }
         
@@ -298,7 +303,7 @@
             order: 1;
             background: none;
             border: none;
-            color: white;
+            color: var(--text-white);
             font-size: 22px;
             cursor: pointer;
             padding: 0;
