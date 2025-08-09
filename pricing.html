@@ -3,475 +3,834 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AX Guitar 定价和选项</title>
+    <title>ax guitar 定价和选项</title>
     <style>
-        /* ===== 共用样式 ===== */
-        :root {
-            --primary-bg: rgba(0, 0, 0, 0.3);
-            --glass-effect: blur(10px);
-            --transition: all 0.3s ease;
-            --primary-color: #1a237e;
-            --secondary-color: #e8eaf6;
-        }
-
         body {
-            margin: 0;
             font-family: Arial, sans-serif;
-            color: #fff;
-            background-color: #121212;
             line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            padding-top: 60px;
+            padding-bottom: 80px;
         }
-
-        /* ===== 顶部栏 ===== */
-        .site-topbar {
+        header.site-topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 100;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 15px;
-            background: var(--primary-bg);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: var(--glass-effect);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            padding: 10px 20px;
         }
-
-        .topbar__left, 
-        .topbar__right {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .topbar__center {
-            flex-grow: 1;
-            text-align: center;
-        }
-
         .topbar__logo {
-            height: 30px;
-            width: auto;
-            transition: var(--transition);
+            height: 40px;
         }
-
-        .topbar__logo:hover {
-            transform: scale(1.05);
-        }
-
         .topbar__btn {
             background: none;
             border: none;
-            color: #fff;
-            font-size: 20px;
+            font-size: 24px;
             cursor: pointer;
-            padding: 5px;
-            transition: var(--transition);
+            padding: 5px 10px;
         }
-
-        .topbar__btn:hover {
-            transform: scale(1.1);
-            opacity: 0.8;
-        }
-
-        /* ===== 毛玻璃导航菜单 ===== */
-        .mobile-nav {
-            display: none;
+        nav.mobile-nav {
             position: fixed;
-            top: 56px;
+            top: 60px;
+            left: -100%;
+            width: 80%;
+            height: calc(100vh - 60px);
+            background: #fff;
+            transition: left 0.3s;
+            z-index: 99;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+        nav.mobile-nav.mobile-nav--open {
             left: 0;
-            width: 100%;
-            background: var(--primary-bg);
-            backdrop-filter: var(--glass-effect);
-            z-index: 999;
-            padding: 10px 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
-
-        .mobile-nav.mobile-nav--open {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         .mobile-nav__list {
             list-style: none;
+            padding: 20px;
             margin: 0;
-            padding: 0;
         }
-
         .mobile-nav__list li {
-            padding: 12px 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: var(--transition);
+            margin-bottom: 15px;
         }
-
-        .mobile-nav__list li:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
         .mobile-nav__list a {
-            color: #fff;
             text-decoration: none;
-            display: block;
-            font-weight: 500;
+            color: #333;
+            font-size: 18px;
         }
-
-        /* ===== 内容区 ===== */
-        .main-content {
-            flex: 1;
-            margin-top: 56px;
-            margin-bottom: 80px;
-            padding: 20px;
-        }
-
-        /* ===== 定价表格样式 ===== */
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 20px;
-            transition: var(--transition);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        h1, h2 {
-            color: #fff;
-        }
-
         h1 {
             text-align: center;
             margin-bottom: 30px;
+            padding: 0 20px;
         }
-
+        form {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
-
         th, td {
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid #ddd;
             padding: 12px;
             text-align: left;
         }
-
         th {
-            background-color: rgba(255, 255, 255, 0.1);
-            font-weight: 600;
+            background-color: #f2f2f2;
+            font-weight: bold;
         }
-
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .section-title {
+            background-color: #e6e6e6;
+            font-weight: bold;
+        }
         .price {
             text-align: right;
             white-space: nowrap;
-            color: #fff;
         }
-
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
-
         .form-group label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #fff;
+            margin-bottom: 5px;
+            font-weight: bold;
         }
-
-        .form-control {
+        .form-group input[type="text"],
+        .form-group textarea {
             width: 100%;
-            padding: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 6px;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            font-size: 16px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
         }
-
-        textarea.form-control {
-            height: 100px;
-            resize: vertical;
+        .form-group textarea {
+            min-height: 100px;
         }
-
         .total {
-            font-size: 1.2em;
+            font-size: 1.5em;
             font-weight: bold;
             text-align: right;
-            margin-top: 20px;
-            color: #fff;
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #f2f2f2;
+            border-radius: 4px;
         }
-
-        .submit-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 14px 20px;
-            border-radius: 6px;
-            font-size: 17px;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            transition: background-color 0.3s;
-        }
-
-        .submit-btn:hover {
-            background-color: #0d1440;
-        }
-
-        /* ===== 底部栏 ===== */
-        .site-bottombar {
+        footer.site-bottombar {
             position: fixed;
             bottom: 0;
-            width: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+            padding: 10px 20px;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            padding: 15px;
-            background: var(--primary-bg);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            gap: 8px;
-            backdrop-filter: var(--glass-effect);
             z-index: 100;
         }
-
-        .bottombar__top {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-        }
-
         .bottombar__to-top {
-            order: 1;
             background: none;
             border: none;
-            color: #fff;
-            font-size: 22px;
+            font-size: 20px;
             cursor: pointer;
-            padding: 0;
-            transition: var(--transition);
+            padding: 5px;
         }
-
-        .bottombar__to-top:hover {
-            transform: scale(1.2);
-        }
-
-        .bottombar__label {
-            order: 2;
-            font-weight: bold;
-            color: #fff;
-            font-size: 12px;
-            letter-spacing: 1px;
-        }
-
-        .bottombar__logo-wrap {
-            order: 3;
-            margin-top: 5px;
-        }
-
         .bottombar__logo {
-            height: 20px;
-            width: auto;
-            filter: brightness(0) invert(1);
-            opacity: 0.8;
-            transition: var(--transition);
+            height: 30px;
         }
-
-        .bottombar__logo:hover {
-            opacity: 1;
-        }
-
-        /* ===== 响应式设计 ===== */
-        @media (min-width: 768px) {
-            .main-content {
-                padding: 30px;
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            th, td {
+                padding: 8px;
+                font-size: 14px;
             }
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+        
+        /* 价格选项交互效果 */
+        tr {
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        tr.selected {
+            background-color: #d4edff;
         }
     </style>
 </head>
 <body>
-    <header class="site-topbar">
-        <div class="topbar__left">
-            <button aria-label="Menu" class="topbar__btn topbar__btn--menu" id="topbarMenuBtn">☰</button>
+<header class="site-topbar">
+    <div class="topbar__left">
+        <button aria-label="Menu" class="topbar__btn topbar__btn--menu" id="topbarMenuBtn">☰</button>
+    </div>
+    <div class="topbar__center">
+        <a class="topbar__logo-link" href="index.html">
+            <img alt="Logo" class="topbar__logo" src="images/logo.png"/>
+        </a>
+    </div>
+    <div class="topbar__right">
+        <button aria-label="Search" class="topbar__btn topbar__btn--search" id="topbarSearchBtn">🔍</button>
+        <button aria-label="Share" class="topbar__btn topbar__btn--share" id="topbarShareBtn">⤴</button>
+    </div>
+</header>
+<nav class="mobile-nav" id="mobileNav">
+    <ul class="mobile-nav__list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="instruments.html">Instruments</a></li>
+        <li><a href="pricing.html">Pricing &amp; Options</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+    <h1>DIY 定价和选项</h1>
+
+    <form id="pricingForm">
+        <div class="form-group">
+            <label for="name">姓名：</label>
+            <input type="text" id="name" name="name" required>
         </div>
+        <div class="form-group">
+            <label for="number">编号：</label>
+            <input type="text" id="number" name="number">
+        </div>
+
+        <h2>琴型</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr data-price="0">
+                <td>A-系列</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="1000">
+                <td>B-系列</td>
+                <td class="price">¥1000</td>
+            </tr>
+            <tr data-price="1500">
+                <td>C-系列</td>
+                <td class="price">¥1500</td>
+            </tr>
+            <tr data-price="0">
+                <td>D-系列</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="0">
+                <td>AX Handmade Workshop</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="1500">
+                <td>E-无头系列</td>
+                <td class="price">¥1500</td>
+            </tr>
+        </table>
+
+        <h2>弦数</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr data-price="0">
+                <td>6弦</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="1500">
+                <td>7弦</td>
+                <td class="price">¥1500</td>
+            </tr>
+        </table>
+
+        <h2>连接方式</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr data-price="0">
+                <td>粘接</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="0">
+                <td>栓接</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="0">
+                <td>通颈</td>
+                <td class="price">¥0</td>
+            </tr>
+        </table>
+
+        <h2>琴颈木材</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr data-price="0">
+                <td>桤木</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="0">
+                <td>桃花芯</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="700">
+                <td>沼泽梣木</td>
+                <td class="price">¥700</td>
+            </tr>
+            <tr data-price="0">
+                <td>安格斯</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="0">
+                <td>黑胡桃</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="0">
+                <td>其他</td>
+                <td class="price">¥0</td>
+            </tr>
+        </table>
+
+        <h2>琴体木材</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr data-price="1800">
+                <td>虎纹枫木</td>
+                <td class="price">¥1800</td>
+            </tr>
+            <tr data-price="3000">
+                <td>絮状枫木</td>
+                <td class="price">¥3000</td>
+            </tr>
+            <tr data-price="4000">
+                <td>七叶树瘤</td>
+                <td class="price">¥4000</td>
+            </tr>
+            <tr data-price="1900">
+                <td>黑胡桃树瘤</td>
+                <td class="price">¥1900</td>
+            </tr>
+            <tr data-price="1700">
+                <td>渍纹枫木</td>
+                <td class="price">¥1700</td>
+            </tr>
+            <tr data-price="0">
+                <td>其他</td>
+                <td class="price">¥0</td>
+            </tr>
+        </table>
+
+        <h2>贴面木材</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr data-price="0">
+                <td>枫木</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="600">
+                <td>多拼枫木</td>
+                <td class="price">¥600</td>
+            </tr>
+            <tr data-price="1600">
+                <td>多拼虎纹枫木</td>
+                <td class="price">¥1600</td>
+            </tr>
+            <tr data-price="1500">
+                <td>雀眼枫木</td>
+                <td class="price">¥1500</td>
+            </tr>
+            <tr data-price="600">
+                <td>加拿大枫木</td>
+                <td class="price">¥600</td>
+            </tr>
+            <tr data-price="400">
+                <td>烤枫木</td>
+                <td class="price">¥400</td>
+            </tr>
+            <tr data-price="900">
+                <td>鸡翅木</td>
+                <td class="price">¥900</td>
+            </tr>
+            <tr data-price="7000">
+                <td>碳纤维 (仅无头琴)</td>
+                <td class="price">¥7000</td>
+            </tr>
+            <tr data-price="500">
+                <td>雀眼枫木</td>
+                <td class="price">¥500</td>
+            </tr>
+            <tr data-price="0">
+                <td>印度玫瑰木</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="0">
+                <td>乌木</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="400">
+                <td>十二雄蕊破布木</td>
+                <td class="price">¥400</td>
+            </tr>
+            <tr data-price="600">
+                <td>烤雀眼枫木</td>
+                <td class="price">¥600</td>
+            </tr>
+            <tr data-price="0">
+                <td>其他</td>
+                <td class="price">¥0</td>
+            </tr>
+        </table>
+
+        <h2>指板木材</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr data-price="0">
+                <td>标准</td>
+                <td class="price">¥0</td>
+            </tr>
+        </table>
+
+        <h2>定制选项</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr data-price="1500">
+                <td>ax 3-Piece Body</td>
+                <td class="price">¥1500</td>
+            </tr>
+            <tr data-price="1000">
+                <td>Or Tone-block</td>
+                <td class="price">¥1000</td>
+            </tr>
+        </table>
+
+        <h2>品数</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr data-price="0">
+                <td>22品</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="0">
+                <td>24品</td>
+                <td class="price">¥0</td>
+            </tr>
+        </table>
+
+        <h2>品丝规格</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr data-price="0">
+                <td>标准</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="1500">
+                <td>不锈钢</td>
+                <td class="price">¥1500</td>
+            </tr>
+        </table>
+
+        <h2>品丝宽度</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr data-price="0">
+                <td>品丝宽度 2.4</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="0">
+                <td>品丝宽度 2.7</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="0">
+                <td>品丝宽度 2.9</td>
+                <td class="price">¥0</td>
+            </tr>
+        </table>
+
+        <h2>中间木材</h2>
+        <table>
+            <tr>
+                <td>标准</td>
+                <td class="price">¥0</td>
+            </tr>
+        </table>
+
+        <h2>两侧木材</h2>
+        <table>
+            <tr>
+                <td>标准</td>
+                <td class="price">¥0</td>
+            </tr>
+        </table>
+
+        <h2>指板弧度</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr data-price="0">
+                <td>标准 10"</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="500">
+                <td>Custom: 7.25" 9.5" 12" 14"</td>
+                <td class="price">¥500</td>
+            </tr>
+            <tr data-price="1000">
+                <td>混合弧度</td>
+                <td class="price">¥1000</td>
+            </tr>
+        </table>
+
+        <h2>品记</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr data-price="0">
+                <td>鲍鱼壳圆点</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="0">
+                <td>白贝圆点</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="1200">
+                <td>鲍鱼壳方块</td>
+                <td class="price">¥1200</td>
+            </tr>
+            <tr data-price="700">
+                <td>白贝方块</td>
+                <td class="price">¥700</td>
+            </tr>
+            <tr data-price="700">
+                <td>贴面木质方块</td>
+                <td class="price">¥700</td>
+            </tr>
+            <tr data-price="1000">
+                <td>其他木质方块</td>
+                <td class="price">¥1000</td>
+            </tr>
+            <tr data-price="0">
+                <td>定制镶嵌</td>
+                <td class="price">¥0</td>
+            </tr>
+        </table>
+
+        <h2>旋钮以及拾音器外壳</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr data-price="0">
+                <td>标准</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="500">
+                <td>木制旋钮</td>
+                <td class="price">¥500</td>
+            </tr>
+            <tr data-price="1000">
+                <td>木制拾音器壳</td>
+                <td class="price">¥1000</td>
+            </tr>
+            <tr data-price="1500">
+                <td>原位拾音器壳</td>
+                <td class="price">¥1500</td>
+            </tr>
+            <tr data-price="700">
+                <td>木制后盖板</td>
+                <td class="price">¥700</td>
+            </tr>
+        </table>
+
+        <h2>琴桥和卷弦器</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr data-price="0">
+                <td>固定</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="500">
+                <td>两点单摇颤音</td>
+                <td class="price">¥500</td>
+            </tr>
+            <tr data-price="500">
+                <td>六点单摇颤音</td>
+                <td class="price">¥500</td>
+            </tr>
+            <tr data-price="1000">
+                <td>双摇颤音</td>
+                <td class="price">¥1000</td>
+            </tr>
+            <tr data-price="0">
+                <td>标准</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="300">
+                <td>其他</td>
+                <td class="price">¥300</td>
+            </tr>
+        </table>
+
+        <h2>拾音器</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr data-price="0">
+                <td>FishMan</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="50">
+                <td>Seymour Duncan</td>
+                <td class="price">¥50</td>
+            </tr>
+            <tr data-price="0">
+                <td>Dimarzio</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="0">
+                <td>EMG</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="0">
+                <td>标准拾音器列表</td>
+                <td class="price">¥0</td>
+            </tr>
+        </table>
+
+        <h2>电路</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr data-price="0">
+                <td>标准</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="200">
+                <td>主动电路定制</td>
+                <td class="price">¥200</td>
+            </tr>
+            <tr data-price="100">
+                <td>被动电路定制</td>
+                <td class="price">¥100</td>
+            </tr>
+        </table>
+
+        <h2>油漆质感</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr data-price="0">
+                <td>哑光</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="1200">
+                <td>亮光</td>
+                <td class="price">¥1200</td>
+            </tr>
+            <tr data-price="700">
+                <td>超薄哑光</td>
+                <td class="price">¥700</td>
+            </tr>
+        </table>
+
+        <h2>颜色</h2>
+        <table>
+            <tr>
+                <th>选项</th>
+                <th>价格</th>
+            </tr>
+            <tr data-price="0">
+                <td>标准</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="0">
+                <td>金色</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="0">
+                <td>镀铬</td>
+                <td class="price">¥0</td>
+            </tr>
+            <tr data-price="0">
+                <td>黑色</td>
+                <td class="price">¥0</td>
+            </tr>
+        </table>
+
+        <div class="form-group">
+            <label for="notes">备注：</label>
+            <textarea id="notes" name="notes" rows="4" cols="50"></textarea>
+        </div>
+
+        <div class="total" id="totalPrice">
+            报价: ¥0
+        </div>
+    </form>
+
+<footer class="site-bottombar">
+    <div class="bottombar__top">
+        <button aria-label="Page Top" class="bottombar__to-top" id="toTopBtn">▲<span class="sr-only">Page Top</span></button>
+        <div class="bottombar__label">PAGE TOP</div>
+    </div>
+    <div class="bottombar__logo-wrap">
+        <img alt="Logo" class="bottombar__logo" src="images/logo.png"/>
+    </div>
+</footer>
+
+<script>
+// Mobile menu toggle and utilities
+(function(){
+  var menuBtn = document.getElementById('topbarMenuBtn');
+  var mobileNav = document.getElementById('mobileNav');
+  var searchBtn = document.getElementById('topbarSearchBtn');
+  var toTopBtn = document.getElementById('toTopBtn');
+  var shareBtn = document.getElementById('topbarShareBtn');
+  
+  if(menuBtn && mobileNav){
+    menuBtn.addEventListener('click', function(){
+      mobileNav.classList.toggle('mobile-nav--open');
+    });
+  }
+  
+  if(toTopBtn){
+    toTopBtn.addEventListener('click', function(){
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+  
+  if(shareBtn){
+    shareBtn.addEventListener('click', function(){
+      try{ 
+        if(navigator.share){ 
+          navigator.share({ title: document.title, url: location.href }); 
+        } else { 
+          alert('Share not supported'); 
+        } 
+      }catch(e){ 
+        alert('Share error'); 
+      }
+    });
+  }
+  
+  if(searchBtn){
+    searchBtn.addEventListener('click', function(){
+      var q = prompt('Enter search term');
+      if(q) alert('Search not implemented. You searched for: ' + q);
+    });
+  }
+})();
+
+// 价格计算功能
+document.addEventListener('DOMContentLoaded', function() {
+    // 为所有表格行添加点击事件
+    const tables = document.querySelectorAll('table');
+    const totalElement = document.getElementById('totalPrice');
+    
+    tables.forEach(table => {
+        const rows = table.querySelectorAll('tr:not(:first-child)');
         
-        <div class="topbar__center">
-            <a class="topbar__logo-link" href="index.html">
-                <img alt="AX Guitar Logo" class="topbar__logo" src="images/logo.png"/>
-            </a>
-        </div>
-        
-        <div class="topbar__right">
-            <button aria-label="Search" class="topbar__btn topbar__btn--search" id="topbarSearchBtn">🔍</button>
-            <button aria-label="Share" class="topbar__btn topbar__btn--share" id="topbarShareBtn">⤴</button>
-        </div>
-        
-        <nav class="mobile-nav" id="mobileNav">
-            <ul class="mobile-nav__list">
-                <li><a href="index.html">首页</a></li>
-                <li><a href="instruments.html">产品</a></li>
-                <li><a href="pricing.html">选项</a></li>
-                <li><a href="about.html">关于我们</a></li>
-                <li><a href="contact.html">联系我们</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main class="main-content">
-        <div class="card">
-            <h1>DIY 定价和选项</h1>
-
-            <form>
-                <div class="form-group">
-                    <label for="name">姓名：</label>
-                    <input type="text" id="name" name="name" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="number">编号：</label>
-                    <input type="text" id="number" name="number" class="form-control">
-                </div>
-
-                <h2>琴型</h2>
-                <table>
-                    <tr>
-                        <th>选项</th>
-                        <th>价格</th>
-                    </tr>
-                    <tr>
-                        <td>A-系列</td>
-                        <td class="price">¥0</td>
-                    </tr>
-                    <tr>
-                        <td>B-系列</td>
-                        <td class="price">¥1000</td>
-                    </tr>
-                    <tr>
-                        <td>C-系列</td>
-                        <td class="price">¥1500</td>
-                    </tr>
-                    <tr>
-                        <td>D-系列</td>
-                        <td class="price">¥0</td>
-                    </tr>
-                    <tr>
-                        <td>AX Handmade Workshop</td>
-                        <td class="price">¥0</td>
-                    </tr>
-                    <tr>
-                        <td>E-无头系列</td>
-                        <td class="price">¥1500</td>
-                    </tr>
-                </table>
-
-                <!-- 其他表格部分保持不变 -->
-                <!-- 为节省篇幅，这里省略了中间重复的表格部分 -->
-                <!-- 实际使用时请保留所有表格 -->
-
-                <div class="form-group">
-                    <label for="notes">备注：</label>
-                    <textarea id="notes" name="notes" class="form-control" rows="4"></textarea>
-                </div>
-
-                <div class="total">
-                    报价: ¥ ?- ¥ ?
-                </div>
-
-                <button type="submit" class="submit-btn">提交定制请求</button>
-            </form>
-        </div>
-    </main>
-
-    <footer class="site-bottombar">
-        <div class="bottombar__top">
-            <button aria-label="Page Top" class="bottombar__to-top" id="toTopBtn">▲</button>
-            <div class="bottombar__label">PAGE TOP</div>
-            <div class="bottombar__logo-wrap">
-                <img alt="AX Guitar Logo" class="bottombar__logo" src="images/logo.png"/>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-    // 增强版JavaScript
-    (function(){
-        // 元素获取
-        const menuBtn = document.getElementById('topbarMenuBtn');
-        const mobileNav = document.getElementById('mobileNav');
-        const searchBtn = document.getElementById('topbarSearchBtn');
-        const toTopBtn = document.getElementById('toTopBtn');
-        const shareBtn = document.getElementById('topbarShareBtn');
-
-        // 菜单切换
-        if(menuBtn && mobileNav) {
-            menuBtn.addEventListener('click', () => {
-                mobileNav.classList.toggle('mobile-nav--open');
-                menuBtn.textContent = mobileNav.classList.contains('mobile-nav--open') ? '✕' : '☰';
+        rows.forEach(row => {
+            row.addEventListener('click', function() {
+                // 清除同表格中其他行的选中状态
+                const siblings = Array.from(this.parentNode.children).filter(child => child !== this);
+                siblings.forEach(sibling => sibling.classList.remove('selected'));
+                
+                // 选中当前行
+                this.classList.toggle('selected');
+                
+                // 更新总价
+                updateTotalPrice();
             });
-        }
-
-        // 返回顶部（平滑滚动）
-        if(toTopBtn) {
-            toTopBtn.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        }
-
-        // 分享功能
-        if(shareBtn) {
-            shareBtn.addEventListener('click', () => {
-                try {
-                    if(navigator.share) {
-                        navigator.share({
-                            title: document.title,
-                            url: location.href
-                        }).catch(e => console.log('分享取消'));
-                    } else {
-                        // 备用方案
-                        const shareUrl = `mailto:?subject=${encodeURIComponent(document.title)}&body=${encodeURIComponent(location.href)}`;
-                        window.open(shareUrl, '_blank');
-                    }
-                } catch(e) {
-                    console.error('分享出错:', e);
-                }
-            });
-        }
-
-        // 搜索功能
-        if(searchBtn) {
-            searchBtn.addEventListener('click', () => {
-                const q = prompt('请输入搜索内容');
-                if(q) {
-                    // 实际项目中这里应该是表单提交
-                    console.log('搜索:', q);
-                    alert('搜索演示: ' + q);
-                }
-            });
-        }
-
-        // 点击菜单外区域关闭菜单
-        document.addEventListener('click', (e) => {
-            if(mobileNav.classList.contains('mobile-nav--open') && 
-               !e.target.closest('#topbarMenuBtn') && 
-               !e.target.closest('#mobileNav')) {
-                mobileNav.classList.remove('mobile-nav--open');
-                menuBtn.textContent = '☰';
-            }
         });
-    })();
-    </script>
+    });
+    
+    // 更新总价函数
+    function updateTotalPrice() {
+        let total = 0;
+        const selectedRows = document.querySelectorAll('tr.selected');
+        
+        selectedRows.forEach(row => {
+            const price = parseFloat(row.getAttribute('data-price')) || 0;
+            total += price;
+        });
+        
+        totalElement.textContent = `报价: ¥${total}`;
+    }
+    
+    // 表单提交处理
+    const form = document.getElementById('pricingForm');
+    if(form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            if(!name) {
+                alert('请输入您的姓名');
+                return;
+            }
+            
+            const total = document.querySelectorAll('tr.selected').length > 0 ? 
+                totalElement.textContent : '未选择任何选项';
+                
+            alert(`感谢 ${name} 的询价！\n${total}\n我们会尽快与您联系。`);
+        });
+    }
+});
+</script>
 </body>
 </html>
