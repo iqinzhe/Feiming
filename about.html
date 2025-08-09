@@ -3,26 +3,16 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>About</title>
+<title>About AX Guitar</title>
 <link href="css/style.css" rel="stylesheet"/>
 <style>
-/* 新增顶部栏CSS - 中性灰风格 */
-:root {
-  --neutral-gray: rgb(128, 128, 128);
-  --dark-overlay: rgba(0, 0, 0, 0.3);
-}
-
-body {
-  color: #fff;
-  background-color: var(--neutral-gray);
-}
-
+/* ===== 顶部栏样式 ===== */
 .site-topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 12px 15px;
-  background: var(--dark-overlay);
+  background: rgba(0, 0, 0, 0.3);
   position: relative;
   backdrop-filter: blur(5px);
 }
@@ -44,7 +34,6 @@ body {
   width: auto;
 }
 
-/* 汉堡菜单样式 */
 .topbar__btn {
   background: none;
   border: none;
@@ -54,14 +43,13 @@ body {
   padding: 5px;
 }
 
-/* 导航菜单样式 */
 .mobile-nav {
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
   width: 100%;
-  background: var(--dark-overlay);
+  background: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
   z-index: 1000;
   padding: 10px 0;
@@ -86,43 +74,53 @@ body {
   display: block;
 }
 
-/* 搜索功能弹窗样式 */
-.search-modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--dark-overlay);
-  z-index: 2000;
+/* ===== 底部栏最终版样式 ===== */
+.site-bottombar {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 20px 15px;
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 8px;
 }
 
-.search-modal--open {
+.bottombar__top {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
 
-.search-container {
-  background: rgba(0, 0, 0, 0.5);
-  padding: 20px;
-  width: 80%;
-  max-width: 500px;
-  border-radius: 8px;
-}
-
-.search-container input {
-  width: 100%;
-  padding: 12px 15px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 25px;
+.bottombar__to-top {
+  order: 1;
+  background: none;
+  border: none;
   color: #fff;
-  font-size: 16px;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 0;
 }
 
-/* 响应式调整 */
+.bottombar__label {
+  order: 2;
+  font-weight: bold;
+  color: #fff;
+}
+
+.bottombar__logo-wrap {
+  order: 3;
+  margin-top: 5px;
+}
+
+.bottombar__logo {
+  height: 25px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+/* ===== 响应式设计 ===== */
 @media (min-width: 768px) {
   .site-topbar {
     padding: 15px 30px;
@@ -135,7 +133,6 @@ body {
 </head>
 <body>
 
-<!-- 修改后的顶部栏结构 -->
 <header class="site-topbar">
   <div class="topbar__left">
     <button aria-label="Menu" class="topbar__btn topbar__btn--menu" id="topbarMenuBtn">☰</button>
@@ -143,7 +140,7 @@ body {
   
   <div class="topbar__center">
     <a class="topbar__logo-link" href="index.html">
-      <img alt="Logo" class="topbar__logo" src="images/logo.png"/>
+      <img alt="AX Guitar Logo" class="topbar__logo" src="images/logo.png"/>
     </a>
   </div>
   
@@ -152,7 +149,6 @@ body {
     <button aria-label="Share" class="topbar__btn topbar__btn--share" id="topbarShareBtn">⤴</button>
   </div>
   
-  <!-- 导航菜单 -->
   <nav class="mobile-nav" id="mobileNav">
     <ul class="mobile-nav__list">
       <li><a href="index.html">首页</a></li>
@@ -164,115 +160,70 @@ body {
   </nav>
 </header>
 
-<!-- 搜索弹窗 -->
-<div class="search-modal" id="searchModal">
-  <div class="search-container">
-    <input type="text" placeholder="输入搜索内容..." id="searchInput">
-  </div>
-</div>
-
-<!-- 页面内容保持不变 -->
 <section class="about">
   <h1>About AX Guitar</h1>
   <p><strong>我们坚信：</strong>扎实的底子 + 丰富的经验 = 成就经典的声音与演奏体验。</p>
   <ul>
-    <li>传统技法与 CNC 加工中心结合。</li>
-    <li>根据木材特色与弹奏者的体型，精确调整我们的琴体形状。</li>
-    <li>自主设计斧形琴头，保证了 AX 贝斯的独有特色。</li>
+    <li>传统技法与 CNC 加工中心结合</li>
+    <li>根据木材特色与弹奏者的体型精确调整琴体形状</li>
+    <li>自主设计斧形琴头，保证AX贝斯的独有特色</li>
     <li>...</li>
   </ul>
   <p><strong>飞哥 Tel：</strong>+86 15737603114</p>
   <p><strong>鸣弟 Tel：</strong>+86 15703770846</p>
 </section>
 
-<!-- 最终版底部栏结构 -->
 <footer class="site-bottombar">
   <div class="bottombar__top">
     <button aria-label="Page Top" class="bottombar__to-top" id="toTopBtn">▲<span class="sr-only">Page Top</span></button>
     <div class="bottombar__label">PAGE TOP</div>
     <div class="bottombar__logo-wrap">
-      <img alt="Logo" class="bottombar__logo" src="images/logo.png"/>
+      <img alt="AX Guitar Logo" class="bottombar__logo" src="images/logo.png"/>
     </div>
   </div>
 </footer>
 
 <script>
-// 增强版JavaScript（保持原有功能+新增搜索弹窗）
+// 增强版JavaScript
 (function(){
-  // 获取元素
+  // 元素获取
   const menuBtn = document.getElementById('topbarMenuBtn');
   const mobileNav = document.getElementById('mobileNav');
   const searchBtn = document.getElementById('topbarSearchBtn');
   const toTopBtn = document.getElementById('toTopBtn');
   const shareBtn = document.getElementById('topbarShareBtn');
-  const searchModal = document.getElementById('searchModal');
-  const searchInput = document.getElementById('searchInput');
 
-  // 汉堡菜单切换
+  // 菜单切换
   if(menuBtn && mobileNav) {
-    menuBtn.addEventListener('click', function(){
+    menuBtn.addEventListener('click', () => {
       mobileNav.classList.toggle('mobile-nav--open');
-      // 关闭其他打开的弹窗
-      searchModal.classList.remove('search-modal--open');
     });
   }
 
   // 返回顶部
   if(toTopBtn) {
-    toTopBtn.addEventListener('click', function(){
+    toTopBtn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 
   // 分享功能
   if(shareBtn) {
-    shareBtn.addEventListener('click', function(){
+    shareBtn.addEventListener('click', () => {
       try {
-        if(navigator.share) {
-          navigator.share({ 
-            title: document.title, 
-            url: location.href 
-          });
-        } else {
-          alert('分享功能在您的浏览器不可用');
-        }
+        navigator.share?.({ title: document.title, url: location.href }) || 
+        alert('分享功能不可用');
       } catch(e) {
         alert('分享出错: ' + e.message);
       }
     });
   }
 
-  // 搜索功能增强
-  if(searchBtn && searchModal) {
-    searchBtn.addEventListener('click', function(){
-      searchModal.classList.toggle('search-modal--open');
-      // 关闭导航菜单
-      mobileNav.classList.remove('mobile-nav--open');
-      // 自动聚焦输入框
-      if(searchModal.classList.contains('search-modal--open')) {
-        searchInput.focus();
-      }
-    });
-  }
-
-  // 点击弹窗外部关闭搜索
-  searchModal.addEventListener('click', function(e) {
-    if(e.target === searchModal) {
-      searchModal.classList.remove('search-modal--open');
-    }
-  });
-
-  // 搜索提交
-  if(searchInput) {
-    searchInput.addEventListener('keypress', function(e) {
-      if(e.key === 'Enter') {
-        const query = this.value.trim();
-        if(query) {
-          alert('搜索功能演示: 您搜索了 "' + query + '"');
-          searchModal.classList.remove('search-modal--open');
-          this.value = '';
-        }
-      }
+  // 搜索功能
+  if(searchBtn) {
+    searchBtn.addEventListener('click', () => {
+      const q = prompt('请输入搜索内容');
+      if(q) alert('搜索演示: ' + q);
     });
   }
 })();
