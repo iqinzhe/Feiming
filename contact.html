@@ -277,77 +277,42 @@
         }
         
         /* ===== 底部栏样式 ===== */
-        .site-bottombar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: var(--bottombar-height);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--neutral-gray);
-            color: var(--text-white);
-            z-index: 100;
-        }
+.site-bottombar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 15px;
+  background: var(--glass-dark);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  gap: 8px;
+  margin-top: auto;
+}
+
+.bottombar__to-top {
+  background: none;
+  border: none;
+  color: var(--text-white);
+  font-size: 22px;
+  cursor: pointer;
+}
         
-        .bottombar__top {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .bottombar__to-top {
-            order: 1;
-            background: none;
-            border: none;
-            color: var(--text-white);
-            font-size: 22px;
-            cursor: pointer;
-            padding: 0;
-        }
-        
-        .bottombar__label {
-            order: 2;
-            font-weight: bold;
-            font-size: 12px;
-            letter-spacing: 1px;
-        }
-        
-        .bottombar__logo-wrap {
-            order: 3;
-            margin-top: 5px;
-        }
-        
-        .bottombar__logo {
-            height: 20px;
-            width: auto;
-            filter: brightness(0) invert(1);
-        }
-        
-        /* ===== 响应式设计 ===== */
-        @media (min-width: 768px) {
-            .container {
-                max-width: 750px;
-                margin: var(--topbar-height) auto var(--bottombar-height);
-                padding: 25px;
-            }
-            
-            .contact-methods {
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
-            
-            .contact-card {
-                flex: 1 1 calc(50% - 20px);
-                min-width: 300px;
-            }
-        }
-    </style>
+/* 响应式设计 */
+@media (min-width: 768px) {
+  .model-card {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+  }
+  
+  .topbar__logo {
+    height: 35px;
+  }
+}
+</style>
 </head>
 <body>
+
+<!-- 顶部导航栏 -->
     <header class="site-topbar">
         <div class="topbar__left">
             <button aria-label="Menu" class="topbar__btn topbar__btn--menu" id="topbarMenuBtn">☰</button>
@@ -428,47 +393,48 @@
             <a href="#" class="social-icon">B</a>
         </div>
     </div>
+</section>
+</main>
 
-    <footer class="site-bottombar">
-        <div class="bottombar__top">
-            <button aria-label="Page Top" class="bottombar__to-top" id="toTopBtn">▲<span class="sr-only">Page Top</span></button>
-            <div class="bottombar__label">PAGE TOP</div>
-        </div>
-        <div class="bottombar__logo-wrap">
-            <img alt="Logo" class="bottombar__logo" src="images/logo.png"/>
-        </div>
-    </footer>
+<!-- 底部栏 -->
+<footer class="site-bottombar">
+  <div class="bottombar__top">
+    <button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
+    <div class="bottombar__label">返回顶部</div>
+    <div class="bottombar__logo-wrap">
+      <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo" style="height:25px;"/>
+    </div>
+  </div>
+</footer>
 
-    <script>
-    // Mobile menu toggle and utilities
-    (function(){
-      var menuBtn = document.getElementById('topbarMenuBtn');
-      var mobileNav = document.getElementById('mobileNav');
-      var searchBtn = document.getElementById('topbarSearchBtn');
-      var toTopBtn = document.getElementById('toTopBtn');
-      var shareBtn = document.getElementById('topbarShareBtn');
-      if(menuBtn && mobileNav){
-        menuBtn.addEventListener('click', function(){
-          mobileNav.classList.toggle('mobile-nav--open');
-        });
-      }
-      if(toTopBtn){
-        toTopBtn.addEventListener('click', function(){
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-      }
-      if(shareBtn){
-        shareBtn.addEventListener('click', function(){
-          try{ if(navigator.share){ navigator.share({ title: document.title, url: location.href }); } else { alert('分享功能不可用'); } }catch(e){ alert('分享出错: ' + e.message); }
-        });
-      }
-      if(searchBtn){
-        searchBtn.addEventListener('click', function(){
-          var q = prompt('请输入搜索内容');
-          if(q) alert('搜索演示: ' + q);
-        });
-      }
-    })();
-    </script>
+<script>
+// 汉堡菜单交互
+document.getElementById('topbarMenuBtn').addEventListener('click', function() {
+  document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
+});
+
+// 返回顶部平滑滚动
+document.getElementById('toTopBtn').addEventListener('click', function() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// 搜索功能
+document.getElementById('topbarSearchBtn').addEventListener('click', function() {
+  const query = prompt('请输入搜索关键词');
+  if(query) alert('即将搜索: ' + query);
+});
+
+// 分享功能
+document.getElementById('topbarShareBtn').addEventListener('click', function() {
+  if(navigator.share) {
+    navigator.share({
+      title: document.title,
+      url: window.location.href
+    }).catch(e => console.log('分享失败'));
+  } else {
+    alert('请手动分享此页面');
+  }
+});
+</script>
 </body>
 </html>
