@@ -6,6 +6,13 @@
     <title>联系我们 - AX Bass&Guitar</title>
     <link href="css/style.css" rel="stylesheet"/>
     <style>
+        /* ===== 全局样式 ===== */
+        :root {
+            --topbar-height: 60px;
+            --bottombar-height: 80px;
+            --neutral-gray: #333;
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -19,13 +26,96 @@
             line-height: 1.6;
         }
         
+        /* ===== 顶部栏样式 ===== */
+        .site-topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--topbar-height);
+            background-color: var(--neutral-gray);
+            color: white;
+            z-index: 1000;
+            padding: 0 20px;
+        }
+        
+        .topbar__left, 
+        .topbar__right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .topbar__center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .topbar__logo {
+            height: 30px;
+            width: auto;
+        }
+        
+        .topbar__btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        /* ===== 毛玻璃导航菜单 ===== */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: var(--topbar-height);
+            left: 0;
+            width: 100%;
+            background: rgba(51, 51, 51, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            padding: 10px 0;
+        }
+        
+        .mobile-nav.mobile-nav--open {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .mobile-nav__list {
+            list-style: none;
+        }
+        
+        .mobile-nav__list li {
+            padding: 12px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-nav__list a {
+            color: white;
+            text-decoration: none;
+            display: block;
+        }
+        
+        /* ===== 内容区 ===== */
         .container {
             max-width: 100%;
             padding: 15px;
-            margin-top: 60px; /* 为顶部栏留出空间 */
-            margin-bottom: 80px; /* 为底部栏留出空间 */
+            margin-top: var(--topbar-height);
+            margin-bottom: var(--bottombar-height);
         }
         
+        /* ===== 原有contact页面样式 ===== */
         .contact-header {
             text-align: center;
             padding: 25px 0;
@@ -155,15 +245,6 @@
             background-color: #0d1440;
         }
         
-        .map-container {
-            margin: 25px 0;
-            height: 280px;
-            background: #eee;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-        }
-        
         .social-media {
             display: flex;
             justify-content: center;
@@ -190,10 +271,62 @@
             background-color: #0d1440;
         }
         
+        /* ===== 底部栏样式 ===== */
+        .site-bottombar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: var(--bottombar-height);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--neutral-gray);
+            color: white;
+            z-index: 100;
+        }
+        
+        .bottombar__top {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .bottombar__to-top {
+            order: 1;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+            padding: 0;
+        }
+        
+        .bottombar__label {
+            order: 2;
+            font-weight: bold;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+        
+        .bottombar__logo-wrap {
+            order: 3;
+            margin-top: 5px;
+        }
+        
+        .bottombar__logo {
+            height: 20px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+        
+        /* ===== 响应式设计 ===== */
         @media (min-width: 768px) {
             .container {
                 max-width: 750px;
-                margin: 60px auto 80px;
+                margin: var(--topbar-height) auto var(--bottombar-height);
                 padding: 25px;
             }
             
@@ -321,7 +454,7 @@
       }
       if(shareBtn){
         shareBtn.addEventListener('click', function(){
-          try{ if(navigator.share){ navigator.share({ title: document.title, url: location.href }); } else { alert('Share not supported'); } }catch(e){ alert('Share error'); }
+          try{ if(navigator.share){ navigator.share({ title: document.title, url: location.href }); } else { alert('分享功能不可用'); } }catch(e){ alert('分享出错: ' + e.message); }
         });
       }
       if(searchBtn){
