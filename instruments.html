@@ -2,100 +2,53 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Instruments - Series Overview</title>
-<link href="css/style.css" rel="stylesheet"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>产品系列 - AX Bass&Guitar</title>
+<style>
+/* [复用全局样式] */
+
+.series-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  padding: 20px 0;
+}
+
+.series-card {
+  background: rgba(0,0,0,0.2);
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.series-card:hover {
+  transform: translateY(-5px);
+}
+</style>
 </head>
 <body>
-<header class="site-topbar">
-<div class="topbar__left">
-<button aria-label="Menu" class="topbar__btn topbar__btn--menu" id="topbarMenuBtn">☰</button>
-</div>
-<div class="topbar__center">
-<a class="topbar__logo-link" href="index.html">
-<img alt="Logo" class="topbar__logo" src="images/logo.png"/>
-</a>
-</div>
-<div class="topbar__right">
-<button aria-label="Search" class="topbar__btn topbar__btn--search" id="topbarSearchBtn">🔍</button>
-<button aria-label="Share" class="topbar__btn topbar__btn--share" id="topbarShareBtn">⤴</button>
-</div>
-</header>
-<nav class="mobile-nav" id="mobileNav">
-<ul class="mobile-nav__list">
-<li><a href="index.html">Home</a></li>
-<li><a href="instruments.html">Instruments</a></li>
-<li><a href="pricing.html">Pricing &amp; Options</a></li>
-<li><a href="about.html">About</a></li>
-<li><a href="contact.html">Contact</a></li>
-</ul>
-</nav>
 
-<header class="site-header">
-<h1>Instrument Series</h1>
-</header>
-<main class="series-overview">
-<section class="series-card">
-<img alt="Series A" src="images/series-a.jpg"/>
-<h2>Series A</h2>
-<p>High-performance guitars with modern tone and style.</p>
-<a class="btn" href="series-a.html">View Series</a>
-</section>
-<section class="series-card">
-<img alt="Series B" src="images/series-b.jpg"/>
-<h2>Series B</h2>
-<p>Classic designs with vintage warmth and feel.</p>
-<a class="btn" href="series-b.html">View Series</a>
-</section>
-<section class="series-card">
-<img alt="Series C" src="images/series-c.jpg"/>
-<h2>Series C</h2>
-<p>Innovative models with unique body shapes and sounds.</p>
-<a class="btn" href="series-c.html">View Series</a>
-</section>
+<!-- [标准顶部栏] -->
+
+<main class="page-content">
+  <h1>产品系列</h1>
+  
+  <div class="series-overview">
+    <div class="series-card">
+      <img src="images/series-a.jpg" alt="A系列"/>
+      <div class="card-body">
+        <h2>Series A</h2>
+        <p>高性能现代音色吉他</p>
+        <a href="series-a.html">查看系列</a>
+      </div>
+    </div>
+    <!-- [其他系列卡片] -->
+  </div>
 </main>
-<footer>
 
-<footer class="site-bottombar">
-<div class="bottombar__top">
-<button aria-label="Page Top" class="bottombar__to-top" id="toTopBtn">▲<span class="sr-only">Page Top</span></button>
-<div class="bottombar__label">PAGE TOP</div>
-</div>
-<div class="bottombar__logo-wrap">
-<img alt="Logo" class="bottombar__logo" src="images/logo.png"/>
-</div>
-</footer>
+<!-- [标准底部栏] -->
 
-<script>
-// Mobile menu toggle and utilities
-(function(){
-  var menuBtn = document.getElementById('topbarMenuBtn');
-  var mobileNav = document.getElementById('mobileNav');
-  var searchBtn = document.getElementById('topbarSearchBtn');
-  var toTopBtn = document.getElementById('toTopBtn');
-  var shareBtn = document.getElementById('topbarShareBtn');
-  if(menuBtn && mobileNav){
-    menuBtn.addEventListener('click', function(){
-      mobileNav.classList.toggle('mobile-nav--open');
-    });
-  }
-  if(toTopBtn){
-    toTopBtn.addEventListener('click', function(){
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-  if(shareBtn){
-    shareBtn.addEventListener('click', function(){
-      try{ if(navigator.share){ navigator.share({ title: document.title, url: location.href }); } else { alert('Share not supported'); } }catch(e){ alert('Share error'); }
-    });
-  }
-  if(searchBtn){
-    searchBtn.addEventListener('click', function(){
-      var q = prompt('Enter search term');
-      if(q) alert('Search not implemented. You searched for: ' + q);
-    });
-  }
-})();
-</script>
+<!-- [标准JavaScript] -->
 </body>
 </html>

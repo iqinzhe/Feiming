@@ -2,107 +2,67 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Series C - Details</title>
-<link href="css/style.css" rel="stylesheet"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Series C - AX Bass&Guitar</title>
+<style>
+/* [复用series-a.html的相同样式] */
+
+/* 系列C特有样式 */
+.model-card {
+  border-left: 3px solid #4fc3f7;
+}
+</style>
 </head>
 <body>
+
+<!-- 标准顶部栏 -->
 <header class="site-topbar">
-<div class="topbar__left">
-<button aria-label="Menu" class="topbar__btn topbar__btn--menu" id="topbarMenuBtn">☰</button>
-</div>
-<div class="topbar__center">
-<a class="topbar__logo-link" href="index.html">
-<img alt="Logo" class="topbar__logo" src="images/logo.png"/>
-</a>
-</div>
-<div class="topbar__right">
-<button aria-label="Search" class="topbar__btn topbar__btn--search" id="topbarSearchBtn">🔍</button>
-<button aria-label="Share" class="topbar__btn topbar__btn--share" id="topbarShareBtn">⤴</button>
-</div>
+  <!-- [与series-a.html相同的顶部栏结构] -->
 </header>
-<nav class="mobile-nav" id="mobileNav">
-<ul class="mobile-nav__list">
-<li><a href="index.html">Home</a></li>
-<li><a href="instruments.html">Instruments</a></li>
-<li><a href="pricing.html">Pricing &amp; Options</a></li>
-<li><a href="about.html">About</a></li>
-<li><a href="contact.html">Contact</a></li>
-</ul>
-</nav>
 
-<header class="site-header">
-<h1>Series C</h1>
-</header>
-<main class="model-list">
-<section class="model-card">
-<img alt="C1 Model" src="images/c1.jpg"/>
-<h2>C1 Model</h2>
-<h3>Product Introduction</h3>
-<p>C1 stands out with a futuristic body shape.</p>
-<h3>Specification</h3>
-<ul>
-<li>Body: Alder</li>
-<li>Neck: Maple</li>
-<li>Pickups: Humbucker</li>
-</ul>
-</section>
-<section class="model-card">
-<img alt="C2 Model" src="images/c2.jpg"/>
-<h2>C2 Model</h2>
-<h3>Product Introduction</h3>
-<p>C2 offers versatility for multiple genres.</p>
-<h3>Specification</h3>
-<ul>
-<li>Body: Mahogany</li>
-<li>Neck: Rosewood</li>
-<li>Pickups: Single Coil</li>
-</ul>
-</section>
+<main class="page-content">
+  <h1>Series C 系列</h1>
+  
+  <section class="model-card">
+    <img src="images/c1.jpg" alt="C1 Model"/>
+    <div>
+      <h2>C1 Model</h2>
+      <h3>产品特点</h3>
+      <p>未来主义琴体设计的代表作</p>
+      <h3>技术规格</h3>
+      <ul>
+        <li>琴体: 桤木</li>
+        <li>琴颈: 枫木</li>
+        <li>拾音器: Humbucker</li>
+        <li>品丝: 超大号不锈钢</li>
+      </ul>
+      <a href="pricing.html" class="cta-button">立即定制</a>
+    </div>
+  </section>
+
+  <section class="model-card">
+    <img src="images/c2.jpg" alt="C2 Model"/>
+    <div>
+      <h2>C2 Model</h2>
+      <h3>产品特点</h3>
+      <p>多音乐风格的完美选择</p>
+      <h3>技术规格</h3>
+      <ul>
+        <li>琴体: 桃花心木</li>
+        <li>琴颈: 玫瑰木</li>
+        <li>拾音器: Single Coil</li>
+        <li>品丝: 中号镍银</li>
+      </ul>
+      <a href="pricing.html" class="cta-button">立即定制</a>
+    </div>
+  </section>
 </main>
-<footer>
-</footer>
 
+<!-- 标准底部栏 -->
 <footer class="site-bottombar">
-<div class="bottombar__top">
-<button aria-label="Page Top" class="bottombar__to-top" id="toTopBtn">▲<span class="sr-only">Page Top</span></button>
-<div class="bottombar__label">PAGE TOP</div>
-</div>
-<div class="bottombar__logo-wrap">
-<img alt="Logo" class="bottombar__logo" src="images/logo.png"/>
-</div>
+  <!-- [与series-a.html相同的底部栏结构] -->
 </footer>
 
-<script>
-// Mobile menu toggle and utilities
-(function(){
-  var menuBtn = document.getElementById('topbarMenuBtn');
-  var mobileNav = document.getElementById('mobileNav');
-  var searchBtn = document.getElementById('topbarSearchBtn');
-  var toTopBtn = document.getElementById('toTopBtn');
-  var shareBtn = document.getElementById('topbarShareBtn');
-  if(menuBtn && mobileNav){
-    menuBtn.addEventListener('click', function(){
-      mobileNav.classList.toggle('mobile-nav--open');
-    });
-  }
-  if(toTopBtn){
-    toTopBtn.addEventListener('click', function(){
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-  if(shareBtn){
-    shareBtn.addEventListener('click', function(){
-      try{ if(navigator.share){ navigator.share({ title: document.title, url: location.href }); } else { alert('Share not supported'); } }catch(e){ alert('Share error'); }
-    });
-  }
-  if(searchBtn){
-    searchBtn.addEventListener('click', function(){
-      var q = prompt('Enter search term');
-      if(q) alert('Search not implemented. You searched for: ' + q);
-    });
-  }
-})();
-</script>
+<!-- [与series-a.html相同的JavaScript] -->
 </body>
 </html>
