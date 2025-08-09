@@ -47,6 +47,7 @@
             transition: left 0.3s;
             z-index: 99;
             box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            display: block;
         }
         nav.mobile-nav.mobile-nav--open {
             left: 0;
@@ -718,6 +719,7 @@
        </div>
     </form>
 
+
 <!-- 底部栏 -->
 <footer class="site-bottombar">
   <div class="bottombar__top">
@@ -729,79 +731,51 @@
 </footer>
 
 <script>
-// 汉堡菜单交互
-document.getElementById('topbarMenuBtn').addEventListener('click', function() {
-  document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
-});
-
-// 返回顶部平滑滚动
-document.getElementById('toTopBtn').addEventListener('click', function() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-// 搜索功能
-document.getElementById('topbarSearchBtn').addEventListener('click', function() {
-  const query = prompt('请输入搜索关键词');
-  if(query) alert('即将搜索: ' + query);
-});
-
-// 分享功能
-document.getElementById('topbarShareBtn').addEventListener('click', function() {
-  if(navigator.share) {
-    navigator.share({
-      title: document.title,
-      url: window.location.href
-    }).catch(e => console.log('分享失败'));
-  } else {
-    alert('请手动分享此页面');
-  }
-});
-
-// Mobile menu toggle and utilities
-(function(){
-  var menuBtn = document.getElementById('topbarMenuBtn');
-  var mobileNav = document.getElementById('mobileNav');
-  var searchBtn = document.getElementById('topbarSearchBtn');
-  var toTopBtn = document.getElementById('toTopBtn');
-  var shareBtn = document.getElementById('topbarShareBtn');
-  
-  if(menuBtn && mobileNav){
-    menuBtn.addEventListener('click', function(){
-      mobileNav.classList.toggle('mobile-nav--open');
-    });
-  }
-  
-  if(toTopBtn){
-    toTopBtn.addEventListener('click', function(){
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-  
-  if(shareBtn){
-    shareBtn.addEventListener('click', function(){
-      try{ 
-        if(navigator.share){ 
-          navigator.share({ title: document.title, url: location.href }); 
-        } else { 
-          alert('Share not supported'); 
-        } 
-      }catch(e){ 
-        alert('Share error'); 
-      }
-    });
-  }
-  
-  if(searchBtn){
-    searchBtn.addEventListener('click', function(){
-      var q = prompt('Enter search term');
-      if(q) alert('Search not implemented. You searched for: ' + q);
-    });
-  }
-})();
-
-// 价格计算功能
 document.addEventListener('DOMContentLoaded', function() {
-    // 为所有表格行添加点击事件
+    // 汉堡菜单交互
+    const menuBtn = document.getElementById('topbarMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    
+    if(menuBtn && mobileNav) {
+        menuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            mobileNav.classList.toggle('mobile-nav--open');
+        });
+        
+        // 点击页面其他区域关闭菜单
+        document.addEventListener('click', function(e) {
+            if(mobileNav.classList.contains('mobile-nav--open') && 
+               !mobileNav.contains(e.target) && 
+               e.target !== menuBtn) {
+                mobileNav.classList.remove('mobile-nav--open');
+            }
+        });
+    }
+
+    // 返回顶部
+    document.getElementById('toTopBtn').addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // 搜索功能
+    document.getElementById('topbarSearchBtn').addEventListener('click', function() {
+        const query = prompt('请输入搜索关键词');
+        if(query) alert('即将搜索: ' + query);
+    });
+
+    // 分享功能
+    document.getElementById('topbarShareBtn').addEventListener('click', function() {
+        if(navigator.share) {
+            navigator.share({
+                title: document.title,
+                url: window.location.href
+            }).catch(e => console.log('分享失败'));
+        } else {
+            alert('请手动分享此页面');
+        }
+    });
+
+    // 价格计算功能
     const tables = document.querySelectorAll('table');
     const totalElement = document.getElementById('totalPrice');
     
@@ -810,20 +784,14 @@ document.addEventListener('DOMContentLoaded', function() {
         
         rows.forEach(row => {
             row.addEventListener('click', function() {
-                // 清除同表格中其他行的选中状态
                 const siblings = Array.from(this.parentNode.children).filter(child => child !== this);
                 siblings.forEach(sibling => sibling.classList.remove('selected'));
-                
-                // 选中当前行
                 this.classList.toggle('selected');
-                
-                // 更新总价
                 updateTotalPrice();
             });
         });
     });
     
-    // 更新总价函数
     function updateTotalPrice() {
         let total = 0;
         const selectedRows = document.querySelectorAll('tr.selected');
