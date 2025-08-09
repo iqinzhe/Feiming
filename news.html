@@ -43,17 +43,59 @@
       display: block;
     }
 
-    /* ===== 标准底部栏样式 ===== */
-    .site-bottombar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background-color: rgba(0,0,0,0.8);
-      padding: 15px;
-      text-align: center;
-      z-index: 1000;
-    }
+   <!-- 标准底部栏 -->
+<footer class="site-bottombar">
+  <div class="bottombar__content">
+    <div class="bottombar__logo-wrap">
+      <a href="../index.html">
+        <img class="bottombar__logo" src="../images/logo.png" alt="AX Guitar Logo"/>
+      </a>
+    </div>
+    <button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
+    <div class="bottombar__label">返回顶部</div>
+  </div>
+</footer>
+
+<style>
+  /* ===== 标准底部栏样式 ===== */
+  .site-bottombar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.8);
+    padding: 15px 0;
+    z-index: 1000;
+  }
+
+  .bottombar__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .bottombar__logo {
+    height: 20px;
+    margin-bottom: 10px;
+  }
+
+  .bottombar__to-top {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+  }
+
+  .bottombar__label {
+    color: white;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+</style>
 
     .bottombar__top {
       display: flex;
