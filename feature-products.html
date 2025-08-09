@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>特色产品 | AX新闻中心</title>
+  <link href="../css/style.css" rel="stylesheet"/>
+  <style>
+    /* ===== 标准顶部栏样式 ===== */
+    .site-topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      background-color: rgba(0,0,0,0.8);
+      z-index: 1000;
+    }
+
+    .topbar__center {
+      flex: 1;
+      text-align: center;
+    }
+
+    .topbar__logo {
+      height: 30px;
+    }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background-color: rgba(0,0,0,0.9);
+      padding: 20px;
+    }
+
+    .mobile-nav--open {
+      display: block;
+    }
+
+    /* ===== 标准底部栏样式 ===== */
+    .site-bottombar {
+      background-color: rgba(0,0,0,0.8);
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    .bottombar__logo {
+      height: 20px;
+      display: block;
+      margin: 0 auto 10px;
+    }
+
+    .bottombar__to-top {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 20px;
+      display: block;
+      margin: 0 auto;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .bottombar__label {
+      color: white;
+      font-size: 12px;
+      margin-top: 10px;
+      display: block;
+    }
+
+    /* ===== 主内容区域调整 ===== */
+    .page-content {
+      margin-top: 60px;
+      padding: 20px;
+      background-color: rgba(0,0,0,0.2);
+      min-height: calc(100vh - 160px);
+    }
+
+    /* ===== 特色产品特有样式 ===== */
+    .product-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .product-header {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 40px;
+      gap: 30px;
+    }
+    
+    @media (min-width: 768px) {
+      .product-header {
+        flex-direction: row;
+      }
+    }
+    
+    .product-gallery {
+      flex: 1;
+    }
+    
+    .product-gallery img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    
+    .product-info {
+      flex: 1;
+    }
+    
+    .product-info h1 {
+      color: white;
+      margin-top: 0;
+    }
+    
+    .subtitle {
+      color: rgba(255,255,255,0.8);
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+    
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    
+    .specs-table tr {
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .specs-table td {
+      padding: 12px 0;
+      vertical-align: top;
+    }
+    
+    .specs-table td:first-child {
+      font-weight: bold;
+      width: 30%;
+      color: rgba(255,255,255,0.9);
+    }
+    
+    .specs-table td:last-child {
+      color: rgba(255,255,255,0.7);
+    }
+    
+    .product-description {
+      margin: 40px 0;
+      line-height: 1.8;
+    }
+    
+    blockquote {
+      border-left: 3px solid rgba(255,255,255,0.3);
+      padding-left: 20px;
+      margin-left: 0;
+      font-style: italic;
+      color: rgba(255,255,255,0.8);
+    }
+    
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    
+    .quick-link {
+      padding: 10px 20px;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+    
+    .quick-link:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    
+    .back-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: white;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+<!-- 标准顶部栏 -->
+<header class="site-topbar">
+  <div class="topbar__left">
+    <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
+  </div>
+  
+  <div class="topbar__center">
+    <a href="../index.html">
+      <img class="topbar__logo" src="../images/logo.png" alt="AX Guitar Logo"/>
+    </a>
+  </div>
+  
+  <div class="topbar__right">
+    <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
+    <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
+  </div>
+  
+  <nav class="mobile-nav" id="mobileNav" aria-label="主导航">
+    <ul class="mobile-nav__list">
+      <li><a href="../index.html">首页</a></li>
+      <li><a href="../instruments.html">产品</a></li>
+      <li><a href="../pricing.html">DIY选项</a></li>
+      <li><a href="../news.html">新闻</a></li>
+      <li><a href="../support.html">支持</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- 页面内容 -->
+<main class="page-content">
+  <div class="product-container">
+    <a href="../news.html" class="back-link">← 返回新闻中心</a>
+    
+    <div class="product-header">
+      <div class="product-gallery">
+        <img src="../images/product-a.jpg" alt="AX Model A贝斯">
+      </div>
+      
+      <div class="product-info">
+        <h1>AX Model A系列</h1>
+        <p class="subtitle">革命性的贝斯设计，20年经验结晶</p>
+        
+        <table class="specs-table">
+          <tr>
+            <td>琴颈类型</td>
+            <td>5片枫木/胡桃木拼接，增强稳定性</td>
+          </tr>
+          <tr>
+            <td>指板</td>
+            <td>精选乌木，24品，特殊弧度设计</td>
+          </tr>
+          <tr>
+            <td>拾音器</td>
+            <td>AX Custom Humbucker x2，可切换单线圈模式</td>
+          </tr>
+          <tr>
+            <td>电路系统</td>
+            <td>主动/被动切换，3段均衡</td>
+          </tr>
+          <tr>
+            <td>琴体材料</td>
+            <td>精选桤木，重量平衡设计</td>
+          </tr>
+          <tr>
+            <td>产地</td>
+            <td>中国上海，手工组装</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    
+    <div class="product-description">
+      <h2>设计特点</h2>
+      <p>Model A系列采用了独特的"Twisted Neck"设计，通过精确计算的琴颈扭曲角度，使高把位演奏更加舒适。琴体轮廓经过人体工学优化，即使长时间演奏也不会感到疲劳。</p>
+      
+      <p>我们的专利"Resonance Core"技术通过在琴体内部设计特殊空腔，增强了低频响应同时保持清晰的高频表现。斧形琴头不仅外观独特，更优化了琴弦张力分布。</p>
+      
+      <h2>艺术家评价</h2>
+      <blockquote>
+        "这是我用过最符合人体工学的贝斯，连续演出3小时也不会疲劳。音色从温暖的低频到明亮的高频都非常均衡，成为我巡演的主力乐器。" —— 知名贝斯手张伟
+      </blockquote>
+      
+      <blockquote>
+        "AX的工艺水准令人惊叹，每个细节都经过精心考虑。特别是琴颈的手感，是我体验过最舒适的。" —— 乐队贝斯手李娜
+      </blockquote>
+    </div>
+    
+    <div class="quick-links">
+      <a href="../support/parts.html" class="quick-link">查看配件</a>
+      <a href="../instruments.html" class="quick-link">浏览所有产品</a>
+      <a href="../pricing.html" class="quick-link">DIY定制选项</a>
+      <a href="../support/contact.html" class="quick-link">咨询购买</a>
+    </div>
+  </div>
+</main>
+
+<!-- 标准底部栏 -->
+<footer class="site-bottombar">
+  <a href="../index.html">
+    <img class="bottombar__logo" src="../images/logo.png" alt="AX Guitar Logo"/>
+  </a>
+  <button class="bottombar__to-top" id="toTopBtn">▲</button>
+  <div class="bottombar__label">返回顶部</div>
+</footer>
+
+<script>
+  // 菜单控制
+  document.getElementById('topbarMenuBtn').addEventListener('click', function() {
+    document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
+  });
+
+  // 返回顶部
+  document.getElementById('toTopBtn').addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+</body>
+</html>

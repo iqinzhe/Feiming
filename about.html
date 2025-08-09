@@ -1,198 +1,204 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>About AX Guitar</title>
-<link href="css/style.css" rel="stylesheet"/>
-<style>
-/* ===== 顶部栏样式 ===== */
-.site-topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 15px;
-  background: rgba(0, 0, 0, 0.3);
-  position: relative;
-  backdrop-filter: blur(5px);
-}
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>关于我们 | AX斧标贝斯</title>
+  <link href="css/style.css" rel="stylesheet"/>
+  <style>
+    /* ===== 标准顶部栏样式 ===== */
+    .site-topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      background-color: rgba(0,0,0,0.8);
+      z-index: 1000;
+    }
 
-.topbar__left, 
-.topbar__right {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
+    .topbar__center {
+      flex: 1;
+      text-align: center;
+    }
 
-.topbar__center {
-  flex-grow: 1;
-  text-align: center;
-}
+    .topbar__logo {
+      height: 30px;
+    }
 
-.topbar__logo {
-  max-height: 30px;
-  width: auto;
-}
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background-color: rgba(0,0,0,0.9);
+      padding: 20px;
+    }
 
-.topbar__btn {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 20px;
-  cursor: pointer;
-  padding: 5px;
-}
+    .mobile-nav--open {
+      display: block;
+    }
 
-.mobile-nav {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
-  z-index: 1000;
-  padding: 10px 0;
-}
+    /* ===== 标准底部栏样式 ===== */
+    .site-bottombar {
+      background-color: rgba(0,0,0,0.8);
+      padding: 20px 0;
+      text-align: center;
+    }
 
-.mobile-nav.mobile-nav--open {
-  display: block;
-}
+    .bottombar__logo {
+      height: 20px;
+      display: block;
+      margin: 0 auto 10px;
+    }
 
-.mobile-nav__list {
-  list-style: none;
-}
+    .bottombar__to-top {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 20px;
+      display: block;
+      margin: 0 auto;
+      padding: 0;
+      cursor: pointer;
+    }
 
-.mobile-nav__list li {
-  padding: 12px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
+    .bottombar__label {
+      color: white;
+      font-size: 12px;
+      margin-top: 10px;
+      display: block;
+    }
 
-.mobile-nav__list a {
-  color: #fff;
-  text-decoration: none;
-  display: block;
-}
+    /* ===== 主内容区域调整 ===== */
+    .page-content {
+      margin-top: 60px;
+      padding: 20px;
+      color: #333;
+      background-color: #f5f5f5;
+    }
 
-/* 底部栏标准样式 */
-.site-bottombar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px 15px;
-  background: var(--glass-dark);
-  border-top: 1px solid rgba(255,255,255,0.1);
-  gap: 8px;
-  margin-top: auto;
-}
-
-.bottombar__to-top {
-  background: none;
-  border: none;
-  color: var(--text-white);
-  font-size: 22px;
-  cursor: pointer;
-}
-
-/* 响应式设计 */
-@media (min-width: 768px) {
-  .model-card {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 30px;
-  }
-  
-  .topbar__logo {
-    height: 35px;
-  }
-}
-</style>
+    /* ===== 关于页面特有样式 ===== */
+    .about-section {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .about-section h1 {
+      color: #1a237e;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .about-section p {
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    
+    .about-section ul {
+      padding-left: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .about-section li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+    
+    .contact-info {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+    }
+    
+    .contact-info p {
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+  </style>
 </head>
-<body>
 
-<!-- 顶部导航栏 -->
+<body>
+<!-- 标准顶部栏 -->
 <header class="site-topbar">
   <div class="topbar__left">
-    <button aria-label="Menu" class="topbar__btn topbar__btn--menu" id="topbarMenuBtn">☰</button>
+    <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
   </div>
   
   <div class="topbar__center">
-    <a class="topbar__logo-link" href="index.html">
-      <img alt="AX Guitar Logo" class="topbar__logo" src="images/logo.png"/>
+    <a href="index.html">
+      <img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
     </a>
   </div>
   
   <div class="topbar__right">
-    <button aria-label="Search" class="topbar__btn topbar__btn--search" id="topbarSearchBtn">🔍</button>
-    <button aria-label="Share" class="topbar__btn topbar__btn--share" id="topbarShareBtn">⤴</button>
+    <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
+    <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
   </div>
   
-  <nav class="mobile-nav" id="mobileNav">
+  <nav class="mobile-nav" id="mobileNav" aria-label="主导航">
     <ul class="mobile-nav__list">
       <li><a href="index.html">首页</a></li>
       <li><a href="instruments.html">产品</a></li>
       <li><a href="pricing.html">DIY选项</a></li>
+      <li><a href="news.html">新闻</a></li>
       <li><a href="about.html">关于我们</a></li>
-      <li><a href="contact.html">联系我们</a></li>
     </ul>
   </nav>
 </header>
 
-<section class="about">
-  <h1>About AX Guitar</h1>
-  <p><strong>我们坚信：</strong>扎实的底子 + 丰富的经验 = 成就经典的声音与演奏体验。</p>
-  <ul>
-    <li>传统技法与 CNC 加工中心结合</li>
-    <li>根据木材特色与弹奏者的体型精确调整琴体形状</li>
-    <li>自主设计斧形琴头，保证AX贝斯的独有特色</li>
-    <li>...</li>
-  </ul>
-  <p><strong>飞哥 Tel：</strong>+86 15737603114</p>
-  <p><strong>鸣弟 Tel：</strong>+86 15703770846</p>
-      </a>
-    </div>
-  </section>
-</main>
-
-<!-- 底部栏 -->
-<footer class="site-bottombar">
-  <div class="bottombar__top">
-    <button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
-    <div class="bottombar__label">返回顶部</div>
-    <div class="bottombar__logo-wrap">
-      <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo" style="height:25px;"/>
+<!-- 页面内容 -->
+<main class="page-content">
+  <div class="about-section">
+    <h1>关于AX斧标贝斯</h1>
+    <p><strong>我们坚信：</strong>扎实的底子 + 丰富的经验 = 成就经典的声音与演奏体验。</p>
+    
+    <ul>
+      <li>传统技法与CNC加工中心结合，确保每把琴的精确度</li>
+      <li>根据木材特色与弹奏者的体型精确调整琴体形状</li>
+      <li>自主设计斧形琴头，保证AX贝斯的独有特色</li>
+      <li>精选优质木材，每把琴都经过至少30道工序</li>
+      <li>专业乐手参与调音，确保最佳音色表现</li>
+    </ul>
+    
+    <p>AX品牌创立于2025年，由两位拥有20年乐器制造经验的创始人创立。我们致力于将传统制琴工艺与现代技术相结合，为贝斯手提供高品质、个性化的乐器。</p>
+    
+    <div class="contact-info">
+      <p><strong>创始人联系方式：</strong></p>
+      <p><strong>飞哥 Tel：</strong>+86 15737603114</p>
+      <p><strong>鸣弟 Tel：</strong>+86 15703770846</p>
+      <p><strong>工作室地址：</strong>上海市闵行区光华路68号AX乐器工坊</p>
     </div>
   </div>
+</main>
+
+<!-- 标准底部栏 -->
+<footer class="site-bottombar">
+  <a href="index.html">
+    <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
+  </a>
+  <button class="bottombar__to-top" id="toTopBtn">▲</button>
+  <div class="bottombar__label">返回顶部</div>
 </footer>
 
 <script>
-// 汉堡菜单交互
-document.getElementById('topbarMenuBtn').addEventListener('click', function() {
-  document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
-});
+  // 菜单控制
+  document.getElementById('topbarMenuBtn').addEventListener('click', function() {
+    document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
+  });
 
-// 返回顶部平滑滚动
-document.getElementById('toTopBtn').addEventListener('click', function() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-// 搜索功能
-document.getElementById('topbarSearchBtn').addEventListener('click', function() {
-  const query = prompt('请输入搜索关键词');
-  if(query) alert('即将搜索: ' + query);
-});
-
-// 分享功能
-document.getElementById('topbarShareBtn').addEventListener('click', function() {
-  if(navigator.share) {
-    navigator.share({
-      title: document.title,
-      url: window.location.href
-    }).catch(e => console.log('分享失败'));
-  } else {
-    alert('请手动分享此页面');
-  }
-});
+  // 返回顶部
+  document.getElementById('toTopBtn').addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 </script>
 </body>
 </html>
