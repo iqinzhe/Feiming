@@ -6,8 +6,173 @@
   <title>常见问题 | AX支持中心</title>
   <link href="../css/style.css" rel="stylesheet"/>
   <style>
-    /* 顶部栏和底部栏样式同上 */
-    
+    /* ===== 全局标准样式 ===== */
+    :root {
+      --neutral-gray: rgb(128, 128, 128);
+      --glass-dark: rgba(0, 0, 0, 0.3);
+      --text-white: #fff;
+    }
+
+    body {
+      background: var(--neutral-gray);
+      color: var(--text-white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+
+    /* ===== 顶部栏标准样式 ===== */
+    .site-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 5%;
+      background: var(--glass-dark);
+      backdrop-filter: blur(5px);
+      position: relative;
+      z-index: 100;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .topbar__left, 
+    .topbar__right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex: 0 0 auto;
+    }
+
+    .topbar__center {
+      flex-grow: 1;
+      text-align: center;
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      width: fit-content;
+    }
+
+    .topbar__logo {
+      height: 30px;
+      width: auto;
+    }
+
+    .topbar__btn {
+      background: none;
+      border: none;
+      color: var(--text-white);
+      font-size: 20px;
+      cursor: pointer;
+      padding: 0;
+      margin: 0;
+    }
+
+    /* ===== 导航菜单标准样式 ===== */
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: var(--glass-dark);
+      backdrop-filter: blur(10px);
+      z-index: 90;
+      padding: 10px 0;
+      box-sizing: border-box;
+    }
+
+    .mobile-nav.mobile-nav--open {
+      display: block;
+    }
+
+    .mobile-nav__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .mobile-nav__list li {
+      padding: 12px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .mobile-nav__list a {
+      color: var(--text-white);
+      text-decoration: none;
+      display: block;
+    }
+
+    /* ===== 内容区样式 ===== */
+    .page-content {
+      flex: 1;
+      padding: 20px 5%;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    /* ===== 底部栏标准样式 ===== */
+    .site-bottombar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 15px;
+      background: var(--glass-dark);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      gap: 8px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .bottombar__top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .bottombar__to-top {
+      order: 1;
+      background: none;
+      border: none;
+      color: var(--text-white);
+      font-size: 22px;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .bottombar__label {
+      order: 2;
+      font-weight: bold;
+    }
+
+    .bottombar__logo-wrap {
+      order: 3;
+    }
+
+    .bottombar__logo {
+      height: 25px;
+      width: auto;
+      filter: brightness(0) invert(1);
+    }
+
+    /* ===== 响应式设计 ===== */
+    @media (min-width: 768px) {
+      .site-topbar {
+        padding: 15px 8%;
+      }
+      .topbar__logo {
+        height: 35px;
+      }
+      .page-content {
+        padding: 30px 8%;
+      }
+    }
+
+    /* ===== FAQ专属样式 ===== */
     .faq-container {
       max-width: 800px;
       margin: 40px auto;
@@ -42,6 +207,7 @@
       display: inline-block;
       margin-top: 30px;
       color: var(--text-white);
+      text-decoration: none;
     }
   </style>
 </head>
@@ -89,6 +255,16 @@
       </div>
     </div>
     
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>Q: 产品保修期是多久？</span>
+        <span>+</span>
+      </div>
+      <div class="faq-answer">
+        <p>A: AX产品提供2年有限保修，涵盖材料和工艺缺陷。人为损坏不在保修范围内。</p>
+      </div>
+    </div>
+    
     <!-- 更多FAQ项目 -->
   </div>
   
@@ -109,8 +285,34 @@
 </footer>
 
 <script>
-  // 顶部栏和底部栏交互功能同上
-  
+  // 菜单控制
+  document.getElementById('topbarMenuBtn').addEventListener('click', function() {
+    document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
+  });
+
+  // 返回顶部
+  document.getElementById('toTopBtn').addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // 搜索功能
+  document.getElementById('topbarSearchBtn').addEventListener('click', function() {
+    const q = prompt('请输入搜索关键词');
+    if(q) alert('搜索演示: ' + q);
+  });
+
+  // 分享功能
+  document.getElementById('topbarShareBtn').addEventListener('click', function() {
+    try {
+      navigator.share?.({ 
+        title: document.title,
+        url: location.href 
+      }) || alert('请手动分享此页面');
+    } catch(e) {
+      alert('分享出错: ' + e.message);
+    }
+  });
+
   // FAQ交互
   document.querySelectorAll('.faq-question').forEach(item => {
     item.addEventListener('click', () => {
