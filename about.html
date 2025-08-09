@@ -6,70 +6,172 @@
 <title>About</title>
 <link href="css/style.css" rel="stylesheet"/>
 <style>
-/* 新增底部栏专用CSS - 其他部分保持不变 */
-.site-bottombar {
+/* 新增顶部栏CSS - 中性灰风格 */
+:root {
+  --neutral-gray: rgb(128, 128, 128);
+  --dark-overlay: rgba(0, 0, 0, 0.3);
+}
+
+body {
+  color: #fff;
+  background-color: var(--neutral-gray);
+}
+
+.site-topbar {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  padding: 15px;
-  background: #f8f8f8;
-  border-top: 1px solid #ddd;
-  gap: 10px;
+  padding: 12px 15px;
+  background: var(--dark-overlay);
+  position: relative;
+  backdrop-filter: blur(5px);
 }
 
-.bottombar__top {
+.topbar__left, 
+.topbar__right {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 15px;
 }
 
-/* 保持原有所有功能不变 */
-.bottombar__to-top {
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  padding: 0;
+.topbar__center {
+  flex-grow: 1;
+  text-align: center;
 }
 
-.bottombar__label {
-  font-weight: bold;
-}
-
-.bottombar__logo {
+.topbar__logo {
   max-height: 30px;
   width: auto;
+}
+
+/* 汉堡菜单样式 */
+.topbar__btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+/* 导航菜单样式 */
+.mobile-nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--dark-overlay);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  padding: 10px 0;
+}
+
+.mobile-nav.mobile-nav--open {
+  display: block;
+}
+
+.mobile-nav__list {
+  list-style: none;
+}
+
+.mobile-nav__list li {
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-nav__list a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+}
+
+/* 搜索功能弹窗样式 */
+.search-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--dark-overlay);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-modal--open {
+  display: flex;
+}
+
+.search-container {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 8px;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 12px 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  color: #fff;
+  font-size: 16px;
+}
+
+/* 响应式调整 */
+@media (min-width: 768px) {
+  .site-topbar {
+    padding: 15px 30px;
+  }
+  .topbar__logo {
+    max-height: 35px;
+  }
 }
 </style>
 </head>
 <body>
-<!-- 完全保持原有HTML结构不变 -->
+
+<!-- 修改后的顶部栏结构 -->
 <header class="site-topbar">
   <div class="topbar__left">
     <button aria-label="Menu" class="topbar__btn topbar__btn--menu" id="topbarMenuBtn">☰</button>
   </div>
+  
   <div class="topbar__center">
     <a class="topbar__logo-link" href="index.html">
       <img alt="Logo" class="topbar__logo" src="images/logo.png"/>
     </a>
   </div>
+  
   <div class="topbar__right">
     <button aria-label="Search" class="topbar__btn topbar__btn--search" id="topbarSearchBtn">🔍</button>
     <button aria-label="Share" class="topbar__btn topbar__btn--share" id="topbarShareBtn">⤴</button>
   </div>
+  
+  <!-- 导航菜单 -->
+  <nav class="mobile-nav" id="mobileNav">
+    <ul class="mobile-nav__list">
+      <li><a href="index.html">首页</a></li>
+      <li><a href="instruments.html">产品</a></li>
+      <li><a href="pricing.html">选项</a></li>
+      <li><a href="about.html">关于我们</a></li>
+      <li><a href="contact.html">联系我们</a></li>
+    </ul>
+  </nav>
 </header>
 
-<nav class="mobile-nav" id="mobileNav">
-  <ul class="mobile-nav__list">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="instruments.html">Instruments</a></li>
-    <li><a href="pricing.html">Pricing &amp; Options</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</nav>
+<!-- 搜索弹窗 -->
+<div class="search-modal" id="searchModal">
+  <div class="search-container">
+    <input type="text" placeholder="输入搜索内容..." id="searchInput">
+  </div>
+</div>
 
+<!-- 页面内容保持不变 -->
 <section class="about">
   <h1>About AX Guitar</h1>
   <p><strong>我们坚信：</strong>扎实的底子 + 丰富的经验 = 成就经典的声音与演奏体验。</p>
@@ -83,7 +185,7 @@
   <p><strong>鸣弟 Tel：</strong>+86 15703770846</p>
 </section>
 
-<!-- 修改后的底部栏结构 -->
+<!-- 底部栏保持之前的完美修改 -->
 <footer class="site-bottombar">
   <div class="bottombar__top">
     <button aria-label="Page Top" class="bottombar__to-top" id="toTopBtn">▲<span class="sr-only">Page Top</span></button>
@@ -95,32 +197,82 @@
 </footer>
 
 <script>
-// 完全保持原有JS不变
+// 增强版JavaScript（保持原有功能+新增搜索弹窗）
 (function(){
-  var menuBtn = document.getElementById('topbarMenuBtn');
-  var mobileNav = document.getElementById('mobileNav');
-  var searchBtn = document.getElementById('topbarSearchBtn');
-  var toTopBtn = document.getElementById('toTopBtn');
-  var shareBtn = document.getElementById('topbarShareBtn');
-  if(menuBtn && mobileNav){
+  // 获取元素
+  const menuBtn = document.getElementById('topbarMenuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  const searchBtn = document.getElementById('topbarSearchBtn');
+  const toTopBtn = document.getElementById('toTopBtn');
+  const shareBtn = document.getElementById('topbarShareBtn');
+  const searchModal = document.getElementById('searchModal');
+  const searchInput = document.getElementById('searchInput');
+
+  // 汉堡菜单切换
+  if(menuBtn && mobileNav) {
     menuBtn.addEventListener('click', function(){
       mobileNav.classList.toggle('mobile-nav--open');
+      // 关闭其他打开的弹窗
+      searchModal.classList.remove('search-modal--open');
     });
   }
-  if(toTopBtn){
+
+  // 返回顶部
+  if(toTopBtn) {
     toTopBtn.addEventListener('click', function(){
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
-  if(shareBtn){
+
+  // 分享功能
+  if(shareBtn) {
     shareBtn.addEventListener('click', function(){
-      try{ if(navigator.share){ navigator.share({ title: document.title, url: location.href }); } else { alert('Share not supported'); } }catch(e){ alert('Share error'); }
+      try {
+        if(navigator.share) {
+          navigator.share({ 
+            title: document.title, 
+            url: location.href 
+          });
+        } else {
+          alert('分享功能在您的浏览器不可用');
+        }
+      } catch(e) {
+        alert('分享出错: ' + e.message);
+      }
     });
   }
-  if(searchBtn){
+
+  // 搜索功能增强
+  if(searchBtn && searchModal) {
     searchBtn.addEventListener('click', function(){
-      var q = prompt('Enter search term');
-      if(q) alert('Search not implemented. You searched for: ' + q);
+      searchModal.classList.toggle('search-modal--open');
+      // 关闭导航菜单
+      mobileNav.classList.remove('mobile-nav--open');
+      // 自动聚焦输入框
+      if(searchModal.classList.contains('search-modal--open')) {
+        searchInput.focus();
+      }
+    });
+  }
+
+  // 点击弹窗外部关闭搜索
+  searchModal.addEventListener('click', function(e) {
+    if(e.target === searchModal) {
+      searchModal.classList.remove('search-modal--open');
+    }
+  });
+
+  // 搜索提交
+  if(searchInput) {
+    searchInput.addEventListener('keypress', function(e) {
+      if(e.key === 'Enter') {
+        const query = this.value.trim();
+        if(query) {
+          alert('搜索功能演示: 您搜索了 "' + query + '"');
+          searchModal.classList.remove('search-modal--open');
+          this.value = '';
+        }
+      }
     });
   }
 })();
