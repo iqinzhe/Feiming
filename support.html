@@ -45,20 +45,15 @@
 
     /* ===== 标准底部栏样式 ===== */
     .site-bottombar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
       background-color: rgba(0,0,0,0.8);
-      padding: 15px;
+      padding: 20px 0;
       text-align: center;
-      z-index: 1000;
     }
 
-    .bottombar__top {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .bottombar__logo {
+      height: 20px;
+      display: block;
+      margin: 0 auto 10px;
     }
 
     .bottombar__to-top {
@@ -66,24 +61,22 @@
       border: none;
       color: white;
       font-size: 20px;
-      margin-bottom: 5px;
+      display: block;
+      margin: 0 auto;
+      padding: 0;
       cursor: pointer;
     }
 
     .bottombar__label {
       color: white;
       font-size: 12px;
-      margin-bottom: 10px;
-    }
-
-    .bottombar__logo {
-      height: 20px;
+      margin-top: 10px;
+      display: block;
     }
 
     /* ===== 主内容区域调整 ===== */
     .page-content {
       margin-top: 60px;
-      margin-bottom: 80px;
       padding: 20px;
     }
 
@@ -184,15 +177,11 @@
 
 <!-- 标准底部栏 -->
 <footer class="site-bottombar">
-  <div class="bottombar__top">
-    <button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
-    <div class="bottombar__label">返回顶部</div>
-    <div class="bottombar__logo-wrap">
-      <a href="../index.html">
-        <img class="bottombar__logo" src="../images/logo.png" alt="AX Guitar Logo"/>
-      </a>
-    </div>
-  </div>
+  <a href="../index.html">
+    <img class="bottombar__logo" src="../images/logo.png" alt="AX Guitar Logo"/>
+  </a>
+  <button class="bottombar__to-top" id="toTopBtn">▲</button>
+  <div class="bottombar__label">返回顶部</div>
 </footer>
 
 <script>
