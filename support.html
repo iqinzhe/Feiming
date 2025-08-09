@@ -6,13 +6,88 @@
   <title>AX支持中心</title>
   <link href="../css/style.css" rel="stylesheet"/>
   <style>
-    /* 继承主站的样式变量 */
-    :root {
-      --neutral-gray: rgb(128, 128, 128);
-      --glass-dark: rgba(0, 0, 0, 0.3);
-      --text-white: #fff;
+    /* ===== 标准顶部栏样式 ===== */
+    .site-topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      background-color: rgba(0,0,0,0.8);
+      z-index: 1000;
     }
 
+    .topbar__center {
+      flex: 1;
+      text-align: center;
+    }
+
+    .topbar__logo {
+      height: 30px;
+    }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background-color: rgba(0,0,0,0.9);
+      padding: 20px;
+    }
+
+    .mobile-nav--open {
+      display: block;
+    }
+
+    /* ===== 标准底部栏样式 ===== */
+    .site-bottombar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0,0,0,0.8);
+      padding: 15px;
+      text-align: center;
+      z-index: 1000;
+    }
+
+    .bottombar__top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .bottombar__to-top {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 20px;
+      margin-bottom: 5px;
+      cursor: pointer;
+    }
+
+    .bottombar__label {
+      color: white;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    .bottombar__logo {
+      height: 20px;
+    }
+
+    /* ===== 主内容区域调整 ===== */
+    .page-content {
+      margin-top: 60px;
+      margin-bottom: 80px;
+      padding: 20px;
+    }
+
+    /* ===== 支持中心特有样式 ===== */
     .support-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -39,7 +114,7 @@
     }
 
     .support-card a {
-      color: var(--text-white);
+      color: white;
       text-decoration: none;
       display: block;
       margin-top: 15px;
@@ -53,7 +128,7 @@
 </head>
 
 <body>
-<!-- 继承主站顶部栏 -->
+<!-- 标准顶部栏 -->
 <header class="site-topbar">
   <div class="topbar__left">
     <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
@@ -107,7 +182,7 @@
   </div>
 </main>
 
-<!-- 继承主站底部栏 -->
+<!-- 标准底部栏 -->
 <footer class="site-bottombar">
   <div class="bottombar__top">
     <button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
@@ -120,7 +195,16 @@
   </div>
 </footer>
 
-<!-- 继承主站脚本 -->
-<script src="../js/main.js"></script>
+<script>
+  // 菜单控制
+  document.getElementById('topbarMenuBtn').addEventListener('click', function() {
+    document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
+  });
+
+  // 返回顶部
+  document.getElementById('toTopBtn').addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
 </body>
 </html>

@@ -6,12 +6,88 @@
   <title>新闻中心 | AX斧标贝斯</title>
   <link href="../css/style.css" rel="stylesheet"/>
   <style>
-    /* ===== 新闻中心特有样式 ===== */
-    /* 上部新闻区 */
-    .news-top {
-      margin-bottom: 50px;
+    /* ===== 标准顶部栏样式 ===== */
+    .site-topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      background-color: rgba(0,0,0,0.8);
+      z-index: 1000;
     }
-    
+
+    .topbar__center {
+      flex: 1;
+      text-align: center;
+    }
+
+    .topbar__logo {
+      height: 30px;
+    }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background-color: rgba(0,0,0,0.9);
+      padding: 20px;
+    }
+
+    .mobile-nav--open {
+      display: block;
+    }
+
+    /* ===== 标准底部栏样式 ===== */
+    .site-bottombar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0,0,0,0.8);
+      padding: 15px;
+      text-align: center;
+      z-index: 1000;
+    }
+
+    .bottombar__top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .bottombar__to-top {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 20px;
+      margin-bottom: 5px;
+      cursor: pointer;
+    }
+
+    .bottombar__label {
+      color: white;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    .bottombar__logo {
+      height: 20px;
+    }
+
+    /* ===== 主内容区域调整 ===== */
+    .page-content {
+      margin-top: 60px;
+      margin-bottom: 80px;
+      padding: 20px;
+    }
+
+    /* ===== 新闻中心特有样式 ===== */
     .news-hero {
       position: relative;
       margin-bottom: 30px;
@@ -52,7 +128,6 @@
       font-size: 0.9em;
     }
     
-    /* 下部三栏布局（与support页面相同结构） */
     .news-sections {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -79,7 +154,7 @@
     }
     
     .section-card a {
-      color: var(--text-white);
+      color: white;
       text-decoration: none;
       display: block;
       margin-top: 15px;
@@ -93,7 +168,7 @@
 </head>
 
 <body>
-<!-- 完全继承index.html的顶部栏 -->
+<!-- 标准顶部栏 -->
 <header class="site-topbar">
   <div class="topbar__left">
     <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
@@ -123,42 +198,38 @@
 
 <!-- 新闻中心内容 -->
 <main class="page-content">
-  <!-- 上部：最新动态 -->
-  <div class="news-top">
-    <div class="news-hero">
-      <img src="../images/news-banner.jpg" alt="AX贝斯最新动态">
-      <div class="hero-content">
-        <h1>AX新闻中心</h1>
-        <p>获取最新产品资讯和品牌动态</p>
-      </div>
-    </div>
-    
-    <h2>最新动态</h2>
-    <div class="latest-news">
-      <div class="news-item">
-        <span class="news-date">2026年6月15日</span>
-        <h3>AX贝斯亮相国际乐器展</h3>
-        <p>在2026年NAMM Show上展出全新旗舰型号，获得专业乐手好评...</p>
-        <a href="#">阅读全文 →</a>
-      </div>
-      
-      <div class="news-item">
-        <span class="news-date">2026年5月20日</span>
-        <h3>Model B系列正式发布</h3>
-        <p>采用创新材料技术，重量减轻15%的同时保持出色共振...</p>
-        <a href="#">阅读全文 →</a>
-      </div>
-      
-      <div class="news-item">
-        <span class="news-date">2026年4月8日</span>
-        <h3>艺术家合作计划启动</h3>
-        <p>与三位知名贝斯手签约，开发签名款乐器...</p>
-        <a href="#">阅读全文 →</a>
-      </div>
+  <div class="news-hero">
+    <img src="../images/news-banner.jpg" alt="AX贝斯最新动态">
+    <div class="hero-content">
+      <h1>AX新闻中心</h1>
+      <p>获取最新产品资讯和品牌动态</p>
     </div>
   </div>
   
-  <!-- 下部：三大板块（与support页面相同布局） -->
+  <h2>最新动态</h2>
+  <div class="latest-news">
+    <div class="news-item">
+      <span class="news-date">2026年6月15日</span>
+      <h3>AX贝斯亮相国际乐器展</h3>
+      <p>在2026年NAMM Show上展出全新旗舰型号，获得专业乐手好评...</p>
+      <a href="#">阅读全文 →</a>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-date">2026年5月20日</span>
+      <h3>Model B系列正式发布</h3>
+      <p>采用创新材料技术，重量减轻15%的同时保持出色共振...</p>
+      <a href="#">阅读全文 →</a>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-date">2026年4月8日</span>
+      <h3>艺术家合作计划启动</h3>
+      <p>与三位知名贝斯手签约，开发签名款乐器...</p>
+      <a href="#">阅读全文 →</a>
+    </div>
+  </div>
+  
   <h2>探索更多</h2>
   <div class="news-sections">
     <div class="section-card">
@@ -179,39 +250,9 @@
       <a href="#information">查看详细信息 →</a>
     </div>
   </div>
-  
-  <!-- 事件时间轴部分 -->
-  <section id="events">
-    <h2>品牌大事记</h2>
-    <div class="event-timeline">
-      <!-- 时间轴内容 -->
-      <div class="event-item">
-        <div class="event-date">2025年6月</div>
-        <h3>AX品牌正式成立</h3>
-        <p>在上海设立总部，发布首款Model A系列贝斯</p>
-      </div>
-      <!-- 更多事件 -->
-    </div>
-  </section>
-  
-  <!-- 特色产品部分 -->
-  <section id="products">
-    <h2>特色产品</h2>
-    <div class="product-showcase">
-      <!-- 产品展示内容 -->
-    </div>
-  </section>
-  
-  <!-- 官方信息部分 -->
-  <section id="information">
-    <h2>官方信息</h2>
-    <div class="info-tabs">
-      <!-- 信息标签页内容 -->
-    </div>
-  </section>
 </main>
 
-<!-- 完全继承index.html的底部栏 -->
+<!-- 标准底部栏 -->
 <footer class="site-bottombar">
   <div class="bottombar__top">
     <button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
@@ -224,7 +265,6 @@
   </div>
 </footer>
 
-<!-- 继承主站脚本 -->
 <script>
   // 菜单控制
   document.getElementById('topbarMenuBtn').addEventListener('click', function() {
@@ -234,15 +274,6 @@
   // 返回顶部
   document.getElementById('toTopBtn').addEventListener('click', function() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-  
-  // 平滑滚动到锚点
-  document.querySelectorAll('.section-card a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      target.scrollIntoView({ behavior: 'smooth' });
-    });
   });
 </script>
 </body>
