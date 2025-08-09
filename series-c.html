@@ -5,64 +5,249 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Series C - AX Bass&Guitar</title>
 <style>
-/* [复用series-a.html的相同样式] */
+:root {
+  --neutral-gray: rgb(128, 128, 128);
+  --glass-dark: rgba(0, 0, 0, 0.3);
+  --text-white: #fff;
+}
 
-/* 系列C特有样式 */
+body {
+  background: var(--neutral-gray);
+  color: var(--text-white);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+}
+
+/* 顶部栏标准样式 */
+.site-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 5%;
+  background: var(--glass-dark);
+  backdrop-filter: blur(5px);
+  position: relative;
+  z-index: 100;
+}
+
+.topbar__btn {
+  background: none;
+  border: none;
+  color: var(--text-white);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.topbar__logo {
+  height: 30px;
+  width: auto;
+}
+
+/* 导航菜单毛玻璃效果 */
+.mobile-nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--glass-dark);
+  backdrop-filter: blur(10px);
+  z-index: 90;
+  padding: 15px 0;
+}
+
+.mobile-nav.mobile-nav--open {
+  display: block;
+}
+
+.mobile-nav__list {
+  list-style: none;
+}
+
+.mobile-nav__list li {
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.mobile-nav__list a {
+  color: var(--text-white);
+  text-decoration: none;
+  display: block;
+}
+
+/* 内容区样式 */
+.page-content {
+  flex: 1;
+  padding: 30px 5%;
+}
+
 .model-card {
-  border-left: 3px solid #4fc3f7;
+  background: rgba(0,0,0,0.2);
+  border-left: 4px solid #2196F3;
+  backdrop-filter: blur(5px);
+  margin-bottom: 30px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* 底部栏标准样式 */
+.site-bottombar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 15px;
+  background: var(--glass-dark);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  gap: 8px;
+  margin-top: auto;
+}
+
+.bottombar__to-top {
+  background: none;
+  border: none;
+  color: var(--text-white);
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* 响应式设计 */
+@media (min-width: 768px) {
+  .model-card {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+  }
+  
+  .topbar__logo {
+    height: 35px;
+  }
 }
 </style>
 </head>
 <body>
 
-<!-- 标准顶部栏 -->
+<!-- 顶部导航栏 -->
 <header class="site-topbar">
-  <!-- [与series-a.html相同的顶部栏结构] -->
+  <div class="topbar__left">
+    <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
+  </div>
+  <div class="topbar__center">
+    <a href="index.html">
+      <img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
+    </a>
+  </div>
+  <div class="topbar__right">
+    <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
+    <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
+  </div>
+  
+  <nav class="mobile-nav" id="mobileNav">
+    <ul class="mobile-nav__list">
+      <li><a href="index.html">首页</a></li>
+      <li><a href="instruments.html">产品系列</a></li>
+      <li><a href="pricing.html">定制选项</a></li>
+      <li><a href="about.html">关于我们</a></li>
+      <li><a href="contact.html">联系我们</a></li>
+    </ul>
+  </nav>
 </header>
 
 <main class="page-content">
-  <h1>Series C 系列</h1>
+  <h1 style="text-align: center; margin-bottom: 40px;">Series C 系列</h1>
   
+  <!-- C1 型号 -->
   <section class="model-card">
-    <img src="images/c1.jpg" alt="C1 Model"/>
-    <div>
+    <img src="images/c1.jpg" alt="C1型号" style="width:100%; height:auto;"/>
+    <div style="padding:20px;">
       <h2>C1 Model</h2>
-      <h3>产品特点</h3>
-      <p>未来主义琴体设计的代表作</p>
-      <h3>技术规格</h3>
-      <ul>
-        <li>琴体: 桤木</li>
-        <li>琴颈: 枫木</li>
-        <li>拾音器: Humbucker</li>
-        <li>品丝: 超大号不锈钢</li>
-      </ul>
-      <a href="pricing.html" class="cta-button">立即定制</a>
+      <div style="margin-bottom:20px;">
+        <h3>产品特点</h3>
+        <p>未来主义琴体设计，提供卓越的高把位演奏体验</p>
+      </div>
+      <div>
+        <h3>技术规格</h3>
+        <ul style="list-style-type: square; padding-left:20px;">
+          <li>琴体: 碳纤维复合材料</li>
+          <li>琴颈: 枫木/碳纤维混合</li>
+          <li>指板: 乌木</li>
+          <li>拾音器: 主动式 Humbucker × 2</li>
+          <li>琴桥: 双摇系统</li>
+        </ul>
+      </div>
+      <a href="pricing.html" style="display:inline-block; margin-top:20px; padding:10px 20px; background:rgba(33,150,243,0.7); color:white; border-radius:5px;">
+        立即定制
+      </a>
     </div>
   </section>
-
+  
+  <!-- C2 型号 -->
   <section class="model-card">
-    <img src="images/c2.jpg" alt="C2 Model"/>
-    <div>
+    <img src="images/c2.jpg" alt="C2型号" style="width:100%; height:auto;"/>
+    <div style="padding:20px;">
       <h2>C2 Model</h2>
-      <h3>产品特点</h3>
-      <p>多音乐风格的完美选择</p>
-      <h3>技术规格</h3>
-      <ul>
-        <li>琴体: 桃花心木</li>
-        <li>琴颈: 玫瑰木</li>
-        <li>拾音器: Single Coil</li>
-        <li>品丝: 中号镍银</li>
-      </ul>
-      <a href="pricing.html" class="cta-button">立即定制</a>
+      <div style="margin-bottom:20px;">
+        <h3>产品特点</h3>
+        <p>多功能设计，适合各种音乐风格</p>
+      </div>
+      <div>
+        <h3>技术规格</h3>
+        <ul style="list-style-type: square; padding-left:20px;">
+          <li>琴体: 沼泽梣木</li>
+          <li>琴颈: 枫木</li>
+          <li>指板: 枫木</li>
+          <li>拾音器: 双线圈/单线圈混合</li>
+          <li>琴桥: 固定式</li>
+        </ul>
+      </div>
+      <a href="pricing.html" style="display:inline-block; margin-top:20px; padding:10px 20px; background:rgba(33,150,243,0.7); color:white; border-radius:5px;">
+        立即定制
+      </a>
     </div>
   </section>
 </main>
 
-<!-- 标准底部栏 -->
+<!-- 底部栏 -->
 <footer class="site-bottombar">
-  <!-- [与series-a.html相同的底部栏结构] -->
+  <div class="bottombar__top">
+    <button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
+    <div class="bottombar__label">PAGE TOP</div>
+    <div class="bottombar__logo-wrap">
+      <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo" style="height:25px;"/>
+    </div>
+  </div>
 </footer>
 
-<!-- [与series-a.html相同的JavaScript] -->
+<script>
+// 汉堡菜单交互
+document.getElementById('topbarMenuBtn').addEventListener('click', function() {
+  document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
+});
+
+// 返回顶部平滑滚动
+document.getElementById('toTopBtn').addEventListener('click', function() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// 搜索功能
+document.getElementById('topbarSearchBtn').addEventListener('click', function() {
+  const query = prompt('请输入搜索关键词');
+  if(query) alert('即将搜索: ' + query);
+});
+
+// 分享功能
+document.getElementById('topbarShareBtn').addEventListener('click', function() {
+  if(navigator.share) {
+    navigator.share({
+      title: document.title,
+      url: window.location.href
+    }).catch(e => console.log('分享失败'));
+  } else {
+    alert('请手动分享此页面');
+  }
+});
+</script>
 </body>
 </html>

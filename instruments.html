@@ -5,18 +5,88 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>产品系列 - AX Bass&Guitar</title>
 <style>
-/* [复用全局样式] */
+:root {
+  --neutral-gray: rgb(128, 128, 128);
+  --glass-dark: rgba(0, 0, 0, 0.3);
+  --text-white: #fff;
+}
 
+body {
+  background: var(--neutral-gray);
+  color: var(--text-white);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+}
+
+/* 顶部栏标准样式 */
+.site-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 5%;
+  background: var(--glass-dark);
+  backdrop-filter: blur(5px);
+  position: relative;
+  z-index: 100;
+}
+
+.topbar__btn {
+  background: none;
+  border: none;
+  color: var(--text-white);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.topbar__logo {
+  height: 30px;
+  width: auto;
+}
+
+/* 导航菜单毛玻璃效果 */
+.mobile-nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--glass-dark);
+  backdrop-filter: blur(10px);
+  z-index: 90;
+  padding: 15px 0;
+}
+
+.mobile-nav.mobile-nav--open {
+  display: block;
+}
+
+.mobile-nav__list {
+  list-style: none;
+}
+
+.mobile-nav__list li {
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.mobile-nav__list a {
+  color: var(--text-white);
+  text-decoration: none;
+  display: block;
+}
+
+/* 系列卡片样式 */
 .series-overview {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 25px;
-  padding: 20px 0;
+  padding: 30px 5%;
 }
 
 .series-card {
   background: rgba(0,0,0,0.2);
-  backdrop-filter: blur(5px);
   border-radius: 10px;
   overflow: hidden;
   transition: transform 0.3s;
@@ -25,30 +95,144 @@
 .series-card:hover {
   transform: translateY(-5px);
 }
+
+/* 底部栏标准样式 */
+.site-bottombar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 15px;
+  background: var(--glass-dark);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  gap: 8px;
+  margin-top: auto;
+}
+
+.bottombar__to-top {
+  background: none;
+  border: none;
+  color: var(--text-white);
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* 响应式设计 */
+@media (min-width: 768px) {
+  .series-overview {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .topbar__logo {
+    height: 35px;
+  }
+}
 </style>
 </head>
 <body>
 
-<!-- [标准顶部栏] -->
-
-<main class="page-content">
-  <h1>产品系列</h1>
+<!-- 顶部导航栏 -->
+<header class="site-topbar">
+  <div class="topbar__left">
+    <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
+  </div>
+  <div class="topbar__center">
+    <a href="index.html">
+      <img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
+    </a>
+  </div>
+  <div class="topbar__right">
+    <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
+    <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
+  </div>
   
-  <div class="series-overview">
-    <div class="series-card">
-      <img src="images/series-a.jpg" alt="A系列"/>
-      <div class="card-body">
-        <h2>Series A</h2>
-        <p>高性能现代音色吉他</p>
-        <a href="series-a.html">查看系列</a>
+  <nav class="mobile-nav" id="mobileNav">
+    <ul class="mobile-nav__list">
+      <li><a href="index.html">首页</a></li>
+      <li><a href="instruments.html">产品系列</a></li>
+      <li><a href="pricing.html">定制选项</a></li>
+      <li><a href="about.html">关于我们</a></li>
+      <li><a href="contact.html">联系我们</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="series-overview">
+  <!-- Series A -->
+  <a href="series-a.html" class="series-card">
+    <img src="images/series-a.jpg" alt="A系列" style="width:100%;"/>
+    <div style="padding:20px;">
+      <h2>Series A</h2>
+      <p>高性能现代音色吉他</p>
+      <div style="display:inline-block; padding:8px 15px; background:rgba(255,255,255,0.2); border-radius:4px;">
+        查看系列
       </div>
     </div>
-    <!-- [其他系列卡片] -->
-  </div>
+  </a>
+  
+  <!-- Series B -->
+  <a href="series-b.html" class="series-card">
+    <img src="images/series-b.jpg" alt="B系列" style="width:100%;"/>
+    <div style="padding:20px;">
+      <h2>Series B</h2>
+      <p>经典复古风格吉他</p>
+      <div style="display:inline-block; padding:8px 15px; background:rgba(255,255,255,0.2); border-radius:4px;">
+        查看系列
+      </div>
+    </div>
+  </a>
+  
+  <!-- Series C -->
+  <a href="series-c.html" class="series-card">
+    <img src="images/series-c.jpg" alt="C系列" style="width:100%;"/>
+    <div style="padding:20px;">
+      <h2>Series C</h2>
+      <p>创新未来主义设计</p>
+      <div style="display:inline-block; padding:8px 15px; background:rgba(255,255,255,0.2); border-radius:4px;">
+        查看系列
+      </div>
+    </div>
+  </a>
 </main>
 
-<!-- [标准底部栏] -->
+<!-- 底部栏 -->
+<footer class="site-bottombar">
+  <div class="bottombar__top">
+    <button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
+    <div class="bottombar__label">PAGE TOP</div>
+    <div class="bottombar__logo-wrap">
+      <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo" style="height:25px;"/>
+    </div>
+  </div>
+</footer>
 
-<!-- [标准JavaScript] -->
+<script>
+// 汉堡菜单交互
+document.getElementById('topbarMenuBtn').addEventListener('click', function() {
+  document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
+});
+
+// 返回顶部平滑滚动
+document.getElementById('toTopBtn').addEventListener('click', function() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// 搜索功能
+document.getElementById('topbarSearchBtn').addEventListener('click', function() {
+  const query = prompt('请输入搜索关键词');
+  if(query) alert('即将搜索: ' + query);
+});
+
+// 分享功能
+document.getElementById('topbarShareBtn').addEventListener('click', function() {
+  if(navigator.share) {
+    navigator.share({
+      title: document.title,
+      url: window.location.href
+    }).catch(e => console.log('分享失败'));
+  } else {
+    alert('请手动分享此页面');
+  }
+});
+</script>
 </body>
 </html>
