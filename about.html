@@ -74,65 +74,43 @@
   display: block;
 }
 
-/* ===== 底部栏最终版样式 ===== */
+/* 底部栏标准样式 */
 .site-bottombar {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   padding: 20px 15px;
-  background: rgba(0, 0, 0, 0.2);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--glass-dark);
+  border-top: 1px solid rgba(255,255,255,0.1);
   gap: 8px;
-}
-
-.bottombar__top {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
+  margin-top: auto;
 }
 
 .bottombar__to-top {
-  order: 1;
   background: none;
   border: none;
-  color: #fff;
+  color: var(--text-white);
   font-size: 22px;
   cursor: pointer;
-  padding: 0;
 }
 
-.bottombar__label {
-  order: 2;
-  font-weight: bold;
-  color: #fff;
-}
-
-.bottombar__logo-wrap {
-  order: 3;
-  margin-top: 5px;
-}
-
-.bottombar__logo {
-  height: 25px;
-  width: auto;
-  filter: brightness(0) invert(1);
-}
-
-/* ===== 响应式设计 ===== */
+/* 响应式设计 */
 @media (min-width: 768px) {
-  .site-topbar {
-    padding: 15px 30px;
+  .model-card {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
   }
+  
   .topbar__logo {
-    max-height: 35px;
+    height: 35px;
   }
 }
 </style>
 </head>
 <body>
 
+<!-- 顶部导航栏 -->
 <header class="site-topbar">
   <div class="topbar__left">
     <button aria-label="Menu" class="topbar__btn topbar__btn--menu" id="topbarMenuBtn">☰</button>
@@ -171,62 +149,50 @@
   </ul>
   <p><strong>飞哥 Tel：</strong>+86 15737603114</p>
   <p><strong>鸣弟 Tel：</strong>+86 15703770846</p>
-</section>
+      </a>
+    </div>
+  </section>
+</main>
 
+<!-- 底部栏 -->
 <footer class="site-bottombar">
   <div class="bottombar__top">
-    <button aria-label="Page Top" class="bottombar__to-top" id="toTopBtn">▲<span class="sr-only">Page Top</span></button>
-    <div class="bottombar__label">PAGE TOP</div>
+    <button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
+    <div class="bottombar__label">返回顶部</div>
     <div class="bottombar__logo-wrap">
-      <img alt="AX Guitar Logo" class="bottombar__logo" src="images/logo.png"/>
+      <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo" style="height:25px;"/>
     </div>
   </div>
 </footer>
 
 <script>
-// 增强版JavaScript
-(function(){
-  // 元素获取
-  const menuBtn = document.getElementById('topbarMenuBtn');
-  const mobileNav = document.getElementById('mobileNav');
-  const searchBtn = document.getElementById('topbarSearchBtn');
-  const toTopBtn = document.getElementById('toTopBtn');
-  const shareBtn = document.getElementById('topbarShareBtn');
+// 汉堡菜单交互
+document.getElementById('topbarMenuBtn').addEventListener('click', function() {
+  document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
+});
 
-  // 菜单切换
-  if(menuBtn && mobileNav) {
-    menuBtn.addEventListener('click', () => {
-      mobileNav.classList.toggle('mobile-nav--open');
-    });
-  }
+// 返回顶部平滑滚动
+document.getElementById('toTopBtn').addEventListener('click', function() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 
-  // 返回顶部
-  if(toTopBtn) {
-    toTopBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
+// 搜索功能
+document.getElementById('topbarSearchBtn').addEventListener('click', function() {
+  const query = prompt('请输入搜索关键词');
+  if(query) alert('即将搜索: ' + query);
+});
 
-  // 分享功能
-  if(shareBtn) {
-    shareBtn.addEventListener('click', () => {
-      try {
-        navigator.share?.({ title: document.title, url: location.href }) || 
-        alert('分享功能不可用');
-      } catch(e) {
-        alert('分享出错: ' + e.message);
-      }
-    });
+// 分享功能
+document.getElementById('topbarShareBtn').addEventListener('click', function() {
+  if(navigator.share) {
+    navigator.share({
+      title: document.title,
+      url: window.location.href
+    }).catch(e => console.log('分享失败'));
+  } else {
+    alert('请手动分享此页面');
   }
-
-  // 搜索功能
-  if(searchBtn) {
-    searchBtn.addEventListener('click', () => {
-      const q = prompt('请输入搜索内容');
-      if(q) alert('搜索演示: ' + q);
-    });
-  }
-})();
+});
 </script>
 </body>
 </html>
