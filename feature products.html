@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>特色产品 | AX新闻中心</title>
+  <link href="../css/style.css" rel="stylesheet"/>
+  <style>
+    .product-header {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 40px;
+    }
+    
+    @media (min-width: 768px) {
+      .product-header {
+        flex-direction: row;
+        gap: 40px;
+      }
+    }
+    
+    .product-gallery {
+      flex: 1;
+    }
+    
+    .product-gallery img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    
+    .product-info {
+      flex: 1;
+    }
+    
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    
+    .specs-table tr {
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .specs-table td {
+      padding: 10px 0;
+    }
+    
+    .specs-table td:first-child {
+      font-weight: bold;
+      width: 30%;
+    }
+  </style>
+</head>
+
+<body>
+<!-- 继承顶部栏 -->
+<header class="site-topbar">
+  <!-- 同主站顶部栏代码 -->
+</header>
+
+<main class="page-content">
+  <a href="index.html" class="back-link">← 返回新闻中心</a>
+  
+  <div class="product-header">
+    <div class="product-gallery">
+      <img src="../images/product-a.jpg" alt="AX Model A贝斯">
+    </div>
+    
+    <div class="product-info">
+      <h1>AX Model A系列</h1>
+      <p class="subtitle">革命性的贝斯设计，20年经验结晶</p>
+      
+      <div class="specs-table">
+        <table>
+          <tr>
+            <td>琴颈类型</td>
+            <td>5片枫木/胡桃木拼接</td>
+          </tr>
+          <tr>
+            <td>指板</td>
+            <td>乌木，24品</td>
+          </tr>
+          <tr>
+            <td>拾音器</td>
+            <td>AX Custom Humbucker x2</td>
+          </tr>
+          <tr>
+            <td>电路系统</td>
+            <td>主动/被动切换</td>
+          </tr>
+          <tr>
+            <td>产地</td>
+            <td>中国上海</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+  <h2>设计特点</h2>
+  <p>Model A系列采用了独特的"Twisted Neck"设计，通过精确计算的琴颈扭曲角度，使高把位演奏更加舒适...</p>
+  
+  <h2>艺术家评价</h2>
+  <blockquote>
+    "这是我用过最符合人体工学的贝斯，连续演出3小时也不会疲劳" —— 贝斯手某某
+  </blockquote>
+  
+  <div class="quick-links">
+    <a href="../support/parts.html" class="quick-link">查看配件</a>
+    <a href="../instruments.html" class="quick-link">所有产品</a>
+  </div>
+</main>
+
+<!-- 继承底部栏 -->
+<footer class="site-bottombar">
+  <!-- 同主站底部栏代码 -->
+</footer>
+</body>
+</html>

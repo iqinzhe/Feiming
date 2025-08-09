@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>品牌大事记 | AX新闻中心</title>
+  <link href="../css/style.css" rel="stylesheet"/>
+  <style>
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 40px auto;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: rgba(255,255,255,0.2);
+      transform: translateX(-50%);
+    }
+    
+    .timeline-item {
+      position: relative;
+      margin-bottom: 40px;
+    }
+    
+    .timeline-content {
+      width: calc(50% - 40px);
+      padding: 20px;
+      background: rgba(0,0,0,0.2);
+      border-radius: 8px;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-content {
+      margin-left: auto;
+    }
+    
+    .timeline-date {
+      position: absolute;
+      top: 20px;
+      width: 100px;
+      text-align: center;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--glass-dark);
+      padding: 5px;
+      border-radius: 20px;
+    }
+    
+    @media (max-width: 768px) {
+      .timeline::before {
+        left: 20px;
+      }
+      
+      .timeline-content {
+        width: calc(100% - 60px);
+        margin-left: 40px !important;
+      }
+      
+      .timeline-date {
+        left: 20px;
+        transform: none;
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<!-- 继承顶部栏 -->
+<header class="site-topbar">
+  <!-- 同主站顶部栏代码 -->
+</header>
+
+<main class="page-content">
+  <a href="index.html" class="back-link">← 返回新闻中心</a>
+  
+  <h1>AX品牌大事记</h1>
+  <p>从代工到自主品牌的蜕变之路</p>
+  
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">2000年</div>
+      <div class="timeline-content">
+        <h3>创始人进入乐器行业</h3>
+        <p>加入国内知名OEM吉他代工厂，开始积累乐器制造经验</p>
+      </div>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-date">2010年</div>
+      <div class="timeline-content">
+        <h3>海外品牌任职</h3>
+        <p>加入国际知名吉他品牌，负责产品设计与生产工艺改进</p>
+      </div>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-date">2025年</div>
+      <div class="timeline-content">
+        <h3>AX品牌创立</h3>
+        <p>在上海正式注册AX品牌，推出首款Model A贝斯</p>
+      </div>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-date">2026年</div>
+      <div class="timeline-content">
+        <h3>获得行业认可</h3>
+        <p>AX贝斯被多位知名音乐人选用，产品进入专业乐器店</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- 继承底部栏 -->
+<footer class="site-bottombar">
+  <!-- 同主站底部栏代码 -->
+</footer>
+</body>
+</html>
