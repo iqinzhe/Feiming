@@ -6,197 +6,105 @@
   <title>常见问题 | AX支持中心</title>
   <link href="../css/style.css" rel="stylesheet"/>
   <style>
-    /* ===== 全局标准样式 ===== */
-    :root {
-      --neutral-gray: rgb(128, 128, 128);
-      --glass-dark: rgba(0, 0, 0, 0.3);
-      --text-white: #fff;
-    }
-
-    body {
-      background: var(--neutral-gray);
-      color: var(--text-white);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      font-family: Arial, sans-serif;
-      margin: 0;
-    }
-
-    /* ===== 顶部栏标准样式 ===== */
+    /* ===== 标准顶部栏样式 ===== */
     .site-topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px 5%;
-      background: var(--glass-dark);
-      backdrop-filter: blur(5px);
-      position: relative;
-      z-index: 100;
-      box-sizing: border-box;
-      width: 100%;
-    }
-
-    .topbar__left, 
-    .topbar__right {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      flex: 0 0 auto;
+      padding: 15px;
+      background-color: rgba(0,0,0,0.8);
+      z-index: 1000;
     }
 
     .topbar__center {
-      flex-grow: 1;
+      flex: 1;
       text-align: center;
-      position: absolute;
-      left: 0;
-      right: 0;
-      margin: 0 auto;
-      width: fit-content;
     }
 
     .topbar__logo {
       height: 30px;
-      width: auto;
     }
 
-    .topbar__btn {
-      background: none;
-      border: none;
-      color: var(--text-white);
-      font-size: 20px;
-      cursor: pointer;
-      padding: 0;
-      margin: 0;
-    }
-
-    /* ===== 导航菜单标准样式 ===== */
     .mobile-nav {
       display: none;
-      position: absolute;
-      top: 100%;
+      position: fixed;
+      top: 60px;
       left: 0;
-      width: 100%;
-      background: var(--glass-dark);
-      backdrop-filter: blur(10px);
-      z-index: 90;
-      padding: 10px 0;
-      box-sizing: border-box;
+      right: 0;
+      background-color: rgba(0,0,0,0.9);
+      padding: 20px;
     }
 
-    .mobile-nav.mobile-nav--open {
+    .mobile-nav--open {
       display: block;
     }
 
-    .mobile-nav__list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .mobile-nav__list li {
-      padding: 12px 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .mobile-nav__list a {
-      color: var(--text-white);
-      text-decoration: none;
-      display: block;
-    }
-
-    /* ===== 内容区样式 ===== */
-    .page-content {
-      flex: 1;
-      padding: 20px 5%;
-      box-sizing: border-box;
-      width: 100%;
-    }
-
-    /* ===== 底部栏标准样式 ===== */
+    /* ===== 标准底部栏样式 ===== */
     .site-bottombar {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px 15px;
-      background: var(--glass-dark);
-      border-top: 1px solid rgba(255,255,255,0.1);
-      gap: 8px;
-      box-sizing: border-box;
-      width: 100%;
-    }
-
-    .bottombar__top {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      width: 100%;
-    }
-
-    .bottombar__to-top {
-      order: 1;
-      background: none;
-      border: none;
-      color: var(--text-white);
-      font-size: 22px;
-      cursor: pointer;
-      padding: 0;
-    }
-
-    .bottombar__label {
-      order: 2;
-      font-weight: bold;
-    }
-
-    .bottombar__logo-wrap {
-      order: 3;
+      background-color: rgba(0,0,0,0.8);
+      padding: 20px 0;
+      text-align: center;
     }
 
     .bottombar__logo {
-      height: 25px;
-      width: auto;
-      filter: brightness(0) invert(1);
+      height: 20px;
+      display: block;
+      margin: 0 auto 10px;
     }
 
-    /* ===== 响应式设计 ===== */
-    @media (min-width: 768px) {
-      .site-topbar {
-        padding: 15px 8%;
-      }
-      .topbar__logo {
-        height: 35px;
-      }
-      .page-content {
-        padding: 30px 8%;
-      }
+    .bottombar__to-top {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 20px;
+      display: block;
+      margin: 0 auto;
+      padding: 0;
+      cursor: pointer;
     }
 
-    /* ===== FAQ专属样式 ===== */
+    .bottombar__label {
+      color: white;
+      font-size: 12px;
+      margin-top: 10px;
+      display: block;
+    }
+
+    /* ===== 主内容区域调整 ===== */
+    .page-content {
+      margin-top: 60px;
+      padding: 20px;
+      background-color: rgba(0,0,0,0.2);
+      min-height: calc(100vh - 160px);
+    }
+
+    /* ===== FAQ页面特有样式 ===== */
     .faq-container {
       max-width: 800px;
-      margin: 40px auto;
+      margin: 0 auto;
     }
     
     .faq-item {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       border-bottom: 1px solid rgba(255,255,255,0.1);
-      padding-bottom: 20px;
+      padding-bottom: 15px;
     }
     
     .faq-question {
       font-weight: bold;
-      font-size: 1.1em;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      padding: 10px 0;
     }
     
     .faq-answer {
-      margin-top: 10px;
+      padding: 10px 0;
       display: none;
-      padding-left: 20px;
     }
     
     .faq-item.active .faq-answer {
@@ -206,14 +114,14 @@
     .back-link {
       display: inline-block;
       margin-top: 30px;
-      color: var(--text-white);
+      color: white;
       text-decoration: none;
     }
   </style>
 </head>
 
 <body>
-<!-- 顶部栏 -->
+<!-- 标准顶部栏 -->
 <header class="site-topbar">
   <div class="topbar__left">
     <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
@@ -241,6 +149,7 @@
   </nav>
 </header>
 
+<!-- 页面内容 -->
 <main class="page-content">
   <h1>常见问题</h1>
   
@@ -271,17 +180,13 @@
   <a href="support.html" class="back-link">← 返回支持中心</a>
 </main>
 
-<!-- 底部栏 -->
+<!-- 标准底部栏 -->
 <footer class="site-bottombar">
-  <div class="bottombar__top">
-    <button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
-    <div class="bottombar__label">返回顶部</div>
-    <div class="bottombar__logo-wrap">
-      <a href="../index.html">
-        <img class="bottombar__logo" src="../images/logo.png" alt="AX Guitar Logo"/>
-      </a>
-    </div>
-  </div>
+  <a href="../index.html">
+    <img class="bottombar__logo" src="../images/logo.png" alt="AX Guitar Logo"/>
+  </a>
+  <button class="bottombar__to-top" id="toTopBtn">▲</button>
+  <div class="bottombar__label">返回顶部</div>
 </footer>
 
 <script>
@@ -293,24 +198,6 @@
   // 返回顶部
   document.getElementById('toTopBtn').addEventListener('click', function() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  // 搜索功能
-  document.getElementById('topbarSearchBtn').addEventListener('click', function() {
-    const q = prompt('请输入搜索关键词');
-    if(q) alert('搜索演示: ' + q);
-  });
-
-  // 分享功能
-  document.getElementById('topbarShareBtn').addEventListener('click', function() {
-    try {
-      navigator.share?.({ 
-        title: document.title,
-        url: location.href 
-      }) || alert('请手动分享此页面');
-    } catch(e) {
-      alert('分享出错: ' + e.message);
-    }
   });
 
   // FAQ交互
