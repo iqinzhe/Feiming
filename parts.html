@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>配件中心 | AX支持中心</title>
+  <link href="../css/style.css" rel="stylesheet"/>
+  <style>
+    .parts-series {
+      margin: 40px 0;
+    }
+    
+    .series-tabs {
+      display: flex;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      margin-bottom: 20px;
+    }
+    
+    .tab-btn {
+      padding: 10px 20px;
+      background: none;
+      border: none;
+      color: var(--text-white);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+    }
+    
+    .tab-btn.active {
+      border-bottom-color: white;
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    .parts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    
+    .part-item {
+      background: rgba(0,0,0,0.2);
+      padding: 15px;
+      border-radius: 5px;
+    }
+    
+    .part-item img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+
+<body>
+<!-- 继承顶部栏 -->
+<header class="site-topbar">
+  <!-- 同index.html的顶部栏代码 -->
+</header>
+
+<main class="page-content">
+  <h1>配件中心</h1>
+  <p>为您的AX乐器寻找原厂配件和升级零件</p>
+  
+  <div class="parts-series">
+    <div class="series-tabs">
+      <button class="tab-btn active" data-tab="series-a">A系列</button>
+      <button class="tab-btn" data-tab="series-b">B系列</button>
+      <button class="tab-btn" data-tab="series-c">C系列</button>
+    </div>
+    
+    <div id="series-a" class="tab-content active">
+      <h2>A系列配件</h2>
+      <div class="parts-grid">
+        <div class="part-item">
+          <img src="../images/part-pickup.jpg" alt="A系列拾音器">
+          <h3>A系列原厂拾音器</h3>
+          <p>适用于所有A系列贝斯</p>
+          <p>型号: AX-PU-A01</p>
+        </div>
+        
+        <!-- 更多A系列配件 -->
+      </div>
+    </div>
+    
+    <div id="series-b" class="tab-content">
+      <h2>B系列配件</h2>
+      <div class="parts-grid">
+        <!-- B系列配件内容 -->
+      </div>
+    </div>
+    
+    <div id="series-c" class="tab-content">
+      <h2>C系列配件</h2>
+      <div class="parts-grid">
+        <!-- C系列配件内容 -->
+      </div>
+    </div>
+  </div>
+  
+  <a href="index.html" class="back-link">← 返回支持中心</a>
+</main>
+
+<!-- 继承底部栏 -->
+<footer class="site-bottombar">
+  <!-- 同index.html的底部栏代码 -->
+</footer>
+
+<script>
+  // 标签页切换
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      // 移除所有active类
+      document.querySelectorAll('.tab-btn, .tab-content').forEach(el => {
+        el.classList.remove('active');
+      });
+      
+      // 添加active类到当前按钮和对应内容
+      btn.classList.add('active');
+      const tabId = btn.getAttribute('data-tab');
+      document.getElementById(tabId).classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

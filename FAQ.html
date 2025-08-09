@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>常见问题 | AX支持中心</title>
+  <link href="../css/style.css" rel="stylesheet"/>
+  <style>
+    .faq-container {
+      max-width: 800px;
+      margin: 40px auto;
+    }
+    
+    .faq-item {
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 20px;
+    }
+    
+    .faq-question {
+      font-weight: bold;
+      font-size: 1.1em;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .faq-answer {
+      margin-top: 10px;
+      display: none;
+      padding-left: 20px;
+    }
+    
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+    
+    .back-link {
+      display: inline-block;
+      margin-top: 30px;
+      color: var(--text-white);
+    }
+  </style>
+</head>
+
+<body>
+<!-- 继承顶部栏 -->
+<header class="site-topbar">
+  <!-- 同index.html的顶部栏代码 -->
+</header>
+
+<main class="page-content">
+  <h1>常见问题</h1>
+  
+  <div class="faq-container">
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>Q: 如何保养我的AX贝斯？</span>
+        <span>+</span>
+      </div>
+      <div class="faq-answer">
+        <p>A: 定期清洁琴身和指板，使用专用琴弦清洁剂，避免极端温度和湿度环境。每6-12个月进行一次专业调校。</p>
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>Q: 产品保修期是多久？</span>
+        <span>+</span>
+      </div>
+      <div class="faq-answer">
+        <p>A: AX产品提供2年有限保修，涵盖材料和工艺缺陷。人为损坏不在保修范围内。</p>
+      </div>
+    </div>
+    
+    <!-- 更多FAQ项目 -->
+  </div>
+  
+  <a href="index.html" class="back-link">← 返回支持中心</a>
+</main>
+
+<!-- 继承底部栏 -->
+<footer class="site-bottombar">
+  <!-- 同index.html的底部栏代码 -->
+</footer>
+
+<script>
+  // FAQ交互
+  document.querySelectorAll('.faq-question').forEach(item => {
+    item.addEventListener('click', () => {
+      const parent = item.parentElement;
+      parent.classList.toggle('active');
+      item.querySelector('span:last-child').textContent = 
+        parent.classList.contains('active') ? '-' : '+';
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AX支持中心</title>
+  <link href="../css/style.css" rel="stylesheet"/>
+  <style>
+    /* 继承主站的样式变量 */
+    :root {
+      --neutral-gray: rgb(128, 128, 128);
+      --glass-dark: rgba(0, 0, 0, 0.3);
+      --text-white: #fff;
+    }
+
+    .support-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+    }
+
+    .support-card {
+      background: rgba(0,0,0,0.2);
+      border-radius: 8px;
+      padding: 25px;
+      transition: transform 0.3s;
+    }
+
+    .support-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .support-card h2 {
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .support-card a {
+      color: var(--text-white);
+      text-decoration: none;
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    .icon {
+      font-size: 24px;
+    }
+  </style>
+</head>
+
+<body>
+<!-- 继承主站顶部栏 -->
+<header class="site-topbar">
+  <div class="topbar__left">
+    <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
+  </div>
+  
+  <div class="topbar__center">
+    <a href="../index.html">
+      <img class="topbar__logo" src="../images/logo.png" alt="AX Guitar Logo"/>
+    </a>
+  </div>
+  
+  <div class="topbar__right">
+    <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
+    <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
+  </div>
+  
+  <nav class="mobile-nav" id="mobileNav" aria-label="主导航">
+    <ul class="mobile-nav__list">
+      <li><a href="../index.html">首页</a></li>
+      <li><a href="../instruments.html">产品</a></li>
+      <li><a href="../pricing.html">DIY选项</a></li>
+      <li><a href="../news.html">新闻</a></li>
+      <li><a href="support.html">支持</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- 支持中心内容 -->
+<main class="page-content">
+  <h1>AX支持中心</h1>
+  <p>我们随时为您提供帮助，请选择您需要的支持类型：</p>
+  
+  <div class="support-container">
+    <div class="support-card">
+      <h2><span class="icon">❓</span>常见问题</h2>
+      <p>查找关于AX产品的常见问题解答</p>
+      <a href="FAQ.html">前往FAQ →</a>
+    </div>
+    
+    <div class="support-card">
+      <h2><span class="icon">✉️</span>联系我们</h2>
+      <p>需要直接帮助？通过多种方式联系我们</p>
+      <a href="contact.html">联系方式 →</a>
+    </div>
+    
+    <div class="support-card">
+      <h2><span class="icon">🔧</span>配件中心</h2>
+      <p>查找各系列的替换零件和升级配件</p>
+      <a href="parts.html">配件信息 →</a>
+    </div>
+  </div>
+</main>
+
+<!-- 继承主站底部栏 -->
+<footer class="site-bottombar">
+  <div class="bottombar__top">
+    <button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
+    <div class="bottombar__label">返回顶部</div>
+    <div class="bottombar__logo-wrap">
+      <a href="../index.html">
+        <img class="bottombar__logo" src="../images/logo.png" alt="AX Guitar Logo"/>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- 继承主站脚本 -->
+<script src="../js/main.js"></script>
+</body>
+</html>
