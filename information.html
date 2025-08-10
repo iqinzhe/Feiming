@@ -4,6 +4,11 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>官方信息 | AX新闻中心</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+<link rel="manifest" href="/icons/manifest.json">
+
   <style>
     /* ===== 基础样式 ===== */
     :root {
@@ -164,6 +169,7 @@
     <ul class="mobile-nav__list">
       <li><a href="../index.html">首页</a></li>
       <li><a href="../instruments.html">产品</a></li>
+      <li><a href="twisted-neck.html">特色</a></li>
       <li><a href="../pricing.html">DIY选项</a></li>
       <li><a href="../news.html">新闻</a></li>
       <li><a href="../support.html">支持</a></li>
@@ -240,12 +246,13 @@
 
 <!-- 底部栏 -->
 <footer class="site-bottombar">
-  <div class="bottombar__content">
-    <img class="bottombar__logo" src="../images/logo.png" alt="AX Logo">
-    <button id="toTopBtn" style="background:none;border:none;color:white;font-size:20px;cursor:pointer;margin:5px 0;">▲</button>
-    <div style="font-size:12px;">返回顶部</div>
-  </div>
-</footer>
+<div class="bottombar__logo-wrap">
+<img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/><height:15px;"/>
+<div class="bottombar__top">
+<button aria-label="返回顶部" class="bottombar__to-top" 
+id="toTopBtn">▲</button>
+<div class="bottombar__label">返回顶部</div>
+</div></footer>
 
 <script>
   // 展开/收起功能
