@@ -191,9 +191,12 @@
   });
 
   // 返回顶部
-  document.getElementById('toTopBtn').addEventListener('click', function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-</script>
-</body>
-</html>
+ <footer class="site-bottombar">
+<div class="bottombar__top">
+<button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
+<div class="bottombar__label">返回顶部</div>
+<div class="bottombar__logo-wrap">
+<img alt="AX Guitar Logo" class="bottombar__logo" src="images/logo.png" style="height:25px;"/>
+</div>
+</div></footer><script>
+document.addEventListener('DOMContentLoaded', function() {
