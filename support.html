@@ -6,78 +6,105 @@
   <title>AX支持中心</title>
   <link href="../css/style.css" rel="stylesheet"/>
   <style>
-    /* ===== 标准顶部栏样式 ===== */
+    /* ===== 全局标准样式 ===== */
+    :root {
+      --neutral-gray: rgb(128, 128, 128);
+      --glass-dark: rgba(0, 0, 0, 0.3);
+      --text-white: #fff;
+    }
+
+    body {
+      background: var(--neutral-gray);
+      color: var(--text-white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding-top: 60px;
+    }
+
+    /* ===== 顶部栏标准样式 ===== */
     .site-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 5%;
+      background: var(--glass-dark);
+      backdrop-filter: blur(5px);
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
+      z-index: 100;
+      box-sizing: border-box;
+      margin: 0;
+    }
+
+    .topbar__left, 
+    .topbar__right {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 15px;
-      background-color: rgba(0,0,0,0.8);
-      z-index: 1000;
+      gap: 15px;
     }
 
     .topbar__center {
-      flex: 1;
+      flex-grow: 1;
       text-align: center;
     }
 
     .topbar__logo {
       height: 30px;
+      width: auto;
     }
 
-    .mobile-nav {
-      display: none;
-      position: fixed;
-      top: 60px;
-      left: 0;
-      right: 0;
-      background-color: rgba(0,0,0,0.9);
-      padding: 20px;
-    }
-
-    .mobile-nav--open {
-      display: block;
-    }
-
-    /* ===== 标准底部栏样式 ===== */
-    .site-bottombar {
-      background-color: rgba(0,0,0,0.8);
-      padding: 20px 0;
-      text-align: center;
-    }
-
-    .bottombar__logo {
-      height: 20px;
-      display: block;
-      margin: 0 auto 10px;
-    }
-
-    .bottombar__to-top {
+    .topbar__btn {
       background: none;
       border: none;
-      color: white;
+      color: var(--text-white);
       font-size: 20px;
-      display: block;
-      margin: 0 auto;
-      padding: 0;
       cursor: pointer;
     }
 
-    .bottombar__label {
-      color: white;
-      font-size: 12px;
-      margin-top: 10px;
+    /* ===== 导航菜单标准样式 ===== */
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: var(--glass-dark);
+      backdrop-filter: blur(10px);
+      z-index: 90;
+      padding: 10px 0;
+    }
+
+    .mobile-nav.mobile-nav--open {
       display: block;
     }
 
-    /* ===== 主内容区域调整 ===== */
+    .mobile-nav__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .mobile-nav__list li {
+      padding: 12px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .mobile-nav__list a {
+      color: var(--text-white);
+      text-decoration: none;
+      display: block;
+    }
+
+    /* ===== 内容区样式 ===== */
     .page-content {
-      margin-top: 60px;
-      padding: 20px;
+      flex: 1;
+      padding: 20px 5%;
+      margin-top: 20px;
     }
 
     /* ===== 支持中心特有样式 ===== */
@@ -116,6 +143,65 @@
 
     .icon {
       font-size: 24px;
+    }
+
+    /* ===== 底部栏标准样式 ===== */
+    .site-bottombar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 15px;
+      background: var(--glass-dark);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      gap: 8px;
+    }
+
+    .bottombar__top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .bottombar__to-top {
+      order: 1;
+      background: none;
+      border: none;
+      color: var(--text-white);
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .bottombar__label {
+      order: 2;
+      font-weight: bold;
+    }
+
+    .bottombar__logo-wrap {
+      order: 3;
+    }
+
+    .bottombar__logo {
+      height: 25px;
+      width: auto;
+      filter: brightness(0) invert(1);
+    }
+
+    /* ===== 响应式设计 ===== */
+    @media (min-width: 768px) {
+      body {
+        padding-top: 70px;
+      }
+      .site-topbar {
+        padding: 15px 8%;
+        height: 60px;
+      }
+      .topbar__logo {
+        height: 35px;
+      }
+      .page-content {
+        padding: 30px 8%;
+      }
     }
   </style>
 </head>
@@ -177,11 +263,13 @@
 
 <!-- 标准底部栏 -->
 <footer class="site-bottombar">
-  <a href="../index.html">
-    <img alt="AX Guitar Logo" class="bottombar__logo" src="images/logo.png" style="height:25px;"/>
-  </a>
-  <button class="bottombar__to-top" id="toTopBtn">▲</button>
-  <div class="bottombar__label">返回顶部</div>
+  <div class="bottombar__top">
+    <a href="../index.html" class="bottombar__logo-wrap">
+      <img class="bottombar__logo" src="../images/logo.png" alt="AX Guitar Logo"/>
+    </a>
+    <button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
+    <div class="bottombar__label">返回顶部</div>
+  </div>
 </footer>
 
 <script>
@@ -191,12 +279,9 @@
   });
 
   // 返回顶部
- <footer class="site-bottombar">
-<div class="bottombar__top">
-<button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
-<div class="bottombar__label">返回顶部</div>
-<div class="bottombar__logo-wrap">
-<img alt="AX Guitar Logo" class="bottombar__logo" src="images/logo.png" style="height:25px;"/>
-</div>
-</div></footer><script>
-document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('toTopBtn').addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+</body>
+</html>
