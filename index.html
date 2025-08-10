@@ -6,6 +6,7 @@
 <title>AX斧标贝斯</title>
 <link href="css/style.css" rel="stylesheet"/>
 <style>
+/* ===== 全局标准样式 ===== */
 :root {
   --neutral-gray: rgb(128, 128, 128);
   --glass-dark: rgba(0, 0, 0, 0.3);
@@ -19,9 +20,78 @@ body {
   display: flex;
   flex-direction: column;
   font-family: Arial, sans-serif;
-  padding-top: 60px;
 }
 
+/* ===== 顶部栏标准样式 ===== */
+.site-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 5%;
+  background: var(--glass-dark);
+  backdrop-filter: blur(5px);
+  position: relative;
+  z-index: 100;
+}
+
+.topbar__left, 
+.topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.topbar__center {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.topbar__logo {
+  height: 30px;
+  width: auto;
+}
+
+.topbar__btn {
+  background: none;
+  border: none;
+  color: var(--text-white);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* ===== 导航菜单标准样式 ===== */
+.mobile-nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--glass-dark);
+  backdrop-filter: blur(10px);
+  z-index: 90;
+  padding: 10px 0;
+}
+
+.mobile-nav.mobile-nav--open {
+  display: block;
+}
+
+.mobile-nav__list {
+  list-style: none;
+}
+
+.mobile-nav__list li {
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.mobile-nav__list a {
+  color: var(--text-white);
+  text-decoration: none;
+  display: block;
+}
+
+/* ===== 内容区样式 ===== */
 .page-content {
   flex: 1;
   padding: 20px 5%;
@@ -57,37 +127,56 @@ body {
   border-radius: 4px;
 }
 
-/* 新增底部栏居中控制 */
+/* ===== 底部栏标准样式 ===== */
 .site-bottombar {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  min-height: 150px;
+  padding: 20px 15px;
+  background: var(--glass-dark);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  gap: 8px;
 }
 
 .bottombar__top {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 8px;
 }
 
-/* 新增菜单动画 */
-.mobile-nav {
-  display: none;
+.bottombar__to-top {
+  order: 1;
+  background: none;
+  border: none;
+  color: var(--text-white);
+  font-size: 22px;
+  cursor: pointer;
 }
 
-.mobile-nav.mobile-nav--open {
-  display: block;
-  animation: fadeIn 0.3s ease;
+.bottombar__label {
+  order: 2;
+  font-weight: bold;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+.bottombar__logo-wrap {
+  order: 3;
 }
 
+.bottombar__logo {
+  height: 25px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+/* ===== 响应式设计 ===== */
 @media (min-width: 768px) {
+  .site-topbar {
+    padding: 15px 8%;
+  }
+  .topbar__logo {
+    height: 35px;
+  }
   .page-content {
     padding: 30px 8%;
   }
@@ -96,10 +185,10 @@ body {
 </head>
 
 <body>
-<!-- 顶部栏 -->
+<!-- 标准顶部栏 -->
 <header class="site-topbar">
   <div class="topbar__left">
-    <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn" aria-expanded="false">☰</button>
+    <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
   </div>
   
   <div class="topbar__center">
@@ -113,7 +202,8 @@ body {
     <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
   </div>
   
-  <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <!-- 标准导航菜单 -->
+  <nav class="mobile-nav" id="mobileNav" aria-label="主导航">
     <ul class="mobile-nav__list">
       <li><a href="index.html">首页</a></li>
       <li><a href="instruments.html">产品</a></li>
@@ -124,6 +214,7 @@ body {
   </nav>
 </header>
 
+<!-- 页面专属内容 -->
 <main class="page-content">
   <section class="hero">
     <img src="images/Ibanez7.jpg" alt="AX Bass展示图"/>
@@ -141,46 +232,36 @@ body {
   </section>
 </main>
 
-<!-- 底部栏 -->
+<!-- 标准底部栏 -->
 <footer class="site-bottombar">
   <div class="bottombar__top">
-    <a href="index.html">
-      <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
-    </a>
     <button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
     <div class="bottombar__label">返回顶部</div>
+     <a href="index.html">
+      <img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
+    </div>
   </div>
 </footer>
 
+<!-- 标准交互脚本 -->
 <script>
-// 增强版菜单控制
-const menuBtn = document.getElementById('topbarMenuBtn');
-const mobileNav = document.getElementById('mobileNav');
-
-menuBtn.addEventListener('click', function(e) {
-  e.stopPropagation();
-  const isOpen = mobileNav.classList.toggle('mobile-nav--open');
-  this.setAttribute('aria-expanded', isOpen);
-  mobileNav.setAttribute('aria-hidden', !isOpen);
+// 菜单控制
+document.getElementById('topbarMenuBtn').addEventListener('click', function() {
+  document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
 });
 
-// 点击菜单外区域关闭菜单
-document.addEventListener('click', function() {
-  mobileNav.classList.remove('mobile-nav--open');
-  menuBtn.setAttribute('aria-expanded', 'false');
-  mobileNav.setAttribute('aria-hidden', 'true');
-});
-
-// 其他交互保持不变
+// 返回顶部
 document.getElementById('toTopBtn').addEventListener('click', function() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
+// 搜索功能
 document.getElementById('topbarSearchBtn').addEventListener('click', function() {
   const q = prompt('请输入搜索关键词');
   if(q) alert('搜索演示: ' + q);
 });
 
+// 分享功能
 document.getElementById('topbarShareBtn').addEventListener('click', function() {
   try {
     navigator.share?.({ 
