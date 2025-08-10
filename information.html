@@ -38,6 +38,35 @@
       height: 30px;
     }
 
+    /* ===== 移动菜单 ===== */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background-color: rgba(0,0,0,0.9);
+      padding: 20px;
+      z-index: 999;
+    }
+    
+    .mobile-nav--open {
+      display: block;
+    }
+    
+    .mobile-nav__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .mobile-nav__list a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      padding: 10px 0;
+    }
+
     /* ===== 主内容区 ===== */
     .page-content {
       margin-top: 60px;
@@ -51,12 +80,12 @@
       padding: 15px;
       margin-bottom: 15px;
       overflow: hidden;
-      max-height: 150px; /* 初始高度限制 */
+      max-height: 150px;
       transition: max-height 0.5s ease;
     }
     
     .info-card.expanded {
-      max-height: 2000px; /* 展开后的最大高度 */
+      max-height: 2000px;
     }
     
     .card-header {
@@ -92,6 +121,13 @@
       text-align: center;
     }
     
+    .bottombar__content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    
     .bottombar__logo {
       height: 20px;
       margin-bottom: 10px;
@@ -122,6 +158,17 @@
     <button aria-label="搜索" id="topbarSearchBtn">🔍</button>
     <button aria-label="分享" id="topbarShareBtn">⤴</button>
   </div>
+  
+  <!-- 移动导航菜单 -->
+  <nav class="mobile-nav" id="mobileNav">
+    <ul class="mobile-nav__list">
+      <li><a href="../index.html">首页</a></li>
+      <li><a href="../instruments.html">产品</a></li>
+      <li><a href="../pricing.html">DIY选项</a></li>
+      <li><a href="../news.html">新闻</a></li>
+      <li><a href="../support.html">支持</a></li>
+    </ul>
+  </nav>
 </header>
 
 <!-- 主内容 -->
@@ -193,9 +240,11 @@
 
 <!-- 底部栏 -->
 <footer class="site-bottombar">
-  <img class="bottombar__logo" src="../images/logo.png" alt="AX Logo">
-  <button id="toTopBtn" style="background:none;border:none;color:white;font-size:20px;cursor:pointer;">▲</button>
-  <div style="font-size:12px;margin-top:5px;">返回顶部</div>
+  <div class="bottombar__content">
+    <img class="bottombar__logo" src="../images/logo.png" alt="AX Logo">
+    <button id="toTopBtn" style="background:none;border:none;color:white;font-size:20px;cursor:pointer;margin:5px 0;">▲</button>
+    <div style="font-size:12px;">返回顶部</div>
+  </div>
 </footer>
 
 <script>
@@ -213,10 +262,33 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // 移动菜单
+  // 汉堡菜单切换
   document.getElementById('topbarMenuBtn').addEventListener('click', function() {
-    // 这里可以添加菜单功能
-    alert('菜单功能需根据实际需求实现');
+    document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
+  });
+
+  // 搜索按钮功能
+  document.getElementById('topbarSearchBtn').addEventListener('click', function() {
+    const query = prompt('请输入搜索内容:');
+    if(query) {
+      alert('将搜索: ' + query);
+      // 实际项目中这里可以跳转到搜索页面或显示搜索结果
+    }
+  });
+
+  // 分享按钮功能
+  document.getElementById('topbarShareBtn').addEventListener('click', function() {
+    if(navigator.share) {
+      navigator.share({
+        title: 'AX官方信息',
+        text: '查看AX品牌的官方声明和法律信息',
+        url: window.location.href
+      }).catch(err => {
+        console.log('分享失败:', err);
+      });
+    } else {
+      alert('分享功能在您的浏览器中不可用，请手动复制链接');
+    }
   });
 </script>
 </body>
