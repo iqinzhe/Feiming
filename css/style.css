@@ -131,3 +131,88 @@ main {
     height: 35px;
   }
 }
+/* ===== Twisted Neck Page Styles ===== */
+.tn-hero {
+    position: relative;
+    background: url('images/hero-twisted-neck.jpg') center/cover no-repeat;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+.tn-overlay {
+    text-align: center;
+    background: rgba(0,0,0,0.5);
+    padding: 2rem;
+    border-radius: 10px;
+}
+.tn-buttons a {
+    display: inline-block;
+    margin: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+}
+.btn-primary {
+    background: #ffcc00;
+    color: #000;
+    font-weight: bold;
+}
+.btn-secondary {
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+}
+.tn-section {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+.tn-content {
+    max-width: 900px;
+    margin: auto;
+}
+.tn-content img {
+    max-width: 100%;
+    margin-bottom: 1rem;
+}
+.tn-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+.tn-card {
+    background: #f7f7f7;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+.tn-compare {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+.tn-compare img {
+    max-width: 45%;
+    border: 3px solid #ddd;
+    border-radius: 8px;
+}
+.tn-video video {
+    border-radius: 8px;
+}
+.tn-cta {
+    background: #111;
+    color: #fff;
+}
+.tn-cta a {
+    margin: 0.5rem;
+}
+@media (max-width: 768px) {
+    .tn-hero {
+        height: 60vh;
+    }
+    .tn-compare img {
+        max-width: 100%;
+    }
+}
