@@ -5,7 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>官方信息 | AX新闻中心</title>
   <style>
-    /* ===== 标准顶部栏样式 ===== */
+    /* ===== 基础样式 ===== */
+    :root {
+      --card-bg: rgba(0,0,0,0.3);
+      --text-primary: rgba(255,255,255,0.9);
+      --text-secondary: rgba(255,255,255,0.7);
+    }
+    
+    body {
+      font-family: system-ui, sans-serif;
+      background-color: rgba(0,0,0,0.2);
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ===== 顶部栏 ===== */
     .site-topbar {
       position: fixed;
       top: 0;
@@ -18,338 +33,190 @@
       background-color: rgba(0,0,0,0.8);
       z-index: 1000;
     }
-
-    .topbar__center {
-      flex: 1;
-      text-align: center;
-    }
-
+    
     .topbar__logo {
       height: 30px;
     }
 
-    .mobile-nav {
-      display: none;
-      position: fixed;
-      top: 60px;
-      left: 0;
-      right: 0;
-      background-color: rgba(0,0,0,0.9);
-      padding: 20px;
-    }
-
-    .mobile-nav--open {
-      display: block;
-    }
-
-    /* ===== 标准底部栏样式 ===== */
-    .site-bottombar {
-      background-color: rgba(0,0,0,0.8);
-      padding: 20px 0;
-      text-align: center;
-    }
-
-    .bottombar__logo {
-      height: 20px;
-      display: block;
-      margin: 0 auto 10px;
-    }
-
-    .bottombar__to-top {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 20px;
-      display: block;
-      margin: 0 auto;
-      padding: 0;
-      cursor: pointer;
-    }
-
-    .bottombar__label {
-      color: white;
-      font-size: 12px;
-      margin-top: 10px;
-      display: block;
-    }
-
-    /* ===== 主内容区域调整 ===== */
+    /* ===== 主内容区 ===== */
     .page-content {
       margin-top: 60px;
-      padding: 20px;
-      background-color: rgba(0,0,0,0.2);
-      min-height: calc(100vh - 160px);
+      padding: 15px;
     }
 
-    /* ===== 信息页面特有样式 ===== */
-    .info-container {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    
-    .info-tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 30px;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-      padding-bottom: 10px;
-    }
-    
-    .info-tab {
-      padding: 10px 20px;
-      background: rgba(0,0,0,0.3);
-      border: none;
-      color: white;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: background 0.3s;
-    }
-    
-    .info-tab.active {
-      background: rgba(255,255,255,0.2);
-    }
-    
-    .info-content {
-      display: none;
-      animation: fadeIn 0.5s ease;
-    }
-    
-    .info-content.active {
-      display: block;
-    }
-    
-    .legal-text {
-      max-height: 400px;
-      overflow-y: auto;
-      padding: 20px;
-      background: rgba(0,0,0,0.3);
+    /* ===== 栏目卡片 ===== */
+    .info-card {
+      background: var(--card-bg);
       border-radius: 8px;
-      line-height: 1.8;
-    }
-    
-    .legal-text h3 {
-      margin-top: 20px;
-      color: rgba(255,255,255,0.9);
-    }
-    
-    .legal-text p {
+      padding: 15px;
       margin-bottom: 15px;
-      color: rgba(255,255,255,0.7);
+      overflow: hidden;
+      max-height: 150px; /* 初始高度限制 */
+      transition: max-height 0.5s ease;
     }
     
-    .contact-methods {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
+    .info-card.expanded {
+      max-height: 2000px; /* 展开后的最大高度 */
     }
     
-    .contact-card {
-      background: rgba(0,0,0,0.3);
-      padding: 20px;
-      border-radius: 8px;
-    }
-    
-    .fake-warning {
+    .card-header {
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      gap: 20px;
-      margin-top: 20px;
     }
     
-    .fake-comparison {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
+    .card-title {
+      margin: 0;
+      font-size: 1.2rem;
+      color: var(--text-primary);
     }
     
-    .fake-comparison img {
-      max-width: 300px;
-      border-radius: 8px;
+    .card-content {
+      margin-top: 10px;
+      line-height: 1.6;
+      color: var(--text-secondary);
     }
     
-    .back-link {
-      display: inline-block;
-      margin-bottom: 20px;
-      color: white;
-      text-decoration: none;
+    .read-more {
+      color: #4CAF50;
+      text-align: center;
+      padding: 8px 0;
+      cursor: pointer;
+      font-size: 0.9rem;
     }
     
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* ===== 底部栏 ===== */
+    .site-bottombar {
+      background-color: rgba(0,0,0,0.8);
+      padding: 15px;
+      text-align: center;
+    }
+    
+    .bottombar__logo {
+      height: 20px;
+      margin-bottom: 10px;
+    }
+    
+    /* ===== 响应式调整 ===== */
+    @media (min-width: 768px) {
+      .page-content {
+        max-width: 1000px;
+        margin: 60px auto 0;
+        padding: 20px;
+      }
+      
+      .info-card {
+        padding: 20px;
+        margin-bottom: 20px;
+      }
     }
   </style>
 </head>
 
 <body>
-<!-- 标准顶部栏 -->
+<!-- 顶部栏 -->
 <header class="site-topbar">
-  <div class="topbar__left">
-    <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
+  <button aria-label="菜单" id="topbarMenuBtn">☰</button>
+  <a href="../index.html"><img class="topbar__logo" src="../images/logo.png" alt="AX Logo"></a>
+  <div>
+    <button aria-label="搜索" id="topbarSearchBtn">🔍</button>
+    <button aria-label="分享" id="topbarShareBtn">⤴</button>
   </div>
-  
-  <div class="topbar__center">
-    <a href="../index.html">
-      <img class="topbar__logo" src="../images/logo.png" alt="AX Guitar Logo"/>
-    </a>
-  </div>
-  
-  <div class="topbar__right">
-    <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
-    <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
-  </div>
-  
-  <nav class="mobile-nav" id="mobileNav" aria-label="主导航">
-    <ul class="mobile-nav__list">
-      <li><a href="../index.html">首页</a></li>
-      <li><a href="../instruments.html">产品</a></li>
-      <li><a href="../pricing.html">DIY选项</a></li>
-      <li><a href="../news.html">新闻</a></li>
-      <li><a href="../support.html">支持</a></li>
-    </ul>
-  </nav>
 </header>
 
-<!-- 页面内容 -->
+<!-- 主内容 -->
 <main class="page-content">
-  <div class="info-container">
-    <a href="../news.html" class="back-link">← 返回新闻中心</a>
-    
-    <h1>官方信息</h1>
-    <p>获取AX品牌的官方声明和法律信息</p>
-    
-    <div class="info-tabs">
-      <button class="info-tab active" data-tab="contact">联系方式</button>
-      <button class="info-tab" data-tab="terms">条款与条件</button>
-      <button class="info-tab" data-tab="privacy">隐私政策</button>
-      <button class="info-tab" data-tab="prop65">65号提案</button>
-      <button class="info-tab" data-tab="fake">假冒产品警告</button>
+  <a href="../news.html" style="color:white;text-decoration:none;">← 返回</a>
+  
+  <h1 style="margin:15px 0 5px;">官方信息</h1>
+  <p style="margin-bottom:25px;color:var(--text-secondary)">获取AX品牌的官方声明和法律信息</p>
+
+  <!-- 关于我们 -->
+  <div class="info-card">
+    <div class="card-header">
+      <h2 class="card-title">关于我们</h2>
     </div>
-    
-    <div id="contact" class="info-content active">
-      <h2>联系方式</h2>
-      <div class="contact-methods">
-        <div class="contact-card">
-          <h3>客户服务</h3>
-          <p><strong>邮箱:</strong> support@axguitars.com</p>
-          <p><strong>电话:</strong> 400-888-XXXX</p>
-          <p><strong>工作时间:</strong> 周一至周五 9:00-18:00</p>
-        </div>
-        
-        <div class="contact-card">
-          <h3>媒体合作</h3>
-          <p><strong>邮箱:</strong> media@axguitars.com</p>
-          <p><strong>电话:</strong> 021-XXXXXXX</p>
-        </div>
-        
-        <div class="contact-card">
-          <h3>实体店地址</h3>
-          <p><strong>上海旗舰店:</strong> 上海市静安区南京西路1266号</p>
-          <p><strong>北京展示厅:</strong> 北京市朝阳区三里屯路19号</p>
-        </div>
-      </div>
+    <div class="card-content">
+      <p><a href="about.html" style="color:#4CAF50;">品牌故事</a></p>
+      <p>上海旗舰店: 上海市静安区南京西路1266号</p>
+      <p>北京展示厅: 北京市朝阳区三里屯路19号</p>
     </div>
-    
-    <div id="terms" class="info-content">
-      <h2>条款与条件</h2>
-      <div class="legal-text">
-        <h3>1. 订单确认</h3>
-        <p>所有订单需经过客服确认后方可生效。定制产品需支付50%定金。</p>
-        
-        <h3>2. 配送政策</h3>
-        <p>普通商品将在3-5个工作日内发货，定制产品制作周期为4-8周。</p>
-        
-        <h3>3. 退换货政策</h3>
-        <p>非定制产品支持7天无理由退货，需保持商品原状。定制产品不接受无理由退货。</p>
-        
-        <h3>4. 保修条款</h3>
-        <p>所有AX产品提供2年有限保修，涵盖材料和工艺缺陷。人为损坏不在保修范围内。</p>
-      </div>
+    <div class="read-more" onclick="toggleExpand(this)">阅读更多...</div>
+  </div>
+
+  <!-- 条款与条件 -->
+  <div class="info-card">
+    <div class="card-header">
+      <h2 class="card-title">条款与条件</h2>
     </div>
-    
-    <div id="privacy" class="info-content">
-      <h2>隐私政策</h2>
-      <div class="legal-text">
-        <h3>信息收集</h3>
-        <p>我们仅收集必要的个人信息用于订单处理和售后服务，包括姓名、联系方式、配送地址等。</p>
-        
-        <h3>信息安全</h3>
-        <p>所有客户数据采用加密存储，仅限授权人员访问。我们不会向第三方出售或共享您的个人信息。</p>
-        
-        <h3>Cookie使用</h3>
-        <p>网站使用必要的Cookie以提供基础功能，您可以在浏览器设置中禁用Cookie。</p>
-      </div>
+    <div class="card-content">
+      <h3 style="margin:15px 0 5px;color:var(--text-primary)">1. 订单确认</h3>
+      <p>所有订单需经过客服确认后方可生效。定制产品需支付50%定金。</p>
     </div>
-    
-    <div id="prop65" class="info-content">
-      <h2>加州65号提案警告</h2>
-      <div class="legal-text">
-        <p>根据加州65号提案要求，本产品可能含有加州已知会导致癌症、出生缺陷或其他生殖危害的化学物质。</p>
-        <p>警告：本产品中的电子元件可能含有铅、镉等重金属，木材处理过程中可能使用含甲醛的粘合剂。</p>
-        <p>建议使用后洗手，避免儿童接触内部电子元件。更多信息请访问加州环境健康危害评估办公室网站。</p>
-      </div>
+    <div class="read-more" onclick="toggleExpand(this)">阅读更多...</div>
+  </div>
+
+  <!-- 隐私政策 -->
+  <div class="info-card">
+    <div class="card-header">
+      <h2 class="card-title">隐私政策</h2>
     </div>
-    
-    <div id="fake" class="info-content">
-      <h2>假冒产品警告</h2>
-      <div class="legal-text">
-        <p>近期市场出现仿冒AX品牌的产品，这些假冒产品使用劣质材料，存在安全隐患，且无法享受任何售后服务。</p>
-        <p>请认准AX官方授权渠道购买，确保获得正品保障和完善的售后服务。</p>
-      </div>
-      
-      <div class="fake-warning">
-        <h3>真假对比指南</h3>
-        <div class="fake-comparison">
-          <div>
-            <img src="../images/fake-warning-1.jpg" alt="正品特征">
-            <p>正品特征：清晰的斧形logo</p>
-          </div>
-          <div>
-            <img src="../images/fake-warning-2.jpg" alt="假冒特征">
-            <p>假冒特征：模糊的logo印刷</p>
-          </div>
-        </div>
-        <p>如有疑问，请通过官方渠道验证产品真伪。</p>
-      </div>
+    <div class="card-content">
+      <h3 style="margin:15px 0 5px;color:var(--text-primary)">信息收集</h3>
+      <p>我们仅收集必要的个人信息用于订单处理和售后服务。</p>
     </div>
+    <div class="read-more" onclick="toggleExpand(this)">阅读更多...</div>
+  </div>
+
+  <!-- 65号提案 -->
+  <div class="info-card">
+    <div class="card-header">
+      <h2 class="card-title">65号提案</h2>
+    </div>
+    <div class="card-content">
+      <p>根据加州65号提案要求，本产品可能含有某些化学物质...</p>
+    </div>
+    <div class="read-more" onclick="toggleExpand(this)">阅读更多...</div>
+  </div>
+
+  <!-- 假冒产品警告 -->
+  <div class="info-card">
+    <div class="card-header">
+      <h2 class="card-title">假冒产品警告</h2>
+    </div>
+    <div class="card-content">
+      <p>近期市场出现仿冒AX品牌的产品...</p>
+    </div>
+    <div class="read-more" onclick="toggleExpand(this)">阅读更多...</div>
   </div>
 </main>
 
-<!-- 标准底部栏 -->
+<!-- 底部栏 -->
 <footer class="site-bottombar">
-  <a href="../index.html">
-    <img class="bottombar__logo" src="../images/logo.png" alt="AX Guitar Logo"/>
-  </a>
-  <button class="bottombar__to-top" id="toTopBtn">▲</button>
-  <div class="bottombar__label">返回顶部</div>
+  <img class="bottombar__logo" src="../images/logo.png" alt="AX Logo">
+  <button id="toTopBtn" style="background:none;border:none;color:white;font-size:20px;cursor:pointer;">▲</button>
+  <div style="font-size:12px;margin-top:5px;">返回顶部</div>
 </footer>
 
 <script>
-  // 菜单控制
-  document.getElementById('topbarMenuBtn').addEventListener('click', function() {
-    document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
-  });
+  // 展开/收起功能
+  function toggleExpand(button) {
+    const card = button.parentElement;
+    const isExpanded = card.classList.contains('expanded');
+    
+    card.classList.toggle('expanded');
+    button.textContent = isExpanded ? '阅读更多...' : '收起内容';
+  }
 
   // 返回顶部
-  document.getElementById('toTopBtn').addEventListener('click', function() {
+  document.getElementById('toTopBtn').addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // 标签页切换
-  document.querySelectorAll('.info-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.info-tab, .info-content').forEach(el => {
-        el.classList.remove('active');
-      });
-      
-      tab.classList.add('active');
-      const tabId = tab.getAttribute('data-tab');
-      document.getElementById(tabId).classList.add('active');
-    });
+  // 移动菜单
+  document.getElementById('topbarMenuBtn').addEventListener('click', function() {
+    // 这里可以添加菜单功能
+    alert('菜单功能需根据实际需求实现');
   });
 </script>
 </body>
