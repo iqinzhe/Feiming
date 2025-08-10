@@ -1,81 +1,352 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Twisted Neck Technology - AX Guitar</title>
-    <link rel="stylesheet" href="styles.css"> <!-- 你现有的主CSS文件 -->
-</head>
-<body>
-
-<header class="tn-hero">
-    <div class="tn-overlay">
-        <h1>Twisted Neck Ergonomics</h1>
-        <p>Play Longer, Play Better – Revolutionary Comfort for Bass Players</p>
-        <div class="tn-buttons">
-            <a href="#demo-video" class="btn-primary">Watch the Demo</a>
-            <a href="/contact" class="btn-secondary">Order Now</a>
-        </div>
-    </div>
-</header>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Twisted Neck Technology - AX Guitar</title>
+<link href="styles.css" rel="stylesheet"/> <!-- 你现有的主CSS文件 -->
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            padding-top: 60px;
+            padding-bottom: 80px;
+        }
+        header.site-topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        .topbar__logo {
+            height: 40px;
+        }
+        .topbar__btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+        nav.mobile-nav {
+            position: fixed;
+            top: 60px;
+            left: -100%;
+            width: 80%;
+            height: calc(100vh - 60px);
+            background: #fff;
+            transition: left 0.3s;
+            z-index: 99;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            display: block;
+        }
+        nav.mobile-nav.mobile-nav--open {
+            left: 0;
+        }
+        .mobile-nav__list {
+            list-style: none;
+            padding: 20px;
+            margin: 0;
+        }
+        .mobile-nav__list li {
+            margin-bottom: 15px;
+        }
+        .mobile-nav__list a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+        form {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .section-title {
+            background-color: #e6e6e6;
+            font-weight: bold;
+        }
+        .price {
+            text-align: right;
+            white-space: nowrap;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input[type="text"],
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            min-height: 100px;
+        }
+        .total {
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: right;
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #f2f2f2;
+            border-radius: 4px;
+        }
+        /* 价格选项交互效果 */
+        tr {
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        tr.selected {
+            background-color: #d4edff;
+        }
+        /* 底部栏标准样式 */
+        .site-bottombar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 15px;
+            background: var(--glass-dark);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            gap: 8px;
+            margin-top: auto;
+        }
+        .bottombar__to-top {
+            background: none;
+            border: none;
+            color: var(--text-white);
+            font-size: 22px;
+            cursor: pointer;
+        }
+        /* 响应式设计 */
+        @media (min-width: 768px) {
+            .model-card {
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                gap: 30px;
+            }
+            
+            .topbar__logo {
+                height: 35px;
+            }
+        }
+    </style></head>
+<body><header class="site-topbar">
+<div class="topbar__left">
+<button aria-label="Menu" class="topbar__btn topbar__btn--menu" id="topbarMenuBtn">☰</button>
+</div>
+<div class="topbar__center">
+<a class="topbar__logo-link" href="index.html">
+<img alt="Logo" class="topbar__logo" src="images/logo.png"/>
+</a>
+</div>
+<div class="topbar__right">
+<button aria-label="Search" class="topbar__btn topbar__btn--search" id="topbarSearchBtn">🔍</button>
+<button aria-label="Share" class="topbar__btn topbar__btn--share" id="topbarShareBtn">⤴</button>
+</div>
+</header><nav class="mobile-nav" id="mobileNav">
+<ul class="mobile-nav__list">
+<li><a href="index.html">首页</a></li>
+<li><a href="instruments.html">产品</a></li>
+<li><a href="pricing.html">DIY选项</a></li>
+<li><a href="news.html">新闻</a></li>
+<li><a href="support.html">支持</a></li>
+</ul>
+</nav>
 
 <section class="tn-section">
-    <h2>What is a Twisted Neck?</h2>
-    <div class="tn-content">
-        <img src="images/twisted-neck-diagram.jpg" alt="Twisted Neck Diagram">
-        <p>
+<h2>What is a Twisted Neck?</h2>
+<div class="tn-content">
+<img alt="Twisted Neck Diagram" src="images/twisted-neck-diagram.jpg"/>
+<p>
             The twisted neck is a precision-engineered design that follows the natural motion of your wrist and fingers. 
             Unlike a traditional neck, it tilts slightly to match your playing posture, reducing strain and increasing comfort.
         </p>
-    </div>
+</div>
 </section>
-
 <section class="tn-section tn-benefits">
-    <h2>Key Benefits</h2>
-    <div class="tn-grid">
-        <div class="tn-card">
-            <h3>Natural Wrist Position</h3>
-            <p>Less tension, more comfort.</p>
-        </div>
-        <div class="tn-card">
-            <h3>Extended Playtime</h3>
-            <p>Perform longer without fatigue.</p>
-        </div>
-        <div class="tn-card">
-            <h3>Better Finger Reach</h3>
-            <p>Improved ergonomics for complex lines.</p>
-        </div>
-        <div class="tn-card">
-            <h3>Unique Craftsmanship</h3>
-            <p>Rare design, high-precision build.</p>
-        </div>
-    </div>
+<h2>Key Benefits</h2>
+<div class="tn-grid">
+<div class="tn-card">
+<h3>Natural Wrist Position</h3>
+<p>Less tension, more comfort.</p>
+</div>
+<div class="tn-card">
+<h3>Extended Playtime</h3>
+<p>Perform longer without fatigue.</p>
+</div>
+<div class="tn-card">
+<h3>Better Finger Reach</h3>
+<p>Improved ergonomics for complex lines.</p>
+</div>
+<div class="tn-card">
+<h3>Unique Craftsmanship</h3>
+<p>Rare design, high-precision build.</p>
+</div>
+</div>
 </section>
-
 <section class="tn-section tn-comparison">
-    <h2>Traditional vs Twisted Neck</h2>
-    <div class="tn-compare">
-        <img src="images/traditional-neck.jpg" alt="Traditional Neck">
-        <img src="images/twisted-neck.jpg" alt="Twisted Neck">
-    </div>
+<h2>Traditional vs Twisted Neck</h2>
+<div class="tn-compare">
+<img alt="Traditional Neck" src="images/traditional-neck.jpg"/>
+<img alt="Twisted Neck" src="images/twisted-neck.jpg"/>
+</div>
 </section>
-
-<section id="demo-video" class="tn-section tn-video">
-    <h2>Video Demo</h2>
-    <video controls width="100%">
-        <source src="videos/twisted-neck-demo.mp4" type="video/mp4">
+<section class="tn-section tn-video" id="demo-video">
+<h2>Video Demo</h2>
+<video controls="" width="100%">
+<source src="videos/twisted-neck-demo.mp4" type="video/mp4"/>
         Your browser does not support the video tag.
     </video>
-    <blockquote>
+<blockquote>
         "I can play for hours without wrist pain – this bass changed my gigs." – Artist Name
     </blockquote>
 </section>
-
 <section class="tn-section tn-cta">
-    <h2>Experience the Future of Bass Design</h2>
-    <a href="/contact" class="btn-primary">Contact Us</a>
-    <a href="/dealers" class="btn-secondary">Find a Dealer</a>
+<h2>Experience the Future of Bass Design</h2>
+<a class="btn-primary" href="/contact">Contact Us</a>
+<a class="btn-secondary" href="/dealers">Find a Dealer</a>
 </section>
+<footer class="site-bottombar">
+<div class="bottombar__top">
+<button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
+<div class="bottombar__label">返回顶部</div>
+<div class="bottombar__logo-wrap">
+<img alt="AX Guitar Logo" class="bottombar__logo" src="images/logo.png" style="height:25px;"/>
+</div>
+</div></footer><script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 汉堡菜单交互
+    const menuBtn = document.getElementById('topbarMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    
+    if(menuBtn && mobileNav) {
+        menuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            mobileNav.classList.toggle('mobile-nav--open');
+        });
+        
+        // 点击页面其他区域关闭菜单
+        document.addEventListener('click', function(e) {
+            if(mobileNav.classList.contains('mobile-nav--open') && 
+               !mobileNav.contains(e.target) && 
+               e.target !== menuBtn) {
+                mobileNav.classList.remove('mobile-nav--open');
+            }
+        });
+    }
 
-</body>
+    // 返回顶部
+    document.getElementById('toTopBtn').addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // 搜索功能
+    document.getElementById('topbarSearchBtn').addEventListener('click', function() {
+        const query = prompt('请输入搜索关键词');
+        if(query) alert('即将搜索: ' + query);
+    });
+
+    // 分享功能
+    document.getElementById('topbarShareBtn').addEventListener('click', function() {
+        if(navigator.share) {
+            navigator.share({
+                title: document.title,
+                url: window.location.href
+            }).catch(e => console.log('分享失败'));
+        } else {
+            alert('请手动分享此页面');
+        }
+    });
+
+    // 价格计算功能
+    const tables = document.querySelectorAll('table');
+    const totalElement = document.getElementById('totalPrice');
+    
+    tables.forEach(table => {
+        const rows = table.querySelectorAll('tr:not(:first-child)');
+        
+        rows.forEach(row => {
+            row.addEventListener('click', function() {
+                const siblings = Array.from(this.parentNode.children).filter(child => child !== this);
+                siblings.forEach(sibling => sibling.classList.remove('selected'));
+                this.classList.toggle('selected');
+                updateTotalPrice();
+            });
+        });
+    });
+    
+    function updateTotalPrice() {
+        let total = 0;
+        const selectedRows = document.querySelectorAll('tr.selected');
+        
+        selectedRows.forEach(row => {
+            const price = parseFloat(row.getAttribute('data-price')) || 0;
+            total += price;
+        });
+        
+        totalElement.textContent = `报价: ¥${total}`;
+    }
+    
+    // 表单提交处理
+    const form = document.getElementById('pricingForm');
+    if(form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            if(!name) {
+                alert('请输入您的姓名');
+                return;
+            }
+            
+            const total = document.querySelectorAll('tr.selected').length > 0 ? 
+                totalElement.textContent : '未选择任何选项';
+                
+            alert(`感谢 ${name} 的询价！\n${total}\n我们会尽快与您联系。`);
+        });
+    }
+});
+</script></body>
 </html>
