@@ -127,6 +127,18 @@ body {
     height: 35px;
   }
 }
+
+.site-topbar {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+}
+body {
+    margin: 0;
+    padding-top: 60px; /* Prevent content from hiding behind fixed topbar */
+}
 </style>
 </head>
 <body>
@@ -188,7 +200,6 @@ body {
       </div>
 </div>
 </a>
-
 <a class="series-card" href="twisted-neck.html">
 <img alt="D系列" src="images/d1.jpg" style="width:100%;"/>
 <div style="padding:20px;">

@@ -172,7 +172,19 @@
                 height: 35px;
             }
         }
-    </style></head>
+    
+.site-topbar {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+}
+body {
+    margin: 0;
+    padding-top: 60px; /* Prevent content from hiding behind fixed topbar */
+}
+</style></head>
 <body><header class="site-topbar">
 <div class="topbar__left">
 <button aria-label="Menu" class="topbar__btn topbar__btn--menu" id="topbarMenuBtn">☰</button>
@@ -195,7 +207,21 @@
 <li><a href="support.html">支持</a></li>
 </ul>
 </nav>
-
+<section style="padding:20px; text-align:center;">
+<h1>Series D - Twisted Neck Models</h1>
+<div style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center; margin-top:20px;">
+<div style="border:2px solid #ccc; border-radius:8px; padding:10px; max-width:400px;">
+<img alt="Model D1" src="images/d1.jpg" style="width:100%; border-radius:5px;"/>
+<h3 style="margin-top:10px;">Model D1</h3>
+<p>标准款扭曲琴颈贝斯，适合多种音乐风格。</p>
+</div>
+<div style="border:2px solid #ccc; border-radius:8px; padding:10px; max-width:400px;">
+<img alt="Model D2" src="images/d2.jpg" style="width:100%; border-radius:5px;"/>
+<h3 style="margin-top:10px;">Model D2</h3>
+<p>高端定制款，采用优质木材与顶级配件。</p>
+</div>
+</div>
+</section>
 <section class="tn-section">
 <h2>What is a Twisted Neck?</h2>
 <div class="tn-content">
