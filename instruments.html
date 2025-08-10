@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>产品系列 - AX Bass&Guitar</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>产品系列 - AX Bass&amp;Guitar</title>
 <style>
 :root {
   --neutral-gray: rgb(128, 128, 128);
@@ -126,124 +127,135 @@ body {
     height: 35px;
   }
 }
+
+.site-topbar {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+}
+body {
+    margin: 0;
+    padding-top: 60px; /* Prevent content from hiding behind fixed topbar */
+}
 </style>
 </head>
 <body>
 
 <!-- 顶部导航栏 -->
 <header class="site-topbar">
-  <div class="topbar__left">
-    <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
-  </div>
-  <div class="topbar__center">
-    <a href="index.html">
-      <img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
-    </a>
-  </div>
-  <div class="topbar__right">
-    <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
-    <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
-  </div>
-  
-  <nav class="mobile-nav" id="mobileNav">
-    <ul class="mobile-nav__list">
-      <li><a href="index.html">首页</a></li>
-      <li><a href="instruments.html">产品</a></li>
-      <li><a href="twisted-neck.html">特色</a></li>
-      <li><a href="pricing.html">DIY选项</a></li>
-      <li><a href="news.html">新闻</a></li>
-      <li><a href="support.html">支持</a></li>
-    </ul>
-  </nav>
+<div class="topbar__left">
+<button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
+</div>
+<div class="topbar__center">
+<a href="index.html">
+<img alt="AX Guitar Logo" class="topbar__logo" src="images/logo.png"/>
+</a>
+</div>
+<div class="topbar__right">
+<button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
+<button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
+</div>
+<nav class="mobile-nav" id="mobileNav">
+<ul class="mobile-nav__list">
+<li><a href="index.html">首页</a></li>
+<li><a href="instruments.html">产品</a></li>
+<li><a href="twisted-neck.html">特色</a></li>
+<li><a href="pricing.html">DIY选项</a></li>
+<li><a href="news.html">新闻</a></li>
+<li><a href="support.html">支持</a></li>
+</ul>
+</nav>
 </header>
 
 <main class="series-overview">
-  <!-- Series A -->
-  <a href="<li><a href="series-b.html" class="series-card">
-    <img src="images/series-a.jpg" alt="A系列" style="width:100%;"/>
-    <div style="padding:20px;">
-      <h2>Series A</h2>
-      <p>高性能现代音色吉他</p>
-      <div style="display:inline-block; padding:8px 15px; background:rgba(255,255,255,0.2); border-radius:4px;">
-        查看系列
-      </div>
-    </div>
-  </a>
-  
-  <!-- Series B -->
-  <a href="series-b.html" class="series-card">
-    <img src="images/series-b.jpg" alt="B系列" style="width:100%;"/>
-    <div style="padding:20px;">
-      <h2>Series B</h2>
-      <p>经典复古风格吉他</p>
-      <div style="display:inline-block; padding:8px 15px; background:rgba(255,255,255,0.2); border-radius:4px;">
-        查看系列
-      </div>
-    </div>
-  </a>
-  
-  <!-- Series C -->
-  <a href="series-c.html" class="series-card">
-    <img src="images/series-c.jpg" alt="C系列" style="width:100%;"/>
-    <div style="padding:20px;">
-      <h2>Series C</h2>
-      <p>创新未来主义设计</p>
-      <div style="display:inline-block; padding:8px 15px; background:rgba(255,255,255,0.2); border-radius:4px;">
-        查看系列
-      </div>
-    </div>
-  </a>
-
-<!-- Series D -->
-<a href=""twisted-neck.html"" class="series-card">
-<img src="images/D1.jpg" alt="D系列" style="width:100%;"/>
-    <div style="padding:20px;">
-      <h2>Series D</h2>
-      <p>人体工学扭曲琴颈贝斯</p>
-      <div style="display:inline-block; padding:8px 15px; background:rgba(255,255,255,0.2); border-radius:4px;">
+<!-- Series A -->
+<a class="series-card" href="series-a.html">
+<img alt="A系列" src="images/series-a.jpg" style="width:100%;"/>
+<div style="padding:20px;">
+<h2>Series A</h2>
+<p>高性能现代音色吉他</p>
+<div style="display:inline-block; padding:8px 15px; background:rgba(255,255,255,0.2); border-radius:4px;">
         查看系列
       </div>
 </div>
 </a>
+
+<!-- Series B -->
+<a class="series-card" href="series-b.html">
+<img alt="B系列" src="images/series-b.jpg" style="width:100%;"/>
+<div style="padding:20px;">
+<h2>Series B</h2>
+<p>经典复古风格吉他</p>
+<div style="display:inline-block; padding:8px 15px; background:rgba(255,255,255,0.2); border-radius:4px;">
+        查看系列
+      </div>
+</div>
+</a>
+
+<!-- Series C -->
+<a class="series-card" href="series-c.html">
+<img alt="C系列" src="images/series-c.jpg" style="width:100%;"/>
+<div style="padding:20px;">
+<h2>Series C</h2>
+<p>创新未来主义设计</p>
+<div style="display:inline-block; padding:8px 15px; background:rgba(255,255,255,0.2); border-radius:4px;">
+        查看系列
+      </div>
+</div>
+</a>
+
+<a class="series-card" href="twisted-neck.html">
+<img alt="D系列" src="images/D1.jpg" style="width:100%;"/>
+<div style="padding:20px;">
+<h2>Series D</h2>
+<p>人体工学扭曲琴颈贝斯</p>
+<div style="display:inline-block; padding:8px 15px; background:rgba(255,255,255,0.2); border-radius:4px;">
+            查看系列
+          </div>
+</div>
+</a>
 </main>
 
-<!-- 底部栏 -->
+<!-- 标准底部栏 -->
 <footer class="site-bottombar">
-<div class="bottombar__logo-wrap">
-<img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/><height:15px;"/>
-<div class="bottombar__top">
-<button aria-label="返回顶部" class="bottombar__to-top" 
-id="toTopBtn">▲</button>
-<div class="bottombar__label">返回顶部</div>
-</div></footer>
+  <div class="bottombar__top">
+    <button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
+    <div class="bottombar__label">返回顶部</div>
+     <a href="index.html">
+      <img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
+    </div>
+  </div>
 </footer>
 
+<!-- 标准交互脚本 -->
 <script>
-// 汉堡菜单交互
+// 菜单控制
 document.getElementById('topbarMenuBtn').addEventListener('click', function() {
   document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
 });
 
-// 返回顶部平滑滚动
+// 返回顶部
 document.getElementById('toTopBtn').addEventListener('click', function() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 // 搜索功能
 document.getElementById('topbarSearchBtn').addEventListener('click', function() {
-  const query = prompt('请输入搜索关键词');
-  if(query) alert('即将搜索: ' + query);
+  const q = prompt('请输入搜索关键词');
+  if(q) alert('搜索演示: ' + q);
 });
 
 // 分享功能
 document.getElementById('topbarShareBtn').addEventListener('click', function() {
-  if(navigator.share) {
-    navigator.share({
-      title: document.title,
-      url: window.location.href
-    }).catch(e => console.log('分享失败'));
-  } else {
-    alert('请手动分享此页面');
+  try {
+    navigator.share?.({ 
+      title: 'AX斧标贝斯: ' + document.title,
+      url: location.href 
+    }) || alert('请手动分享此页面');
+  } catch(e) {
+    alert('分享出错: ' + e.message);
   }
 });
 </script>
