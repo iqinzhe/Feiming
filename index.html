@@ -20,6 +20,8 @@ body {
   display: flex;
   flex-direction: column;
   font-family: Arial, sans-serif;
+  margin: 0; /* 移除默认边距 */
+  padding-top: 60px; /* 为固定顶部栏留出空间 */
 }
 
 /* ===== 顶部栏标准样式 ===== */
@@ -30,8 +32,13 @@ body {
   padding: 12px 5%;
   background: var(--glass-dark);
   backdrop-filter: blur(5px);
-  position: relative;
+  position: fixed; /* 改为固定定位 */
+  top: 0; /* 固定在顶部 */
+  left: 0; /* 对齐左侧 */
+  right: 0; /* 对齐右侧 */
   z-index: 100;
+  box-sizing: border-box; /* 确保padding不影响宽度计算 */
+  margin: 0; /* 移除默认边距 */
 }
 
 .topbar__left, 
@@ -78,6 +85,8 @@ body {
 
 .mobile-nav__list {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .mobile-nav__list li {
@@ -95,6 +104,7 @@ body {
 .page-content {
   flex: 1;
   padding: 20px 5%;
+  margin-top: 20px; /* 增加顶部内边距防止内容被顶部栏遮挡 */
 }
 
 .hero {
@@ -171,8 +181,12 @@ body {
 
 /* ===== 响应式设计 ===== */
 @media (min-width: 768px) {
+  body {
+    padding-top: 70px; /* 调整大屏幕下的顶部内边距 */
+  }
   .site-topbar {
     padding: 15px 8%;
+  height: 60px; /* 固定高度 */
   }
   .topbar__logo {
     height: 35px;
