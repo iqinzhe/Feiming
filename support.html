@@ -153,38 +153,34 @@
       padding: 20px 15px;
       background: var(--glass-dark);
       border-top: 1px solid rgba(255,255,255,0.1);
-      gap: 8px;
     }
 
-    .bottombar__top {
+    .bottombar__content {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
-    }
-
-    .bottombar__to-top {
-      order: 1;
-      background: none;
-      border: none;
-      color: var(--text-white);
-      font-size: 22px;
-      cursor: pointer;
-    }
-
-    .bottombar__label {
-      order: 2;
-      font-weight: bold;
-    }
-
-    .bottombar__logo-wrap {
-      order: 3;
+      gap: 12px;
     }
 
     .bottombar__logo {
       height: 25px;
       width: auto;
       filter: brightness(0) invert(1);
+    }
+
+    .bottombar__to-top {
+      background: none;
+      border: none;
+      color: var(--text-white);
+      font-size: 22px;
+      cursor: pointer;
+      padding: 0;
+      margin: 0;
+    }
+
+    .bottombar__label {
+      font-weight: bold;
+      font-size: 14px;
     }
 
     /* ===== 响应式设计 ===== */
@@ -263,8 +259,8 @@
 
 <!-- 标准底部栏 -->
 <footer class="site-bottombar">
-  <div class="bottombar__top">
-    <a href="../index.html" class="bottombar__logo-wrap">
+  <div class="bottombar__content">
+    <a href="../index.html">
       <img class="bottombar__logo" src="../images/logo.png" alt="AX Guitar Logo"/>
     </a>
     <button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
