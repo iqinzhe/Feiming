@@ -5,202 +5,285 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>联系我们 | AX斧标贝斯</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-<link rel="manifest" href="/icons/manifest.json">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+  <link rel="manifest" href="/icons/manifest.json">
 
-  <link href="css/style.css" rel="stylesheet"/>
+  <link href="../css/style.css" rel="stylesheet"/>
   <style>
- /* ===== 全局标准样式 ===== */
-:root {
-  --neutral-gray: rgb(128, 128, 128);
-  --glass-dark: rgba(0, 0, 0, 0.3);
-  --text-white: #fff;
-}
+    /* ===== 全局标准样式 ===== */
+    :root {
+      --neutral-gray: rgb(128, 128, 128);
+      --glass-dark: rgba(0, 0, 0, 0.3);
+      --text-white: #fff;
+    }
 
-body {
-  background: var(--neutral-gray);
-  color: var(--text-white);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  font-family: Arial, sans-serif;
-  margin: 0; /* 移除默认边距 */
-  padding-top: 60px; /* 为固定顶部栏留出空间 */
-}
+    body {
+      background: var(--neutral-gray);
+      color: var(--text-white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+      margin: 0; /* 移除默认边距 */
+      padding-top: 60px; /* 为固定顶部栏留出空间 */
+    }
 
-/* ===== 顶部栏标准样式 ===== */
-.site-topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 5%;
-  background: var(--glass-dark);
-  backdrop-filter: blur(5px);
-  position: fixed; /* 改为固定定位 */
-  top: 0; /* 固定在顶部 */
-  left: 0; /* 对齐左侧 */
-  right: 0; /* 对齐右侧 */
-  z-index: 100;
-  box-sizing: border-box; /* 确保padding不影响宽度计算 */
-  margin: 0; /* 移除默认边距 */
-}
+    /* ===== 顶部栏标准样式 ===== */
+    .site-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 5%;
+      background: var(--glass-dark);
+      backdrop-filter: blur(5px);
+      position: fixed; /* 改为固定定位 */
+      top: 0; /* 固定在顶部 */
+      left: 0; /* 对齐左侧 */
+      right: 0; /* 对齐右侧 */
+      z-index: 100;
+      box-sizing: border-box; /* 确保padding不影响宽度计算 */
+      margin: 0; /* 移除默认边距 */
+    }
 
-.topbar__left, 
-.topbar__right {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
+    .topbar__left, 
+    .topbar__right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
 
-.topbar__center {
-  flex-grow: 1;
-  text-align: center;
-}
+    .topbar__center {
+      flex-grow: 1;
+      text-align: center;
+    }
 
-.topbar__logo {
-  height: 30px;
-  width: auto;
-}
+    .topbar__logo {
+      height: 30px;
+      width: auto;
+    }
 
-.topbar__btn {
-  background: none;
-  border: none;
-  color: var(--text-white);
-  font-size: 20px;
-  cursor: pointer;
-}
+    .topbar__btn {
+      background: none;
+      border: none;
+      color: var(--text-white);
+      font-size: 20px;
+      cursor: pointer;
+    }
 
-/* ===== 导航菜单标准样式 ===== */
-.mobile-nav {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: var(--glass-dark);
-  backdrop-filter: blur(10px);
-  z-index: 90;
-  padding: 10px 0;
-}
+    /* ===== 导航菜单标准样式 ===== */
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: var(--glass-dark);
+      backdrop-filter: blur(10px);
+      z-index: 90;
+      padding: 10px 0;
+    }
 
-.mobile-nav.mobile-nav--open {
-  display: block;
-}
+    .mobile-nav.mobile-nav--open {
+      display: block;
+    }
 
-.mobile-nav__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+    .mobile-nav__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
 
-.mobile-nav__list li {
-  padding: 12px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
+    .mobile-nav__list li {
+      padding: 12px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
 
-.mobile-nav__list a {
-  color: var(--text-white);
-  text-decoration: none;
-  display: block;
-}
+    .mobile-nav__list a {
+      color: var(--text-white);
+      text-decoration: none;
+      display: block;
+    }
 
-/* ===== 内容区样式 ===== */
-.page-content {
-  flex: 1;
-  padding: 20px 5%;
-  margin-top: 20px; /* 增加顶部内边距防止内容被顶部栏遮挡 */
-}
+    /* ===== 内容区样式 ===== */
+    .page-content {
+      flex: 1;
+      padding: 20px 5%;
+      margin-top: 20px; /* 增加顶部内边距防止内容被顶部栏遮挡 */
+    }
 
-.hero {
-  text-align: center;
-  margin-bottom: 40px;
-}
+    .hero {
+      text-align: center;
+      margin-bottom: 40px;
+    }
 
-.hero img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
+    .hero img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
 
-.products-overview {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-}
+    .products-overview {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
 
-.product-card {
-  background: rgba(0,0,0,0.2);
-  padding: 20px;
-  border-radius: 8px;
-  text-align: center;
-}
+    .product-card {
+      background: rgba(0,0,0,0.2);
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
 
-.product-card img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 4px;
-}
+    .product-card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
 
-/* ===== 底部栏标准样式 ===== */
-.site-bottombar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px 15px;
-  background: var(--glass-dark);
-  border-top: 1px solid rgba(255,255,255,0.1);
-  gap: 8px;
-}
+    /* ===== 底部栏标准样式 ===== */
+    .site-bottombar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 15px;
+      background: var(--glass-dark);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      gap: 8px;
+    }
 
-.bottombar__top {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
+    .bottombar__top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
 
-.bottombar__to-top {
-  order: 1;
-  background: none;
-  border: none;
-  color: var(--text-white);
-  font-size: 22px;
-  cursor: pointer;
-}
+    .bottombar__to-top {
+      order: 1;
+      background: none;
+      border: none;
+      color: var(--text-white);
+      font-size: 22px;
+      cursor: pointer;
+    }
 
-.bottombar__label {
-  order: 2;
-  font-weight: bold;
-}
+    .bottombar__label {
+      order: 2;
+      font-weight: bold;
+    }
 
-.bottombar__logo-wrap {
-  order: 3;
-}
+    .bottombar__logo-wrap {
+      order: 3;
+    }
 
-.bottombar__logo {
-  height: 25px;
-  width: auto;
-  filter: brightness(0) invert(1);
-}
+    .bottombar__logo {
+      height: 25px;
+      width: auto;
+      filter: brightness(0) invert(1);
+    }
 
-/* ===== 响应式设计 ===== */
-@media (min-width: 768px) {
-  body {
-    padding-top: 70px; /* 调整大屏幕下的顶部内边距 */
-  }
-  .site-topbar {
-    padding: 15px 8%;
-  height: 60px; /* 固定高度 */
-  }
-  .topbar__logo {
-    height: 35px;
-  }
-  .page-content {
-    padding: 30px 8%;
-  }
-}
-</style>
+    /* ===== 响应式设计 ===== */
+    @media (min-width: 768px) {
+      body {
+        padding-top: 70px; /* 调整大屏幕下的顶部内边距 */
+      }
+      .site-topbar {
+        padding: 15px 8%;
+        height: 60px; /* 固定高度 */
+      }
+      .topbar__logo {
+        height: 35px;
+      }
+      .page-content {
+        padding: 30px 8%;
+      }
+    }
+
+    /* ===== 联系我们页面特有样式 ===== */
+    .contact-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .contact-methods {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .contact-card {
+      background: rgba(0,0,0,0.2);
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .contact-info p {
+      margin: 10px 0;
+    }
+
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 4px;
+      color: white;
+    }
+
+    textarea.form-control {
+      min-height: 120px;
+    }
+
+    .submit-btn {
+      background: rgba(255,255,255,0.1);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .submit-btn:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .social-media {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .social-icon {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: white;
+      text-decoration: none;
+    }
+  </style>
 </head>
 
 <body>
@@ -212,7 +295,7 @@ body {
   
   <div class="topbar__center">
     <a href="index.html">
-      <img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
+      <img class="topbar__logo" src="../images/logo.png" alt="AX Guitar Logo"/>
     </a>
   </div>
   
@@ -297,7 +380,7 @@ body {
   <button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
   <div class="bottombar__label">返回顶部</div>
   <div class="bottombar__logo-wrap">
-  <img class="bottombar__logo" src="../images/logo.png" alt="AX Guitar Logo"/>
+    <img class="bottombar__logo" src="../images/logo.png" alt="AX Guitar Logo"/>
   </div>
 </footer>
 
