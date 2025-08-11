@@ -20,124 +20,81 @@
             padding-top: 60px;
             padding-bottom: 80px;
         }
-        header.site-topbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            z-index: 100;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-        }
-        .topbar__logo {
-            height: 40px;
-        }
-        .topbar__btn {
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            padding: 5px 10px;
-        }
-        nav.mobile-nav {
-            position: fixed;
-            top: 60px;
-            left: -100%;
-            width: 80%;
-            height: calc(100vh - 60px);
-            background: #fff;
-            transition: left 0.3s;
-            z-index: 99;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-            display: block;
-        }
-        nav.mobile-nav.mobile-nav--open {
-            left: 0;
-        }
-        .mobile-nav__list {
-            list-style: none;
-            padding: 20px;
-            margin: 0;
-        }
-        .mobile-nav__list li {
-            margin-bottom: 15px;
-        }
-        .mobile-nav__list a {
-            text-decoration: none;
-            color: #333;
-            font-size: 18px;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 0 20px;
-        }
-        form {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-            font-weight: bold;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-        .section-title {
-            background-color: #e6e6e6;
-            font-weight: bold;
-        }
-        .price {
-            text-align: right;
-            white-space: nowrap;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        .form-group input[type="text"],
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        .form-group textarea {
-            min-height: 100px;
-        }
-        .total {
-            font-size: 1.5em;
-            font-weight: bold;
-            text-align: right;
-            margin-top: 30px;
-            padding: 15px;
-            background-color: #f2f2f2;
-            border-radius: 4px;
-        }
+  /* ===== 顶部栏标准样式 ===== */
+.site-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 5%;
+  background: var(--glass-dark);
+  backdrop-filter: blur(5px);
+  position: fixed; /* 改为固定定位 */
+  top: 0; /* 固定在顶部 */
+  left: 0; /* 对齐左侧 */
+  right: 0; /* 对齐右侧 */
+  z-index: 100;
+  box-sizing: border-box; /* 确保padding不影响宽度计算 */
+  margin: 0; /* 移除默认边距 */
+}
+
+.topbar__left, 
+.topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.topbar__center {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.topbar__logo {
+  height: 30px;
+  width: auto;
+}
+
+.topbar__btn {
+  background: none;
+  border: none;
+  color: var(--text-white);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* ===== 导航菜单标准样式 ===== */
+.mobile-nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--glass-dark);
+  backdrop-filter: blur(10px);
+  z-index: 90;
+  padding: 10px 0;
+}
+
+.mobile-nav.mobile-nav--open {
+  display: block;
+}
+
+.mobile-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-nav__list li {
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.mobile-nav__list a {
+  color: var(--text-white);
+  text-decoration: none;
+  display: block;
+}
         /* 价格选项交互效果 */
         tr {
             cursor: pointer;
