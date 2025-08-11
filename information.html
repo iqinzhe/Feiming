@@ -8,171 +8,228 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
 <link rel="manifest" href="/icons/manifest.json">
-
+<link href="css/style.css" rel="stylesheet"/>
   <style>
-    /* ===== 基础样式 ===== */
-    :root {
-      --card-bg: rgba(0,0,0,0.3);
-      --text-primary: rgba(255,255,255,0.9);
-      --text-secondary: rgba(255,255,255,0.7);
-    }
-    
-    body {
-      font-family: system-ui, sans-serif;
-      background-color: rgba(0,0,0,0.2);
-      color: white;
-      margin: 0;
-      padding: 0;
-    }
 
-    /* ===== 顶部栏 ===== */
-    .site-topbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px;
-      background-color: rgba(0,0,0,0.8);
-      z-index: 1000;
-    }
-    
-    .topbar__logo {
-      height: 30px;
-    }
+/* ===== 全局标准样式 ===== */
+:root {
+  --neutral-gray: rgb(128, 128, 128);
+  --glass-dark: rgba(0, 0, 0, 0.3);
+  --text-white: #fff;
+}
 
-    /* ===== 移动菜单 ===== */
-    .mobile-nav {
-      display: none;
-      position: fixed;
-      top: 60px;
-      left: 0;
-      right: 0;
-      background-color: rgba(0,0,0,0.9);
-      padding: 20px;
-      z-index: 999;
-    }
-    
-    .mobile-nav--open {
-      display: block;
-    }
-    
-    .mobile-nav__list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    
-    .mobile-nav__list a {
-      color: white;
-      text-decoration: none;
-      display: block;
-      padding: 10px 0;
-    }
+body {
+  background: var(--neutral-gray);
+  color: var(--text-white);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  margin: 0; /* 移除默认边距 */
+  padding-top: 60px; /* 为固定顶部栏留出空间 */
+}
 
-    /* ===== 主内容区 ===== */
-    .page-content {
-      margin-top: 60px;
-      padding: 15px;
-    }
+/* ===== 顶部栏标准样式 ===== */
+.site-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 5%;
+  background: var(--glass-dark);
+  backdrop-filter: blur(5px);
+  position: fixed; /* 改为固定定位 */
+  top: 0; /* 固定在顶部 */
+  left: 0; /* 对齐左侧 */
+  right: 0; /* 对齐右侧 */
+  z-index: 100;
+  box-sizing: border-box; /* 确保padding不影响宽度计算 */
+  margin: 0; /* 移除默认边距 */
+}
 
-    /* ===== 栏目卡片 ===== */
-    .info-card {
-      background: var(--card-bg);
-      border-radius: 8px;
-      padding: 15px;
-      margin-bottom: 15px;
-      overflow: hidden;
-      max-height: 150px;
-      transition: max-height 0.5s ease;
-    }
-    
-    .info-card.expanded {
-      max-height: 2000px;
-    }
-    
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    .card-title {
-      margin: 0;
-      font-size: 1.2rem;
-      color: var(--text-primary);
-    }
-    
-    .card-content {
-      margin-top: 10px;
-      line-height: 1.6;
-      color: var(--text-secondary);
-    }
-    
-    .read-more {
-      color: #4CAF50;
-      text-align: center;
-      padding: 8px 0;
-      cursor: pointer;
-      font-size: 0.9rem;
-    }
-    
-    /* ===== 底部栏 ===== */
-    .site-bottombar {
-      background-color: rgba(0,0,0,0.8);
-      padding: 15px;
-      text-align: center;
-    }
-    
-    .bottombar__content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .bottombar__logo {
-      height: 20px;
-      margin-bottom: 10px;
-    }
-    
-    /* ===== 响应式调整 ===== */
-    @media (min-width: 768px) {
-      .page-content {
-        max-width: 1000px;
-        margin: 60px auto 0;
-        padding: 20px;
-      }
-      
-      .info-card {
-        padding: 20px;
-        margin-bottom: 20px;
-      }
-    }
-  </style>
+.topbar__left, 
+.topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.topbar__center {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.topbar__logo {
+  height: 30px;
+  width: auto;
+}
+
+.topbar__btn {
+  background: none;
+  border: none;
+  color: var(--text-white);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* ===== 导航菜单标准样式 ===== */
+.mobile-nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--glass-dark);
+  backdrop-filter: blur(10px);
+  z-index: 90;
+  padding: 10px 0;
+}
+
+.mobile-nav.mobile-nav--open {
+  display: block;
+}
+
+.mobile-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-nav__list li {
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.mobile-nav__list a {
+  color: var(--text-white);
+  text-decoration: none;
+  display: block;
+}
+
+/* ===== 内容区样式 ===== */
+.page-content {
+  flex: 1;
+  padding: 20px 5%;
+  margin-top: 20px; /* 增加顶部内边距防止内容被顶部栏遮挡 */
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.hero img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.products-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background: rgba(0,0,0,0.2);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.product-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* ===== 底部栏标准样式 ===== */
+.site-bottombar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 15px;
+  background: var(--glass-dark);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  gap: 8px;
+}
+
+.bottombar__top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.bottombar__to-top {
+  order: 1;
+  background: none;
+  border: none;
+  color: var(--text-white);
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.bottombar__label {
+  order: 2;
+  font-weight: bold;
+}
+
+.bottombar__logo-wrap {
+  order: 3;
+}
+
+.bottombar__logo {
+  height: 25px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+/* ===== 响应式设计 ===== */
+@media (min-width: 768px) {
+  body {
+    padding-top: 70px; /* 调整大屏幕下的顶部内边距 */
+  }
+  .site-topbar {
+    padding: 15px 8%;
+  height: 60px; /* 固定高度 */
+  }
+  .topbar__logo {
+    height: 35px;
+  }
+  .page-content {
+    padding: 30px 8%;
+  }
+}
+</style>
 </head>
 
 <body>
-<!-- 顶部栏 -->
+<!-- 标准顶部栏 -->
 <header class="site-topbar">
-  <button aria-label="菜单" id="topbarMenuBtn">☰</button>
-  <a href="../index.html"><img class="topbar__logo" src="../images/logo.png" alt="AX Logo"></a>
-  <div>
-    <button aria-label="搜索" id="topbarSearchBtn">🔍</button>
-    <button aria-label="分享" id="topbarShareBtn">⤴</button>
+  <div class="topbar__left">
+    <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
   </div>
   
-  <!-- 移动导航菜单 -->
-  <nav class="mobile-nav" id="mobileNav">
+  <div class="topbar__center">
+    <a href="index.html">
+      <img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
+    </a>
+  </div>
+  
+  <div class="topbar__right">
+    <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
+    <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
+  </div>
+  
+  <!-- 标准导航菜单 -->
+  <nav class="mobile-nav" id="mobileNav" aria-label="主导航">
     <ul class="mobile-nav__list">
-      <li><a href="../index.html">首页</a></li>
-      <li><a href="../instruments.html">产品</a></li>
+      <li><a href="index.html">首页</a></li>
+      <li><a href="instruments.html">产品</a></li>
       <li><a href="twisted-neck.html">特色</a></li>
-      <li><a href="../pricing.html">DIY选项</a></li>
-      <li><a href="../news.html">新闻</a></li>
-      <li><a href="../support.html">支持</a></li>
+      <li><a href="pricing.html">DIY选项</a></li>
+      <li><a href="news.html">新闻</a></li>
+      <li><a href="support.html">支持</a></li>
     </ul>
   </nav>
 </header>
