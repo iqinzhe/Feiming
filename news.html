@@ -151,15 +151,8 @@ body {
   gap: 8px;
 }
 
-.bottombar__top {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
 .bottombar__to-top {
-  order: 1;
+  order: 1; /* 返回符号在最上面 */
   background: none;
   border: none;
   color: var(--text-white);
@@ -168,12 +161,13 @@ body {
 }
 
 .bottombar__label {
-  order: 2;
+  order: 2; /* "返回顶部"文字在中间 */
   font-weight: bold;
 }
 
 .bottombar__logo-wrap {
-  order: 3;
+  order: 3; /* logo在最下面 */
+  margin-top: 10px;
 }
 
 .bottombar__logo {
@@ -362,15 +356,15 @@ body {
 </div>
 </section>
 </main>
+
 <!-- 标准底部栏 -->
 <footer class="site-bottombar">
-<div class="bottombar__logo-wrap">
-<img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/><height:15px;"/>
-<div class="bottombar__top">
-<button aria-label="返回顶部" class="bottombar__to-top" 
-id="toTopBtn">▲</button>
-<div class="bottombar__label">返回顶部</div>
-</div></footer>
+  <button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
+  <div class="bottombar__label">返回顶部</div>
+  <div class="bottombar__logo-wrap">
+    <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
+  </div>
+</footer>
 
 <script>
   // 菜单控制
