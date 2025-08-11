@@ -8,86 +8,101 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
 <link rel="manifest" href="/icons/manifest.json">
-
   <link href="../css/style.css" rel="stylesheet"/>
   <style>
-    /* ===== 标准顶部栏样式 ===== */
-    .site-topbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px;
-      background-color: rgba(0,0,0,0.8);
-      z-index: 1000;
-    }
 
-    .topbar__center {
-      flex: 1;
-      text-align: center;
-    }
+/* ===== 全局标准样式 ===== */
+:root {
+  --neutral-gray: rgb(128, 128, 128);
+  --glass-dark: rgba(0, 0, 0, 0.3);
+  --text-white: #fff;
+}
 
-    .topbar__logo {
-      height: 30px;
-    }
-
-    .mobile-nav {
-      display: none;
-      position: fixed;
-      top: 60px;
-      left: 0;
-      right: 0;
-      background-color: rgba(0,0,0,0.9);
-      padding: 20px;
-    }
-
-    .mobile-nav--open {
-      display: block;
-    }
-
-    /* ===== 底部栏标准样式 ===== */
-.site-bottombar {
+body {
+  background: var(--neutral-gray);
+  color: var(--text-white);
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  font-family: Arial, sans-serif;
+  margin: 0; /* 移除默认边距 */
+  padding-top: 60px; /* 为固定顶部栏留出空间 */
+}
+
+/* ===== 顶部栏标准样式 ===== */
+.site-topbar {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding: 20px 15px;
+  padding: 12px 5%;
   background: var(--glass-dark);
-  border-top: 1px solid rgba(255,255,255,0.1);
-  gap: 8px;
+  backdrop-filter: blur(5px);
+  position: fixed; /* 改为固定定位 */
+  top: 0; /* 固定在顶部 */
+  left: 0; /* 对齐左侧 */
+  right: 0; /* 对齐右侧 */
+  z-index: 100;
+  box-sizing: border-box; /* 确保padding不影响宽度计算 */
+  margin: 0; /* 移除默认边距 */
 }
 
-.bottombar__top {
+.topbar__left, 
+.topbar__right {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 15px;
 }
 
-.bottombar__to-top {
-  order: 1;
+.topbar__center {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.topbar__logo {
+  height: 30px;
+  width: auto;
+}
+
+.topbar__btn {
   background: none;
   border: none;
   color: var(--text-white);
-  font-size: 22px;
+  font-size: 20px;
   cursor: pointer;
 }
 
-.bottombar__label {
-  order: 2;
-  font-weight: bold;
+  /* ===== 导航菜单标准样式 ===== */
+.mobile-nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--glass-dark);
+  backdrop-filter: blur(10px);
+  z-index: 90;
+  padding: 10px 0;
 }
 
-.bottombar__logo-wrap {
-  order: 3;
+.mobile-nav.mobile-nav--open {
+  display: block;
 }
 
-.bottombar__logo {
-  height: 25px;
-  width: auto;
-  filter: brightness(0) invert(1);
+.mobile-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-nav__list li {
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.mobile-nav__list a {
+  color: var(--text-white);
+  text-decoration: none;
+  display: block;
 }
 
 
@@ -175,8 +190,8 @@
   </div>
   
   <div class="topbar__center">
-    <a href="../index.html">
-      <img class="topbar__logo" src="../images/logo.png" alt="AX Guitar Logo"/>
+    <a href="index.html">
+      <img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
     </a>
   </div>
   
@@ -185,13 +200,14 @@
     <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
   </div>
   
+  <!-- 标准导航菜单 -->
   <nav class="mobile-nav" id="mobileNav" aria-label="主导航">
     <ul class="mobile-nav__list">
-      <li><a href="../index.html">首页</a></li>
-      <li><a href="../instruments.html">产品</a></li>
+      <li><a href="index.html">首页</a></li>
+      <li><a href="instruments.html">产品</a></li>
       <li><a href="twisted-neck.html">特色</a></li>
-      <li><a href="../pricing.html">DIY选项</a></li>
-      <li><a href="../news.html">新闻</a></li>
+      <li><a href="pricing.html">DIY选项</a></li>
+      <li><a href="news.html">新闻</a></li>
       <li><a href="support.html">支持</a></li>
     </ul>
   </nav>
@@ -243,13 +259,13 @@
 
 <!-- 标准底部栏 -->
 <footer class="site-bottombar">
-  <button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
-  <div class="bottombar__label">返回顶部</div>
-  <div class="bottombar__logo-wrap">
-    <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
-  </div>
-</footer>
-
+<div class="bottombar__logo-wrap">
+<img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/><height:15px;"/>
+<div class="bottombar__top">
+<button aria-label="返回顶部" class="bottombar__to-top" 
+id="toTopBtn">▲</button>
+<div class="bottombar__label">返回顶部</div>
+</div></footer>
 
 <script>
   // 菜单控制
