@@ -164,6 +164,33 @@
       background: rgba(255,255,255,0.2);
     }
 
+    /* 社交媒体图标 - 恢复原有样式 */
+    .social-media {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin: 40px auto;
+      max-width: 300px;
+    }
+
+    .social-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: white;
+      text-decoration: none;
+      transition: transform 0.3s;
+    }
+
+    .social-icon:hover {
+      transform: scale(1.1);
+    }
+
     /* Footer */
     .site-bottombar {
       display: flex;
@@ -263,6 +290,7 @@
     </form>
   </div>
   
+  <!-- 恢复原有社交媒体图标样式 -->
   <div class="social-media">
     <a href="#" class="social-icon">微</a>
     <a href="#" class="social-icon">信</a>
@@ -276,7 +304,7 @@
   <button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
   <div class="bottombar__label">返回顶部</div>
   <div class="bottombar__logo-wrap">
-    <img class="bottombar__logo" src="../images/logo.png" alt="AX Guitar Logo"/>
+    <img class="bottombar__logo" src="/images/logo.png" alt="AX Guitar Logo"/>
   </div>
 </footer>
 
