@@ -4,14 +4,14 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>联系我们 | AX斧标贝斯</title>
+  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
   <link rel="manifest" href="/icons/manifest.json">
-
-  <link href="../css/style.css" rel="stylesheet"/>
+  <!-- Styles -->
+  <link href="/css/style.css" rel="stylesheet"/>
   <style>
-    /* ===== 全局标准样式 ===== */
     :root {
       --neutral-gray: rgb(128, 128, 128);
       --glass-dark: rgba(0, 0, 0, 0.3);
@@ -25,11 +25,11 @@
       display: flex;
       flex-direction: column;
       font-family: Arial, sans-serif;
-      margin: 0; /* 移除默认边距 */
-      padding-top: 60px; /* 为固定顶部栏留出空间 */
+      margin: 0;
+      padding-top: 60px;
     }
 
-    /* ===== 顶部栏标准样式 ===== */
+    /* Header Styles */
     .site-topbar {
       display: flex;
       justify-content: space-between;
@@ -37,17 +37,15 @@
       padding: 12px 5%;
       background: var(--glass-dark);
       backdrop-filter: blur(5px);
-      position: fixed; /* 改为固定定位 */
-      top: 0; /* 固定在顶部 */
-      left: 0; /* 对齐左侧 */
-      right: 0; /* 对齐右侧 */
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 100;
-      box-sizing: border-box; /* 确保padding不影响宽度计算 */
-      margin: 0; /* 移除默认边距 */
+      box-sizing: border-box;
     }
 
-    .topbar__left, 
-    .topbar__right {
+    .topbar__left, .topbar__right {
       display: flex;
       align-items: center;
       gap: 15px;
@@ -71,7 +69,7 @@
       cursor: pointer;
     }
 
-    /* ===== 导航菜单标准样式 ===== */
+    /* Mobile Nav */
     .mobile-nav {
       display: none;
       position: absolute;
@@ -99,109 +97,14 @@
       border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
-    .mobile-nav__list a {
-      color: var(--text-white);
-      text-decoration: none;
-      display: block;
-    }
-
-    /* ===== 内容区样式 ===== */
+    /* Main Content */
     .page-content {
       flex: 1;
       padding: 20px 5%;
-      margin-top: 20px; /* 增加顶部内边距防止内容被顶部栏遮挡 */
+      margin-top: 20px;
     }
 
-    .hero {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .hero img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-
-    .products-overview {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-    }
-
-    .product-card {
-      background: rgba(0,0,0,0.2);
-      padding: 20px;
-      border-radius: 8px;
-      text-align: center;
-    }
-
-    .product-card img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 4px;
-    }
-
-    /* ===== 底部栏标准样式 ===== */
-    .site-bottombar {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px 15px;
-      background: var(--glass-dark);
-      border-top: 1px solid rgba(255,255,255,0.1);
-      gap: 8px;
-    }
-
-    .bottombar__top {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .bottombar__to-top {
-      order: 1;
-      background: none;
-      border: none;
-      color: var(--text-white);
-      font-size: 22px;
-      cursor: pointer;
-    }
-
-    .bottombar__label {
-      order: 2;
-      font-weight: bold;
-    }
-
-    .bottombar__logo-wrap {
-      order: 3;
-    }
-
-    .bottombar__logo {
-      height: 25px;
-      width: auto;
-      filter: brightness(0) invert(1);
-    }
-
-    /* ===== 响应式设计 ===== */
-    @media (min-width: 768px) {
-      body {
-        padding-top: 70px; /* 调整大屏幕下的顶部内边距 */
-      }
-      .site-topbar {
-        padding: 15px 8%;
-        height: 60px; /* 固定高度 */
-      }
-      .topbar__logo {
-        height: 35px;
-      }
-      .page-content {
-        padding: 30px 8%;
-      }
-    }
-
-    /* ===== 联系我们页面特有样式 ===== */
+    /* Contact Form Styles */
     .contact-header {
       text-align: center;
       margin-bottom: 30px;
@@ -218,10 +121,6 @@
       background: rgba(0,0,0,0.2);
       padding: 20px;
       border-radius: 8px;
-    }
-
-    .contact-info p {
-      margin: 10px 0;
     }
 
     .contact-form {
@@ -265,59 +164,61 @@
       background: rgba(255,255,255,0.2);
     }
 
-    .social-media {
+    /* Footer */
+    .site-bottombar {
       display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 30px;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 15px;
+      background: var(--glass-dark);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      gap: 8px;
     }
 
-    .social-icon {
-      display: inline-block;
-      width: 40px;
-      height: 40px;
-      line-height: 40px;
-      text-align: center;
-      background: rgba(255,255,255,0.1);
-      border-radius: 50%;
-      color: white;
-      text-decoration: none;
+    .bottombar__logo {
+      height: 25px;
+      width: auto;
+      filter: brightness(0) invert(1);
+    }
+
+    /* Responsive */
+    @media (min-width: 768px) {
+      body { padding-top: 70px; }
+      .site-topbar { padding: 15px 8%; height: 60px; }
+      .topbar__logo { height: 35px; }
+      .page-content { padding: 30px 8%; }
     }
   </style>
 </head>
 
 <body>
-<!-- 标准顶部栏 -->
+<!-- Header -->
 <header class="site-topbar">
   <div class="topbar__left">
     <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
   </div>
-  
   <div class="topbar__center">
-    <a href="index.html">
-      <img class="topbar__logo" src="../images/logo.png" alt="AX Guitar Logo"/>
+    <a href="/index.html">
+      <img class="topbar__logo" src="/images/logo.png" alt="AX Guitar Logo"/>
     </a>
   </div>
-  
   <div class="topbar__right">
     <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
     <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
   </div>
-  
-  <!-- 标准导航菜单 -->
   <nav class="mobile-nav" id="mobileNav" aria-label="主导航">
     <ul class="mobile-nav__list">
-      <li><a href="index.html">首页</a></li>
-      <li><a href="instruments.html">产品</a></li>
-      <li><a href="twisted-neck.html">特色</a></li>
-      <li><a href="pricing.html">DIY选项</a></li>
-      <li><a href="news.html">新闻</a></li>
-      <li><a href="support.html">支持</a></li>
+      <li><a href="/index.html">首页</a></li>
+      <li><a href="/instruments.html">产品</a></li>
+      <li><a href="/twisted-neck.html">特色</a></li>
+      <li><a href="/pricing.html">DIY选项</a></li>
+      <li><a href="/news.html">新闻</a></li>
+      <li><a href="/support.html">支持</a></li>
     </ul>
   </nav>
 </header>
 
-<!-- 页面内容 -->
+<!-- Main Content -->
 <main class="page-content">
   <div class="contact-header">
     <h1>联系我们</h1>
@@ -342,27 +243,22 @@
         <label for="name">您的姓名</label>
         <input type="text" id="name" class="form-control" required>
       </div>
-      
       <div class="form-group">
         <label for="email">电子邮箱</label>
         <input type="email" id="email" class="form-control" required>
       </div>
-      
       <div class="form-group">
         <label for="phone">联系电话</label>
         <input type="tel" id="phone" class="form-control">
       </div>
-      
       <div class="form-group">
         <label for="subject">主题</label>
         <input type="text" id="subject" class="form-control" required>
       </div>
-      
       <div class="form-group">
         <label for="message">留言内容</label>
         <textarea id="message" class="form-control" required></textarea>
       </div>
-      
       <button type="submit" class="submit-btn">发送消息</button>
     </form>
   </div>
@@ -375,12 +271,12 @@
   </div>
 </main>
 
-<!-- 标准底部栏 -->
+<!-- Footer -->
 <footer class="site-bottombar">
   <button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
   <div class="bottombar__label">返回顶部</div>
   <div class="bottombar__logo-wrap">
-   <img class="bottombar__logo" src="/images/logo.png" alt="AX Guitar Logo"/>
+    <img class="bottombar__logo" src="/images/logo.png" alt="AX Guitar Logo"/>
   </div>
 </footer>
 
