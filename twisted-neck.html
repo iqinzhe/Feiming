@@ -8,19 +8,28 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
 <link rel="manifest" href="/icons/manifest.json">
-
-<link href="styles.css" rel="stylesheet"/> <!-- 你现有的主CSS文件 -->
+<link href="css/style.css" rel="stylesheet"/>
 <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            color: #333;
-            padding-top: 60px;
-            padding-bottom: 80px;
-        }
-  /* ===== 顶部栏标准样式 ===== */
+
+/* ===== 全局标准样式 ===== */
+:root {
+  --neutral-gray: rgb(128, 128, 128);
+  --glass-dark: rgba(0, 0, 0, 0.3);
+  --text-white: #fff;
+}
+
+body {
+  background: var(--neutral-gray);
+  color: var(--text-white);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  margin: 0; /* 移除默认边距 */
+  padding-top: 60px; /* 为固定顶部栏留出空间 */
+}
+
+/* ===== 顶部栏标准样式 ===== */
 .site-topbar {
   display: flex;
   justify-content: space-between;
@@ -95,82 +104,137 @@
   text-decoration: none;
   display: block;
 }
-        /* 价格选项交互效果 */
-        tr {
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        tr.selected {
-            background-color: #d4edff;
-        }
-        /* 底部栏标准样式 */
-        .site-bottombar {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px 15px;
-            background: var(--glass-dark);
-            border-top: 1px solid rgba(255,255,255,0.1);
-            gap: 8px;
-            margin-top: auto;
-        }
-        .bottombar__to-top {
-            background: none;
-            border: none;
-            color: var(--text-white);
-            font-size: 22px;
-            cursor: pointer;
-        }
-        /* 响应式设计 */
-        @media (min-width: 768px) {
-            .model-card {
-                display: grid;
-                grid-template-columns: 1fr 2fr;
-                gap: 30px;
-            }
-            
-            .topbar__logo {
-                height: 35px;
-            }
-        }
-    
-.site-topbar {
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    right: 0;
-    margin: 0;
+
+/* ===== 内容区样式 ===== */
+.page-content {
+  flex: 1;
+  padding: 20px 5%;
+  margin-top: 20px; /* 增加顶部内边距防止内容被顶部栏遮挡 */
 }
-body {
-    margin: 0;
-    padding-top: 60px; /* Prevent content from hiding behind fixed topbar */
+
+.hero {
+  text-align: center;
+  margin-bottom: 40px;
 }
-</style></head>
-<body><header class="site-topbar">
-<div class="topbar__left">
-<button aria-label="Menu" class="topbar__btn topbar__btn--menu" id="topbarMenuBtn">☰</button>
-</div>
-<div class="topbar__center">
-<a class="topbar__logo-link" href="index.html">
-<img alt="Logo" class="topbar__logo" src="images/logo.png"/>
-</a>
-</div>
-<div class="topbar__right">
-<button aria-label="Search" class="topbar__btn topbar__btn--search" id="topbarSearchBtn">🔍</button>
-<button aria-label="Share" class="topbar__btn topbar__btn--share" id="topbarShareBtn">⤴</button>
-</div>
-</header><nav class="mobile-nav" id="mobileNav">
-<ul class="mobile-nav__list">
-<li><a href="index.html">首页</a></li>
-<li><a href="instruments.html">产品</a></li>
-<li><a href="twisted-neck.html">特色</a></li>       
-<li><a href="pricing.html">DIY选项</a></li>
-<li><a href="news.html">新闻</a></li>
-<li><a href="support.html">支持</a></li>
-</ul>
-</nav>
-</header>      
-        
+
+.hero img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.products-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background: rgba(0,0,0,0.2);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.product-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* ===== 底部栏标准样式 ===== */
+.site-bottombar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 15px;
+  background: var(--glass-dark);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  gap: 8px;
+}
+
+.bottombar__top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.bottombar__to-top {
+  order: 1;
+  background: none;
+  border: none;
+  color: var(--text-white);
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.bottombar__label {
+  order: 2;
+  font-weight: bold;
+}
+
+.bottombar__logo-wrap {
+  order: 3;
+}
+
+.bottombar__logo {
+  height: 25px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+/* ===== 响应式设计 ===== */
+@media (min-width: 768px) {
+  body {
+    padding-top: 70px; /* 调整大屏幕下的顶部内边距 */
+  }
+  .site-topbar {
+    padding: 15px 8%;
+  height: 60px; /* 固定高度 */
+  }
+  .topbar__logo {
+    height: 35px;
+  }
+  .page-content {
+    padding: 30px 8%;
+  }
+}
+</style>
+</head>
+
+<body>
+<!-- 标准顶部栏 -->
+<header class="site-topbar">
+  <div class="topbar__left">
+    <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
+  </div>
+  
+  <div class="topbar__center">
+    <a href="index.html">
+      <img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
+    </a>
+  </div>
+  
+  <div class="topbar__right">
+    <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
+    <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
+  </div>
+  
+  <!-- 标准导航菜单 -->
+  <nav class="mobile-nav" id="mobileNav" aria-label="主导航">
+    <ul class="mobile-nav__list">
+      <li><a href="index.html">首页</a></li>
+      <li><a href="instruments.html">产品</a></li>
+      <li><a href="twisted-neck.html">特色</a></li>
+      <li><a href="pricing.html">DIY选项</a></li>
+      <li><a href="news.html">新闻</a></li>
+      <li><a href="support.html">支持</a></li>
+    </ul>
+  </nav>
+</header>
+ 
+   <!-- 页面专属内容 -->    
 <section style="padding:20px; text-align:center;">
 <h1>Series D - Twisted Neck Models</h1>
 <div style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center; margin-top:20px;">
