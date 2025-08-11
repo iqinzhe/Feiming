@@ -300,17 +300,18 @@ body {
 
 <!-- 标准底部栏 -->
 <footer class="site-bottombar">
-  <div class="bottombar__top">
-    <button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
-    <div class="bottombar__label">返回顶部</div>
-     <a href="index.html">
-      <img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
-    </div>
-  </div>
-</footer>
+<div class="bottombar__top">
+<button aria-label="返回顶部" class="bottombar__to-top" 
+id="toTopBtn">▲</button>
+<div class="bottombar__label">返回顶部</div>
+<div class="bottombar__logo-wrap">
+<img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/><height:15px;"/>
+</div></footer>
 
-<!-- 标准交互脚本 -->
+                                                                              
 <script>
+<!-- 标准交互脚本 -->
+
 // 菜单控制
 document.getElementById('topbarMenuBtn').addEventListener('click', function() {
   document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
