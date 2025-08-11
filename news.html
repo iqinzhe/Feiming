@@ -1,17 +1,16 @@
 <!DOCTYPE html>
+
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>新闻中心 | AX斧标贝斯</title>
-  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-<link rel="manifest" href="/icons/manifest.json">
-
-  <link href="../css/style.css" rel="stylesheet"/>
-  <style>
-/* ===== 全局标准样式 ===== */
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>新闻中心 | AX斧标贝斯</title>
+<link href="/icons/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="/icons/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="/icons/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="/icons/manifest.json" rel="manifest"/>
+<link href="../css/style.css" rel="stylesheet">
+<style>/* ===== 全局标准样式 ===== */
 :root {
   --neutral-gray: rgb(128, 128, 128);
   --glass-dark: rgba(0, 0, 0, 0.3);
@@ -200,110 +199,178 @@ body {
     padding: 30px 8%;
   }
 }
-</style>
-</head>
 
+/* ===== 新闻内容区表格/卡片样式（从old.html复制） ===== */
+    .latest-news {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+    .news-item {
+      background: rgba(0,0,0,0.3);
+      border-radius: 8px;
+      padding: 20px;
+      transition: transform 0.3s;
+    }
+    .news-item:hover {
+      transform: translateY(-5px);
+    }
+    .news-date {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.9em;
+      margin-bottom: 10px;
+    }
+    .news-item h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+    .news-item p {
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 15px;
+    }
+    .news-item a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .news-sections {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+    }
+    .section-card {
+      background: rgba(0,0,0,0.3);
+      border-radius: 8px;
+      padding: 25px;
+      transition: transform 0.3s;
+    }
+    .section-card:hover {
+      transform: translateY(-5px);
+    }
+    .section-card h2 {
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-card a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    .icon {
+      font-size: 24px;
+    }
+    .event-timeline {
+      margin: 40px 0;
+    }
+    .event-item {
+      margin-bottom: 30px;
+      padding-left: 20px;
+      border-left: 3px solid rgba(255,255,255,0.3);
+    }
+    .event-date {
+      font-weight: bold;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 5px;
+    }
+    .page-title {
+      color: white;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }</style>
+</link></head>
 <body>
 <!-- 标准顶部栏 -->
 <header class="site-topbar">
-  <div class="topbar__left">
-    <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
-  </div>
-  
-  <div class="topbar__center">
-    <a href="index.html">
-      <img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
-    </a>
-  </div>
-  
-  <div class="topbar__right">
-    <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
-    <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
-  </div>
-  
-  <!-- 标准导航菜单 -->
-  <nav class="mobile-nav" id="mobileNav" aria-label="主导航">
-    <ul class="mobile-nav__list">
-      <li><a href="index.html">首页</a></li>
-      <li><a href="instruments.html">产品</a></li>
-      <li><a href="twisted-neck.html">特色</a></li>
-      <li><a href="pricing.html">DIY选项</a></li>
-      <li><a href="news.html">新闻</a></li>
-      <li><a href="support.html">支持</a></li>
-    </ul>
-  </nav>
+<div class="topbar__left">
+<button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
+</div>
+<div class="topbar__center">
+<a href="index.html">
+<img alt="AX Guitar Logo" class="topbar__logo" src="images/logo.png"/>
+</a>
+</div>
+<div class="topbar__right">
+<button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
+<button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
+</div>
+<!-- 标准导航菜单 -->
+<nav aria-label="主导航" class="mobile-nav" id="mobileNav">
+<ul class="mobile-nav__list">
+<li><a href="index.html">首页</a></li>
+<li><a href="instruments.html">产品</a></li>
+<li><a href="twisted-neck.html">特色</a></li>
+<li><a href="pricing.html">DIY选项</a></li>
+<li><a href="news.html">新闻</a></li>
+<li><a href="support.html">支持</a></li>
+</ul>
+</nav>
 </header>
-
 <!-- 新闻中心内容 -->
 <main class="page-content">
-  <h1 class="page-title">AX新闻中心</h1>
-  <p style="color: rgba(255,255,255,0.8); margin-bottom: 30px;">获取最新产品资讯和品牌动态</p>
-  
-  <h2>最新动态</h2>
-  <div class="latest-news">
-    <div class="news-item">
-      <span class="news-date">2026年6月15日</span>
-      <h3>AX贝斯亮相国际乐器展</h3>
-      <p>在2026年NAMM Show上展出全新旗舰型号，获得专业乐手好评。新款Model X采用创新碳纤维复合材料...</p>
-      <li><a href="events.html">阅读全文</a></li>
-    </div>
-  </div>
-  
-  <h2>探索更多</h2>
-  <div class="news-sections">
-    <div class="section-card">
-      <h2><span class="icon">🎸</span>特色产品</h2>
-      <p>探索我们的旗舰产品和创新技术</p>
-      <a href="twisted-neck.html">浏览特色产品 →</a>
-    </div>
-    
-    <div class="section-card">
-      <h2><span class="icon">📅</span>品牌事件</h2>
-      <p>了解AX品牌发展历程和重要里程碑事件</p>
-      <a href="events.html">查看事件时间轴 →</a>
-    </div>
-    
-    <div class="section-card">
-      <h2><span class="icon">ℹ️</span>官方信息</h2>
-      <p>获取联系方式、法律条款和品牌声明</p>
-      <a href="information.html">查看详细信息 →</a>
-    </div>
-  </div>
-  
-  <section id="events">
-    <h2>品牌大事记</h2>
-    <div class="event-timeline">
-      <div class="event-item">
-        <div class="event-date">2025年6月</div>
-        <h3>AX品牌正式成立</h3>
-        <p>在上海设立总部，发布首款Model A系列贝斯，融合20年制琴经验与现代技术。</p>
-      </div>
-      
-      <div class="event-item">
-        <div class="event-date">2025年12月</div>
-        <h3>首场产品发布会</h3>
-        <p>在上海音乐厅举办首次产品发布会，邀请多位知名音乐人现场演示。</p>
-      </div>
-      
-      <div class="event-item">
-        <div class="event-date">2026年3月</div>
-        <h3>国际参展</h3>
-        <p>首次参加上海国际乐器展，获得国内外客户和媒体的广泛关注。</p>
-      </div>
-    </div>
-  </section>
+<h1 class="page-title">AX新闻中心</h1>
+<p style="color: rgba(255,255,255,0.8); margin-bottom: 30px;">获取最新产品资讯和品牌动态</p>
+<h2>最新动态</h2>
+<div class="latest-news">
+<div class="news-item">
+<span class="news-date">2026年6月15日</span>
+<h3>AX贝斯亮相国际乐器展</h3>
+<p>在2026年NAMM Show上展出全新旗舰型号，获得专业乐手好评。新款Model X采用创新碳纤维复合材料...</p>
+<li><a href="events.html">阅读全文</a></li>
+</div>
+</div>
+<h2>探索更多</h2>
+<div class="news-sections">
+<div class="section-card">
+<h2><span class="icon">🎸</span>特色产品</h2>
+<p>探索我们的旗舰产品和创新技术</p>
+<a href="twisted-neck.html">浏览特色产品 →</a>
+</div>
+<div class="section-card">
+<h2><span class="icon">📅</span>品牌事件</h2>
+<p>了解AX品牌发展历程和重要里程碑事件</p>
+<a href="events.html">查看事件时间轴 →</a>
+</div>
+<div class="section-card">
+<h2><span class="icon">ℹ️</span>官方信息</h2>
+<p>获取联系方式、法律条款和品牌声明</p>
+<a href="information.html">查看详细信息 →</a>
+</div>
+</div>
+<section id="events">
+<h2>品牌大事记</h2>
+<div class="event-timeline">
+<div class="event-item">
+<div class="event-date">2025年6月</div>
+<h3>AX品牌正式成立</h3>
+<p>在上海设立总部，发布首款Model A系列贝斯，融合20年制琴经验与现代技术。</p>
+</div>
+<div class="event-item">
+<div class="event-date">2025年12月</div>
+<h3>首场产品发布会</h3>
+<p>在上海音乐厅举办首次产品发布会，邀请多位知名音乐人现场演示。</p>
+</div>
+<div class="event-item">
+<div class="event-date">2026年3月</div>
+<h3>国际参展</h3>
+<p>首次参加上海国际乐器展，获得国内外客户和媒体的广泛关注。</p>
+</div>
+</div>
+</section>
 </main>
-
 <!-- 标准底部栏 -->
 <footer class="site-bottombar">
 <div class="bottombar__logo-wrap">
-<img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/><height:15px;"/>
+<img alt="AX Guitar Logo" class="topbar__logo" src="images/logo.png"/><height:15px;"></height:15px;">
 <div class="bottombar__top">
-<button aria-label="返回顶部" class="bottombar__to-top" 
-id="toTopBtn">▲</button>
+<button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
 <div class="bottombar__label">返回顶部</div>
-</div></footer>
-
+</div></div></footer>
 <script>
   // 菜单控制
   document.getElementById('topbarMenuBtn').addEventListener('click', function() {
