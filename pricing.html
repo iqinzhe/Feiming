@@ -8,8 +8,10 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
     <link rel="manifest" href="/icons/manifest.json">
-
+  <link href="/css/style.css" rel="stylesheet">
     <style>
+
+        /* 全局样式  */
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
@@ -18,104 +20,30 @@
             color: #333;
             padding-top: 60px;
         }
-        header.site-topbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            z-index: 100;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-        }
-        .topbar__logo {
-            height: 40px;
-        }
-        .topbar__btn {
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            padding: 5px 10px;
-        }
-        nav.mobile-nav {
-            position: fixed;
-            top: 60px;
-            left: -100%;
-            width: 80%;
-            height: calc(100vh - 60px);
-            background: #fff;
-            transition: left 0.3s;
-            z-index: 99;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-            display: block;
-        }
-        nav.mobile-nav.mobile-nav--open {
-            left: 0;
-        }
-        .mobile-nav__list {
-            list-style: none;
-            padding: 20px;
-            margin: 0;
-        }
-        .mobile-nav__list li {
-            margin-bottom: 15px;
-        }
-        .mobile-nav__list a {
-            text-decoration: none;
-            color: #333;
-            font-size: 18px;
-        }
+        
         h1 {
             text-align: center;
             margin-bottom: 30px;
             padding: 0 20px;
         }
+        
         form {
             max-width: 1000px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-            font-weight: bold;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-        .section-title {
-            background-color: #e6e6e6;
-            font-weight: bold;
-        }
-        .price {
-            text-align: right;
-            white-space: nowrap;
-        }
+        
+        /* 表单元素样式  */
         .form-group {
             margin-bottom: 20px;
         }
+        
         .form-group label {
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
         }
+        
         .form-group input[type="text"],
         .form-group textarea {
             width: 100%;
@@ -124,9 +52,58 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
+        
         .form-group textarea {
             min-height: 100px;
         }
+        
+        /* 表格样式  */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .section-title {
+            background-color: #e6e6e6;
+            font-weight: bold;
+        }
+        
+        .price {
+            text-align: right;
+            white-space: nowrap;
+        }
+        
+        tr {
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        tr.selected {
+            background-color: #d4edff;
+        }
+        
+        /*  价格汇总样式  */
         .total {
             font-size: 1.5em;
             font-weight: bold;
@@ -136,45 +113,7 @@
             background-color: #f2f2f2;
             border-radius: 4px;
         }
-        tr {
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        tr.selected {
-            background-color: #d4edff;
-        }
-        .site-bottombar {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-            background: #333;
-            color: white;
-            gap: 10px;
-            margin-top: 40px;
-        }
-        .bottombar__top {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 5px;
-        }
-        .bottombar__to-top {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 22px;
-            cursor: pointer;
-            padding: 0;
-            margin: 0;
-        }
-        .bottombar__label {
-            font-size: 14px;
-        }
-        .bottombar__logo-wrap {
-            margin-top: 10px;
-        }
+        
         .summary {
             display: flex;
             justify-content: space-between;
@@ -185,19 +124,25 @@
             border-radius: 4px;
             font-size: 1.2em;
         }
+        
         .summary-label {
             font-weight: bold;
         }
+        
         .summary-value {
             font-weight: bold;
             color: #e74c3c;
         }
+        
+   
+        /* 响应式样式*/
         @media (min-width: 768px) {
             .model-card {
                 display: grid;
                 grid-template-columns: 1fr 2fr;
                 gap: 30px;
             }
+            
             .topbar__logo {
                 height: 35px;
             }
@@ -205,6 +150,8 @@
     </style>
 </head>
 <body>
+
+<!-- 顶部导航栏 -->
 <header class="site-topbar">
     <div class="topbar__left">
         <button aria-label="Menu" class="topbar__btn topbar__btn--menu" id="topbarMenuBtn">☰</button>
@@ -219,6 +166,8 @@
         <button aria-label="Share" class="topbar__btn topbar__btn--share" id="topbarShareBtn">⤴</button>
     </div>
 </header>
+
+<!-- 移动端导航菜单 -->
 <nav class="mobile-nav" id="mobileNav">
     <ul class="mobile-nav__list">
         <li><a href="index.html">首页</a></li>
@@ -230,6 +179,7 @@
     </ul>
 </nav>
 
+<!--主内容区 -->
 <h1>DIY选项和定价</h1>
 
 <form id="pricingForm">
@@ -753,103 +703,103 @@
     </div>
 </form>
 
-<footer class="site-bottombar">
-    <div class="bottombar__top">
-        <button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
-        <div class="bottombar__label">返回顶部</div>
-    <div class="bottombar__logo-wrap">
-        <img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo" style="height:15px;"/>
+
+<!-- 底部栏 -->
+<footer class="site-bottombar" id="footerToTop">
+  <div class="bottombar__label">返回顶部</div>
+  <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
 </footer>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-            // 菜单功能
-            const menuBtn = document.getElementById('topbarMenuBtn');
-            const mobileNav = document.getElementById('mobileNav');
+    // JavaScript功能 
+    document.addEventListener('DOMContentLoaded', function() {
+        // 菜单功能
+        const menuBtn = document.getElementById('topbarMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        
+        if(menuBtn && mobileNav) {
+            menuBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mobileNav.classList.toggle('mobile-nav--open');
+            });
             
-            if(menuBtn && mobileNav) {
-                menuBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    mobileNav.classList.toggle('mobile-nav--open');
-                });
-                
-                document.addEventListener('click', function(e) {
-                    if(mobileNav.classList.contains('mobile-nav--open') && 
-                       !mobileNav.contains(e.target) && 
-                       e.target !== menuBtn) {
-                        mobileNav.classList.remove('mobile-nav--open');
-                    }
-                });
-            }
-
-            // 返回顶部
-            document.getElementById('toTopBtn').addEventListener('click', function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-
-            // 搜索功能
-            document.getElementById('topbarSearchBtn').addEventListener('click', function() {
-                const query = prompt('请输入搜索关键词');
-                if(query) alert('即将搜索: ' + query);
-            });
-
-            // 分享功能
-            document.getElementById('topbarShareBtn').addEventListener('click', function() {
-                if(navigator.share) {
-                    navigator.share({
-                        title: document.title,
-                        url: window.location.href
-                    }).catch(e => console.log('分享失败'));
-                } else {
-                    alert('请手动分享此页面');
+            document.addEventListener('click', function(e) {
+                if(mobileNav.classList.contains('mobile-nav--open') && 
+                   !mobileNav.contains(e.target) && 
+                   e.target !== menuBtn) {
+                    mobileNav.classList.remove('mobile-nav--open');
                 }
             });
+        }
 
-            // 价格选择功能
-            const tables = document.querySelectorAll('table');
-            
-            tables.forEach(table => {
-                const rows = table.querySelectorAll('tr:not(:first-child)');
-                
-                rows.forEach(row => {
-                    row.addEventListener('click', function() {
-                        const siblings = Array.from(this.parentNode.children)
-                            .filter(child => child !== this && child !== this.parentNode.firstElementChild);
-                        
-                        siblings.forEach(sibling => sibling.classList.remove('selected'));
-                        this.classList.toggle('selected');
-                        updateTotalPrice();
-                    });
-                });
-            });
-            
-            // 表单提交
-            const form = document.getElementById('pricingForm');
-            if(form) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const name = document.getElementById('name').value;
-                    if(!name) {
-                        alert('请输入您的姓名');
-                        return;
-                    }
-                    
-                    const total = document.querySelectorAll('tr.selected').length > 0 ? 
-                        document.getElementById('summaryPrice').textContent : '未选择任何选项';
-                        
-                    alert(`感谢 ${name} 的询价！\n总价: ${total}\n我们会尽快与您联系。`);
-                });
+        // 返回顶部
+        document.getElementById('toTopBtn').addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // 搜索功能
+        document.getElementById('topbarSearchBtn').addEventListener('click', function() {
+            const query = prompt('请输入搜索关键词');
+            if(query) alert('即将搜索: ' + query);
+        });
+
+        // 分享功能
+        document.getElementById('topbarShareBtn').addEventListener('click', function() {
+            if(navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    url: window.location.href
+                }).catch(e => console.log('分享失败'));
+            } else {
+                alert('请手动分享此页面');
             }
         });
 
-        // 价格计算函数
-        function updateTotalPrice() {
-            let total = 0;
-            document.querySelectorAll('tr.selected').forEach(row => {
-                total += parseFloat(row.getAttribute('data-price')) || 0;
+        // 价格选择功能
+        const tables = document.querySelectorAll('table');
+        
+        tables.forEach(table => {
+            const rows = table.querySelectorAll('tr:not(:first-child)');
+            
+            rows.forEach(row => {
+                row.addEventListener('click', function() {
+                    const siblings = Array.from(this.parentNode.children)
+                        .filter(child => child !== this && child !== this.parentNode.firstElementChild);
+                    
+                    siblings.forEach(sibling => sibling.classList.remove('selected'));
+                    this.classList.toggle('selected');
+                    updateTotalPrice();
+                });
             });
-            document.getElementById('summaryPrice').textContent = `¥${total}`;
+        });
+        
+        // 表单提交
+        const form = document.getElementById('pricingForm');
+        if(form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('name').value;
+                if(!name) {
+                    alert('请输入您的姓名');
+                    return;
+                }
+                
+                const total = document.querySelectorAll('tr.selected').length > 0 ? 
+                    document.getElementById('summaryPrice').textContent : '未选择任何选项';
+                    
+                alert(`感谢 ${name} 的询价！\n总价: ${total}\n我们会尽快与您联系。`);
+            });
         }
-    </script>
+    });
+
+    // 价格计算函数
+    function updateTotalPrice() {
+        let total = 0;
+        document.querySelectorAll('tr.selected').forEach(row => {
+            total += parseFloat(row.getAttribute('data-price')) || 0;
+        });
+        document.getElementById('summaryPrice').textContent = `¥${total}`;
+    }
+</script>
 </body>
 </html>
