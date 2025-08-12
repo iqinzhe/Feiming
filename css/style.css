@@ -216,3 +216,49 @@ main {
         max-width: 100%;
     }
 }
+/* === AXGuitar 顶部栏 & 底部栏交互增强样式 === */
+
+/* 顶部栏按钮点击动画 */
+.topbar__btn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 1;
+  padding: 6px;
+  border-radius: 4px;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.topbar__btn:active {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(0.95);
+}
+
+/* 底部栏布局改为“返回顶部 + logo” */
+.site-bottombar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.bottombar__label {
+  font-weight: bold;
+  font-size: 14px;
+  transition: transform 0.15s ease;
+}
+.bottombar__logo {
+  height: 14px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  margin-left: 8px;
+  transition: transform 0.15s ease;
+}
+.site-bottombar:active {
+  background: rgba(255,255,255,0.1);
+}
+.site-bottombar:active .bottombar__label,
+.site-bottombar:active .bottombar__logo {
+  transform: scale(0.95);
+}
