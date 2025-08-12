@@ -146,25 +146,33 @@ body {
   border-radius: 4px;
 }
 
-/* ===== 底部栏 ===== */
+/* 底部栏 */
 .site-bottombar {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  padding: 12px 15px;
-  background: var(--glass-dark);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 10px; /* 文字和logo间距 */
+  padding: 10px 15px;
   cursor: pointer;
-  transition: all 0.2s ease;
 }
-
 .bottombar__label {
   font-weight: bold;
   font-size: 15px;
-  line-height: 1;
-  transition: transform 0.15s ease;
+  line-height: 15px;
 }
+.bottombar__logo {
+  height: 25px;
+  width: auto;
+  filter: brightness(1) invert(0);
+}
+.site-bottombar:active {
+  background: rgba(100,100,1100,0.1);
+}
+.site-bottombar:active .bottombar__label,
+.site-bottombar:active .bottombar__logo {
+  transform: scale(0.95);
+}
+
 /* 强制移动导航显示优先级 */
 .mobile-nav {
   display: none;
