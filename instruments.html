@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8"/>
@@ -27,38 +26,6 @@ body {
   font-family: Arial, sans-serif;
 }
 
-/* 导航菜单毛玻璃效果 */
-.mobile-nav {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: var(--glass-dark);
-  backdrop-filter: blur(10px);
-  z-index: 90;
-  padding: 15px 0;
-}
-
-.mobile-nav.mobile-nav--open {
-  display: block;
-}
-
-.mobile-nav__list {
-  list-style: none;
-}
-
-.mobile-nav__list li {
-  padding: 12px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-.mobile-nav__list a {
-  color: var(--text-white);
-  text-decoration: none;
-  display: block;
-}
-
 /* 系列卡片样式 */
 .series-overview {
   display: grid;
@@ -76,7 +43,6 @@ body {
 .series-card:hover {
   transform: translateY(-5px);
 }
-
 
 /* 响应式设计 */
 @media (min-width: 768px) {
