@@ -8,8 +8,9 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
 <link rel="manifest" href="/icons/manifest.json">
-
+  <link href="/css/style.css" rel="stylesheet">
 <style>
+
 :root {
   --neutral-gray: rgb(128, 128, 128);
   --glass-dark: rgba(0, 0, 0, 0.3);
@@ -23,32 +24,6 @@ body {
   display: flex;
   flex-direction: column;
   font-family: Arial, sans-serif;
-}
-
-/* 顶部栏标准样式 */
-.site-topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 5%;
-  background: var(--glass-dark);
-  backdrop-filter: blur(5px);
-  position: relative;
-  z-index: 100;
-}
-
-.topbar__btn {
-  background: none;
-  border: none;
-  color: var(--text-white);
-  font-size: 20px;
-  cursor: pointer;
-  padding: 5px;
-}
-
-.topbar__logo {
-  height: 30px;
-  width: auto;
 }
 
 /* 导航菜单毛玻璃效果 */
@@ -96,26 +71,6 @@ body {
   margin-bottom: 30px;
   border-radius: 10px;
   overflow: hidden;
-}
-
-/* 底部栏标准样式 */
-.site-bottombar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px 15px;
-  background: var(--glass-dark);
-  border-top: 1px solid rgba(255,255,255,0.1);
-  gap: 8px;
-  margin-top: auto;
-}
-
-.bottombar__to-top {
-  background: none;
-  border: none;
-  color: var(--text-white);
-  font-size: 22px;
-  cursor: pointer;
 }
 
 /* 响应式设计 */
@@ -215,44 +170,12 @@ body {
   </section>
 </main>
 
-<!-- 标准底部栏 -->
-<footer class="site-bottombar">
-<div class="bottombar__top">
-<button aria-label="返回顶部" class="bottombar__to-top" 
-id="toTopBtn">▲</button>
-<div class="bottombar__label">返回顶部</div>
-<div class="bottombar__logo-wrap">
-<img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/><height:15px;"/>
-</div></footer>
+<!-- 底部栏 -->
+<footer class="site-bottombar" id="footerToTop">
+  <div class="bottombar__label">返回顶部</div>
+  <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
+</footer>
 
-<script>
-// 汉堡菜单交互
-document.getElementById('topbarMenuBtn').addEventListener('click', function() {
-  document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
-});
-
-// 返回顶部平滑滚动
-document.getElementById('toTopBtn').addEventListener('click', function() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-// 搜索功能
-document.getElementById('topbarSearchBtn').addEventListener('click', function() {
-  const query = prompt('请输入搜索关键词');
-  if(query) alert('即将搜索: ' + query);
-});
-
-// 分享功能
-document.getElementById('topbarShareBtn').addEventListener('click', function() {
-  if(navigator.share) {
-    navigator.share({
-      title: document.title,
-      url: window.location.href
-    }).catch(e => console.log('分享失败'));
-  } else {
-    alert('请手动分享此页面');
-  }
-});
-</script>
+<script src="/js/main.js"></script>
 </body>
 </html>
