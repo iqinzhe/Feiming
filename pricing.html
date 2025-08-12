@@ -422,9 +422,19 @@
   <div class="bottombar__label">返回顶部</div>
   <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
 </footer>
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // 汉堡菜单功能
+    const menuBtn = document.getElementById('topbarMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    
+    if(menuBtn && mobileNav) {
+        menuBtn.addEventListener('click', function() {
+            mobileNav.classList.toggle('mobile-nav--open');
+        });
+    }
+
+    // 原有的表格选择逻辑
     const tables = document.querySelectorAll('table');
     tables.forEach(table => {
         const rows = table.querySelectorAll('tr:not(:first-child)');
@@ -438,6 +448,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
+
     const form = document.getElementById('pricingForm');
     if(form) {
         form.addEventListener('submit', function(e) {
@@ -453,6 +464,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
 function updateTotalPrice() {
     let total = 0;
     document.querySelectorAll('tr.selected').forEach(row => {
@@ -461,8 +473,3 @@ function updateTotalPrice() {
     document.getElementById('summaryPrice').textContent = `¥${total}`;
 }
 </script>
-
-</body>
-</html>
-
-
