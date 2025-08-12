@@ -8,19 +8,17 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
   <link rel="manifest" href="/icons/manifest.json">
-  <link href="/style.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
 
   <style>
-    /* ===== 主内容区域调整 ===== */
+    /* 关于页面特有样式 */
     .page-content {
-      margin-top: 80px;  /* 增加顶部间距 */
+      margin-top: 80px;
       padding: 20px;
       color: #333;
       background-color: #f5f5f5;
-      min-height: calc(100vh - 160px); /* 确保内容高度 */
+      min-height: calc(100vh - 160px);
     }
-
-    /* ===== 关于页面特有样式 ===== */
     .about-section {
       max-width: 800px;
       margin: 0 auto;
@@ -29,59 +27,42 @@
       border-radius: 8px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
-    
     .about-section h1 {
       color: #1a237e;
       text-align: center;
       margin-bottom: 30px;
     }
-    
     .about-section p {
       line-height: 1.8;
       margin-bottom: 20px;
     }
-    
     .about-section ul {
       padding-left: 20px;
       margin-bottom: 30px;
     }
-    
-    .about-section li {
-      margin-bottom: 10px;
-      line-height: 1.6;
-    }
-    
     .contact-info {
       margin-top: 30px;
       padding-top: 20px;
       border-top: 1px solid #eee;
     }
-    
-    .contact-info p {
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
   </style>
 </head>
 
 <body>
-<!-- 标准顶部栏 -->
+<!-- 顶部栏 (与index.html保持一致) -->
 <header class="site-topbar">
   <div class="topbar__left">
     <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
   </div>
-  
   <div class="topbar__center">
     <a href="index.html">
       <img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
     </a>
   </div>
-  
   <div class="topbar__right">
     <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
     <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
   </div>
-  
   <nav class="mobile-nav" id="mobileNav" aria-label="主导航">
     <ul class="mobile-nav__list">
       <li><a href="index.html">首页</a></li>
@@ -94,12 +75,11 @@
   </nav>
 </header>
 
-<!-- 页面内容 -->
+<!-- 关于页面专属内容 -->
 <main class="page-content">
   <div class="about-section">
     <h1>关于AX斧标贝斯</h1>
     <p><strong>我们坚信：</strong>扎实的底子 + 丰富的经验 = 成就经典的声音与演奏体验。</p>
-    
     <ul>
       <li>传统技法与CNC加工中心结合，确保每把琴的精确度</li>
       <li>根据木材特色与弹奏者的体型精确调整琴体形状</li>
@@ -107,9 +87,6 @@
       <li>精选优质木材，每把琴都经过至少30道工序</li>
       <li>专业乐手参与调音，确保最佳音色表现</li>
     </ul>
-    
-    <p>AX品牌创立于2025年，由两位拥有20年乐器制造经验的创始人创立。我们致力于将传统制琴工艺与现代技术相结合，为贝斯手提供高品质、个性化的乐器。</p>
-    
     <div class="contact-info">
       <p><strong>创始人联系方式：</strong></p>
       <p><strong>中文飞哥 Tel：</strong>+86 15737603114</p>
@@ -119,35 +96,12 @@
   </div>
 </main>
 
-<!-- 标准底部栏 -->
+<!-- 底部栏 -->
 <footer class="site-bottombar" id="footerToTop">
   <div class="bottombar__label">返回顶部</div>
   <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
 </footer>
 
-<script>
-  // 增强型菜单控制
- <script>
-document.getElementById('topbarMenuBtn').addEventListener('click', function() {
-  document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
-});
-document.getElementById('footerToTop').addEventListener('click', function() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-document.getElementById('topbarSearchBtn').addEventListener('click', function() {
-  const q = prompt('请输入搜索关键词');
-  if(q) alert('搜索演示: ' + q);
-});
-document.getElementById('topbarShareBtn').addEventListener('click', function() {
-  try {
-    navigator.share?.({ 
-      title: 'AX斧标贝斯: ' + document.title,
-      url: location.href 
-    }) || alert('请手动分享此页面');
-  } catch(e) {
-    alert('分享出错: ' + e.message);
-  }
-});
-</script>
+<script src="/js/main.js"></script>
 </body>
 </html>
