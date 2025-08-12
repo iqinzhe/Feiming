@@ -8,7 +8,9 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
 <link rel="manifest" href="/icons/manifest.json">
+<link href="/css/style.css" rel="stylesheet">
 <style>
+
 :root {
   --neutral-gray: rgb(128, 128, 128);
   --glass-dark: rgba(0, 0, 0, 0.3);
@@ -24,79 +26,7 @@ body {
   margin: 0;
   padding-top: 60px;
 }
-/* 顶部栏 */
-.site-topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 5%;
-  background: var(--glass-dark);
-  backdrop-filter: blur(5px);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  box-sizing: border-box;
-}
-.topbar__left, .topbar__right {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-.topbar__center {
-  flex-grow: 1;
-  text-align: center;
-}
-.topbar__logo {
-  height: 30px;
-  width: auto;
-}
-.topbar__btn {
-  background: none;
-  border: none;
-  color: var(--text-white);
-  font-size: 22px;
-  cursor: pointer;
-  font-weight: bold;
-  line-height: 1;
-  padding: 6px;
-  border-radius: 4px;
-  transition: background 0.15s ease, transform 0.15s ease;
-}
-.topbar__btn:active {
-  background: rgba(255,255,255,0.1);
-  transform: scale(0.95);
-}
-/* 导航菜单 */
-.mobile-nav {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: var(--glass-dark);
-  backdrop-filter: blur(10px);
-  z-index: 90;
-  padding: 10px 0;
-}
-.mobile-nav.mobile-nav--open { display: block; }
-.mobile-nav__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.mobile-nav__list li {
-  padding: 14px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-.mobile-nav__list a {
-  color: #007BFF;
-  text-decoration: none;
-  display: block;
-  font-size: 18px;
-  font-weight: bold;
-}
+
 /* 内容 */
 .page-content {
   flex: 1;
@@ -128,32 +58,7 @@ body {
   height: auto;
   border-radius: 4px;
 }
-/* 底部栏 */
-.site-bottombar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px; /* 文字和logo间距 */
-  padding: 10px 15px;
-  cursor: pointer;
-}
-.bottombar__label {
-  font-weight: bold;
-  font-size: 15px;
-  line-height: 15px;
-}
-.bottombar__logo {
-  height: 25px;
-  width: auto;
-  filter: brightness(1) invert(0);
-}
-.site-bottombar:active {
-  background: rgba(100,100,1100,0.1);
-}
-.site-bottombar:active .bottombar__label,
-.site-bottombar:active .bottombar__logo {
-  transform: scale(0.95);
-}
+
 /* 响应式 */
 @media (min-width: 768px) {
   body { padding-top: 70px; }
