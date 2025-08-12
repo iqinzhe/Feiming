@@ -124,29 +124,30 @@
   <div class="bottombar__label">返回顶部</div>
   <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
 </footer>
-  
+
 <script>
   // 增强型菜单控制
-  document.addEventListener('DOMContentLoaded', function() {
-    // 汉堡菜单功能
-    const menuBtn = document.getElementById('topbarMenuBtn');
-    const mobileNav = document.getElementById('mobileNav');
-    
-    if(menuBtn && mobileNav) {
-      menuBtn.addEventListener('click', function() {
-        mobileNav.classList.toggle('mobile-nav--open');
-        console.log('菜单状态:', mobileNav.classList.contains('mobile-nav--open'));
-      });
-    }
-
-    // 返回顶部功能
-    const toTopBtn = document.getElementById('toTopBtn');
-    if(toTopBtn) {
-      toTopBtn.addEventListener('click', function() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    }
-  });
+ <script>
+document.getElementById('topbarMenuBtn').addEventListener('click', function() {
+  document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
+});
+document.getElementById('footerToTop').addEventListener('click', function() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+document.getElementById('topbarSearchBtn').addEventListener('click', function() {
+  const q = prompt('请输入搜索关键词');
+  if(q) alert('搜索演示: ' + q);
+});
+document.getElementById('topbarShareBtn').addEventListener('click', function() {
+  try {
+    navigator.share?.({ 
+      title: 'AX斧标贝斯: ' + document.title,
+      url: location.href 
+    }) || alert('请手动分享此页面');
+  } catch(e) {
+    alert('分享出错: ' + e.message);
+  }
+});
 </script>
 </body>
 </html>
