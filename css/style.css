@@ -1,11 +1,10 @@
-/* === AXGuitar 统一样式 === */
+/* ===== 全局样式 ===== */
 :root {
   --neutral-gray: rgb(128, 128, 128);
   --glass-dark: rgba(0, 0, 0, 0.3);
   --text-white: #fff;
 }
 
-/* ===== 通用 ===== */
 body {
   background: var(--neutral-gray);
   color: var(--text-white);
@@ -29,12 +28,11 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 1000;
   box-sizing: border-box;
 }
 
-.topbar__left, 
-.topbar__right {
+.topbar__left, .topbar__right {
   display: flex;
   align-items: center;
   gap: 15px;
@@ -48,6 +46,7 @@ body {
 .topbar__logo {
   height: 30px;
   width: auto;
+  transition: transform 0.2s;
 }
 
 .topbar__btn {
@@ -63,12 +62,11 @@ body {
   transition: all 0.15s ease;
 }
 
-.topbar__btn:active {
-  background: rgba(255, 255, 255, 0.1);
-  transform: scale(0.95);
+.topbar__btn:hover {
+  background: rgba(255,255,255,0.1);
 }
 
-/* ===== 导航菜单 ===== */
+/* ===== 移动导航 ===== */
 .mobile-nav {
   display: none;
   position: absolute;
@@ -77,12 +75,12 @@ body {
   width: 100%;
   background: var(--glass-dark);
   backdrop-filter: blur(10px);
-  z-index: 90;
+  z-index: 999;
   padding: 10px 0;
 }
 
-.mobile-nav.mobile-nav--open { 
-  display: block; 
+.mobile-nav.mobile-nav--open {
+  display: block;
 }
 
 .mobile-nav__list {
@@ -93,7 +91,7 @@ body {
 
 .mobile-nav__list li {
   padding: 14px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 .mobile-nav__list a {
@@ -102,116 +100,47 @@ body {
   display: block;
   font-size: 18px;
   font-weight: bold;
-  transition: color 0.2s ease;
+  transition: color 0.2s;
 }
 
 .mobile-nav__list a:hover {
   color: #0056b3;
 }
 
-/* ===== 页面内容 ===== */
-.page-content {
-  flex: 1;
-  padding: 20px 5%;
-  margin-top: 20px;
-}
-
-.hero {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.hero img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
-.products-overview {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-}
-
-.product-card {
-  background: rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  border-radius: 8px;
-  text-align: center;
-}
-
-.product-card img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 4px;
-}
-
-/* 底部栏 */
+/* ===== 底部栏 ===== */
 .site-bottombar {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px; /* 文字和logo间距 */
-  padding: 10px 15px;
+  gap: 10px;
+  padding: 12px 15px;
+  background: var(--glass-dark);
+  border-top: 1px solid rgba(255,255,255,0.1);
   cursor: pointer;
+  transition: background 0.2s;
 }
+
 .bottombar__label {
   font-weight: bold;
   font-size: 15px;
-  line-height: 15px;
 }
+
 .bottombar__logo {
   height: 25px;
   width: auto;
-  filter: brightness(1) invert(0);
+  opacity: 1;
+  visibility: visible;
 }
+
 .site-bottombar:active {
   background: rgba(255,255,255,0.1);
 }
-.site-bottombar:active .bottombar__label,
-.site-bottombar:active .bottombar__logo {
-  transform: scale(0.95);
-}
 
-.bottombar__logo {
-  height: 16px;
-  width: auto;
-  filter: brightness(1) invert(0);
-  transition: transform 0.15s ease;
-}
-
-.site-bottombar:active {
-  background: rgba(128, 128, 128, 0.1);
-}
-
-.site-bottombar:active .bottombar__label,
-.site-bottombar:active .bottombar__logo {
-  transform: scale(0.95);
-}
-
-/* ===== 响应式调整 ===== */
+/* ===== 响应式设计 ===== */
 @media (min-width: 768px) {
   body { padding-top: 70px; }
   .site-topbar { padding: 15px 8%; height: 60px; }
   .topbar__logo { height: 35px; }
   .page-content { padding: 30px 8%; }
   .bottombar__logo { height: 18px; }
-}
-/* 强制移动导航显示优先级 */
-.mobile-nav {
-  display: none;
-  /* 其他原有样式... */
-}
-
-.mobile-nav--open,
-.mobile-nav.mobile-nav--open {
-  display: block !important;
-}
-
-/* 修复z-index冲突 */
-.site-topbar {
-  z-index: 1000; /* 高于其他元素 */
-}
-.mobile-nav {
-  z-index: 999;
 }
