@@ -1,222 +1,54 @@
-/* ========== 基础通用设置 ========== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  background-color: #f9f9f9;
-  color: #333;
-  padding-top: 60px; /* NEW: 为固定顶部栏预留空间 */
+/* === AXGuitar 统一样式 === */
+
+:root {
+  --neutral-gray: rgb(128, 128, 128);
+  --glass-dark: rgba(0, 0, 0, 0.3);
+  --text-white: #fff;
 }
 
-/* ========== 新版顶部栏（替换旧.header）========== */ /* NEW */
+/* ===== 通用 ===== */
+body {
+  background: var(--neutral-gray);
+  color: var(--text-white);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding-top: 60px;
+}
+
+/* ===== 顶部栏 ===== */
 .site-topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 12px 5%;
-  background: rgba(0, 0, 0, 0.9); /* 加深背景增强可读性 */
+  background: var(--glass-dark);
   backdrop-filter: blur(5px);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  z-index: 100;
+  box-sizing: border-box;
 }
+
 .topbar__left, .topbar__right {
   display: flex;
   align-items: center;
   gap: 15px;
 }
+
 .topbar__center {
   flex-grow: 1;
   text-align: center;
 }
+
 .topbar__logo {
   height: 30px;
   width: auto;
-  transition: opacity 0.3s;
 }
-.topbar__logo:hover {
-  opacity: 0.8;
-}
-.topbar__btn {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 20px;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-.topbar__btn:hover {
-  color: #f39c12; /* 与现有hover色一致 */
-}
-
-/* ========== 新版底部栏（替换旧.footer）========== */ /* NEW */
-.site-bottombar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px 15px;
-  background: #222; /* 与原footer背景一致 */
-  border-top: 1px solid rgba(255,255,255,0.1);
-  gap: 8px;
-  color: #ccc; /* 与原footer文字色一致 */
-}
-.bottombar__top {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-.bottombar__to-top {
-  background: none;
-  border: none;
-  color: #f39c12; /* 使用主题色 */
-  font-size: 22px;
-  cursor: pointer;
-  transition: transform 0.3s;
-}
-.bottombar__to-top:hover {
-  transform: translateY(-3px);
-}
-.bottombar__label {
-  font-weight: bold;
-  color: #fff;
-}
-.bottombar__logo {
-  height: 25px;
-  width: auto;
-  filter: brightness(0) invert(1);
-  opacity: 0.8;
-}
-
-/* ========== 兼容性调整 ========== */ /* NEW */
-/* 保留旧导航栏样式但降低优先级 */
-.header {
-  display: none !important; /* 隐藏旧导航栏 */
-}
-/* 确保新版不影响原有内容 */
-main {
-  min-height: calc(100vh - 120px); /* 留出顶部底部空间 */
-}
-
-/* ========== 原文件内容保留（无需修改）========== */
-.hero { ... }
-.products-overview { ... }
-/* 其他所有原有样式保持不变... */
-
-/* ========== 响应式设计 ========== */
-@media (max-width: 768px) {
-  /* 新版顶部栏调整 */
-  .site-topbar {
-    padding: 10px 3%;
-  }
-  .topbar__logo {
-    height: 25px;
-  }
-  
-  /* 原响应式样式保留... */
-}
-
-@media (min-width: 768px) {
-  .site-topbar {
-    padding: 15px 8%;
-  }
-  .topbar__logo {
-    height: 35px;
-  }
-}
-/* ===== Twisted Neck Page Styles ===== */
-.tn-hero {
-    position: relative;
-    background: url('images/hero-twisted-neck.jpg') center/cover no-repeat;
-    height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-}
-.tn-overlay {
-    text-align: center;
-    background: rgba(0,0,0,0.5);
-    padding: 2rem;
-    border-radius: 10px;
-}
-.tn-buttons a {
-    display: inline-block;
-    margin: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    border-radius: 5px;
-    text-decoration: none;
-}
-.btn-primary {
-    background: #ffcc00;
-    color: #000;
-    font-weight: bold;
-}
-.btn-secondary {
-    background: transparent;
-    border: 2px solid #fff;
-    color: #fff;
-}
-.tn-section {
-    padding: 4rem 2rem;
-    text-align: center;
-}
-.tn-content {
-    max-width: 900px;
-    margin: auto;
-}
-.tn-content img {
-    max-width: 100%;
-    margin-bottom: 1rem;
-}
-.tn-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    margin-top: 2rem;
-}
-.tn-card {
-    background: #f7f7f7;
-    padding: 1.5rem;
-    border-radius: 8px;
-}
-.tn-compare {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-}
-.tn-compare img {
-    max-width: 45%;
-    border: 3px solid #ddd;
-    border-radius: 8px;
-}
-.tn-video video {
-    border-radius: 8px;
-}
-.tn-cta {
-    background: #111;
-    color: #fff;
-}
-.tn-cta a {
-    margin: 0.5rem;
-}
-@media (max-width: 768px) {
-    .tn-hero {
-        height: 60vh;
-    }
-    .tn-compare img {
-        max-width: 100%;
-    }
-}
-/* === AXGuitar 顶部栏 & 底部栏交互增强样式 === */
 
 /* 顶部栏按钮点击动画 */
 .topbar__btn {
@@ -227,6 +59,8 @@ main {
   line-height: 1;
   padding: 6px;
   border-radius: 4px;
+  color: var(--text-white);
+  cursor: pointer;
   transition: background 0.15s ease, transform 0.15s ease;
 }
 .topbar__btn:active {
@@ -234,12 +68,77 @@ main {
   transform: scale(0.95);
 }
 
-/* 底部栏布局改为“返回顶部 + logo” */
+/* ===== 移动端导航 ===== */
+.mobile-nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--glass-dark);
+  backdrop-filter: blur(10px);
+  z-index: 90;
+  padding: 10px 0;
+}
+.mobile-nav.mobile-nav--open { display: block; }
+
+.mobile-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.mobile-nav__list li {
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.mobile-nav__list a {
+  color: #007BFF;
+  text-decoration: none;
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* ===== 页面内容 ===== */
+.page-content {
+  flex: 1;
+  padding: 20px 5%;
+  margin-top: 20px;
+}
+.hero {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.hero img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.products-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+.product-card {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+.product-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* ===== 底部栏 ===== */
 .site-bottombar {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px 15px;
+  background: var(--glass-dark);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   cursor: pointer;
   transition: background 0.15s ease;
 }
@@ -256,10 +155,17 @@ main {
   transition: transform 0.15s ease;
 }
 .site-bottombar:active {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
 }
 .site-bottombar:active .bottombar__label,
 .site-bottombar:active .bottombar__logo {
   transform: scale(0.95);
 }
 
+/* ===== 响应式调整 ===== */
+@media (min-width: 768px) {
+  body { padding-top: 70px; }
+  .site-topbar { padding: 15px 8%; height: 60px; }
+  .topbar__logo { height: 35px; }
+  .page-content { padding: 30px 8%; }
+}
