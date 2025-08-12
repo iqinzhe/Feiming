@@ -63,6 +63,7 @@ body {
   width: auto;
 }
 
+/* 按钮基础样式 + 点击动画 */
 .topbar__btn {
   background: none;
   border: none;
@@ -71,6 +72,14 @@ body {
   cursor: pointer;
   font-weight: bold;
   line-height: 1;
+  padding: 6px;
+  border-radius: 4px;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.topbar__btn:active {
+  background: rgba(255,255,255,0.1);
+  transform: scale(0.95);
 }
 
 /* ===== 导航菜单标准样式 ===== */
@@ -146,7 +155,7 @@ body {
   border-radius: 4px;
 }
 
-/* ===== 底部栏标准样式（修改后） ===== */
+/* ===== 底部栏标准样式（最终修改 + 点击动画） ===== */
 .site-bottombar {
   display: flex;
   justify-content: center;
@@ -154,12 +163,14 @@ body {
   padding: 10px 15px;
   background: var(--glass-dark);
   border-top: 1px solid rgba(255,255,255,0.1);
-  cursor: pointer; /* 整个底栏可点击 */
+  cursor: pointer;
+  transition: background 0.15s ease;
 }
 
 .bottombar__label {
   font-weight: bold;
   font-size: 14px;
+  transition: transform 0.15s ease;
 }
 
 .bottombar__logo {
@@ -167,6 +178,16 @@ body {
   width: auto;
   filter: brightness(0) invert(1);
   margin-left: 8px;
+  transition: transform 0.15s ease;
+}
+
+.site-bottombar:active {
+  background: rgba(255,255,255,0.1);
+}
+
+.site-bottombar:active .bottombar__label,
+.site-bottombar:active .bottombar__logo {
+  transform: scale(0.95);
 }
 
 /* ===== 响应式设计 ===== */
