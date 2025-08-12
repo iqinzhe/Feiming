@@ -68,7 +68,7 @@ body {
   transform: scale(0.95);
 }
 
-/* ===== 移动端导航 ===== */
+/* ===== 导航菜单 ===== */
 .mobile-nav {
   display: none;
   position: absolute;
@@ -102,6 +102,11 @@ body {
   display: block;
   font-size: 18px;
   font-weight: bold;
+  transition: color 0.2s ease;
+}
+
+.mobile-nav__list a:hover {
+  color: #0056b3;
 }
 
 /* ===== 页面内容 ===== */
@@ -179,24 +184,9 @@ body {
 
 /* ===== 响应式调整 ===== */
 @media (min-width: 768px) {
-  body { 
-    padding-top: 70px; 
-  }
-  
-  .site-topbar { 
-    padding: 15px 8%; 
-    height: 60px; 
-  }
-  
-  .topbar__logo { 
-    height: 35px; 
-  }
-  
-  .page-content { 
-    padding: 30px 8%; 
-  }
-  
-  .bottombar__logo {
-    height: 18px;
-  }
+  body { padding-top: 70px; }
+  .site-topbar { padding: 15px 8%; height: 60px; }
+  .topbar__logo { height: 35px; }
+  .page-content { padding: 30px 8%; }
+  .bottombar__logo { height: 18px; }
 }
