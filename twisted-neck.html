@@ -29,82 +29,6 @@ body {
   padding-top: 60px; /* 为固定顶部栏留出空间 */
 }
 
-/* ===== 顶部栏标准样式 ===== */
-.site-topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 5%;
-  background: var(--glass-dark);
-  backdrop-filter: blur(5px);
-  position: fixed; /* 改为固定定位 */
-  top: 0; /* 固定在顶部 */
-  left: 0; /* 对齐左侧 */
-  right: 0; /* 对齐右侧 */
-  z-index: 100;
-  box-sizing: border-box; /* 确保padding不影响宽度计算 */
-  margin: 0; /* 移除默认边距 */
-}
-
-.topbar__left, 
-.topbar__right {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.topbar__center {
-  flex-grow: 1;
-  text-align: center;
-}
-
-.topbar__logo {
-  height: 30px;
-  width: auto;
-}
-
-.topbar__btn {
-  background: none;
-  border: none;
-  color: var(--text-white);
-  font-size: 20px;
-  cursor: pointer;
-}
-
-/* ===== 导航菜单标准样式 ===== */
-.mobile-nav {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: var(--glass-dark);
-  backdrop-filter: blur(10px);
-  z-index: 90;
-  padding: 10px 0;
-}
-
-.mobile-nav.mobile-nav--open {
-  display: block;
-}
-
-.mobile-nav__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.mobile-nav__list li {
-  padding: 12px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-.mobile-nav__list a {
-  color: var(--text-white);
-  text-decoration: none;
-  display: block;
-}
-
 /* ===== 内容区样式 ===== */
 .page-content {
   flex: 1;
@@ -140,48 +64,6 @@ body {
   max-width: 100%;
   height: auto;
   border-radius: 4px;
-}
-
-/* ===== 底部栏标准样式 ===== */
-.site-bottombar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px 15px;
-  background: var(--glass-dark);
-  border-top: 1px solid rgba(255,255,255,0.1);
-  gap: 8px;
-}
-
-.bottombar__top {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.bottombar__to-top {
-  order: 1;
-  background: none;
-  border: none;
-  color: var(--text-white);
-  font-size: 22px;
-  cursor: pointer;
-}
-
-.bottombar__label {
-  order: 2;
-  font-weight: bold;
-}
-
-.bottombar__logo-wrap {
-  order: 3;
-}
-
-.bottombar__logo {
-  height: 25px;
-  width: auto;
-  filter: brightness(0) invert(1);
 }
 
 /* ===== 响应式设计 ===== */
@@ -298,47 +180,12 @@ body {
 <a class="btn-primary" href="/contact">Contact Us</a>
 <a class="btn-secondary" href="/dealers">Find a Dealer</a>
 
-<!-- 标准底部栏 -->
-<footer class="site-bottombar">
-<div class="bottombar__top">
-<button aria-label="返回顶部" class="bottombar__to-top" 
-id="toTopBtn">▲</button>
-<div class="bottombar__label">返回顶部</div>
-<div class="bottombar__logo-wrap">
-<img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/><height:15px;"/>
-</div></footer>
+<!-- 底部栏 -->
+<footer class="site-bottombar" id="footerToTop">
+  <div class="bottombar__label">返回顶部</div>
+  <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
+</footer>
 
-                                                                              
-<script>
-<!-- 标准交互脚本 -->
-
-// 菜单控制
-document.getElementById('topbarMenuBtn').addEventListener('click', function() {
-  document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
-});
-
-// 返回顶部
-document.getElementById('toTopBtn').addEventListener('click', function() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-// 搜索功能
-document.getElementById('topbarSearchBtn').addEventListener('click', function() {
-  const q = prompt('请输入搜索关键词');
-  if(q) alert('搜索演示: ' + q);
-});
-
-// 分享功能
-document.getElementById('topbarShareBtn').addEventListener('click', function() {
-  try {
-    navigator.share?.({ 
-      title: 'AX斧标贝斯: ' + document.title,
-      url: location.href 
-    }) || alert('请手动分享此页面');
-  } catch(e) {
-    alert('分享出错: ' + e.message);
-  }
-});
-</script>
+<script src="/js/main.js"></script>
 </body>
 </html>
