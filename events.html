@@ -11,81 +11,7 @@
 
   <link href="../css/style.css" rel="stylesheet"/>
   <style>
-    /* ===== 标准顶部栏样式 ===== */
-    .site-topbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px;
-      background-color: rgba(0,0,0,0.8);
-      z-index: 1000;
-    }
-
-    .topbar__center {
-      flex: 1;
-      text-align: center;
-    }
-
-    .topbar__logo {
-      height: 30px;
-    }
-
-    .mobile-nav {
-      display: none;
-      position: fixed;
-      top: 60px;
-      left: 0;
-      right: 0;
-      background-color: rgba(0,0,0,0.9);
-      padding: 20px;
-    }
-
-    .mobile-nav--open {
-      display: block;
-    }
-
-    /* ===== 标准底部栏样式 ===== */
-    .site-bottombar {
-      background-color: rgba(0,0,0,0.8);
-      padding: 20px 0;
-      text-align: center;
-    }
-
-    .bottombar__logo {
-      height: 20px;
-      display: block;
-      margin: 0 auto 10px;
-    }
-
-    .bottombar__to-top {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 20px;
-      display: block;
-      margin: 0 auto;
-      padding: 0;
-      cursor: pointer;
-    }
-
-    .bottombar__label {
-      color: white;
-      font-size: 12px;
-      margin-top: 10px;
-      display: block;
-    }
-
-    /* ===== 主内容区域调整 ===== */
-    .page-content {
-      margin-top: 60px;
-      padding: 20px;
-      background-color: rgba(0,0,0,0.2);
-      min-height: calc(100vh - 160px);
-    }
+    
 
     /* ===== 时间轴特有样式 ===== */
     .timeline-header {
@@ -249,25 +175,12 @@
   </div>
 </main>
 
-<!-- 标准底部栏 -->
-<footer class="site-bottombar">
-  <button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
-  <div class="bottombar__label">返回顶部
-  <div class="bottombar__logo-wrap">
-<img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/><height:15px;"/>
- 
+<!-- 底部栏 -->
+<footer class="site-bottombar" id="footerToTop">
+  <div class="bottombar__label">返回顶部</div>
+  <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
 </footer>
 
-<script>
-  // 菜单控制
-  document.getElementById('topbarMenuBtn').addEventListener('click', function() {
-    document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
-  });
-
-  // 返回顶部
-  document.getElementById('toTopBtn').addEventListener('click', function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-</script>
+<script src="/js/main.js"></script>
 </body>
 </html>
