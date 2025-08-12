@@ -1,5 +1,4 @@
 /* === AXGuitar 统一样式 === */
-
 :root {
   --neutral-gray: rgb(128, 128, 128);
   --glass-dark: rgba(0, 0, 0, 0.3);
@@ -34,7 +33,8 @@ body {
   box-sizing: border-box;
 }
 
-.topbar__left, .topbar__right {
+.topbar__left, 
+.topbar__right {
   display: flex;
   align-items: center;
   gap: 15px;
@@ -50,7 +50,6 @@ body {
   width: auto;
 }
 
-/* 顶部栏按钮点击动画 */
 .topbar__btn {
   background: none;
   border: none;
@@ -61,8 +60,9 @@ body {
   border-radius: 4px;
   color: var(--text-white);
   cursor: pointer;
-  transition: background 0.15s ease, transform 0.15s ease;
+  transition: all 0.15s ease;
 }
+
 .topbar__btn:active {
   background: rgba(255, 255, 255, 0.1);
   transform: scale(0.95);
@@ -80,17 +80,22 @@ body {
   z-index: 90;
   padding: 10px 0;
 }
-.mobile-nav.mobile-nav--open { display: block; }
+
+.mobile-nav.mobile-nav--open { 
+  display: block; 
+}
 
 .mobile-nav__list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
+
 .mobile-nav__list li {
   padding: 14px 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 .mobile-nav__list a {
   color: #007BFF;
   text-decoration: none;
@@ -105,26 +110,31 @@ body {
   padding: 20px 5%;
   margin-top: 20px;
 }
+
 .hero {
   text-align: center;
   margin-bottom: 40px;
 }
+
 .hero img {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
 }
+
 .products-overview {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
 }
+
 .product-card {
   background: rgba(0, 0, 0, 0.2);
   padding: 20px;
   border-radius: 8px;
   text-align: center;
 }
+
 .product-card img {
   max-width: 100%;
   height: auto;
@@ -136,27 +146,32 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 15px;
+  gap: 10px;
+  padding: 12px 15px;
   background: var(--glass-dark);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   cursor: pointer;
-  transition: background 0.15s ease;
+  transition: all 0.2s ease;
 }
+
 .bottombar__label {
   font-weight: bold;
-  font-size: 14px;
+  font-size: 15px;
+  line-height: 1;
   transition: transform 0.15s ease;
 }
+
 .bottombar__logo {
-  height: 14px;
+  height: 16px;
   width: auto;
   filter: brightness(0) invert(1);
-  margin-left: 8px;
   transition: transform 0.15s ease;
 }
+
 .site-bottombar:active {
   background: rgba(255, 255, 255, 0.1);
 }
+
 .site-bottombar:active .bottombar__label,
 .site-bottombar:active .bottombar__logo {
   transform: scale(0.95);
@@ -164,8 +179,24 @@ body {
 
 /* ===== 响应式调整 ===== */
 @media (min-width: 768px) {
-  body { padding-top: 70px; }
-  .site-topbar { padding: 15px 8%; height: 60px; }
-  .topbar__logo { height: 35px; }
-  .page-content { padding: 30px 8%; }
+  body { 
+    padding-top: 70px; 
+  }
+  
+  .site-topbar { 
+    padding: 15px 8%; 
+    height: 60px; 
+  }
+  
+  .topbar__logo { 
+    height: 35px; 
+  }
+  
+  .page-content { 
+    padding: 30px 8%; 
+  }
+  
+  .bottombar__logo {
+    height: 18px;
+  }
 }
