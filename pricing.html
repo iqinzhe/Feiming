@@ -11,6 +11,16 @@
   <link href="/css/style.css" rel="stylesheet">
     <style>
 
+    /* 添加表格高亮样式 */
+    tr {
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+    
+    tr.selected {
+        background-color: #d4edff !important;
+    }
+
         /* 全局样式  */
         body {
             font-family: Arial, sans-serif;
@@ -113,28 +123,18 @@
             background-color: #f2f2f2;
             border-radius: 4px;
         }
-        
-        .summary {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #f8f8f8;
-            border-radius: 4px;
-            font-size: 1.2em;
-        }
-        
-        .summary-label {
-            font-weight: bold;
-        }
-        
-        .summary-value {
-            font-weight: bold;
-            color: #e74c3c;
-        }
-        
-   
+            /* 修正总价显示样式 */
+    .summary {
+        position: sticky;
+        bottom: 20px;
+        background-color: #333;
+        color: white;
+        padding: 15px;
+        border-radius: 4px;
+        z-index: 100;
+    }
+       
+  
         /* 响应式样式*/
         @media (min-width: 768px) {
             .model-card {
@@ -713,48 +713,6 @@
 <script>
     // JavaScript功能 
     document.addEventListener('DOMContentLoaded', function() {
-        // 菜单功能
-        const menuBtn = document.getElementById('topbarMenuBtn');
-        const mobileNav = document.getElementById('mobileNav');
-        
-        if(menuBtn && mobileNav) {
-            menuBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                mobileNav.classList.toggle('mobile-nav--open');
-            });
-            
-            document.addEventListener('click', function(e) {
-                if(mobileNav.classList.contains('mobile-nav--open') && 
-                   !mobileNav.contains(e.target) && 
-                   e.target !== menuBtn) {
-                    mobileNav.classList.remove('mobile-nav--open');
-                }
-            });
-        }
-
-        // 返回顶部
-        document.getElementById('toTopBtn').addEventListener('click', function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // 搜索功能
-        document.getElementById('topbarSearchBtn').addEventListener('click', function() {
-            const query = prompt('请输入搜索关键词');
-            if(query) alert('即将搜索: ' + query);
-        });
-
-        // 分享功能
-        document.getElementById('topbarShareBtn').addEventListener('click', function() {
-            if(navigator.share) {
-                navigator.share({
-                    title: document.title,
-                    url: window.location.href
-                }).catch(e => console.log('分享失败'));
-            } else {
-                alert('请手动分享此页面');
-            }
-        });
-
         // 价格选择功能
         const tables = document.querySelectorAll('table');
         
