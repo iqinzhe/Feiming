@@ -69,7 +69,7 @@ body {
   color: var(--text-white);
   font-size: 22px;
   cursor: pointer;
-  font-weight: bold; /* 加粗图标 */
+  font-weight: bold;
   line-height: 1;
 }
 
@@ -102,10 +102,10 @@ body {
 }
 
 .mobile-nav__list a {
-  color: #007BFF; /* 蓝色链接 */
+  color: #007BFF;
   text-decoration: none;
   display: block;
-  font-size: 18px; /* 放大字体 */
+  font-size: 18px;
   font-weight: bold;
 }
 
@@ -151,26 +151,16 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px 15px; /* 减少高度 */
+  padding: 10px 15px;
   background: var(--glass-dark);
   border-top: 1px solid rgba(255,255,255,0.1);
-  gap: 5px;
 }
 
 .bottombar__top {
   display: flex;
-  flex-direction: row; /* 横向排列 */
+  flex-direction: row;
   align-items: center;
-  gap: 10px;
-}
-
-.bottombar__to-top {
-  background: none;
-  border: none;
-  color: var(--text-white);
-  font-size: 20px;
-  cursor: pointer;
-  font-weight: bold; /* 厚实的箭头 */
+  gap: 8px;
 }
 
 .bottombar__label {
@@ -178,15 +168,11 @@ body {
   font-size: 14px;
 }
 
-.bottombar__logo-wrap {
-  display: flex;
-  align-items: center;
-}
-
 .bottombar__logo {
-  height: 20px;
+  height: 14px;
   width: auto;
   filter: brightness(0) invert(1);
+  cursor: pointer;
 }
 
 /* ===== 响应式设计 ===== */
@@ -259,13 +245,9 @@ body {
 
 <!-- 标准底部栏 -->
 <footer class="site-bottombar">
-<div class="bottombar__top">
-<button aria-label="返回顶部" class="bottombar__to-top" 
-id="toTopBtn">▲</button>
-<div class="bottombar__label">返回顶部
-<div class="bottombar__logo-wrap">
-<img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/><height:12px;"/>
-    </div>
+  <div class="bottombar__top">
+    <div class="bottombar__label">返回顶部</div>
+    <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo" id="toTopLogo"/>
   </div>
 </footer>
 
@@ -275,8 +257,8 @@ document.getElementById('topbarMenuBtn').addEventListener('click', function() {
   document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
 });
 
-// 返回顶部
-document.getElementById('toTopBtn').addEventListener('click', function() {
+// 点击 logo 返回顶部
+document.getElementById('toTopLogo').addEventListener('click', function() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
