@@ -4,19 +4,20 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>关于我们 | AX斧标贝斯</title>
-<link rel="stylesheet" href="style.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-<link rel="manifest" href="/icons/manifest.json">
-  
-   
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+  <link rel="manifest" href="/icons/manifest.json">
+  <link href="/style.css" rel="stylesheet">
+
+  <style>
     /* ===== 主内容区域调整 ===== */
     .page-content {
-      margin-top: 60px;
+      margin-top: 80px;  /* 增加顶部间距 */
       padding: 20px;
       color: #333;
       background-color: #f5f5f5;
+      min-height: calc(100vh - 160px); /* 确保内容高度 */
     }
 
     /* ===== 关于页面特有样式 ===== */
@@ -81,7 +82,7 @@
     <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
   </div>
   
-  <nav class="mobile-nav" id="mobileNav">="主导航">
+  <nav class="mobile-nav" id="mobileNav" aria-label="主导航">
     <ul class="mobile-nav__list">
       <li><a href="index.html">首页</a></li>
       <li><a href="instruments.html">产品</a></li>
@@ -123,21 +124,31 @@
   <div class="bottombar__top">
     <button aria-label="返回顶部" class="bottombar__to-top" id="toTopBtn">▲</button>
     <div class="bottombar__label">返回顶部</div>
-    <div class="bottombar__logo-wrap">
-      <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
-    </div>
+    <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
   </div>
 </footer>
 
 <script>
-  // 菜单控制
-  document.getElementById('topbarMenuBtn').addEventListener('click', function() {
-    document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
-  });
+  // 增强型菜单控制
+  document.addEventListener('DOMContentLoaded', function() {
+    // 汉堡菜单功能
+    const menuBtn = document.getElementById('topbarMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    
+    if(menuBtn && mobileNav) {
+      menuBtn.addEventListener('click', function() {
+        mobileNav.classList.toggle('mobile-nav--open');
+        console.log('菜单状态:', mobileNav.classList.contains('mobile-nav--open'));
+      });
+    }
 
-  // 返回顶部
-  document.getElementById('toTopBtn').addEventListener('click', function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // 返回顶部功能
+    const toTopBtn = document.getElementById('toTopBtn');
+    if(toTopBtn) {
+      toTopBtn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
   });
 </script>
 </body>
