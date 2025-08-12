@@ -190,3 +190,21 @@ body {
   .page-content { padding: 30px 8%; }
   .bottombar__logo { height: 18px; }
 }
+/* 强制移动导航显示优先级 */
+.mobile-nav {
+  display: none;
+  /* 其他原有样式... */
+}
+
+.mobile-nav--open,
+.mobile-nav.mobile-nav--open {
+  display: block !important;
+}
+
+/* 修复z-index冲突 */
+.site-topbar {
+  z-index: 1000; /* 高于其他元素 */
+}
+.mobile-nav {
+  z-index: 999;
+}
