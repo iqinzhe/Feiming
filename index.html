@@ -11,13 +11,11 @@
 
 <link href="css/style.css" rel="stylesheet"/>
 <style>
-/* ===== 全局标准样式 ===== */
 :root {
   --neutral-gray: rgb(128, 128, 128);
   --glass-dark: rgba(0, 0, 0, 0.3);
   --text-white: #fff;
 }
-
 body {
   background: var(--neutral-gray);
   color: var(--text-white);
@@ -28,8 +26,6 @@ body {
   margin: 0;
   padding-top: 60px;
 }
-
-/* ===== 顶部栏标准样式 ===== */
 .site-topbar {
   display: flex;
   justify-content: space-between;
@@ -45,25 +41,19 @@ body {
   box-sizing: border-box;
   margin: 0;
 }
-
-.topbar__left, 
-.topbar__right {
+.topbar__left, .topbar__right {
   display: flex;
   align-items: center;
   gap: 15px;
 }
-
 .topbar__center {
   flex-grow: 1;
   text-align: center;
 }
-
 .topbar__logo {
   height: 30px;
   width: auto;
 }
-
-/* 按钮基础样式 + 点击动画 */
 .topbar__btn {
   background: none;
   border: none;
@@ -76,13 +66,10 @@ body {
   border-radius: 4px;
   transition: background 0.15s ease, transform 0.15s ease;
 }
-
 .topbar__btn:active {
   background: rgba(255,255,255,0.1);
   transform: scale(0.95);
 }
-
-/* ===== 导航菜单标准样式 ===== */
 .mobile-nav {
   display: none;
   position: absolute;
@@ -94,22 +81,18 @@ body {
   z-index: 90;
   padding: 10px 0;
 }
-
 .mobile-nav.mobile-nav--open {
   display: block;
 }
-
 .mobile-nav__list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-
 .mobile-nav__list li {
   padding: 14px 20px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
 }
-
 .mobile-nav__list a {
   color: #007BFF;
   text-decoration: none;
@@ -117,45 +100,36 @@ body {
   font-size: 18px;
   font-weight: bold;
 }
-
-/* ===== 内容区样式 ===== */
 .page-content {
   flex: 1;
   padding: 20px 5%;
   margin-top: 20px;
 }
-
 .hero {
   text-align: center;
   margin-bottom: 40px;
 }
-
 .hero img {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
 }
-
 .products-overview {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
 }
-
 .product-card {
   background: rgba(0,0,0,0.2);
   padding: 20px;
   border-radius: 8px;
   text-align: center;
 }
-
 .product-card img {
   max-width: 100%;
   height: auto;
   border-radius: 4px;
 }
-
-/* ===== 底部栏标准样式（最终修改 + 点击动画） ===== */
 .site-bottombar {
   display: flex;
   justify-content: center;
@@ -166,13 +140,11 @@ body {
   cursor: pointer;
   transition: background 0.15s ease;
 }
-
 .bottombar__label {
   font-weight: bold;
   font-size: 14px;
   transition: transform 0.15s ease;
 }
-
 .bottombar__logo {
   height: 14px;
   width: auto;
@@ -180,54 +152,33 @@ body {
   margin-left: 8px;
   transition: transform 0.15s ease;
 }
-
 .site-bottombar:active {
   background: rgba(255,255,255,0.1);
 }
-
 .site-bottombar:active .bottombar__label,
 .site-bottombar:active .bottombar__logo {
   transform: scale(0.95);
 }
-
-/* ===== 响应式设计 ===== */
 @media (min-width: 768px) {
-  body {
-    padding-top: 70px;
-  }
-  .site-topbar {
-    padding: 15px 8%;
-    height: 60px;
-  }
-  .topbar__logo {
-    height: 35px;
-  }
-  .page-content {
-    padding: 30px 8%;
-  }
+  body { padding-top: 70px; }
+  .site-topbar { padding: 15px 8%; height: 60px; }
+  .topbar__logo { height: 35px; }
+  .page-content { padding: 30px 8%; }
 }
 </style>
 </head>
-
 <body>
-<!-- 标准顶部栏 -->
 <header class="site-topbar">
   <div class="topbar__left">
     <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
   </div>
-  
   <div class="topbar__center">
-    <a href="index.html">
-      <img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
-    </a>
+    <a href="index.html"><img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/></a>
   </div>
-  
   <div class="topbar__right">
     <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
     <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
   </div>
-  
-  <!-- 标准导航菜单 -->
   <nav class="mobile-nav" id="mobileNav" aria-label="主导航">
     <ul class="mobile-nav__list">
       <li><a href="index.html">首页</a></li>
@@ -239,15 +190,12 @@ body {
     </ul>
   </nav>
 </header>
-
-<!-- 页面专属内容 -->
 <main class="page-content">
   <section class="hero">
     <img src="images/D2.jpg" alt="AX Bass展示图"/>
     <h1>AX斧标贝斯</h1>
     <p>AX品牌创始人，先10年就职于国内知名OEM吉他代工厂技术开发，再10年就职于海外某吉他品牌公司从事吉他生产工艺和产品设计，20年的经验技术累积，量变引起质变，最终促成AX品牌的诞生。</p>
   </section>
-
   <section class="products-overview">
     <div class="product-card">
       <img src="images/D1.jpg" alt="Model D 贝斯"/>
@@ -257,31 +205,21 @@ body {
     </div>
   </section>
 </main>
-
-<!-- 修改后的底部栏 -->
 <footer class="site-bottombar" id="footerToTop">
   <div class="bottombar__label">返回顶部</div>
   <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
 </footer>
-
 <script>
-// 菜单控制
 document.getElementById('topbarMenuBtn').addEventListener('click', function() {
   document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
 });
-
-// 点击底部栏返回顶部
 document.getElementById('footerToTop').addEventListener('click', function() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
-
-// 搜索功能
 document.getElementById('topbarSearchBtn').addEventListener('click', function() {
   const q = prompt('请输入搜索关键词');
   if(q) alert('搜索演示: ' + q);
 });
-
-// 分享功能
 document.getElementById('topbarShareBtn').addEventListener('click', function() {
   try {
     navigator.share?.({ 
