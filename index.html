@@ -146,21 +146,15 @@ body {
   border-radius: 4px;
 }
 
-/* ===== 底部栏标准样式 ===== */
+/* ===== 底部栏标准样式（修改后） ===== */
 .site-bottombar {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
   padding: 10px 15px;
   background: var(--glass-dark);
   border-top: 1px solid rgba(255,255,255,0.1);
-}
-
-.bottombar__top {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
+  cursor: pointer; /* 整个底栏可点击 */
 }
 
 .bottombar__label {
@@ -172,7 +166,7 @@ body {
   height: 14px;
   width: auto;
   filter: brightness(0) invert(1);
-  cursor: pointer;
+  margin-left: 8px;
 }
 
 /* ===== 响应式设计 ===== */
@@ -243,12 +237,10 @@ body {
   </section>
 </main>
 
-<!-- 标准底部栏 -->
-<footer class="site-bottombar">
-  <div class="bottombar__top">
-    <div class="bottombar__label">返回顶部</div>
-<img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
-  </div>
+<!-- 修改后的底部栏 -->
+<footer class="site-bottombar" id="footerToTop">
+  <div class="bottombar__label">返回顶部</div>
+  <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
 </footer>
 
 <script>
@@ -257,8 +249,8 @@ document.getElementById('topbarMenuBtn').addEventListener('click', function() {
   document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
 });
 
-// 点击 logo 返回顶部
-document.getElementById('toTopLogo').addEventListener('click', function() {
+// 点击底部栏返回顶部
+document.getElementById('footerToTop').addEventListener('click', function() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
@@ -282,8 +274,3 @@ document.getElementById('topbarShareBtn').addEventListener('click', function() {
 </script>
 </body>
 </html>
-
-
-
-
-
