@@ -9,9 +9,9 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
   <link rel="manifest" href="/icons/manifest.json">
-  <!-- Styles -->
-  <link href="/css/style.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet"/>
   <style>
+
     :root {
       --neutral-gray: rgb(128, 128, 128);
       --glass-dark: rgba(0, 0, 0, 0.3);
@@ -30,6 +30,33 @@
     }
 
 
+    /* Mobile Nav */
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: var(--glass-dark);
+      backdrop-filter: blur(10px);
+      z-index: 90;
+      padding: 10px 0;
+    }
+
+    .mobile-nav.mobile-nav--open {
+      display: block;
+    }
+
+    .mobile-nav__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .mobile-nav__list li {
+      padding: 12px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
 
     /* Main Content */
     .page-content {
@@ -125,7 +152,99 @@
       transform: scale(1.1);
     }
 
-    <!-- 底部栏 -->
+
+    /* Responsive */
+    @media (min-width: 768px) {
+      body { padding-top: 70px; }
+      .site-topbar { padding: 15px 8%; height: 60px; }
+      .topbar__logo { height: 35px; }
+      .page-content { padding: 30px 8%; }
+    }
+  </style>
+</head>
+
+<body>
+<!-- Header -->
+<header class="site-topbar">
+  <div class="topbar__left">
+    <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
+  </div>
+  <div class="topbar__center">
+    <a href="/index.html">
+      <img class="topbar__logo" src="/images/logo.png" alt="AX Guitar Logo"/>
+    </a>
+  </div>
+  <div class="topbar__right">
+    <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
+    <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
+  </div>
+  <nav class="mobile-nav" id="mobileNav" aria-label="主导航">
+    <ul class="mobile-nav__list">
+      <li><a href="/index.html">首页</a></li>
+      <li><a href="/instruments.html">产品</a></li>
+      <li><a href="/twisted-neck.html">特色</a></li>
+      <li><a href="/pricing.html">DIY选项</a></li>
+      <li><a href="/news.html">新闻</a></li>
+      <li><a href="/support.html">支持</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Main Content -->
+<main class="page-content">
+  <div class="contact-header">
+    <h1>联系我们</h1>
+    <p>我们很乐意听取您的意见和建议</p>
+  </div>
+  
+  <div class="contact-methods">
+    <div class="contact-card">
+      <h2>客户服务</h2>
+      <div class="contact-info">
+        <p><strong>电话:</strong> 400-888-XXXX</p>
+        <p><strong>邮箱:</strong> service@axguitar.com</p>
+        <p><strong>工作时间:</strong> 周一至周五 9:00-17:00</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="contact-form">
+    <h2>发送消息</h2>
+    <form>
+      <div class="form-group">
+        <label for="name">您的姓名</label>
+        <input type="text" id="name" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="email">电子邮箱</label>
+        <input type="email" id="email" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">联系电话</label>
+        <input type="tel" id="phone" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="subject">主题</label>
+        <input type="text" id="subject" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="message">留言内容</label>
+        <textarea id="message" class="form-control" required></textarea>
+      </div>
+      <button type="submit" class="submit-btn">发送消息</button>
+    </form>
+  </div>
+  
+  <!-- 恢复原有社交媒体图标样式 -->
+  <div class="social-media">
+    <a href="#" class="social-icon">微</a>
+    <a href="#" class="social-icon">信</a>
+    <a href="#" class="social-icon">抖</a>
+    <a href="#" class="social-icon">音</a>
+  </div>
+</main>
+
+<!-- 底部栏 -->
 <footer class="site-bottombar" id="footerToTop">
   <div class="bottombar__label">返回顶部</div>
   <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
