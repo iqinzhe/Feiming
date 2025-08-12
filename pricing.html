@@ -8,40 +8,76 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
     <link rel="manifest" href="/icons/manifest.json">
-  <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
     <style>
-
-    /* 添加表格高亮样式 */
-    tr {
-        cursor: pointer;
-        transition: background-color 0.2s;
-    }
-    
-    tr.selected {
-        background-color: #d4edff !important;
-    }
-        /* 表单元素样式  */
-        .form-group {
-            margin-bottom: 20px;
+      body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            padding-top: 60px;
         }
-        
-        .form-group label {
+        header.site-topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        .topbar__logo {
+            height: 40px;
+        }
+        .topbar__btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+        nav.mobile-nav {
+            position: fixed;
+            top: 60px;
+            left: -100%;
+            width: 80%;
+            height: calc(100vh - 60px);
+            background: #fff;
+            transition: left 0.3s;
+            z-index: 99;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
             display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
         }
-        
-        .form-group input[type="text"],
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
+        nav.mobile-nav.mobile-nav--open {
+            left: 0;
         }
-        
-        .form-group textarea {
-            min-height: 100px;
+        .mobile-nav__list {
+            list-style: none;
+            padding: 20px;
+            margin: 0;
+        }
+        .mobile-nav__list li {
+            margin-bottom: 15px;
+        }
+        .mobile-nav__list a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+        form {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
         
         /* 表格样式  */
@@ -71,45 +107,34 @@
             background-color: #f1f1f1;
         }
         
-        .section-title {
-            background-color: #e6e6e6;
-            font-weight: bold;
-        }
-        
         .price {
             text-align: right;
             white-space: nowrap;
         }
         
-        tr {
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        
         tr.selected {
-            background-color: #d4edff;
+            background-color: #d4edff !important;
         }
-        
-        /*  价格汇总样式  */
-        .total {
-            font-size: 1.5em;
-            font-weight: bold;
-            text-align: right;
-            margin-top: 30px;
+
+        .summary {
+            position: sticky;
+            bottom: 20px;
+            background-color: #333;
+            color: white;
             padding: 15px;
-            background-color: #f2f2f2;
             border-radius: 4px;
+            z-index: 100;
         }
-            /* 修正总价显示样式 */
-    .summary {
-        position: sticky;
-        bottom: 20px;
-        background-color: #333;
-        color: white;
-        padding: 15px;
-        border-radius: 4px;
-        z-index: 100;
-    }
+
+        .category-desc {
+            font-size: 14px;
+            color: #666;
+            margin-top: -10px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
 
 <!-- 顶部导航栏 -->
 <header class="site-topbar">
@@ -141,7 +166,6 @@
 
 <!--主内容区 -->
 <h1>DIY选项和定价</h1>
-
 <form id="pricingForm">
     <div class="form-group">
         <label for="name">姓名：</label>
@@ -151,505 +175,235 @@
         <label for="number">编号：</label>
         <input type="text" id="number" name="number">
     </div>
-
+    
+    <!-- 琴型 -->
     <h2>琴型</h2>
+    <p class="category-desc">不同系列的琴型设计，影响外观、重量和平衡性。</p>
     <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>A-系列</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="1000">
-            <td>B-系列</td>
-            <td class="price">¥1000</td>
-        </tr>
-        <tr data-price="1500">
-            <td>C-系列</td>
-            <td class="price">¥1500</td>
-        </tr>
-        <tr data-price="0">
-            <td>D-系列</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>AX Handmade Workshop</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="1500">
-            <td>E-无头系列</td>
-            <td class="price">¥1500</td>
-        </tr>
+        <tr><th>选项</th><th>价格</th></tr>
+        <tr data-price="0"><td>A-系列</td><td class="price">¥0</td></tr>
+        <tr data-price="1000"><td>B-系列</td><td class="price">¥1000</td></tr>
+        <tr data-price="1500"><td>C-系列</td><td class="price">¥1500</td></tr>
+        <tr data-price="0"><td>D-系列</td><td class="price">¥0</td></tr>
+        <tr data-price="0"><td>AX Handmade Workshop</td><td class="price">¥0</td></tr>
+        <tr data-price="1500"><td>E-无头系列</td><td class="price">¥1500</td></tr>
     </table>
 
+    <!-- 弦数 -->
     <h2>弦数</h2>
+    <p class="category-desc">琴弦数量决定了音域范围与适合的音乐风格。</p>
     <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>6弦</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="1500">
-            <td>7弦</td>
-            <td class="price">¥1500</td>
-        </tr>
+        <tr><th>选项</th><th>价格</th></tr>
+        <tr data-price="0"><td>6弦</td><td class="price">¥0</td></tr>
+        <tr data-price="1500"><td>7弦</td><td class="price">¥1500</td></tr>
     </table>
 
+    <!-- 连接方式 -->
     <h2>连接方式</h2>
+    <p class="category-desc">琴颈与琴体的连接方式会影响音色与维护便利性。</p>
     <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>粘接</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>栓接</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>通颈</td>
-            <td class="price">¥0</td>
-        </tr>
+        <tr><th>选项</th><th>价格</th></tr>
+        <tr data-price="0"><td>粘接</td><td class="price">¥0</td></tr>
+        <tr data-price="0"><td>栓接</td><td class="price">¥0</td></tr>
+        <tr data-price="0"><td>通颈</td><td class="price">¥0</td></tr>
     </table>
 
+    <!-- 琴颈木材 -->
     <h2>琴颈木材</h2>
+    <p class="category-desc">不同木材会带来不同的手感和音色特征。</p>
     <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>桤木</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>桃花芯</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="700">
-            <td>沼泽梣木</td>
-            <td class="price">¥700</td>
-        </tr>
-        <tr data-price="0">
-            <td>安格斯</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>黑胡桃</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>其他</td>
-            <td class="price">¥0</td>
-        </tr>
+        <tr><th>选项</th><th>价格</th></tr>
+        <tr data-price="0"><td>桤木</td><td class="price">¥0</td></tr>
+        <tr data-price="0"><td>桃花芯</td><td class="price">¥0</td></tr>
+        <tr data-price="700"><td>沼泽梣木</td><td class="price">¥700</td></tr>
+        <tr data-price="0"><td>安格斯</td><td class="price">¥0</td></tr>
+        <tr data-price="0"><td>黑胡桃</td><td class="price">¥0</td></tr>
+        <tr data-price="0"><td>其他</td><td class="price">¥0</td></tr>
     </table>
 
+    <!-- 琴体木材 -->
     <h2>琴体木材</h2>
+    <p class="category-desc">琴体用材是决定音色和重量的重要因素。</p>
     <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="1800">
-            <td>虎纹枫木</td>
-            <td class="price">¥1800</td>
-        </tr>
-        <tr data-price="3000">
-            <td>絮状枫木</td>
-            <td class="price">¥3000</td>
-        </tr>
-        <tr data-price="4000">
-            <td>七叶树瘤</td>
-            <td class="price">¥4000</td>
-        </tr>
-        <tr data-price="1900">
-            <td>黑胡桃树瘤</td>
-            <td class="price">¥1900</td>
-        </tr>
-        <tr data-price="1700">
-            <td>渍纹枫木</td>
-            <td class="price">¥1700</td>
-        </tr>
-        <tr data-price="0">
-            <td>其他</td>
-            <td class="price">¥0</td>
-        </tr>
+        <tr><th>选项</th><th>价格</th></tr>
+        <tr data-price="1800"><td>虎纹枫木</td><td class="price">¥1800</td></tr>
+        <tr data-price="3000"><td>絮状枫木</td><td class="price">¥3000</td></tr>
+        <tr data-price="4000"><td>七叶树瘤</td><td class="price">¥4000</td></tr>
+        <tr data-price="1900"><td>黑胡桃树瘤</td><td class="price">¥1900</td></tr>
+        <tr data-price="1700"><td>渍纹枫木</td><td class="price">¥1700</td></tr>
+        <tr data-price="0"><td>其他</td><td class="price">¥0</td></tr>
     </table>
 
+    <!-- 贴面木材 -->
     <h2>贴面木材</h2>
+    <p class="category-desc">贴面不仅影响外观，还会微调音色表现。</p>
     <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>枫木</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="600">
-            <td>多拼枫木</td>
-            <td class="price">¥600</td>
-        </tr>
-        <tr data-price="1600">
-            <td>多拼虎纹枫木</td>
-            <td class="price">¥1600</td>
-        </tr>
-        <tr data-price="1500">
-            <td>雀眼枫木</td>
-            <td class="price">¥1500</td>
-        </tr>
-        <tr data-price="600">
-            <td>加拿大枫木</td>
-            <td class="price">¥600</td>
-        </tr>
-        <tr data-price="400">
-            <td>烤枫木</td>
-            <td class="price">¥400</td>
-        </tr>
-        <tr data-price="900">
-            <td>鸡翅木</td>
-            <td class="price">¥900</td>
-        </tr>
-        <tr data-price="7000">
-            <td>碳纤维 (仅无头琴)</td>
-            <td class="price">¥7000</td>
-        </tr>
-        <tr data-price="500">
-            <td>雀眼枫木</td>
-            <td class="price">¥500</td>
-        </tr>
-        <tr data-price="0">
-            <td>印度玫瑰木</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>乌木</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="400">
-            <td>十二雄蕊破布木</td>
-            <td class="price">¥400</td>
-        </tr>
-        <tr data-price="600">
-            <td>烤雀眼枫木</td>
-            <td class="price">¥600</td>
-        </tr>
-        <tr data-price="0">
-            <td>其他</td>
-            <td class="price">¥0</td>
-        </tr>
+        <tr><th>选项</th><th>价格</th></tr>
+        <tr data-price="0"><td>枫木</td><td class="price">¥0</td></tr>
+        <tr data-price="600"><td>多拼枫木</td><td class="price">¥600</td></tr>
+        <tr data-price="1600"><td>多拼虎纹枫木</td><td class="price">¥1600</td></tr>
+        <tr data-price="1500"><td>雀眼枫木</td><td class="price">¥1500</td></tr>
+        <tr data-price="600"><td>加拿大枫木</td><td class="price">¥600</td></tr>
+        <tr data-price="400"><td>烤枫木</td><td class="price">¥400</td></tr>
+        <tr data-price="900"><td>鸡翅木</td><td class="price">¥900</td></tr>
+        <tr data-price="7000"><td>碳纤维 (仅无头琴)</td><td class="price">¥7000</td></tr>
+        <tr data-price="500"><td>雀眼枫木</td><td class="price">¥500</td></tr>
+        <tr data-price="0"><td>印度玫瑰木</td><td class="price">¥0</td></tr>
+        <tr data-price="0"><td>乌木</td><td class="price">¥0</td></tr>
+        <tr data-price="400"><td>十二雄蕊破布木</td><td class="price">¥400</td></tr>
+        <tr data-price="600"><td>烤雀眼枫木</td><td class="price">¥600</td></tr>
+        <tr data-price="0"><td>其他</td><td class="price">¥0</td></tr>
     </table>
 
+    <!-- 指板木材 -->
     <h2>指板木材</h2>
+    <p class="category-desc">指板木材影响手感和演奏响应速度。</p>
     <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>标准</td>
-            <td class="price">¥0</td>
-        </tr>
+        <tr><th>选项</th><th>价格</th></tr>
+        <tr data-price="0"><td>标准</td><td class="price">¥0</td></tr>
     </table>
 
+    <!-- 定制选项 -->
     <h2>定制选项</h2>
+    <p class="category-desc">可选的特殊结构或设计，提供个性化定制。</p>
     <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="1500">
-            <td>ax 3-Piece Body</td>
-            <td class="price">¥1500</td>
-        </tr>
-        <tr data-price="1000">
-            <td>Or Tone-block</td>
-            <td class="price">¥1000</td>
-        </tr>
+        <tr><th>选项</th><th>价格</th></tr>
+        <tr data-price="1500"><td>ax 3-Piece Body</td><td class="price">¥1500</td></tr>
+        <tr data-price="1000"><td>Or Tone-block</td><td class="price">¥1000</td></tr>
     </table>
 
+    <!-- 品数 -->
     <h2>品数</h2>
+    <p class="category-desc">品数影响可演奏音域的范围。</p>
     <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>22品</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>24品</td>
-            <td class="price">¥0</td>
-        </tr>
+        <tr><th>选项</th><th>价格</th></tr>
+        <tr data-price="0"><td>22品</td><td class="price">¥0</td></tr>
+        <tr data-price="0"><td>24品</td><td class="price">¥0</td></tr>
     </table>
 
+    <!-- 品丝规格 -->
     <h2>品丝规格</h2>
+    <p class="category-desc">品丝材料和质量影响耐用性和音色。</p>
     <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>标准</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="1500">
-            <td>不锈钢</td>
-            <td class="price">¥1500</td>
-        </tr>
+        <tr><th>选项</th><th>价格</th></tr>
+        <tr data-price="0"><td>标准</td><td class="price">¥0</td></tr>
+        <tr data-price="1500"><td>不锈钢</td><td class="price">¥1500</td></tr>
     </table>
 
+    <!-- 品丝宽度 -->
     <h2>品丝宽度</h2>
+    <p class="category-desc">品丝宽度影响手感与推弦的难易度。</p>
     <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>品丝宽度 2.4</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>品丝宽度 2.7</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>品丝宽度 2.9</td>
-            <td class="price">¥0</td>
-        </tr>
+        <tr><th>选项</th><th>价格</th></tr>
+        <tr data-price="0"><td>品丝宽度 2.4</td><td class="price">¥0</td></tr>
+        <tr data-price="0"><td>品丝宽度 2.7</td><td class="price">¥0</td></tr>
+        <tr data-price="0"><td>品丝宽度 2.9</td><td class="price">¥0</td></tr>
     </table>
 
+    <!-- 中间木材 -->
     <h2>中间木材</h2>
+    <p class="category-desc">琴体中层木材影响整体的声音传递。</p>
     <table>
-        <tr>
-            <td>标准</td>
-            <td class="price">¥0</td>
-        </tr>
+        <tr><td>标准</td><td class="price">¥0</td></tr>
     </table>
 
+    <!-- 两侧木材 -->
     <h2>两侧木材</h2>
+    <p class="category-desc">琴体两侧木材为外观和共鸣提供支持。</p>
     <table>
-        <tr>
-            <td>标准</td>
-            <td class="price">¥0</td>
-        </tr>
+        <tr><td>标准</td><td class="price">¥0</td></tr>
     </table>
 
+    <!-- 指板弧度 -->
     <h2>指板弧度</h2>
+    <p class="category-desc">指板弧度影响按弦的舒适度与适合的演奏技巧。</p>
     <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>标准 10"</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="500">
-            <td>Custom: 7.25" 9.5" 12" 14"</td>
-            <td class="price">¥500</td>
-        </tr>
-        <tr data-price="1000">
-            <td>混合弧度</td>
-            <td class="price">¥1000</td>
-        </tr>
+        <tr><th>选项</th><th>价格</th></tr>
+        <tr data-price="0"><td>标准 10"</td><td class="price">¥0</td></tr>
+        <tr data-price="500"><td>Custom: 7.25" 9.5" 12" 14"</td><td class="price">¥500</td></tr>
+        <tr data-price="1000"><td>混合弧度</td><td class="price">¥1000</td></tr>
     </table>
 
+    <!-- 品记 -->
     <h2>品记</h2>
+    <p class="category-desc">品记用于视觉定位，兼具装饰作用。</p>
     <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>鲍鱼壳圆点</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>白贝圆点</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="1200">
-            <td>鲍鱼壳方块</td>
-            <td class="price">¥1200</td>
-        </tr>
-        <tr data-price="700">
-            <td>白贝方块</td>
-            <td class="price">¥700</td>
-        </tr>
-        <tr data-price="700">
-            <td>贴面木质方块</td>
-            <td class="price">¥700</td>
-        </tr>
-        <tr data-price="1000">
-            <td>其他木质方块</td>
-            <td class="price">¥1000</td>
-        </tr>
-        <tr data-price="0">
-            <td>定制镶嵌</td>
-            <td class="price">¥0</td>
-        </tr>
+        <tr><th>选项</th><th>价格</th></tr>
+        <tr data-price="0"><td>鲍鱼壳圆点</td><td class="price">¥0</td></tr>
+        <tr data-price="0"><td>白贝圆点</td><td class="price">¥0</td></tr>
+        <tr data-price="1200"><td>鲍鱼壳方块</td><td class="price">¥1200</td></tr>
+        <tr data-price="700"><td>白贝方块</td><td class="price">¥700</td></tr>
+        <tr data-price="700"><td>贴面木质方块</td><td class="price">¥700</td></tr>
+        <tr data-price="1000"><td>其他木质方块</td><td class="price">¥1000</td></tr>
+        <tr data-price="0"><td>定制镶嵌</td><td class="price">¥0</td></tr>
     </table>
 
+    <!-- 旋钮以及拾音器外壳 -->
     <h2>旋钮以及拾音器外壳</h2>
+    <p class="category-desc">不同材质的旋钮与拾音器外壳影响手感与外观。</p>
     <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>标准</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="500">
-            <td>木制旋钮</td>
-            <td class="price">¥500</td>
-        </tr>
-        <tr data-price="1000">
-            <td>木制拾音器壳</td>
-            <td class="price">¥1000</td>
-        </tr>
-        <tr data-price="1500">
-            <td>原位拾音器壳</td>
-            <td class="price">¥1500</td>
-        </tr>
-        <tr data-price="700">
-            <td>木制后盖板</td>
-            <td class="price">¥700</td>
-        </tr>
+        <tr><th>选项</th><th>价格</th></tr>
+        <tr data-price="0"><td>标准</td><td class="price">¥0</td></tr>
+        <tr data-price="500"><td>木制旋钮</td><td class="price">¥500</td></tr>
+        <tr data-price="1000"><td>木制拾音器壳</td><td class="price">¥1000</td></tr>
+        <tr data-price="1500"><td>原位拾音器壳</td><td class="price">¥1500</td></tr>
+        <tr data-price="700"><td>木制后盖板</td><td class="price">¥700</td></tr>
     </table>
 
+    <!-- 琴桥和卷弦器 -->
     <h2>琴桥和卷弦器</h2>
+    <p class="category-desc">琴桥与卷弦器影响定弦稳定性与调音精准度。</p>
     <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>固定</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="500">
-            <td>两点单摇颤音</td>
-            <td class="price">¥500</td>
-        </tr>
-        <tr data-price="500">
-            <td>六点单摇颤音</td>
-            <td class="price">¥500</td>
-        </tr>
-        <tr data-price="1000">
-            <td>双摇颤音</td>
-            <td class="price">¥1000</td>
-        </tr>
-        <tr data-price="0">
-            <td>标准</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="300">
-            <td>其他</td>
-            <td class="price">¥300</td>
-        </tr>
+        <tr><th>选项</th><th>价格</th></tr>
+        <tr data-price="0"><td>固定</td><td class="price">¥0</td></tr>
+        <tr data-price="500"><td>两点单摇颤音</td><td class="price">¥500</td></tr>
+        <tr data-price="500"><td>六点单摇颤音</td><td class="price">¥500</td></tr>
+        <tr data-price="1000"><td>双摇颤音</td><td class="price">¥1000</td></tr>
+        <tr data-price="0"><td>标准</td><td class="price">¥0</td></tr>
+        <tr data-price="300"><td>其他</td><td class="price">¥300</td></tr>
     </table>
 
+    <!-- 拾音器 -->
     <h2>拾音器</h2>
+    <p class="category-desc">拾音器决定了电信号的采集方式和音色风格。</p>
     <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>FishMan</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="50">
-            <td>Seymour Duncan</td>
-            <td class="price">¥50</td>
-        </tr>
-        <tr data-price="0">
-            <td>Dimarzio</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>EMG</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>标准拾音器列表</td>
-            <td class="price">¥0</td>
-        </tr>
+        <tr><th>选项</th><th>价格</th></tr>
+        <tr data-price="0"><td>FishMan</td><td class="price">¥0</td></tr>
+        <tr data-price="50"><td>Seymour Duncan</td><td class="price">¥50</td></tr>
+        <tr data-price="0"><td>Dimarzio</td><td class="price">¥0</td></tr>
+        <tr data-price="0"><td>EMG</td><td class="price">¥0</td></tr>
+        <tr data-price="0"><td>标准拾音器列表</td><td class="price">¥0</td></tr>
     </table>
 
+    <!-- 电路 -->
     <h2>电路</h2>
+    <p class="category-desc">电路配置影响信号处理与音色调节。</p>
     <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>标准</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="200">
-            <td>主动电路定制</td>
-            <td class="price">¥200</td>
-        </tr>
-        <tr data-price="100">
-            <td>被动电路定制</td>
-            <td class="price">¥100</td>
-        </tr>
+        <tr><th>选项</th><th>价格</th></tr>
+        <tr data-price="0"><td>标准</td><td class="price">¥0</td></tr>
+        <tr data-price="200"><td>主动电路定制</td><td class="price">¥200</td></tr>
+        <tr data-price="100"><td>被动电路定制</td><td class="price">¥100</td></tr>
     </table>
 
+    <!-- 油漆质感 -->
     <h2>油漆质感</h2>
+    <p class="category-desc">表面处理影响手感与视觉效果。</p>
     <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>哑光</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="1200">
-            <td>亮光</td>
-            <td class="price">¥1200</td>
-        </tr>
-        <tr data-price="700">
-            <td>超薄哑光</td>
-            <td class="price">¥700</td>
-        </tr>
+        <tr><th>选项</th><th>价格</th></tr>
+        <tr data-price="0"><td>哑光</td><td class="price">¥0</td></tr>
+        <tr data-price="1200"><td>亮光</td><td class="price">¥1200</td></tr>
+        <tr data-price="700"><td>超薄哑光</td><td class="price">¥700</td></tr>
     </table>
 
+    <!-- 颜色 -->
     <h2>颜色</h2>
+    <p class="category-desc">颜色选择决定整体外观风格。</p>
     <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>标准</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>金色</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>镀铬</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>黑色</td>
-            <td class="price">¥0</td>
-        </tr>
+        <tr><th>选项</th><th>价格</th></tr>
+        <tr data-price="0"><td>标准</td><td class="price">¥0</td></tr>
+        <tr data-price="0"><td>金色</td><td class="price">¥0</td></tr>
+        <tr data-price="0"><td>镀铬</td><td class="price">¥0</td></tr>
+        <tr data-price="0"><td>黑色</td><td class="price">¥0</td></tr>
     </table>
 
     <div class="form-group">
@@ -663,59 +417,52 @@
     </div>
 </form>
 
-
 <!-- 底部栏 -->
 <footer class="site-bottombar" id="footerToTop">
   <div class="bottombar__label">返回顶部</div>
   <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
 </footer>
 
-<script> document.addEventListener('DOMContentLoaded', function() {
-        // 价格选择功能
-        const tables = document.querySelectorAll('table');
-        
-        tables.forEach(table => {
-            const rows = table.querySelectorAll('tr:not(:first-child)');
-            
-            rows.forEach(row => {
-                row.addEventListener('click', function() {
-                    const siblings = Array.from(this.parentNode.children)
-                        .filter(child => child !== this && child !== this.parentNode.firstElementChild);
-                    
-                    siblings.forEach(sibling => sibling.classList.remove('selected'));
-                    this.classList.toggle('selected');
-                    updateTotalPrice();
-                });
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tables = document.querySelectorAll('table');
+    tables.forEach(table => {
+        const rows = table.querySelectorAll('tr:not(:first-child)');
+        rows.forEach(row => {
+            row.addEventListener('click', function() {
+                const siblings = Array.from(this.parentNode.children)
+                    .filter(child => child !== this && child !== this.parentNode.firstElementChild);
+                siblings.forEach(sibling => sibling.classList.remove('selected'));
+                this.classList.toggle('selected');
+                updateTotalPrice();
             });
         });
-        
-        // 表单提交
-        const form = document.getElementById('pricingForm');
-        if(form) {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const name = document.getElementById('name').value;
-                if(!name) {
-                    alert('请输入您的姓名');
-                    return;
-                }
-                
-                const total = document.querySelectorAll('tr.selected').length > 0 ? 
-                    document.getElementById('summaryPrice').textContent : '未选择任何选项';
-                    
-                alert(`感谢 ${name} 的询价！\n总价: ${total}\n我们会尽快与您联系。`);
-            });
-        }
     });
-
-    // 价格计算函数
-    function updateTotalPrice() {
-        let total = 0;
-        document.querySelectorAll('tr.selected').forEach(row => {
-            total += parseFloat(row.getAttribute('data-price')) || 0;
+    const form = document.getElementById('pricingForm');
+    if(form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            if(!name) {
+                alert('请输入您的姓名');
+                return;
+            }
+            const total = document.querySelectorAll('tr.selected').length > 0 ? 
+                document.getElementById('summaryPrice').textContent : '未选择任何选项';
+            alert(`感谢 ${name} 的询价！\n总价: ${total}\n我们会尽快与您联系。`);
         });
-        document.getElementById('summaryPrice').textContent = `¥${total}`;
     }
+});
+function updateTotalPrice() {
+    let total = 0;
+    document.querySelectorAll('tr.selected').forEach(row => {
+        total += parseFloat(row.getAttribute('data-price')) || 0;
+    });
+    document.getElementById('summaryPrice').textContent = `¥${total}`;
+}
 </script>
+
 </body>
 </html>
+
+
