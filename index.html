@@ -1,231 +1,75 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>AX斧标贝斯</title>
-<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-<link rel="manifest" href="/icons/manifest.json">
-<style>
-:root {
-  --neutral-gray: rgb(128, 128, 128);
-  --glass-dark: rgba(0, 0, 0, 0.3);
-  --text-white: #fff;
-}
-body {
-  background: var(--neutral-gray);
-  color: var(--text-white);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding-top: 60px;
-}
-/* 顶部栏 */
-.site-topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 5%;
-  background: var(--glass-dark);
-  backdrop-filter: blur(5px);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  box-sizing: border-box;
-}
-.topbar__left, .topbar__right {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-.topbar__center {
-  flex-grow: 1;
-  text-align: center;
-}
-.topbar__logo {
-  height: 30px;
-  width: auto;
-}
-.topbar__btn {
-  background: none;
-  border: none;
-  color: var(--text-white);
-  font-size: 22px;
-  cursor: pointer;
-  font-weight: bold;
-  line-height: 1;
-  padding: 6px;
-  border-radius: 4px;
-  transition: background 0.15s ease, transform 0.15s ease;
-}
-.topbar__btn:active {
-  background: rgba(255,255,255,0.1);
-  transform: scale(0.95);
-}
-/* 导航菜单 */
-.mobile-nav {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: var(--glass-dark);
-  backdrop-filter: blur(10px);
-  z-index: 90;
-  padding: 10px 0;
-}
-.mobile-nav.mobile-nav--open { display: block; }
-.mobile-nav__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.mobile-nav__list li {
-  padding: 14px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-.mobile-nav__list a {
-  color: #007BFF;
-  text-decoration: none;
-  display: block;
-  font-size: 18px;
-  font-weight: bold;
-}
-/* 内容 */
-.page-content {
-  flex: 1;
-  padding: 20px 5%;
-  margin-top: 20px;
-}
-.hero {
-  text-align: center;
-  margin-bottom: 40px;
-}
-.hero img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-.products-overview {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-}
-.product-card {
-  background: rgba(0,0,0,0.2);
-  padding: 20px;
-  border-radius: 8px;
-  text-align: center;
-}
-.product-card img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 4px;
-}
-/* 底部栏 */
-.site-bottombar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px; /* 文字和logo间距 */
-  padding: 10px 15px;
-  cursor: pointer;
-}
-.bottombar__label {
-  font-weight: bold;
-  font-size: 15px;
-  line-height: 15px;
-}
-.bottombar__logo {
-  height: 25px;
-  width: auto;
-  filter: brightness(1) invert(0);
-}
-.site-bottombar:active {
-  background: rgba(100,100,255,0.1);
-}
-.site-bottombar:active .bottombar__label,
-.site-bottombar:active .bottombar__logo {
-  transform: scale(0.95);
-}
-/* 响应式 */
-@media (min-width: 768px) {
-  body { padding-top: 70px; }
-  .site-topbar { padding: 15px 8%; height: 60px; }
-  .topbar__logo { height: 35px; }
-  .page-content { padding: 30px 8%; }
-}
-</style>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>关于我们 | AX斧标贝斯</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+  <link rel="manifest" href="/icons/manifest.json">
+  <link href="/css/style.css" rel="stylesheet">
+  
+  <style>
+    /* 页面特有样式 */
+    .page-content {
+      margin-top: 80px;
+      padding: 20px;
+      color: #333;
+      background-color: #f5f5f5;
+      min-height: calc(100vh - 160px);
+    }
+    .about-section {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    /* 其他about页面特有样式... */
+  </style>
 </head>
+
 <body>
-<header class="site-topbar">
-  <div class="topbar__left">
-    <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
-  </div>
-  <div class="topbar__center">
-    <a href="index.html"><img class="topbar__logo" src="./images/logo.png" alt="AX Guitar Logo"/></a>
-  </div>
-  <div class="topbar__right">
-    <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
-    <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
-  </div>
-  <nav class="mobile-nav" id="mobileNav">
-    <ul class="mobile-nav__list">
-      <li><a href="index.html">首页</a></li>
-      <li><a href="instruments.html">产品</a></li>
-      <li><a href="twisted-neck.html">特色</a></li>
-      <li><a href="pricing.html">DIY选项</a></li>
-      <li><a href="news.html">新闻</a></li>
-      <li><a href="support.html">支持</a></li>
-    </ul>
-  </nav>
-</header>
-<main class="page-content">
-  <section class="hero">
-    <img src="./images/D2.jpg" alt="AX Bass展示图"/>
-    <h1>AX斧标贝斯</h1>
-    <p>AX品牌创始人，先10年就职于国内知名OEM吉他代工厂技术开发，再10年就职于海外某吉他品牌公司从事吉他生产工艺和产品设计，20年的经验技术累积，量变引起质变，最终促成AX品牌的诞生。</p>
-  </section>
-  <section class="products-overview">
-    <div class="product-card">
-      <img src="./images/D1.jpg" alt="Model D 贝斯"/>
-      <h2>Model D</h2>
-      <p>Ergonomic bass with twisted neck design.</p>
-      <a href="instruments.html">了解更多</a>
+  <!-- 顶部导航栏 -->
+  <header class="site-topbar">
+    <div class="topbar__left">
+      <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
     </div>
-  </section>
-</main>
-<footer class="site-bottombar" id="footerToTop">
-  <div class="bottombar__label">返回顶部</div>
-  <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
-</footer>
-<script>
-document.getElementById('topbarMenuBtn').addEventListener('click', function() {
-  document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
-});
-document.getElementById('footerToTop').addEventListener('click', function() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-document.getElementById('topbarSearchBtn').addEventListener('click', function() {
-  const q = prompt('请输入搜索关键词');
-  if(q) alert('搜索演示: ' + q);
-});
-document.getElementById('topbarShareBtn').addEventListener('click', function() {
-  try {
-    navigator.share?.({ 
-      title: 'AX斧标贝斯: ' + document.title,
-      url: location.href 
-    }) || alert('请手动分享此页面');
-  } catch(e) {
-    alert('分享出错: ' + e.message);
-  }
-});
-</script>
+    <div class="topbar__center">
+      <a href="index.html">
+        <img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
+      </a>
+    </div>
+    <div class="topbar__right">
+      <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
+      <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
+    </div>
+    
+    <nav class="mobile-nav" id="mobileNav" aria-label="主导航">
+      <ul class="mobile-nav__list">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="instruments.html">产品</a></li>
+        <li><a href="twisted-neck.html">特色</a></li>
+        <li><a href="pricing.html">DIY选项</a></li>
+        <li><a href="news.html">新闻</a></li>
+        <li><a href="support.html">支持</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- 主内容区 -->
+  <main class="page-content">
+    <!-- 页面特有内容... -->
+  </main>
+
+  <!-- 底部栏 -->
+  <footer class="site-bottombar" id="footerToTop">
+    <div class="bottombar__label">返回顶部</div>
+    <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
+  </footer>
+
+  <script src="/js/main.js"></script>
 </body>
 </html>
