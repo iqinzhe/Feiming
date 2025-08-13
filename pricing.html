@@ -65,6 +65,58 @@
             margin-top: -10px;
             margin-bottom: 15px;
         }
+        
+        /* 新增的移动导航菜单样式 */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: #333;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            overflow-y: auto;
+        }
+        
+        .mobile-nav--open {
+            left: 0;
+        }
+        
+        .mobile-nav__list {
+            padding: 60px 20px 20px;
+            margin: 0;
+            list-style: none;
+        }
+        
+        .mobile-nav__list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .mobile-nav__list a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 8px 0;
+        }
+        
+        /* 菜单打开时页面锁定 */
+        body.menu-open {
+            overflow: hidden;
+        }
+        
+        body.menu-open::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
     </style>
 </head>
 <body>
@@ -624,7 +676,6 @@
     </div>
 </form>
 
-
 <!-- 底部栏 -->
 <footer class="site-bottombar" id="toTopBtn">
   <div class="bottombar__label">返回顶部</div>
@@ -639,12 +690,15 @@
     if(menuBtn && mobileNav) {
         menuBtn.addEventListener('click', function(e) {
             e.stopPropagation();
+            document.body.classList.toggle('menu-open');
             mobileNav.classList.toggle('mobile-nav--open');
         });
+        
         document.addEventListener('click', function(e) {
             if(mobileNav.classList.contains('mobile-nav--open') && 
                !mobileNav.contains(e.target) && 
                e.target !== menuBtn) {
+                document.body.classList.remove('menu-open');
                 mobileNav.classList.remove('mobile-nav--open');
             }
         });
