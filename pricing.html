@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<span id="summaryPrice">1234</span><!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -683,13 +683,15 @@ document.getElementById("submitBtn").addEventListener("click", () => {
     });
 
     // 准备邮件参数
-    const emailParams = {
-        to_email: "iqinzhe@gmail.com",  // 收件人邮箱
-        from_name: name,
-        customer_number: document.getElementById("number").value || "未提供",
-        notes: document.getElementById("notes").value || "无备注",
-        selections: selections.join("\n"),
-        total_price: document.getElementById("summaryPrice").textContent
+const emailParams = {
+    to_email: "iqinzhe@gmail.com",
+    from_name: document.getElementById("name").value || "未提供",
+    customer_number: document.getElementById("number").value || "未提供",
+    notes: document.getElementById("notes").value || "无备注",
+    selections: selections.join("\n"),
+    total_price: document.getElementById("summaryPrice").textContent || "未提供"
+};
+
     };
 
     // 发送邮件
