@@ -144,6 +144,6 @@ body {
 }
 
 .form-group {
-    background-color: #e0e0ff; /* 浅蓝色背景 */
+    background-color:neutral-gray: rgb(128, 128, 128);
     padding: 10px;
 }
