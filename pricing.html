@@ -650,29 +650,6 @@
         });
     }
 
-    // 返回顶部
-    document.getElementById('toTopBtn').addEventListener('click', function() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // 搜索功能
-    document.getElementById('topbarSearchBtn').addEventListener('click', function() {
-        const query = prompt('请输入搜索关键词');
-        if(query) alert('即将搜索: ' + query);
-    });
-
-    // 分享功能
-    document.getElementById('topbarShareBtn').addEventListener('click', function() {
-        if(navigator.share) {
-            navigator.share({
-                title: document.title,
-                url: window.location.href
-            }).catch(e => console.log('分享失败'));
-        } else {
-            alert('请手动分享此页面');
-        }
-    });
-
     // 价格选择功能
     const tables = document.querySelectorAll('table');
     tables.forEach(table => {
