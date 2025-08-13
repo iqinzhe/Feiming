@@ -637,6 +637,7 @@
     <div class="summary">
         <span class="summary-label">总价：</span>
         <span class="summary-value" id="summaryPrice">¥0</span>
+    <button type="button" id="submitBtn" style="margin-left:20px;padding:8px 16px;background:#28a745;color:#fff;border:none;border-radius:4px;cursor:pointer;">提交</button>
     </div>
 </form>
 
@@ -647,5 +648,56 @@
 </footer>
 
 <script src="/js/main.js"></script>
+
+<script>
+// 点击行高亮并更新总价
+document.querySelectorAll("table").forEach(table => {
+    let rows = table.querySelectorAll("tr[data-price]");
+    rows.forEach(row => {
+        row.addEventListener("click", () => {
+            // 同类取消高亮
+            rows.forEach(r => r.classList.remove("selected"));
+            // 当前行高亮
+            row.classList.add("selected");
+            updateTotal();
+        });
+    });
+});
+
+function updateTotal() {
+    let total = 0;
+    document.querySelectorAll("tr.selected").forEach(row => {
+        total += parseFloat(row.getAttribute("data-price") || 0);
+    });
+    document.getElementById("summaryPrice").textContent = "¥" + total;
+}
+
+// 点击提交
+document.getElementById("submitBtn").addEventListener("click", () => {
+    let formData = {
+        name: document.getElementById("name").value,
+        number: document.getElementById("number").value,
+        notes: document.getElementById("notes").value,
+        selections: [],
+        total: document.getElementById("summaryPrice").textContent
+    };
+
+    document.querySelectorAll("tr.selected").forEach(row => {
+        let option = row.cells[0].textContent;
+        let price = row.cells[1].textContent;
+        formData.selections.push(`${option} - ${price}`);
+    });
+
+    fetch("send_mail.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+    })
+    .then(res => res.text())
+    .then(msg => alert(msg))
+    .catch(err => alert("发送失败: " + err));
+});
+</script>
+
 </body>
 </html>
