@@ -142,3 +142,8 @@ body {
   .page-content { padding: 30px 8%; }
   .bottombar__logo { height: 18px; }
 }
+
+.form-group {
+    background-color: #e0e0ff; /* 浅蓝色背景 */
+    padding: 10px;
+}
