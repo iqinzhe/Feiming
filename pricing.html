@@ -11,6 +11,7 @@
     <link href="/css/style.css" rel="stylesheet">
     <style>
 
+ /* 关于页面特有样式 */
         h1 {
             text-align: center;
             margin-bottom: 30px;
@@ -65,42 +66,6 @@
             color: #ccc;
             margin-top: -10px;
             margin-bottom: 15px;
-        }
-        
-        /* 新增的移动导航菜单样式 */
-        .mobile-nav {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 80%;
-            max-width: 300px;
-            height: 100vh;
-            background: #333;
-            z-index: 1000;
-            transition: all 0.3s ease;
-            overflow-y: auto;
-        }
-        
-        .mobile-nav--open {
-            left: 0;
-        }
-        
-        .mobile-nav__list {
-            padding: 60px 20px 20px;
-            margin: 0;
-            list-style: none;
-        }
-        
-        .mobile-nav__list li {
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .mobile-nav__list a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            padding: 8px 0;
         }
         
         /* 菜单打开时页面锁定 */
@@ -681,92 +646,6 @@
   <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
 </footer>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const menuBtn = document.getElementById('topbarMenuBtn');
-    const mobileNav = document.getElementById('mobileNav');
-
-    if(menuBtn && mobileNav) {
-        menuBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            document.body.classList.toggle('menu-open');
-            mobileNav.classList.toggle('mobile-nav--open');
-        });
-        
-        document.addEventListener('click', function(e) {
-            if(mobileNav.classList.contains('mobile-nav--open') && 
-               !mobileNav.contains(e.target) && 
-               e.target !== menuBtn) {
-                document.body.classList.remove('menu-open');
-                mobileNav.classList.remove('mobile-nav--open');
-            }
-        });
-    }
-
-    // 返回顶部
-    document.getElementById('toTopBtn').addEventListener('click', function() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // 搜索功能
-    document.getElementById('topbarSearchBtn').addEventListener('click', function() {
-        const query = prompt('请输入搜索关键词');
-        if(query) alert('即将搜索: ' + query);
-    });
-
-    // 分享功能
-    document.getElementById('topbarShareBtn').addEventListener('click', function() {
-        if(navigator.share) {
-            navigator.share({
-                title: document.title,
-                url: window.location.href
-            }).catch(e => console.log('分享失败'));
-        } else {
-            alert('请手动分享此页面');
-        }
-    });
-
-    // 价格选择功能
-    const tables = document.querySelectorAll('table');
-    tables.forEach(table => {
-        const rows = table.querySelectorAll('tr:not(:first-child)');
-        rows.forEach(row => {
-            row.addEventListener('click', function() {
-                const siblings = Array.from(this.parentNode.children)
-                    .filter(child => child !== this && child !== this.parentNode.firstElementChild);
-                siblings.forEach(sibling => sibling.classList.remove('selected'));
-                this.classList.toggle('selected');
-                updateTotalPrice();
-            });
-        });
-    });
-
-    // 表单提交
-    const form = document.getElementById('pricingForm');
-    if(form) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            if(!name) {
-                alert('请输入您的姓名');
-                return;
-            }
-            const total = document.querySelectorAll('tr.selected').length > 0 ? 
-                document.getElementById('summaryPrice').textContent : '未选择任何选项';
-            alert(`感谢 ${name} 的询价！
-总价: ${total}
-我们会尽快与您联系。`);
-        });
-    }
-  });
-
-  function updateTotalPrice() {
-    let total = 0;
-    document.querySelectorAll('tr.selected').forEach(row => {
-        total += parseFloat(row.getAttribute('data-price')) || 0;
-    });
-    document.getElementById('summaryPrice').textContent = `¥${total}`;
-  }
-</script>
+<script src="/js/main.js"></script>
 </body>
 </html>
