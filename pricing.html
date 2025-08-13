@@ -10,6 +10,7 @@
     <link rel="manifest" href="/icons/manifest.json">
     <link href="/css/style.css" rel="stylesheet">
     <style>
+
         h1 {
             text-align: center;
             margin-bottom: 30px;
@@ -631,66 +632,6 @@
   <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
 </footer>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const menuBtn = document.getElementById('topbarMenuBtn');
-    const mobileNav = document.getElementById('mobileNav');
-
-    if(menuBtn && mobileNav) {
-        menuBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            mobileNav.classList.toggle('mobile-nav--open');
-        });
-        document.addEventListener('click', function(e) {
-            if(mobileNav.classList.contains('mobile-nav--open') && 
-               !mobileNav.contains(e.target) && 
-               e.target !== menuBtn) {
-                mobileNav.classList.remove('mobile-nav--open');
-            }
-        });
-    }
-
-    // 价格选择功能
-    const tables = document.querySelectorAll('table');
-    tables.forEach(table => {
-        const rows = table.querySelectorAll('tr:not(:first-child)');
-        rows.forEach(row => {
-            row.addEventListener('click', function() {
-                const siblings = Array.from(this.parentNode.children)
-                    .filter(child => child !== this && child !== this.parentNode.firstElementChild);
-                siblings.forEach(sibling => sibling.classList.remove('selected'));
-                this.classList.toggle('selected');
-                updateTotalPrice();
-            });
-        });
-    });
-
-    // 表单提交
-    const form = document.getElementById('pricingForm');
-    if(form) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            if(!name) {
-                alert('请输入您的姓名');
-                return;
-            }
-            const total = document.querySelectorAll('tr.selected').length > 0 ? 
-                document.getElementById('summaryPrice').textContent : '未选择任何选项';
-            alert(`感谢 ${name} 的询价！
-总价: ${total}
-我们会尽快与您联系。`);
-        });
-    }
-  });
-
-  function updateTotalPrice() {
-    let total = 0;
-    document.querySelectorAll('tr.selected').forEach(row => {
-        total += parseFloat(row.getAttribute('data-price')) || 0;
-    });
-    document.getElementById('summaryPrice').textContent = `¥${total}`;
-  }
-</script>
+<script src="/js/main.js"></script>
 </body>
 </html>
