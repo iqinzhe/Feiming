@@ -145,10 +145,7 @@
         <label for="name">姓名：</label>
         <input type="text" id="name" name="name" required>
     </div>
-    <div class="form-group">
-        <label for="email">邮箱：</label>
-        <input type="email" id="email" name="email" required>
-    </div>
+    
     <div class="form-group">
         <label for="phone">电话：</label>
         <input type="tel" id="phone" name="phone" required>
@@ -733,7 +730,6 @@ document.getElementById("submitBtn").addEventListener("click", (e) => {
     // 准备发送邮件的数据
     const formData = {
         name: name,
-        email: email,
         phone: phone,
         notes: document.getElementById("notes").value,
         selections: selections.join("\n"),
