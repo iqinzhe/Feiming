@@ -655,7 +655,7 @@
 
     <!-- 备注 -->
     <div class="form-group">
-        <label for="notes">备注：</label>
+        <label for="notes">留言内容：</label>
         <input type="<textarea>" id="notes" name="notes" rows="4" cols="50"></textarea> 
     </div>
 
@@ -716,7 +716,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // 收集表单数据
         const formData = {
-            from_name: document.getElementById("name").value,
+           name: document.getElementById("name").value,
             phone: document.getElementById("phone").value,
             message: document.getElementById("notes").value,
             selections: [],
