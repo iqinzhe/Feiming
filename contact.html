@@ -10,8 +10,15 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
   <link rel="manifest" href="/icons/manifest.json">
   <link href="/css/style.css" rel="stylesheet"/>
+  <!-- 引入EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+    // 初始化EmailJS
+    (function() {
+      emailjs.init('9mFxGUlwnnrz5WbL7'); // 您的EmailJS用户ID
+    })();
+  </script>
   <style>
-
     :root {
       --neutral-gray: rgb(128, 128, 128);
       --glass-dark: rgba(0, 0, 0, 0.3);
@@ -28,7 +35,6 @@
       margin: 0;
       padding-top: 60px;
     }
-
 
     /* Mobile Nav */
     .mobile-nav {
@@ -125,7 +131,25 @@
       background: rgba(255,255,255,0.2);
     }
 
-    /* 社交媒体图标 - 恢复原有样式 */
+    /* 表单状态提示 */
+    .form-message {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 4px;
+      display: none;
+    }
+    
+    .form-message.success {
+      background: rgba(0, 255, 0, 0.2);
+      display: block;
+    }
+    
+    .form-message.error {
+      background: rgba(255, 0, 0, 0.2);
+      display: block;
+    }
+
+    /* 社交媒体图标 */
     .social-media {
       display: flex;
       justify-content: center;
@@ -151,7 +175,6 @@
     .social-icon:hover {
       transform: scale(1.1);
     }
-
 
     /* Responsive */
     @media (min-width: 768px) {
@@ -210,32 +233,33 @@
   
   <div class="contact-form">
     <h2>发送消息</h2>
-    <form>
+    <form id="contactForm">
       <div class="form-group">
         <label for="name">您的姓名</label>
-        <input type="text" id="name" class="form-control" required>
+        <input type="text" id="name" name="name" class="form-control" required>
       </div>
       <div class="form-group">
         <label for="email">电子邮箱</label>
-        <input type="email" id="email" class="form-control" required>
+        <input type="email" id="email" name="email" class="form-control" required>
       </div>
       <div class="form-group">
         <label for="phone">联系电话</label>
-        <input type="tel" id="phone" class="form-control">
+        <input type="tel" id="phone" name="phone" class="form-control">
       </div>
       <div class="form-group">
         <label for="subject">主题</label>
-        <input type="text" id="subject" class="form-control" required>
+        <input type="text" id="subject" name="subject" class="form-control" required>
       </div>
       <div class="form-group">
         <label for="message">留言内容</label>
-        <textarea id="message" class="form-control" required></textarea>
+        <textarea id="message" name="message" class="form-control" required></textarea>
       </div>
       <button type="submit" class="submit-btn">发送消息</button>
+      <div id="formMessage" class="form-message"></div>
     </form>
   </div>
   
-  <!-- 恢复原有社交媒体图标样式 -->
+  <!-- 社交媒体图标 -->
   <div class="social-media">
     <a href="#" class="social-icon">微</a>
     <a href="#" class="social-icon">信</a>
@@ -251,5 +275,37 @@
 </footer>
 
 <script src="/js/main.js"></script>
+<script>
+  // 等待DOM加载完成
+  document.addEventListener('DOMContentLoaded', function() {
+    // 获取表单元素
+    const contactForm = document.getElementById('contactForm');
+    const formMessage = document.getElementById('formMessage');
+    
+    // 添加表单提交事件监听器
+    contactForm.addEventListener('submit', function(event) {
+      event.preventDefault(); // 阻止表单默认提交行为
+      
+      // 显示发送中状态
+      formMessage.textContent = '发送中...';
+      formMessage.className = 'form-message';
+      formMessage.style.display = 'block';
+      
+      // 使用EmailJS发送邮件
+      emailjs.sendForm('service_6q2tc8m', 'template_npq8364', this)
+        .then(function(response) {
+          // 发送成功
+          formMessage.textContent = '消息已成功发送！我们会尽快回复您。';
+          formMessage.className = 'form-message success';
+          contactForm.reset(); // 重置表单
+        }, function(error) {
+          // 发送失败
+          formMessage.textContent = '发送失败，请稍后再试或直接通过邮件联系我们。';
+          formMessage.className = 'form-message error';
+          console.error('EmailJS发送失败:', error);
+        });
+    });
+  });
+</script>
 </body>
 </html>
