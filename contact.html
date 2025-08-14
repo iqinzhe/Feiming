@@ -240,7 +240,7 @@
       </div>
       <div class="form-group">
         <label for="email">电子邮箱</label>
-        <input type="email" id="email" name="email" class="form-control" >
+        <input type="email" id="email" name="email" class="form-control" required>
       </div>
       <div class="form-group">
         <label for="phone">联系电话</label>
@@ -279,7 +279,8 @@
   // 等待DOM加载完成
   document.addEventListener('DOMContentLoaded', function() {
     // 获取表单元素
-    const formContact = document.getElementById('formContact');
+    const contactForm = document.getElementById('contactForm');
+    const formMessage = document.getElementById('formMessage');
     
     // 添加表单提交事件监听器
     contactForm.addEventListener('submit', function(event) {
@@ -290,12 +291,21 @@
       formMessage.className = 'form-message';
       formMessage.style.display = 'block';
       
-      // 发送邮件
-    emailjs.send('service_6q2tc8m', 'template_npq8364', formData)
+      // 使用EmailJS发送邮件
+      emailjs.sendForm('service_6q2tc8m', 'template_4wq6nho', this)
         .then(function(response) {
-            formMessage.textContent = "提交成功！我们会尽快与您联系。";
-            formMessage.className = "form-message success";
+          // 发送成功
+          formMessage.textContent = '消息已成功发送！我们会尽快回复您。';
+          formMessage.className = 'form-message success';
+          contactForm.reset(); // 重置表单
         }, function(error) {
-            formMessage.textContent = "提交失败，请稍后再试。错误: " + error.text;
-            formMessage.className = "form-message error";
+          // 发送失败
+          formMessage.textContent = '发送失败，请稍后再试或直接通过邮件联系我们。';
+          formMessage.className = 'form-message error';
+          console.error('EmailJS发送失败:', error);
         });
+    });
+  });
+</script>
+</body>
+</html>
