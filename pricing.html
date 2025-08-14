@@ -91,8 +91,7 @@
             background: rgba(0,0,0,0.5);
             z-index: 999;
         }
-  <head>
-    <style>
+
         /* 新增表单状态提示样式 */
         .form-message {
             margin-top: 15px;
@@ -148,7 +147,7 @@
     </div>
     <div class="form-group">
         <label for="phone">手机：</label>
-        <input type="text" id="phoner" name="phone">
+        <input type="text" id="phone" name="phone">
     </div>
 
     </div>
@@ -657,7 +656,7 @@
     <!-- 备注 -->
     <div class="form-group">
         <label for="notes">备注：</label>
-        <input type="notes" id="notes" name="notes" rows="4" cols="50"></textarea> 
+        <input type="<textarea>" id="notes" name="notes" rows="4" cols="50"></textarea> 
     </div>
 
     <!-- 底部汇总栏 -->
@@ -718,7 +717,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // 收集表单数据
         const formData = {
             from_name: document.getElementById("name").value,
-            number: document.getElementById("number").value,
+            phone: document.getElementById("phone").value,
             message: document.getElementById("notes").value,
             selections: [],
             total: document.getElementById("summaryPrice").textContent
