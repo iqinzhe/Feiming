@@ -1,4 +1,4 @@
-<span id="summaryPrice"><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -9,14 +9,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
     <link rel="manifest" href="/icons/manifest.json">
     <link href="/css/style.css" rel="stylesheet">
-    <!-- 添加 EmailJS 库 -->
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
-    <script>
-        // 初始化 EmailJS (替换 YOUR_USER_ID 为你的实际 User ID)
-        (function() {
-            emailjs.init("9mFxGUlwnnrz5WbL7");
-        })();
-    </script>
+    <!-- Load EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
     <style>
         /* 关于页面特有样式 */
         h1 {
@@ -90,6 +84,29 @@
             background: rgba(0,0,0,0.5);
             z-index: 999;
         }
+        
+        /* Form input styles */
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            min-height: 100px;
+        }
     </style>
 </head>
 
@@ -129,12 +146,13 @@
         <input type="text" id="name" name="name" required>
     </div>
     <div class="form-group">
-        <label for="phone">手机：</label>
-        <input type="text" id="number" name="number" required>
+        <label for="email">邮箱：</label>
+        <input type="email" id="email" name="email" required>
     </div>
-
+    <div class="form-group">
+        <label for="phone">电话：</label>
+        <input type="tel" id="phone" name="phone" required>
     </div>
-</form>
 
     <h2>琴型</h2>
     <table>
@@ -412,6 +430,22 @@
         </tr>
     </table>
 
+    <h2>中间木材</h2>
+    <table>
+        <tr>
+            <td>标准</td>
+            <td class="price">¥0</td>
+        </tr>
+    </table>
+
+    <h2>两侧木材</h2>
+    <table>
+        <tr>
+            <td>标准</td>
+            <td class="price">¥0</td>
+        </tr>
+    </table>
+
     <h2>指板弧度</h2>
     <table>
         <tr>
@@ -620,17 +654,15 @@
         </tr>
     </table>
 
-
     <div class="form-group">
         <label for="notes">备注：</label>
-    <div class="form-group"> 
-  <textarea id="notes" name="notes" rows="4" cols="35"></textarea>
+        <textarea id="notes" name="notes" rows="4" cols="50"></textarea>
     </div>
 
     <div class="summary">
         <span class="summary-label">总价：</span>
         <span class="summary-value" id="summaryPrice">¥0</span>
-    <button type="button" id="submitBtn" style="margin-left:20px;padding:10px 25px;background:#28a745;color:#fff;border:none;border-radius:4px;cursor:pointer;">提交订单</button>
+        <button type="button" id="submitBtn" style="margin-left:20px;padding:8px 16px;background:#28a745;color:#fff;border:none;border-radius:4px;cursor:pointer;">提交订单</button>
     </div>
 </form>
 
@@ -643,6 +675,11 @@
 <script src="/js/main.js"></script>
 
 <script>
+// Initialize EmailJS with your User ID
+(function() {
+    emailjs.init("9mFxGUlwnnrz5WbL7");
+})();
+
 // 点击行高亮并更新总价
 document.querySelectorAll("table").forEach(table => {
     let rows = table.querySelectorAll("tr[data-price]");
@@ -665,52 +702,67 @@ function updateTotal() {
     document.getElementById("summaryPrice").textContent = "¥" + total;
 }
 
-// 点击提交 - 使用 EmailJS 发送邮件
-document.getElementById("submitBtn").addEventListener("click", () => {
+// 点击提交订单按钮
+document.getElementById("submitBtn").addEventListener("click", (e) => {
+    e.preventDefault();
+    
     // 验证必填字段
     const name = document.getElementById("name").value;
-    if (!name) {
-        alert("请输入姓名");
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    
+    if (!name || !email || !phone) {
+        alert("请填写姓名、邮箱和电话");
         return;
     }
-
+    
     // 收集所有选中的选项
     let selections = [];
     document.querySelectorAll("tr.selected").forEach(row => {
-        let option = row.cells[0].textContent;
-        let price = row.cells[1].textContent;
+        const option = row.cells[0].textContent;
+        const price = row.cells[1].textContent;
         selections.push(`${option} - ${price}`);
     });
-
-    // 准备邮件参数
-const emailParams = {
-    to_email: "iqinzhe@gmail.com",
-    from_name: document.getElementById("name").value || "未提供",
-    customer_number: document.getElementById("number").value || "未提供",
-    notes: document.getElementById("notes").value || "无备注",
-    selections: selections.join("\n"),
-    total_price: document.getElementById("summaryPrice").textContent || "未提供"
-};
-
+    
+    // 如果没有选择任何选项
+    if (selections.length === 0) {
+        alert("请至少选择一个选项");
+        return;
+    }
+    
+    // 准备发送邮件的数据
+    const formData = {
+        name: name,
+        email: email,
+        phone: phone,
+        notes: document.getElementById("notes").value,
+        selections: selections.join("\n"),
+        total: document.getElementById("summaryPrice").textContent,
+        to_email: "iqinzhe@gmail.com" // 你的接收邮箱
     };
-
-    // 发送邮件
-    emailjs.send(
-        "service_6q2tc8m",  // 替换为你的 EmailJS Service ID
-        "template_npq8364", // 替换为你的 EmailJS Template ID
-        emailParams
-    )
-    .then(function(response) {
-        alert("提交成功！我们会尽快与您联系。");
-        // 可选：重置表单
-        document.getElementById("pricingForm").reset();
-        document.querySelectorAll("tr.selected").forEach(row => {
-            row.classList.remove("selected");
+    
+    // 显示加载状态
+    const submitBtn = document.getElementById("submitBtn");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "发送中...";
+    
+    // 使用EmailJS发送邮件
+    emailjs.send("service_6q2tc8m", "template_npq8364", formData)
+        .then(function(response) {
+            alert("订单提交成功！我们会尽快与您联系。");
+            // 重置表单
+            document.getElementById("pricingForm").reset();
+            document.querySelectorAll("tr.selected").forEach(row => {
+                row.classList.remove("selected");
+            });
+            document.getElementById("summaryPrice").textContent = "¥0";
+        }, function(error) {
+            alert("提交失败，请稍后再试。错误: " + JSON.stringify(error));
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "提交订单";
         });
-        document.getElementById("summaryPrice").textContent = "¥0";
-    }, function(error) {
-        alert("提交失败，请稍后再试。错误: " + JSON.stringify(error));
-    });
 });
 </script>
 
