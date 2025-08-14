@@ -291,18 +291,14 @@
       formMessage.style.display = 'block';
       
       // 使用EmailJS发送邮件
-      emailjs.sendForm('service_6q2tc8m', 'template_4wq6nho', this)
-        .then(function(response) {
-          // 发送成功
-          formMessage.textContent = '消息已成功发送！我们会尽快回复您。';
-          formMessage.className = 'form-message success';
-          contactForm.reset(); // 重置表单
-        }, function(error) {
-          // 发送失败
-          formMessage.textContent = '发送失败，请稍后再试或直接通过邮件联系我们。';
-          formMessage.className = 'form-message error';
-          console.error('EmailJS发送失败:', error);
-        });
+emailjs.sendForm('service_6q2tc8m', 'template_npq8364', this)
+  .then(() => {
+    window.location.href = "/thank-you.html"; // 跳转到感谢页面
+  })
+  .catch((error) => {
+    document.getElementById('formMessage').textContent = '发送失败: ' + error.text;
+    document.getElementById('formMessage').className = 'form-message error';
+  });
     });
   });
 </script>
