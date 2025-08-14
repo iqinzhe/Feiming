@@ -240,7 +240,7 @@
       </div>
       <div class="form-group">
         <label for="email">电子邮箱</label>
-        <input type="email" id="email" name="email" class="form-control" required>
+        <input type="email" id="email" name="email" class="form-control" >
       </div>
       <div class="form-group">
         <label for="phone">联系电话</label>
@@ -279,8 +279,7 @@
   // 等待DOM加载完成
   document.addEventListener('DOMContentLoaded', function() {
     // 获取表单元素
-    const contactForm = document.getElementById('contactForm');
-    const formMessage = document.getElementById('formMessage');
+    const formContact = document.getElementById('formContact');
     
     // 添加表单提交事件监听器
     contactForm.addEventListener('submit', function(event) {
