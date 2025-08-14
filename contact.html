@@ -290,17 +290,12 @@
       formMessage.className = 'form-message';
       formMessage.style.display = 'block';
       
-      // 使用EmailJS发送邮件
-emailjs.sendForm('service_6q2tc8m', 'template_npq8364', this)
-  .then(() => {
-    window.location.href = "/thank-you.html"; // 跳转到感谢页面
-  })
-  .catch((error) => {
-    document.getElementById('formMessage').textContent = '发送失败: ' + error.text;
-    document.getElementById('formMessage').className = 'form-message error';
-  });
-    });
-  });
-</script>
-</body>
-</html>
+      // 发送邮件
+    emailjs.send('service_6q2tc8m', 'template_npq8364', formData)
+        .then(function(response) {
+            formMessage.textContent = "提交成功！我们会尽快与您联系。";
+            formMessage.className = "form-message success";
+        }, function(error) {
+            formMessage.textContent = "提交失败，请稍后再试。错误: " + error.text;
+            formMessage.className = "form-message error";
+        });
