@@ -144,6 +144,9 @@ body {
 }
 
 .form-group {
-    background-color:#f0f0f0; /* 浅灰色 */}
-    padding: 10px;
+    background-color: #808080;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
 }
