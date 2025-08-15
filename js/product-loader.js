@@ -8,44 +8,22 @@ document.addEventListener('DOMContentLoaded', function() {
     return;
   }
 
-  fetch('../data/products.json')
-    .then(response => {
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      return response.json().catch(e => {
-        throw new Error('无效的JSON格式');
-      });
-    })
-    .then(data => {
-      if (!data.series) throw new Error('数据格式错误：缺少series字段');
+fetch('../data/products.json')
+  .then(response => {
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    return response.json().catch(e => {
+      throw new Error('无效的JSON格式');
+    });
+  })
+  .then(data => {
+    if (!data.series) throw new Error('数据格式错误：缺少series字段');
+    // ...处理数据...
+  })
+  .catch(error => {
+    console.error('加载失败详情:', error);
+    alert(`数据加载失败，请检查:\n1. 控制台错误信息\n2. 网络请求状态\n3. 文件路径是否正确`);
+  });
       
-      // 查找当前系列数据
-      const series = data.series.find(s => s.id === seriesId.toLowerCase());
-      if (!series) {
-        throw new Error(`未找到系列ID: ${seriesId}`);
-      }
-
-      // =====================
-      // 新增D系列特殊逻辑开始
-      // =====================
-      if (series.id === 'd') {
-        // 1. 添加body专属class
-        document.body.classList.add('series-d-special');
-        
-        // 2. 插入动态内容（特色横幅）
-        const dynamicSections = document.getElementById('dynamic-sections');
-        if (dynamicSections) {
-          dynamicSections.innerHTML += `
-            <div class="feature-banner">
-              <h3>🎸 限量版扭曲琴颈设计</h3>
-              <p>现在购买享专属定制服务</p>
-            </div>
-          `;
-        }
-      }
-      // ===================
-      // 新增代码结束
-      // ===================
-
       // 设置页面标题
       document.title = `${series.name} - AX Bass&Guitar`;
       document.getElementById('page-title').textContent = series.name;
