@@ -90,7 +90,36 @@
         padding: 30px 8%;
       }
     }
-  </style>
+  
+/* === 优化支持中心布局，使页面更紧凑 === */
+.support-container {
+  margin: 20px 0; /* 原来是40px，减少顶部和底部间距 */
+  gap: 20px;      /* 原来是30px，减少卡片间距 */
+}
+
+.support-card {
+  min-height: 200px;  /* 固定视觉高度 */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;      /* 原来是25px，略微收紧 */
+}
+
+.support-card h2 {
+  font-size: 1.4em; /* 放大标题 */
+}
+
+@media (min-width: 768px) {
+  .support-container {
+    margin: 15px 0 25px 0; /* 大屏下更紧凑 */
+    gap: 25px;
+  }
+  .support-card {
+    min-height: 240px; /* 大屏下卡片更高 */
+  }
+}
+
+</style>
 </head>
 
 <body>
