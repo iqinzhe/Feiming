@@ -25,9 +25,8 @@
       display: flex;
       flex-direction: column;
       font-family: Arial, sans-serif;
-      font-size: 20px; /* ← 这里设置全局字体大小 */
       margin: 0;
-      padding-top: 20px;
+      padding-top: 60px;
     }
 
     /* ===== 内容区样式 ===== */
@@ -35,7 +34,6 @@
       flex: 1;
       padding: 20px 5%;
       margin-top: 20px;
-      font-size: 20px; /* 只改内容区的文字大小 */
     }
 
     /* ===== 支持中心特有样式 ===== */
@@ -92,36 +90,7 @@
         padding: 30px 8%;
       }
     }
-  
-/* === 优化支持中心布局，使页面更紧凑 === */
-.support-container {
-  margin: 20px 0; /* 原来是40px，减少顶部和底部间距 */
-  gap: 30px;      /* 原来是30px，减少卡片间距 */
-}
-
-.support-card {
-  min-height: 60px;  /* 固定视觉高度 */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 15px;      /* 原来是25px，略微收紧 */
-}
-
-.support-card h2 {
-  font-size: 1.1em; /* 放大标题 */
-}
-
-@media (min-width: 768px) {
-  .support-container {
-    margin: 15px 0 25px 0; /* 大屏下更紧凑 */
-    gap: 25px;
-  }
-  .support-card {
-    min-height: 240px; /* 大屏下卡片更高 */
-  }
-}
-
-</style>
+  </style>
 </head>
 
 <body>
