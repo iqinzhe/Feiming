@@ -10,22 +10,21 @@ document.addEventListener('DOMContentLoaded', function() {
   // 添加时间戳防止缓存
   const jsonUrl = `data/products.json?t=${new Date().getTime()}`;
   
-  fetch(jsonUrl)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`服务器返回: ${response.status} ${response.statusText}`);
-      }
-      return response.json().catch(e => {
-        throw new Error('JSON解析失败: ' + e.message);
-      });
-    })
-    .then(data => {
-      console.log('加载的产品数据:', data);
-      const series = data.series.find(s => s.id === seriesId.toLowerCase());
-      
-      if (!series) {
-        throw new Error(`未找到系列ID: ${seriesId}`);
-      }
+fetch('../data/products.json')
+  .then(response => {
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    return response.json().catch(e => {
+      throw new Error('无效的JSON格式');
+    });
+  })
+  .then(data => {
+    if (!data.series) throw new Error('数据格式错误：缺少series字段');
+    // ...处理数据...
+  })
+  .catch(error => {
+    console.error('加载失败详情:', error);
+    alert(`数据加载失败，请检查:\n1. 控制台错误信息\n2. 网络请求状态\n3. 文件路径是否正确`);
+  });
 
       // ...保持原有的成功处理逻辑...
     })
