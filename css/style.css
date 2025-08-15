@@ -181,7 +181,7 @@ body {
   body { padding-top: 70px; }
   .site-topbar { 
     padding: 15px 8%; 
-    height: 60px; 
+    height: 20px; 
     font-size: 16px; /* 保护导航文字大小 */
   }
   .topbar__logo { height: 35px; }
