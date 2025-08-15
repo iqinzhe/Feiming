@@ -155,12 +155,18 @@
               ]
             },
             {
-              "type": "text-with-image"
-              "title": "传统琴颈 vs 扭曲琴颈",
-              "images": [
-                "images/traditional-neck.jpg",
-                "images/D2.jpg"
-              ]
+              "type": "text-with-image",
+              "title": "传统琴颈 vs 扭曲琴颈（传统）",
+              "content": "传统直琴颈在姿势标准、制造成熟方面有优势，但长时间演奏时手腕角度更固定。",
+              "image": "images/traditional-neck.jpg",
+              "layout": "right"
+            },
+            {
+              "type": "text-with-image",
+              "title": "传统琴颈 vs 扭曲琴颈（扭曲）",
+              "content": "扭曲琴颈顺应腕部自然旋转，减少压力，更适合复杂指法与长时间演奏。",
+              "image": "images/D2.jpg",
+              "layout": "right"
             }
           ]
         }
