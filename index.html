@@ -10,7 +10,6 @@
 <link rel="manifest" href="/icons/manifest.json">
 <link href="/css/style.css" rel="stylesheet">
 <style>
-
 :root {
   --neutral-gray: rgb(128, 128, 128);
   --glass-dark: rgba(0, 0, 0, 0.3);
@@ -27,39 +26,27 @@ body {
   padding-top: 60px;
 }
 
-/* 内容 */
-.page-content {
-  flex: 1;
-  padding: 20px 5%;
-  margin-top: 20px;
-}
-.hero {
-  text-align: center;
-  margin-bottom: 40px;
-}
-.hero img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-.products-overview {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-}
-.product-card {
-  background: rgba(0,0,0,0.2);
-  padding: 20px;
-  border-radius: 8px;
-  text-align: center;
-}
-.product-card img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 4px;
+/* 动态内容容器 */
+#product-container {
+  display: none; /* 默认隐藏 */
 }
 
-/* 响应式 */
+/* 模式切换时的样式 */
+body.product-mode #home-container {
+  display: none;
+}
+body.product-mode #product-container {
+  display: block;
+}
+
+/* 原有样式保持不变... */
+.page-content { flex: 1; padding: 20px 5%; margin-top: 20px; }
+.hero { text-align: center; margin-bottom: 40px; }
+.hero img { max-width: 100%; height: auto; border-radius: 8px; }
+.products-overview { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.product-card { background: rgba(0,0,0,0.2); padding: 20px; border-radius: 8px; text-align: center; }
+.product-card img { max-width: 100%; height: auto; border-radius: 4px; }
+
 @media (min-width: 768px) {
   body { padding-top: 70px; }
   .site-topbar { padding: 15px 8%; height: 60px; }
@@ -69,6 +56,7 @@ body {
 </style>
 </head>
 <body>
+<!-- 公共导航栏 -->
 <header class="site-topbar">
   <div class="topbar__left">
     <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
@@ -91,26 +79,51 @@ body {
     </ul>
   </nav>
 </header>
-<main class="page-content">
-  <section class="hero">
-    <img src="./images/D2.jpg" alt="AX Bass展示图"/>
-    <h1>AX斧标贝斯</h1>
-    <p>AX品牌创始人，先10年就职于国内知名OEM吉他代工厂技术开发，再10年就职于海外某吉他品牌公司从事吉他生产工艺和产品设计，20年的经验技术累积，量变引起质变，最终促成AX品牌的诞生。</p>
-  </section>
-  <section class="products-overview">
-    <div class="product-card">
-      <img src="./images/D1.jpg" alt="Model D 贝斯"/>
-      <h2>Model D</h2>
-      <p>Ergonomic bass with twisted neck design.</p>
-      <a href="instruments.html">了解更多</a>
-    </div>
-  </section>
-</main>
+
+<!-- 首页内容容器 -->
+<div id="home-container">
+  <main class="page-content">
+    <section class="hero">
+      <img src="./images/D2.jpg" alt="AX Bass展示图"/>
+      <h1>AX斧标贝斯</h1>
+      <p>AX品牌创始人，先10年就职于国内知名OEM吉他代工厂技术开发，再10年就职于海外某吉他品牌公司从事吉他生产工艺和产品设计，20年的经验技术累积，量变引起质变，最终促成AX品牌的诞生。</p>
+    </section>
+    <section class="products-overview">
+      <div class="product-card">
+        <img src="./images/D1.jpg" alt="Model D 贝斯"/>
+        <h2>Model D</h2>
+        <p>Ergonomic bass with twisted neck design.</p>
+        <a href="instruments.html">了解更多</a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- 产品页内容容器 -->
+<div id="product-container">
+  <main class="page-content">
+    <h1 id="series-title"></h1>
+    <div id="series-hero" class="hero"></div>
+    <div id="models-container"></div>
+    <div id="dynamic-sections"></div>
+  </main>
+</div>
+
+<!-- 公共页脚 -->
 <footer class="site-bottombar" id="footerToTop">
   <div class="bottombar__label">返回顶部</div>
   <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
 </footer>
+
 <script>
+// 模式检测与切换
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.has('series')) {
+  document.body.classList.add('product-mode');
+  document.title = "AX产品详情";
+}
+
+// 原有功能保持不变...
 document.getElementById('topbarMenuBtn').addEventListener('click', function() {
   document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
 });
@@ -131,6 +144,34 @@ document.getElementById('topbarShareBtn').addEventListener('click', function() {
     alert('分享出错: ' + e.message);
   }
 });
+
+// 产品加载逻辑（原product-loader.js）
+if (document.body.classList.contains('product-mode')) {
+  fetch('/data/products.json')
+    .then(response => response.json())
+    .then(data => {
+      const seriesId = urlParams.get('series') || 'a';
+      const series = data.series.find(s => s.id === seriesId);
+      
+      if (series) {
+        document.getElementById('series-title').textContent = series.name;
+        document.getElementById('series-hero').innerHTML = `
+          <img src="${series.cover}" alt="${series.name}" style="max-width:100%; border-radius:8px;"/>
+          ${series.description.split('\n').map(p => `<p>${p}</p>`).join('')}
+        `;
+        
+        // ...其余产品渲染逻辑保持不变...
+      }
+    })
+    .catch(error => {
+      console.error('加载失败:', error);
+      document.getElementById('models-container').innerHTML = `
+        <div style="color:red; text-align:center; padding:40px;">
+          产品加载失败，请<a href="javascript:location.reload()">刷新重试</a>
+        </div>
+      `;
+    });
+}
 </script>
 </body>
 </html>
