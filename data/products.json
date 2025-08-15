@@ -96,7 +96,7 @@
           "id": "c2",
           "name": "C2 Travel Bass",
           "image": "images/c2.jpg",
-          "features": "旅行款迷你贝斯,在mini的基础上,通过我们的多变功能琴体设计,大幅度缩紧琴体宽度,只为旅程相伴更轻松",
+          "features": "旅行款迷你贝斯，可拆卸琴颈设计",
           "specs": [
             "琴体: 桃花心木",
             "琴颈: 枫木",
@@ -155,18 +155,12 @@
               ]
             },
             {
-              "type": "text-with-image",
-              "title": "传统琴颈 vs 扭曲琴颈（传统）",
-              "content": "传统直琴颈在姿势标准、制造成熟方面有优势，但长时间演奏时手腕角度更固定。",
-              "image": "images/traditional-neck.jpg",
-              "layout": "right"
-            },
-            {
-              "type": "text-with-image",
-              "title": "传统琴颈 vs 扭曲琴颈（扭曲）",
-              "content": "扭曲琴颈顺应腕部自然旋转，减少压力，更适合复杂指法与长时间演奏。",
-              "image": "images/D2.jpg",
-              "layout": "right"
+              "type": "comparison",
+              "title": "传统琴颈 vs 扭曲琴颈",
+              "images": [
+                "images/traditional-neck.jpg",
+                "images/D2.jpg"
+              ]
             }
           ]
         }
