@@ -3,11 +3,12 @@
   --neutral-gray: rgb(128, 128, 128);
   --glass-dark: rgba(0, 0, 0, 0.3);
   --text-white: #fff;
+  --nav-text: #007BFF; /* 新增导航文字颜色变量 */
 }
 
 body {
   background: var(--neutral-gray);
-  color: var(--text-white);
+  color: var(--text-white); /* 只影响基础文字 */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -16,7 +17,13 @@ body {
   padding-top: 60px;
 }
 
-/* ===== 顶部栏 ===== */
+/* ===== 受保护的导航栏样式 ===== */
+.site-topbar,
+.mobile-nav {
+  color: initial; /* 重置为浏览器默认 */
+  font-size: 16px; /* 明确设置基准大小 */
+}
+
 .site-topbar {
   display: flex;
   justify-content: space-between;
@@ -32,7 +39,8 @@ body {
   box-sizing: border-box;
 }
 
-.topbar__left, .topbar__right {
+.topbar__left, 
+.topbar__right {
   display: flex;
   align-items: center;
   gap: 15px;
@@ -57,7 +65,7 @@ body {
   line-height: 1;
   padding: 6px;
   border-radius: 4px;
-  color: var(--text-white);
+  color: var(--nav-text); /* 使用导航专用颜色 */
   cursor: pointer;
   transition: all 0.15s ease;
 }
@@ -66,7 +74,7 @@ body {
   background: rgba(255,255,255,0.1);
 }
 
-/* ===== 移动导航 ===== */
+/* ===== 移动导航保护 ===== */
 .mobile-nav {
   display: none;
   position: absolute;
@@ -95,7 +103,7 @@ body {
 }
 
 .mobile-nav__list a {
-  color: #007BFF;
+  color: var(--nav-text); /* 使用统一导航色 */
   text-decoration: none;
   display: block;
   font-size: 18px;
@@ -107,28 +115,62 @@ body {
   color: #0056b3;
 }
 
-/* 底部栏 */
+/* ===== 产品内容专属样式 ===== */
+.series-overview,
+.page-content {
+  --content-text: var(--text-white); /* 内容文字颜色变量 */
+}
+
+.series-card,
+.dynamic-model-card,
+.tn-section {
+  color: var(--content-text);
+}
+
+.series-card p,
+.series-card h2,
+.dynamic-model-card p,
+.dynamic-model-card h2,
+.tn-section p,
+.tn-section h2,
+.model-specs,
+.model-features {
+  color: var(--content-text) !important;
+  font-size: 1em !important; /* 固定产品文字大小 */
+}
+
+/* C系列专属样式 */
+.series-card[href*="series=c"] {
+  border-left: 4px solid rgba(100, 181, 246, 0.7);
+}
+
+/* ===== 底部栏 ===== */
 .site-bottombar {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px; /* 文字和logo间距 */
+  gap: 10px;
   padding: 10px 15px;
   cursor: pointer;
+  color: initial; /* 保护底部文字颜色 */
 }
+
 .bottombar__label {
   font-weight: bold;
   font-size: 15px;
   line-height: 15px;
 }
+
 .bottombar__logo {
   height: 25px;
   width: auto;
   filter: brightness(1) invert(0);
 }
+
 .site-bottombar:active {
   background: rgba(100,100,255,0.1);
 }
+
 .site-bottombar:active .bottombar__label,
 .site-bottombar:active .bottombar__logo {
   transform: scale(0.95);
@@ -137,16 +179,34 @@ body {
 /* ===== 响应式设计 ===== */
 @media (min-width: 768px) {
   body { padding-top: 70px; }
-  .site-topbar { padding: 15px 8%; height: 60px; }
+  .site-topbar { 
+    padding: 15px 8%; 
+    height: 60px; 
+    font-size: 16px; /* 保护导航文字大小 */
+  }
   .topbar__logo { height: 35px; }
   .page-content { padding: 30px 8%; }
   .bottombar__logo { height: 18px; }
+  
+  /* 产品内容网格布局 */
+  .series-overview {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .dynamic-model-card {
+    grid-template-columns: 1fr 2fr;
+  }
 }
 
+/* ===== 工具类 ===== */
 .form-group {
-    background-color: #808080;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 8px;
+  background-color: #808080;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+}
+
+.protected-nav {
+  color: inherit !important;
+  font-size: inherit !important;
 }
