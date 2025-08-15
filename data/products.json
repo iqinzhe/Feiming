@@ -155,7 +155,7 @@
               ]
             },
             {
-              "type": "comparison",
+              "type": "text-with-image"
               "title": "传统琴颈 vs 扭曲琴颈",
               "images": [
                 "images/traditional-neck.jpg",
