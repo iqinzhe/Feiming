@@ -1,99 +1,175 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>产品系列 - AX Bass&Guitar</title>
-  <!-- 引用参考zip里的统一样式 -->
-  <link rel="stylesheet" href="style.css">
-  <style>
-    /* 基础修正，避免超屏 */
-    * {
-      box-sizing: border-box;
-    }
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AX斧标贝斯</title>
+<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+<link rel="manifest" href="/icons/manifest.json">
+<link href="/css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="global.css">
+<style>
+:root {
+  --neutral-gray: rgb(128, 128, 128);
+  --glass-dark: rgba(0, 0, 0, 0.3);
+  --text-white: #fff;
+}
+body {
+  background: var(--neutral-gray);
+  color: var(--text-white);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding-top: 60px;
+}
+
+/* 动态内容容器 */
+#product-container {
+  display: none; /* 默认隐藏 */
+}
+
+/* 模式切换时的样式 */
+body.product-mode #home-container {
+  display: none;
+}
+body.product-mode #product-container {
+  display: block;
+}
+
+/* 原有样式保持不变... */
+.page-content { flex: 1; padding: 20px 5%; margin-top: 20px; }
+.hero { text-align: center; margin-bottom: 40px; }
+.hero img { max-width: 100%; height: auto; border-radius: 8px; }
+.products-overview { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.product-card { background: rgba(0,0,0,0.2); padding: 20px; border-radius: 8px; text-align: center; }
+.product-card img { max-width: 100%; height: auto; border-radius: 4px; }
+
+@media (min-width: 768px) {
+  body { padding-top: 70px; }
+  .site-topbar { padding: 15px 8%; height: 60px; }
+  .topbar__logo { height: 35px; }
+  .page-content { padding: 30px 8%; }
+}
+</style>
+</head>
+<body>
+
+<!-- 公共导航栏 -->
+<header class="site-topbar">
+  <div class="topbar__left">
+    <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
+  </div>
+  <div class="topbar__center">
+    <a href="index.html"><img class="topbar__logo" src="./images/logo.png" alt="AX Guitar Logo"/></a>
+  </div>
+  <div class="topbar__right">
+    <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
+    <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
+  </div>
+  <nav class="mobile-nav" id="mobileNav">
+    <ul class="mobile-nav__list">
+      <li><a href="index.html">首页</a></li>
+      <li><a href="products.html">产品</a></li>
+      <li><a href="product.html?series=d">特色</a></li>
+      <li><a href="pricing.html">DIY选项</a></li>
+      <li><a href="news.html">新闻</a></li>
+      <li><a href="support.html">支持</a></li>
+    </ul>
+  </nav>
+</header>
+
+    /* 移动端优先的响应式设计 */
+    :root {
+      --mobile-breakpoint: 600px;
+      --card-min-width: 280px;
     }
 
     /* 系列卡片布局 */
     .series-overview {
       display: grid;
-      gap: 15px;
+      gap: 20px;
       padding: 15px;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-
-    .series-card {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      overflow: hidden;
-      text-decoration: none;
-      color: inherit;
-      background: #fff;
-    }
-    .series-card-content {
-      padding: 12px;
-    }
-    .series-card-cta {
-      margin-top: 8px;
-      padding: 6px 12px;
-      font-size: 14px;
-      background: #222;
-      color: #fff;
-      border-radius: 4px;
-      text-align: center;
-    }
-
-    /* 产品详情区 */
-    .model-list {
-      padding: 15px;
-      display: none;
-    }
-    .model-card {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 12px;
-      margin-bottom: 15px;
-      background: #fff;
-    }
-    .model-card img {
-      margin-bottom: 10px;
-    }
-    .back-button {
-      display: inline-block;
-      margin-bottom: 15px;
-      text-decoration: none;
-      color: #007bff;
+      grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
     }
 
     /* 移动端特定样式 */
     @media (max-width: 600px) {
       body {
+        padding-top: 50px !important;
         font-size: 14px;
       }
+      .site-topbar {
+        height: 50px !important;
+        padding: 8px 10px !important;
+      }
+      .topbar__logo {
+        height: 25px !important;
+      }
+      .series-card-content {
+        padding: 12px !important;
+      }
       .series-card-cta {
+        padding: 6px 12px;
         font-size: 13px;
       }
     }
 
-    /* 补偿顶部栏和底部栏（高度由参考css统一控制，这里只加间距） */
+    /* 固定定位解决方案 */
+    .site-topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
+    }
+    .site-bottombar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 900;
+    }
     main {
-      padding-bottom: 70px;
-      padding-top: 70px;
+      padding-bottom: 70px; /* 底部栏高度补偿 */
+      padding-top: 70px; /* 顶部栏高度补偿 */
     }
   </style>
 </head>
 
 <body>
-  <!-- 顶部导航栏（保持不变，样式由参考zip统一控制） -->
+<header class="site-topbar">
+  <div class="topbar__left">
+    <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
+  </div>
+  <div class="topbar__center">
+    <a href="index.html"><img class="topbar__logo" src="./images/logo.png" alt="AX Guitar Logo"/></a>
+  </div>
+  <div class="topbar__right">
+    <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
+    <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
+  </div>
+  <nav class="mobile-nav" id="mobileNav">
+    <ul class="mobile-nav__list">
+      <li><a href="index.html">首页</a></li>
+      <li><a href="products.html">产品</a></li>
+      <li><a href="product.html?series=d">特色</a></li>
+      <li><a href="pricing.html">DIY选项</a></li>
+      <li><a href="news.html">新闻</a></li>
+      <li><a href="support.html">支持</a></li>
+    </ul>
+  </nav>
+</header>
+
   <header class="site-topbar">
     <!-- 原有顶部栏代码 -->
   </header>
 
   <main>
-    <!-- 系列总览 -->
     <div class="series-overview" id="seriesOverview">
       <script>
         const seriesData = [
@@ -116,7 +192,6 @@
       </script>
     </div>
 
-    <!-- 产品详情 -->
     <div class="model-list" id="modelList">
       <a href="products.html" class="back-button">← 返回系列总览</a>
       <div id="loading"></div>
@@ -124,7 +199,7 @@
     </div>
   </main>
 
-  <!-- 底部栏（保持不变，样式由参考zip统一控制） -->
+  <!-- 底部栏（保持不变） -->
   <footer class="site-bottombar" id="footerToTop">
     <div class="bottombar__label">返回顶部</div>
     <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
@@ -162,7 +237,9 @@
       }
     };
     
+    // 初始化加载
     document.addEventListener('DOMContentLoaded', loadSeries);
+    // 处理浏览器前进/后退
     window.addEventListener('popstate', loadSeries);
   </script>
 </body>
