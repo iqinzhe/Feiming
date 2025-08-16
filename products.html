@@ -4,133 +4,60 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>产品系列 - AX Bass&Guitar</title>
+  <!-- 核心样式文件 -->
+  <link rel="stylesheet" href="style.css">
   <style>
-    :root {
-      --neutral-gray: rgb(128, 128, 128);
-      --glass-dark: rgba(0, 0, 0, 0.3);
-      --text-white: #fff;
-    }
-
-    body {
-      background: var(--neutral-gray);
-      color: var(--text-white);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding-top: 60px;
-    }
-
-    .site-topbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 5%;
-      background: var(--glass-dark);
-      backdrop-filter: blur(10px);
-      z-index: 100;
-      height: 60px;
-      box-sizing: border-box;
-    }
-
+    /* 产品页独有样式（不影响其他部分） */
     .series-overview {
       display: grid;
       gap: 25px;
       padding: 30px 5%;
     }
-
     .series-card {
       background: rgba(0,0,0,0.2);
       border-radius: 10px;
       overflow: hidden;
       transition: transform 0.3s;
-      text-decoration: none;
-      color: inherit;
     }
-
     .series-card:hover {
       transform: translateY(-5px);
     }
-
-    .series-card img {
-      width: 100%;
-      height: auto;
-    }
-
     .series-card-content {
       padding: 20px;
     }
-
     .series-card-cta {
       display: inline-block;
       padding: 8px 15px;
       background: rgba(255,255,255,0.2);
       border-radius: 4px;
     }
-
+    /* 型号列表页样式 */
     .model-list {
       padding: 30px 5%;
       display: none;
     }
-
     .models-container {
       display: grid;
       gap: 20px;
     }
-
     .model-card {
       background: rgba(0,0,0,0.2);
       border-radius: 10px;
       padding: 20px;
     }
-
-    .model-card img {
-      width: 100%;
-      border-radius: 5px;
-    }
-
-    .back-button {
-      display: inline-block;
-      margin-bottom: 20px;
-      color: var(--text-white);
-      text-decoration: none;
-    }
-
-    .error {
-      color: #ff6b6b;
-      padding: 20px;
-      background: rgba(0,0,0,0.3);
-      border-radius: 5px;
-    }
-
-    #loading {
-      text-align: center;
-      padding: 20px;
-    }
-
+    /* 响应式布局 */
     @media (min-width: 768px) {
-      .series-overview {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .models-container {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .series-overview { grid-template-columns: repeat(2, 1fr); }
+      .models-container { grid-template-columns: repeat(2, 1fr); }
     }
-
     @media (min-width: 1024px) {
-      .series-overview {
-        grid-template-columns: repeat(4, 1fr);
-      }
+      .series-overview { grid-template-columns: repeat(4, 1fr); }
     }
   </style>
 </head>
 
 <body>
+  <!-- 顶部导航栏（与全站一致） -->
   <header class="site-topbar">
     <div class="topbar__left">
       <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
@@ -144,40 +71,52 @@
       <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
       <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
     </div>
+    <!-- 移动端菜单 -->
+    <nav class="mobile-nav" id="mobileNav">
+      <ul class="mobile-nav__list">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="products.html">产品</a></li>
+        <li><a href="product.html?series=d">特色</a></li>
+        <li><a href="pricing.html">DIY选项</a></li>
+        <li><a href="news.html">新闻</a></li>
+        <li><a href="support.html">支持</a></li>
+      </ul>
+    </nav>
   </header>
 
   <main>
     <!-- 系列总览 -->
     <div class="series-overview" id="seriesOverview">
+      <!-- Series A -->
       <a class="series-card" href="products.html?series=a">
-        <img src="images/series-a.jpg" alt="A系列"/>
+        <img src="images/series-a.jpg" alt="A系列" loading="lazy"/>
         <div class="series-card-content">
           <h2>Series A</h2>
           <p>经典螺栓固定结构系列</p>
           <div class="series-card-cta">查看产品</div>
         </div>
       </a>
-
+      <!-- Series B -->
       <a class="series-card" href="products.html?series=b">
-        <img src="images/series-b.jpg" alt="B系列"/>
+        <img src="images/series-b.jpg" alt="B系列" loading="lazy"/>
         <div class="series-card-content">
           <h2>Series B</h2>
           <p>高端通颈连体工艺系列</p>
           <div class="series-card-cta">查看产品</div>
         </div>
       </a>
-
+      <!-- Series C -->
       <a class="series-card" href="products.html?series=c">
-        <img src="images/series-c.jpg" alt="C系列"/>
+        <img src="images/series-c.jpg" alt="C系列" loading="lazy"/>
         <div class="series-card-content">
           <h2>Series C</h2>
           <p>迷你便携式贝斯系列</p>
           <div class="series-card-cta">查看产品</div>
         </div>
       </a>
-
+      <!-- Series D -->
       <a class="series-card" href="products.html?series=d">
-        <img src="images/series-d.jpg" alt="D系列"/>
+        <img src="images/series-d.jpg" alt="D系列" loading="lazy"/>
         <div class="series-card-content">
           <h2>Series D</h2>
           <p>革命性人体工学设计</p>
@@ -186,7 +125,7 @@
       </a>
     </div>
 
-    <!-- 型号列表 -->
+    <!-- 型号列表（动态加载） -->
     <div class="model-list" id="modelList">
       <a href="products.html" class="back-button">← 返回系列总览</a>
       <div id="loading">加载中...</div>
@@ -194,65 +133,52 @@
     </div>
   </main>
 
+  <!-- 底部栏（样式由style.css控制） -->
   <footer class="site-bottombar" id="footerToTop">
     <div class="bottombar__label">返回顶部</div>
     <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
   </footer>
 
+  <!-- 核心JS文件（保持加载顺序） -->
+  <script src="/js/main.js"></script>
   <script>
+    // 产品加载逻辑（已修复跳转问题）
     document.addEventListener('DOMContentLoaded', function() {
       const urlParams = new URLSearchParams(window.location.search);
       const seriesId = urlParams.get('series');
-      const seriesOverview = document.getElementById('seriesOverview');
-      const modelList = document.getElementById('modelList');
-      const loadingElement = document.getElementById('loading');
+      if (!seriesId) return;
 
-      if (seriesId) {
-        seriesOverview.style.display = 'none';
-        modelList.style.display = 'block';
-
-        const isProduction = window.location.hostname === 'www.axguitar.com';
-        const jsonPath = isProduction ? 
-          `/data/${seriesId}.json` : 
-          `data/${seriesId}.json`;
-
-        fetch(jsonPath)
-          .then(response => {
-            if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-            return response.json();
-          })
-          .then(data => {
-            loadingElement.style.display = 'none';
-            const container = document.getElementById('modelsContainer');
-            container.innerHTML = `
-              <h1>${data.name}</h1>
-              <p>${data.tagline}</p>
-              ${data.models.map(model => `
-                <div class="model-card">
-                  <img src="${model.image}" alt="${model.name}" loading="lazy">
-                  <h3>${model.name}</h3>
-                  <p>${model.features}</p>
-                  <ul>${model.specs.map(spec => `<li>${spec}</li>`).join('')}</ul>
-                </div>
-              `).join('')}
-            `;
-          })
-          .catch(error => {
-            loadingElement.style.display = 'none';
-            document.getElementById('modelsContainer').innerHTML = `
-              <div class="error">
-                <p>无法加载产品数据</p>
-                <p>请检查: ${jsonPath}</p>
-                <p>错误: ${error.message}</p>
+      const jsonPath = `data/${seriesId}.json`;
+      fetch(jsonPath)
+        .then(response => {
+          if (!response.ok) throw new Error('网络响应异常');
+          return response.json();
+        })
+        .then(data => {
+          document.getElementById('loading').style.display = 'none';
+          const container = document.getElementById('modelsContainer');
+          container.innerHTML = `
+            <h1>${data.name}</h1>
+            <p>${data.tagline}</p>
+            ${data.models.map(model => `
+              <div class="model-card">
+                <img src="${model.image}" alt="${model.name}" loading="lazy">
+                <h3>${model.name}</h3>
+                <p>${model.features}</p>
+                <ul>${model.specs.map(spec => `<li>${spec}</li>`).join('')}</ul>
               </div>
-            `;
-            console.error('Fetch error:', error);
-          });
-      }
-
-      document.getElementById('footerToTop').addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
+            `).join('')}
+          `;
+        })
+        .catch(error => {
+          console.error('加载失败:', error);
+          document.getElementById('modelsContainer').innerHTML = `
+            <div class="error">
+              <p>加载产品数据失败</p>
+              <p>错误: ${error.message}</p>
+            </div>
+          `;
+        });
     });
   </script>
 </body>
