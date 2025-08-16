@@ -132,14 +132,14 @@
             "重量: 2.8kg"
           ],
           "ctaColor": "rgba(100,181,246,0.7)"
-        }
+       }
       ]
     },
     {
       "id": "d",
       "name": "Series D",
       "tagline": "革命性人体工学设计",
-      "cover": "images/D1.jpg",
+      "cover": "images/series-d.jpg",
       "overview": {
         "intro": "颠覆传统的琴颈技术",
         "highlights": [
@@ -148,37 +148,19 @@
           "获得2023红点设计大奖"
         ]
       },
+      "description": "采用革命性扭曲琴颈设计，符合人体工学原理，大幅减少演奏疲劳，获得2023年红点设计大奖。",
       "models": [
-      {
-  "id": "d",
-  "name": "Series D",
-  "tagline": "革命性人体工学设计",
-  "cover": "images/series-D1.jpg",  
-  "overview": {
-    "intro": "颠覆传统的琴颈技术",
-    "highlights": [
-      "符合人体自然运动轨迹",
-      "减少75%的演奏疲劳",
-      "获得2023红点设计大奖"
-    ]
-  },
-  "description": "采用革命性扭曲琴颈设计，符合人体工学原理，大幅减少演奏疲劳，获得2023年红点设计大奖。",
-  "models": [
-    {
-      "id": "d1",
-      "name": "Model D",
-      "image": "images/d1.jpg",
-      "features": "标准款扭曲琴颈贝斯，适合多种音乐风格",
-      "specs": [
-        "特殊扭曲琴颈设计",
-        "符合人体工学",
-        "减少演奏疲劳"
-      ],
-      "ctaColor": "rgba(156,39,176,0.7)",
-      ]
-    }
-  ]
-}
+        {
+          "id": "d1",
+          "name": "Model D",
+          "image": "images/d1.jpg",
+          "features": "标准款扭曲琴颈贝斯，适合多种音乐风格",
+          "specs": [
+            "特殊扭曲琴颈设计",
+            "符合人体工学",
+            "减少演奏疲劳"
+          ],
+          "ctaColor": "rgba(156,39,176,0.7)",
           "sections": [
             {
               "type": "text-with-image",
@@ -220,6 +202,10 @@
           ]
         }
       ]
+    }
+  ]
+}
+ 
     }
   ]
 }
