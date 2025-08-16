@@ -1,14 +1,16 @@
 {
   "models": [
     {
-      "name": "AX-A1",
-      "desc": "经典款式，适合入门玩家",
-      "img": "ax-a1.jpg"
+      "id": "a1",
+      "name": "A1 Model",
+      "desc": "专为摇滚设计的高输出型号，提供强劲的中频和饱满的低音响应",
+      "img": "a1.jpg"
     },
     {
-      "name": "AX-A2",
-      "desc": "升级拾音器与琴颈设计",
-      "img": "ax-a2.jpg"
+      "id": "a2",
+      "name": "A2 Model",
+      "desc": "适合蓝调和爵士的温暖音色，提供清晰的高频响应",
+      "img": "a2.jpg"
     }
   ]
 }
