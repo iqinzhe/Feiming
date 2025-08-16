@@ -172,13 +172,15 @@ function loadSeries(seriesId) {
   fetch(`data/${seriesId}.json?t=${Date.now()}`)
     .then(res => res.json())
     .then(data => {
-      modelsContainer.innerHTML = data.models.map(m => `
-        <div class="product-card">
-          <img src="images/${m.img}" alt="${m.name}" />
-          <h3>${m.name}</h3>
-          <p>${m.desc}</p>
-        </div>
-      `).join("");
+    modelsContainer.innerHTML = data.models.map(m => `
+  <div class="product-card">
+    <img src="images/${m.img}" alt="${m.name}" />
+    <h3>${m.name}</h3>
+    <p>${m.desc}</p>
+    <a class="order-button" href="pricing.html">订购</a>
+  </div>
+`).join("");
+
     })
     .catch(err => {
       modelsContainer.innerHTML = `<p>加载失败：${err}</p>`;
