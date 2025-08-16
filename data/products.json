@@ -1,5 +1,5 @@
 
-  "series": [
+  "series": a[
     {
       "id": "a",
       "models": [
@@ -34,7 +34,9 @@
       ]
     },
     {
-      "id": "b",
+
+ "series":b[
+    "id": "b",
       "models": [
         {
           "id": "b1",
@@ -67,6 +69,8 @@
       ]
     },
     {
+
+"series":c[
       "id": "c",
       "models": [
         {
@@ -100,6 +104,8 @@
       ]
     },
     {
+
+"series":d[
       "id": "d",
       "models": [
         {
