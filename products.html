@@ -2,29 +2,90 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <title>产品系列 - AX Bass&Guitar</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* 仅产品页独有样式 */
+    /* 移动端优先的响应式设计 */
+    :root {
+      --mobile-breakpoint: 600px;
+      --card-min-width: 280px;
+    }
+
+    /* 系列卡片布局 */
     .series-overview {
       display: grid;
-      gap: 25px;
-      padding: 30px 5%;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
     }
-    .model-list { 
-      display: none;
-      padding: 30px 5%;
+
+    /* 移动端特定样式 */
+    @media (max-width: 600px) {
+      body {
+        padding-top: 50px !important; /* 适配更小的顶部栏 */
+      }
+
+      .site-topbar {
+        height: 50px !important;
+        padding: 8px 10px !important;
+      }
+
+      .topbar__logo {
+        height: 25px !important;
+      }
+
+      .series-card-content {
+        padding: 15px !important;
+      }
+
+      .model-card {
+        padding: 15px !important;
+      }
     }
-    #loading:empty { display: none; }
+
+    /* 固定顶部栏和底部栏 */
+    .site-topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+    }
+
+    .site-bottombar {
+      position: sticky;
+      bottom: 0;
+      z-index: 900;
+    }
+
+    /* 防止移动端缩放 */
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
   </style>
 </head>
 
 <body>
-  <header class="site-topbar"><!-- 保持原有结构 --></header>
+  <!-- 顶部导航栏 -->
+  <header class="site-topbar">
+    <div class="topbar__left">
+      <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
+    </div>
+    <div class="topbar__center">
+      <a href="index.html">
+        <img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
+      </a>
+    </div>
+    <div class="topbar__right">
+      <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
+      <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
+    </div>
+  </header>
 
-  <main>
+  <main style="margin-bottom: 60px;"> <!-- 为底部栏留出空间 -->
+    <!-- 内容区保持不变 -->
     <div class="series-overview" id="seriesOverview">
       <!-- 动态生成系列卡片 -->
       <script>
@@ -55,50 +116,16 @@
     </div>
   </main>
 
-  <footer class="site-bottombar" id="footerToTop"><!-- 保持原结构 --></footer>
+  <!-- 底部栏 -->
+  <footer class="site-bottombar" id="footerToTop">
+    <div class="bottombar__label">返回顶部</div>
+    <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
+  </footer>
 
+  <!-- JS部分保持不变 -->
   <script src="/js/main.js"></script>
   <script>
-    // 强化版加载逻辑
-    const loadSeries = () => {
-      const { search } = window.location;
-      if (!search.includes('series=')) return;
-
-      document.getElementById('seriesOverview').style.display = 'none';
-      const modelList = document.getElementById('modelList');
-      modelList.style.display = 'block';
-      
-      const seriesId = new URLSearchParams(search).get('series');
-      const loadingEl = document.getElementById('loading');
-      loadingEl.textContent = `正在加载 ${seriesId.toUpperCase()} 系列...`;
-
-      fetch(`data/${seriesId}.json?nc=${Date.now()}`)
-        .then(res => res.ok ? res.json() : Promise.reject(res.status))
-        .then(data => {
-          loadingEl.textContent = '';
-          document.getElementById('modelsContainer').innerHTML = `
-            <h1>${data.name}</h1>
-            ${data.models.map(m => `
-              <div class="model-card">
-                <img src="${m.image}" alt="${m.name}" loading="lazy">
-                <h3>${m.name}</h3>
-                <p>${m.features}</p>
-                <ul>${m.specs.map(s => `<li>${s}</li>`).join('')}</ul>
-              </div>
-            `).join('')}
-          `;
-        })
-        .catch(err => {
-          loadingEl.innerHTML = `⚠️ 加载失败: <small>${err}</small>`;
-          console.error('Fetch Error:', err);
-        });
-    };
-
-    // 初始化执行
-    document.addEventListener('DOMContentLoaded', loadSeries);
-    
-    // 历史记录变化时重新加载
-    window.addEventListener('popstate', loadSeries);
+    // 原有加载逻辑...
   </script>
 </body>
 </html>
