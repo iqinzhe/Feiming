@@ -1,45 +1,22 @@
 {
-  "id": "c",
-  "name": "Series C",
-  "tagline": "迷你便携式贝斯系列",
-  "cover": "images/series-c.jpg",
-  "overview": {
-    "intro": "小巧轻便的入门选择",
-    "highlights": [
-      "23.5英寸短弦长设计",
-      "总重量不超过3kg",
-      "特别适合手小的演奏者"
-    ]
-  },
-  "description": "BASS BABY:通过深入研究和评比，我们的C系列迷你BASS BABY采用23.5英寸弦长，整体总长度88cm，总宽度25cm。\n小巧轻便，易于携带，对手小的初学者（或女性）更友好。",
   "models": [
     {
       "id": "c1",
-      "name": "C1 Mini Bass",
-      "image": "images/c1.jpg",
-      "features": "入门级迷你贝斯，适合手小的演奏者",
+      "name": "C1 Model",
+      "desc": "入门级迷你贝斯，适合手小的演奏者.",
       "specs": [
         "琴体: 椴木",
         "琴颈: 枫木",
         "指板: 玫瑰木",
         "拾音器: Single Coil × 1",
         "弦长: 23.5英寸"
-      ],
-      "ctaColor": "rgba(100,181,246,0.7)"
+      "img": "c1.jpg"
     },
     {
       "id": "c2",
-      "name": "C2 Travel Bass",
-      "image": "images/c2.jpg",
-      "features": "旅行款迷你贝斯，可拆卸琴颈设计",
-      "specs": [
-        "琴体: 桃花心木",
-        "琴颈: 枫木",
-        "指板: 枫木",
-        "拾音器: Humbucker × 1",
-        "重量: 2.8kg"
-      ],
-      "ctaColor": "rgba(100,181,246,0.7)"
+      "name": "C2 Model",
+      "desc": "旅行款迷你贝斯，便携无头颈消瘦琴体.",
+      "img": "c2.jpg"
     }
   ]
 }
