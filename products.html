@@ -11,7 +11,6 @@
       --text-white: #fff;
     }
 
-    /* 通用样式 */
     body {
       background: var(--neutral-gray);
       color: var(--text-white);
@@ -23,7 +22,6 @@
       padding-top: 60px;
     }
 
-    /* 顶部导航栏 */
     .site-topbar {
       position: fixed;
       top: 0;
@@ -40,12 +38,12 @@
       box-sizing: border-box;
     }
 
-    /* 系列总览卡片 */
     .series-overview {
       display: grid;
       gap: 25px;
       padding: 30px 5%;
     }
+
     .series-card {
       background: rgba(0,0,0,0.2);
       border-radius: 10px;
@@ -54,16 +52,20 @@
       text-decoration: none;
       color: inherit;
     }
+
     .series-card:hover {
       transform: translateY(-5px);
     }
+
     .series-card img {
       width: 100%;
       height: auto;
     }
+
     .series-card-content {
       padding: 20px;
     }
+
     .series-card-cta {
       display: inline-block;
       padding: 8px 15px;
@@ -71,27 +73,27 @@
       border-radius: 4px;
     }
 
-    /* 型号列表页样式 */
     .model-list {
       padding: 30px 5%;
-      display: none; /* 默认隐藏 */
+      display: none;
     }
-    .model-list h1 {
-      margin-top: 0;
-    }
+
     .models-container {
       display: grid;
       gap: 20px;
     }
+
     .model-card {
       background: rgba(0,0,0,0.2);
       border-radius: 10px;
       padding: 20px;
     }
+
     .model-card img {
       width: 100%;
       border-radius: 5px;
     }
+
     .back-button {
       display: inline-block;
       margin-bottom: 20px;
@@ -99,7 +101,18 @@
       text-decoration: none;
     }
 
-    /* 响应式设计 */
+    .error {
+      color: #ff6b6b;
+      padding: 20px;
+      background: rgba(0,0,0,0.3);
+      border-radius: 5px;
+    }
+
+    #loading {
+      text-align: center;
+      padding: 20px;
+    }
+
     @media (min-width: 768px) {
       .series-overview {
         grid-template-columns: repeat(2, 1fr);
@@ -108,6 +121,7 @@
         grid-template-columns: repeat(2, 1fr);
       }
     }
+
     @media (min-width: 1024px) {
       .series-overview {
         grid-template-columns: repeat(4, 1fr);
@@ -117,7 +131,6 @@
 </head>
 
 <body>
-  <!-- 顶部导航栏 -->
   <header class="site-topbar">
     <div class="topbar__left">
       <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
@@ -134,56 +147,49 @@
   </header>
 
   <main>
-    <!-- 第一级：系列总览 -->
+    <!-- 系列总览 -->
     <div class="series-overview" id="seriesOverview">
-      <!-- Series A -->
       <a class="series-card" href="products.html?series=a">
         <img src="images/series-a.jpg" alt="A系列"/>
         <div class="series-card-content">
           <h2>Series A</h2>
           <p>经典螺栓固定结构系列</p>
-          <p>螺栓固定结构带来的额外弹性和响应，提供高性价比的现代音色</p>
-          <div class="series-card-cta">查看产品</div> <!-- 已修改 -->
+          <div class="series-card-cta">查看产品</div>
         </div>
       </a>
 
-      <!-- Series B -->
       <a class="series-card" href="products.html?series=b">
         <img src="images/series-b.jpg" alt="B系列"/>
         <div class="series-card-content">
           <h2>Series B</h2>
           <p>高端通颈连体工艺系列</p>
-          <p>通颈连体贝斯工艺较为复杂，常被视为高端贝斯的标志之一</p>
-          <div class="series-card-cta">查看产品</div> <!-- 已修改 -->
+          <div class="series-card-cta">查看产品</div>
         </div>
       </a>
 
-      <!-- Series C -->
       <a class="series-card" href="products.html?series=c">
         <img src="images/series-c.jpg" alt="C系列"/>
         <div class="series-card-content">
           <h2>Series C</h2>
           <p>迷你便携式贝斯系列</p>
-          <p>23.5英寸弦长设计，小巧轻便，对手小的演奏者更友好</p>
-          <div class="series-card-cta">查看产品</div> <!-- 已修改 -->
+          <div class="series-card-cta">查看产品</div>
         </div>
       </a>
 
-      <!-- Series D -->
       <a class="series-card" href="products.html?series=d">
         <img src="images/series-d.jpg" alt="D系列"/>
         <div class="series-card-content">
           <h2>Series D</h2>
           <p>革命性人体工学设计</p>
-          <p>扭曲琴颈设计符合人体工学原理，大幅减少演奏疲劳</p>
-          <div class="series-card-cta">查看产品</div> <!-- 已修改 -->
+          <div class="series-card-cta">查看产品</div>
         </div>
       </a>
     </div>
 
-    <!-- 第二级：型号列表 -->
+    <!-- 型号列表 -->
     <div class="model-list" id="modelList">
       <a href="products.html" class="back-button">← 返回系列总览</a>
+      <div id="loading">加载中...</div>
       <div class="models-container" id="modelsContainer"></div>
     </div>
   </main>
@@ -194,54 +200,59 @@
   </footer>
 
   <script>
-    // 根据URL参数切换显示内容
-    const urlParams = new URLSearchParams(window.location.search);
-    const seriesId = urlParams.get('series');
-    const seriesOverview = document.getElementById('seriesOverview');
-    const modelList = document.getElementById('modelList');
-    const modelsContainer = document.getElementById('modelsContainer');
+    document.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const seriesId = urlParams.get('series');
+      const seriesOverview = document.getElementById('seriesOverview');
+      const modelList = document.getElementById('modelList');
+      const loadingElement = document.getElementById('loading');
 
-    if (seriesId) {
-      // 显示型号列表，隐藏总览
-      seriesOverview.style.display = 'none';
-      modelList.style.display = 'block';
+      if (seriesId) {
+        seriesOverview.style.display = 'none';
+        modelList.style.display = 'block';
 
-      // 加载对应系列的JSON数据
-      fetch(`${seriesId}.json`)
-        .then(response => response.json())
-        .then(data => {
-          // 渲染系列标题
-          modelList.innerHTML = `
-            <a href="products.html" class="back-button">← 返回系列总览</a>
-            <h1>${data.name}</h1>
-            <p>${data.tagline}</p>
-            <div class="models-container" id="modelsContainer"></div>
-          `;
+        const isProduction = window.location.hostname === 'www.axguitar.com';
+        const jsonPath = isProduction ? 
+          `/data/${seriesId}.json` : 
+          `data/${seriesId}.json`;
 
-          // 渲染每个型号
-          const container = document.getElementById('modelsContainer');
-          data.models.forEach(model => {
-            container.innerHTML += `
-              <div class="model-card">
-                <img src="${model.image}" alt="${model.name}">
-                <h3>${model.name}</h3>
-                <p>${model.features}</p>
-                <ul>
-                  ${model.specs.map(spec => `<li>${spec}</li>`).join('')}
-                </ul>
+        fetch(jsonPath)
+          .then(response => {
+            if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+            return response.json();
+          })
+          .then(data => {
+            loadingElement.style.display = 'none';
+            const container = document.getElementById('modelsContainer');
+            container.innerHTML = `
+              <h1>${data.name}</h1>
+              <p>${data.tagline}</p>
+              ${data.models.map(model => `
+                <div class="model-card">
+                  <img src="${model.image}" alt="${model.name}" loading="lazy">
+                  <h3>${model.name}</h3>
+                  <p>${model.features}</p>
+                  <ul>${model.specs.map(spec => `<li>${spec}</li>`).join('')}</ul>
+                </div>
+              `).join('')}
+            `;
+          })
+          .catch(error => {
+            loadingElement.style.display = 'none';
+            document.getElementById('modelsContainer').innerHTML = `
+              <div class="error">
+                <p>无法加载产品数据</p>
+                <p>请检查: ${jsonPath}</p>
+                <p>错误: ${error.message}</p>
               </div>
             `;
+            console.error('Fetch error:', error);
           });
-        })
-        .catch(error => {
-          console.error('加载失败:', error);
-          modelList.innerHTML = `<p>加载产品数据失败，请刷新重试。</p>`;
-        });
-    }
+      }
 
-    // 返回顶部功能
-    document.getElementById('footerToTop').addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.getElementById('footerToTop').addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     });
   </script>
 </body>
