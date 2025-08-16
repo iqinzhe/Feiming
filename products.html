@@ -23,7 +23,7 @@
       padding-top: 60px;
     }
 
-    /* 顶部导航栏*/
+    /* 顶部导航栏 */
     .site-topbar {
       position: fixed;
       top: 0;
@@ -38,48 +38,6 @@
       z-index: 100;
       height: 60px;
       box-sizing: border-box;
-    }
-
-    .topbar__btn {
-      background: none;
-      border: none;
-      color: var(--text-white);
-      font-size: 20px;
-      cursor: pointer;
-    }
-
-    /* 移动端导航菜单 */
-    .mobile-nav {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      background: var(--glass-dark);
-      backdrop-filter: blur(10px);
-      z-index: 90;
-      padding: 15px 0;
-    }
-
-    .mobile-nav.mobile-nav--open {
-      display: block;
-    }
-
-    .mobile-nav__list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .mobile-nav__list li {
-      padding: 12px 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .mobile-nav__list a {
-      color: var(--text-white);
-      text-decoration: none;
-      display: block;
     }
 
     /* 系列卡片样式 */
@@ -102,52 +60,10 @@
       transform: translateY(-5px);
     }
 
-    .series-card img {
-      width: 100%;
-      height: auto;
-    }
-
-    .series-card-content {
-      padding: 20px;
-    }
-
-    .series-card h2 {
-      margin-top: 0;
-    }
-
-    .series-card p {
-      margin-bottom: 15px;
-    }
-
-    .series-card-cta {
-      display: inline-block;
-      padding: 8px 15px;
-      background: rgba(255,255,255,0.2);
-      border-radius: 4px;
-      margin-bottom: 20px;
-    }
-
-    /* 底部栏 */
-    .site-bottombar {
-      text-align: center;
-      padding: 20px;
-      background: var(--glass-dark);
-      margin-top: auto;
-    }
-
-    .bottombar__logo {
-      height: 30px;
-      margin-top: 10px;
-    }
-
     /* 响应式设计 */
     @media (min-width: 768px) {
       .series-overview {
         grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .topbar__logo {
-        height: 35px;
       }
     }
 
@@ -174,19 +90,9 @@
       <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
       <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
     </div>
-
-    <nav class="mobile-nav" id="mobileNav">
-      <ul class="mobile-nav__list">
-        <li><a href="index.html">首页</a></li>
-        <li><a href="products.html">产品</a></li>
-        <li><a href="product.html?series=d">特色</a></li>
-        <li><a href="pricing.html">DIY选项</a></li>
-        <li><a href="news.html">新闻</a></li>
-        <li><a href="support.html">支持</a></li>
-      </ul>
-    </nav>
   </header>
 
+  <!-- 产品系列总览 -->
   <main class="series-overview">
     <!-- Series A -->
     <a class="series-card" href="products.html?series=a">
@@ -194,7 +100,6 @@
       <div class="series-card-content">
         <h2>Series A</h2>
         <p>经典螺栓固定结构系列</p>
-        <p>螺栓固定结构带来的额外弹性和响应，提供高性价比的现代音色，从一开始栓接就是吉他历史的重要组成部分。</p>
         <div class="series-card-cta">查看系列</div>
       </div>
     </a>
@@ -205,7 +110,6 @@
       <div class="series-card-content">
         <h2>Series B</h2>
         <p>高端通颈连体工艺系列</p>
-        <p>通颈连体贝斯工艺较为复杂，常被视为高端贝斯的标志之一。采用多类型木材拼接琴颈与琴体，更具艺术性，视觉冲击力更强。</p>
         <div class="series-card-cta">查看系列</div>
       </div>
     </a>
@@ -216,7 +120,6 @@
       <div class="series-card-content">
         <h2>Series C</h2>
         <p>迷你便携式贝斯系列</p>
-        <p>BASS BABY:通过深入研究和评比，我们的C系列迷你BASS BABY采用23.5英寸弦长，整体总长度88cm，总宽度25cm。</p>
         <div class="series-card-cta">查看系列</div>
       </div>
     </a>
@@ -227,25 +130,43 @@
       <div class="series-card-content">
         <h2>Series D</h2>
         <p>革命性人体工学设计</p>
-        <p>采用革命性扭曲琴颈设计，符合人体工学原理，大幅减少演奏疲劳，获得2023年红点设计大奖。</p>
         <div class="series-card-cta">查看系列</div>
       </div>
     </a>
   </main>
 
-  <!--底部栏 -->
+  <!-- 底部栏 -->
   <footer class="site-bottombar" id="footerToTop">
     <div class="bottombar__label">返回顶部</div>
     <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
   </footer>
 
   <script>
-    // 移动菜单切换
+    // 1. 检查URL参数，如果是 ?series=x 则加载对应JSON
+    const urlParams = new URLSearchParams(window.location.search);
+    const seriesId = urlParams.get('series');
+
+    if (seriesId) {
+      // 动态加载对应的JSON数据
+      fetch(`${seriesId}.json`)
+        .then(response => response.json())
+        .then(data => {
+          // 这里可以渲染产品详情页
+          console.log("加载的产品数据:", data);
+          // 示例：修改页面标题
+          document.title = `${data.name} - AX Bass&Guitar`;
+        })
+        .catch(error => {
+          console.error("加载JSON失败:", error);
+        });
+    }
+
+    // 2. 移动菜单切换
     document.getElementById('topbarMenuBtn').addEventListener('click', function() {
       document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
     });
 
-    // 返回顶部功能
+    // 3. 返回顶部功能
     document.getElementById('footerToTop').addEventListener('click', function() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
