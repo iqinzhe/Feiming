@@ -1,68 +1,14 @@
 {
-  "id": "d",
-  "name": "Series D",
-  "tagline": "革命性人体工学设计",
-  "cover": "images/series-d.jpg",
-  "overview": {
-    "intro": "颠覆传统的琴颈技术",
-    "highlights": [
-      "符合人体自然运动轨迹",
-      "减少75%的演奏疲劳",
-      "获得2023红点设计大奖"
-    ]
-  },
-  "description": "采用革命性扭曲琴颈设计，符合人体工学原理，大幅减少演奏疲劳，获得2023年红点设计大奖。",
   "models": [
     {
       "id": "d1",
-      "name": "Model D",
-      "image": "images/d1.jpg",
-      "features": "标准款扭曲琴颈贝斯，适合多种音乐风格",
+      "name": "A1 Model",
+      "desc": "革命性人体工学设计,颠覆传统的琴颈技术,符合人体自然运动轨迹,减少演奏疲劳.",
       "specs": [
         "特殊扭曲琴颈设计",
         "符合人体工学",
         "减少演奏疲劳"
-      ],
-      "ctaColor": "rgba(156,39,176,0.7)",
-      "sections": [
-        {
-          "type": "text-with-image",
-          "title": "什么是扭曲琴颈？",
-          "content": "扭曲琴颈是一种精密工程设计，遵循您手腕和手指的自然运动轨迹。与传统琴颈不同，它会根据您的演奏姿势自动倾斜，减少疲劳感并提高舒适度。",
-          "image": "images/d1.jpg",
-          "layout": "left"
-        },
-        {
-          "type": "benefits",
-          "title": "核心优势",
-          "items": [
-            {
-              "title": "自然手腕位置",
-              "desc": "减少张力，提高舒适度"
-            },
-            {
-              "title": "延长演奏时间",
-              "desc": "长时间演奏不易疲劳"
-            },
-            {
-              "title": "更好的指板触达",
-              "desc": "复杂乐句演奏更轻松"
-            },
-            {
-              "title": "独特工艺",
-              "desc": "精密设计，精工制作"
-            }
-          ]
-        },
-        {
-          "type": "comparison",
-          "title": "传统琴颈 vs 扭曲琴颈",
-          "image": [
-            "images/d2.jpg",
-            "images/d3.jpg"
-          ]
-        }
-      ]
+      "img": "d1.jpg"
     }
   ]
 }
