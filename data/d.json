@@ -57,7 +57,7 @@
         {
           "type": "comparison",
           "title": "传统琴颈 vs 扭曲琴颈",
-          "images": [
+          "image": [
             "images/d2.jpg",
             "images/d3.jpg"
           ]
