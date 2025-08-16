@@ -39,6 +39,49 @@ body.product-mode #home-container {
 body.product-mode #product-container {
   display: block;
 }
+   
+ /* 移动端特定样式 */
+    @media (max-width: 600px) {
+      body {
+        padding-top: 50px !important;
+        font-size: 14px;
+      }
+      .site-topbar {
+        height: 50px !important;
+        padding: 8px 10px !important;
+      }
+      .topbar__logo {
+        height: 25px !important;
+      }
+      .series-card-content {
+        padding: 12px !important;
+      }
+      .series-card-cta {
+        padding: 6px 12px;
+        font-size: 13px;
+      }
+    }
+
+    /* 固定定位解决方案 */
+    .site-topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
+    }
+    .site-bottombar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 900;
+    }
+    main {
+      padding-bottom: 70px; /* 底部栏高度补偿 */
+      padding-top: 70px; /* 顶部栏高度补偿 */
+    }
 
 /* 原有样式保持不变... */
 .page-content { flex: 1; padding: 20px 5%; margin-top: 20px; }
@@ -96,49 +139,7 @@ body.product-mode #product-container {
       grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
     }
 
-    /* 移动端特定样式 */
-    @media (max-width: 600px) {
-      body {
-        padding-top: 50px !important;
-        font-size: 14px;
-      }
-      .site-topbar {
-        height: 50px !important;
-        padding: 8px 10px !important;
-      }
-      .topbar__logo {
-        height: 25px !important;
-      }
-      .series-card-content {
-        padding: 12px !important;
-      }
-      .series-card-cta {
-        padding: 6px 12px;
-        font-size: 13px;
-      }
-    }
 
-    /* 固定定位解决方案 */
-    .site-topbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      backdrop-filter: blur(5px);
-    }
-    .site-bottombar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: 900;
-    }
-    main {
-      padding-bottom: 70px; /* 底部栏高度补偿 */
-      padding-top: 70px; /* 顶部栏高度补偿 */
-    }
-  </style>
 </head>
 
 <body>
