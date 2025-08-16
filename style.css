@@ -197,6 +197,21 @@ body {
   }
 }
 
+  .order-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: #e53935;      /* 红色背景 */
+    color: #fff;              /* 白色文字 */
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+  }
+  .order-button:hover {
+    background: #c62828;      /* 悬停时更深的红色 */
+  }
+
 /* ===== 工具类 ===== */
 .form-group {
   background-color: #808080;
