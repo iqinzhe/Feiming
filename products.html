@@ -40,13 +40,12 @@
       box-sizing: border-box;
     }
 
-    /* 系列卡片样式 */
+    /* 系列总览卡片 */
     .series-overview {
       display: grid;
       gap: 25px;
       padding: 30px 5%;
     }
-
     .series-card {
       background: rgba(0,0,0,0.2);
       border-radius: 10px;
@@ -55,9 +54,49 @@
       text-decoration: none;
       color: inherit;
     }
-
     .series-card:hover {
       transform: translateY(-5px);
+    }
+    .series-card img {
+      width: 100%;
+      height: auto;
+    }
+    .series-card-content {
+      padding: 20px;
+    }
+    .series-card-cta {
+      display: inline-block;
+      padding: 8px 15px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 4px;
+    }
+
+    /* 型号列表页样式 */
+    .model-list {
+      padding: 30px 5%;
+      display: none; /* 默认隐藏 */
+    }
+    .model-list h1 {
+      margin-top: 0;
+    }
+    .models-container {
+      display: grid;
+      gap: 20px;
+    }
+    .model-card {
+      background: rgba(0,0,0,0.2);
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .model-card img {
+      width: 100%;
+      border-radius: 5px;
+    }
+    .back-button {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: var(--text-white);
+      text-decoration: none;
     }
 
     /* 响应式设计 */
@@ -65,8 +104,10 @@
       .series-overview {
         grid-template-columns: repeat(2, 1fr);
       }
+      .models-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
-
     @media (min-width: 1024px) {
       .series-overview {
         grid-template-columns: repeat(4, 1fr);
@@ -92,82 +133,110 @@
     </div>
   </header>
 
-  <!-- 产品系列总览 -->
-  <main class="series-overview">
-    <!-- Series A -->
-    <a class="series-card" href="products.html?series=a">
-      <img src="images/series-a.jpg" alt="A系列"/>
-      <div class="series-card-content">
-        <h2>Series A</h2>
-        <p>经典螺栓固定结构系列</p>
-        <div class="series-card-cta">查看系列</div>
-      </div>
-    </a>
+  <main>
+    <!-- 第一级：系列总览 -->
+    <div class="series-overview" id="seriesOverview">
+      <!-- Series A -->
+      <a class="series-card" href="products.html?series=a">
+        <img src="images/series-a.jpg" alt="A系列"/>
+        <div class="series-card-content">
+          <h2>Series A</h2>
+          <p>经典螺栓固定结构系列</p>
+          <div class="series-card-cta">查看系列</div>
+        </div>
+      </a>
 
-    <!-- Series B -->
-    <a class="series-card" href="products.html?series=b">
-      <img src="images/series-b.jpg" alt="B系列"/>
-      <div class="series-card-content">
-        <h2>Series B</h2>
-        <p>高端通颈连体工艺系列</p>
-        <div class="series-card-cta">查看系列</div>
-      </div>
-    </a>
+      <!-- Series B -->
+      <a class="series-card" href="products.html?series=b">
+        <img src="images/series-b.jpg" alt="B系列"/>
+        <div class="series-card-content">
+          <h2>Series B</h2>
+          <p>高端通颈连体工艺系列</p>
+          <div class="series-card-cta">查看系列</div>
+        </div>
+      </a>
 
-    <!-- Series C -->
-    <a class="series-card" href="products.html?series=c">
-      <img src="images/series-c.jpg" alt="C系列"/>
-      <div class="series-card-content">
-        <h2>Series C</h2>
-        <p>迷你便携式贝斯系列</p>
-        <div class="series-card-cta">查看系列</div>
-      </div>
-    </a>
+      <!-- Series C -->
+      <a class="series-card" href="products.html?series=c">
+        <img src="images/series-c.jpg" alt="C系列"/>
+        <div class="series-card-content">
+          <h2>Series C</h2>
+          <p>迷你便携式贝斯系列</p>
+          <div class="series-card-cta">查看系列</div>
+        </div>
+      </a>
 
-    <!-- Series D -->
-    <a class="series-card" href="products.html?series=d">
-      <img src="images/series-d.jpg" alt="D系列"/>
-      <div class="series-card-content">
-        <h2>Series D</h2>
-        <p>革命性人体工学设计</p>
-        <div class="series-card-cta">查看系列</div>
-      </div>
-    </a>
+      <!-- Series D -->
+      <a class="series-card" href="products.html?series=d">
+        <img src="images/series-d.jpg" alt="D系列"/>
+        <div class="series-card-content">
+          <h2>Series D</h2>
+          <p>革命性人体工学设计</p>
+          <div class="series-card-cta">查看系列</div>
+        </div>
+      </a>
+    </div>
+
+    <!-- 第二级：型号列表 -->
+    <div class="model-list" id="modelList">
+      <a href="products.html" class="back-button">← 返回系列总览</a>
+      <div class="models-container" id="modelsContainer"></div>
+    </div>
   </main>
 
-  <!-- 底部栏 -->
   <footer class="site-bottombar" id="footerToTop">
     <div class="bottombar__label">返回顶部</div>
     <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
   </footer>
 
   <script>
-    // 1. 检查URL参数，如果是 ?series=x 则加载对应JSON
+    // 根据URL参数切换显示内容
     const urlParams = new URLSearchParams(window.location.search);
     const seriesId = urlParams.get('series');
+    const seriesOverview = document.getElementById('seriesOverview');
+    const modelList = document.getElementById('modelList');
+    const modelsContainer = document.getElementById('modelsContainer');
 
     if (seriesId) {
-      // 动态加载对应的JSON数据
+      // 显示型号列表，隐藏总览
+      seriesOverview.style.display = 'none';
+      modelList.style.display = 'block';
+
+      // 加载对应系列的JSON数据
       fetch(`${seriesId}.json`)
         .then(response => response.json())
         .then(data => {
-          // 这里可以渲染产品详情页
-          console.log("加载的产品数据:", data);
-          // 示例：修改页面标题
-          document.title = `${data.name} - AX Bass&Guitar`;
+          // 渲染系列标题
+          modelList.innerHTML = `
+            <a href="products.html" class="back-button">← 返回系列总览</a>
+            <h1>${data.name}</h1>
+            <p>${data.tagline}</p>
+            <div class="models-container" id="modelsContainer"></div>
+          `;
+
+          // 渲染每个型号
+          const container = document.getElementById('modelsContainer');
+          data.models.forEach(model => {
+            container.innerHTML += `
+              <div class="model-card">
+                <img src="${model.image}" alt="${model.name}">
+                <h3>${model.name}</h3>
+                <p>${model.features}</p>
+                <ul>
+                  ${model.specs.map(spec => `<li>${spec}</li>`).join('')}
+                </ul>
+              </div>
+            `;
+          });
         })
         .catch(error => {
-          console.error("加载JSON失败:", error);
+          console.error('加载失败:', error);
+          modelList.innerHTML = `<p>加载产品数据失败，请刷新重试。</p>`;
         });
     }
 
-    // 2. 移动菜单切换
-    document.getElementById('topbarMenuBtn').addEventListener('click', function() {
-      document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
-    });
-
-    // 3. 返回顶部功能
-    document.getElementById('footerToTop').addEventListener('click', function() {
+    // 返回顶部功能
+    document.getElementById('footerToTop').addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   </script>
