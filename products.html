@@ -4,10 +4,10 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>产品系列 - AX Bass&Guitar</title>
-  <!-- 核心样式文件 -->
+  <!-- 核心样式 -->
   <link rel="stylesheet" href="style.css">
   <style>
-    /* 产品页独有样式（不影响其他部分） */
+    /* 产品页独有样式 */
     .series-overview {
       display: grid;
       gap: 25px;
@@ -21,6 +21,10 @@
     }
     .series-card:hover {
       transform: translateY(-5px);
+    }
+    .series-card img {
+      width: 100%;
+      height: auto;
     }
     .series-card-content {
       padding: 20px;
@@ -57,7 +61,7 @@
 </head>
 
 <body>
-  <!-- 顶部导航栏（与全站一致） -->
+  <!-- 顶部导航栏 -->
   <header class="site-topbar">
     <div class="topbar__left">
       <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
@@ -71,7 +75,7 @@
       <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
       <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
     </div>
-    <!-- 移动端菜单 -->
+    <!-- 移动菜单 -->
     <nav class="mobile-nav" id="mobileNav">
       <ul class="mobile-nav__list">
         <li><a href="index.html">首页</a></li>
@@ -125,7 +129,7 @@
       </a>
     </div>
 
-    <!-- 型号列表（动态加载） -->
+    <!-- 型号列表 -->
     <div class="model-list" id="modelList">
       <a href="products.html" class="back-button">← 返回系列总览</a>
       <div id="loading">加载中...</div>
@@ -133,52 +137,63 @@
     </div>
   </main>
 
-  <!-- 底部栏（样式由style.css控制） -->
+  <!-- 底部栏 -->
   <footer class="site-bottombar" id="footerToTop">
     <div class="bottombar__label">返回顶部</div>
     <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
   </footer>
 
-  <!-- 核心JS文件（保持加载顺序） -->
+  <!-- 核心JS（已移除product-loader.js依赖） -->
   <script src="/js/main.js"></script>
   <script>
-    // 产品加载逻辑（已修复跳转问题）
+    // 独立产品加载逻辑
     document.addEventListener('DOMContentLoaded', function() {
       const urlParams = new URLSearchParams(window.location.search);
       const seriesId = urlParams.get('series');
-      if (!seriesId) return;
+      const seriesOverview = document.getElementById('seriesOverview');
+      const modelList = document.getElementById('modelList');
 
-      const jsonPath = `data/${seriesId}.json`;
-      fetch(jsonPath)
-        .then(response => {
-          if (!response.ok) throw new Error('网络响应异常');
-          return response.json();
-        })
-        .then(data => {
-          document.getElementById('loading').style.display = 'none';
-          const container = document.getElementById('modelsContainer');
-          container.innerHTML = `
-            <h1>${data.name}</h1>
-            <p>${data.tagline}</p>
-            ${data.models.map(model => `
-              <div class="model-card">
-                <img src="${model.image}" alt="${model.name}" loading="lazy">
-                <h3>${model.name}</h3>
-                <p>${model.features}</p>
-                <ul>${model.specs.map(spec => `<li>${spec}</li>`).join('')}</ul>
+      // 如果有系列参数，加载型号
+      if (seriesId) {
+        seriesOverview.style.display = 'none';
+        modelList.style.display = 'block';
+        document.getElementById('loading').textContent = `正在加载 ${seriesId.toUpperCase()} 系列...`;
+
+        // 添加时间戳防止缓存
+        fetch(`data/${seriesId}.json?t=${new Date().getTime()}`)
+          .then(response => {
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            return response.json();
+          })
+          .then(data => {
+            document.getElementById('loading').style.display = 'none';
+            const container = document.getElementById('modelsContainer');
+            container.innerHTML = `
+              <h1>${data.name}</h1>
+              <p class="series-tagline">${data.tagline}</p>
+              ${data.models.map(model => `
+                <div class="model-card">
+                  <img src="${model.image}" alt="${model.name}" loading="lazy">
+                  <h3>${model.name}</h3>
+                  <p>${model.features}</p>
+                  <ul class="model-specs">
+                    ${model.specs.map(spec => `<li>${spec}</li>`).join('')}
+                  </ul>
+                </div>
+              `).join('')}
+            `;
+          })
+          .catch(error => {
+            console.error('加载失败:', error);
+            document.getElementById('modelsContainer').innerHTML = `
+              <div class="error">
+                <p>⚠️ 加载产品数据失败</p>
+                <p>请检查控制台或刷新重试</p>
+                <p><small>${error.message}</small></p>
               </div>
-            `).join('')}
-          `;
-        })
-        .catch(error => {
-          console.error('加载失败:', error);
-          document.getElementById('modelsContainer').innerHTML = `
-            <div class="error">
-              <p>加载产品数据失败</p>
-              <p>错误: ${error.message}</p>
-            </div>
-          `;
-        });
+            `;
+          });
+      }
     });
   </script>
 </body>
