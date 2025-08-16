@@ -2,32 +2,13 @@
   "models": [
     {
       "name": "AX-A1",
-      "id": "a1",
-      "name": "A1 Model",
-      "image": "images/a1.jpg",
-      "features": "专为摇滚设计的高输出型号，提供强劲的中频和饱满的低音响应",
-      "specs": [
-        "琴体: 桤木",
-        "琴颈: 枫木",
-        "指板: 玫瑰木",
-        "拾音器: Humbucker × 2",
-        "琴桥: 固定式"
-      ],
-      "ctaColor": "rgba(255,82,82,0.7)"
+      "desc": "经典款式，适合入门玩家",
+      "img": "ax-a1.jpg"
     },
     {
-      "id": "a2",
-      "name": "A2 Model",
-      "image": "images/a2.jpg",
-      "features": "适合蓝调和爵士的温暖音色，提供清晰的高频响应",
-      "specs": [
-        "琴体: 桃花心木",
-        "琴颈: 枫木",
-        "指板: 乌木",
-        "拾音器: Single Coil × 3",
-        "琴桥: 浮动式"
-      ],
-      "ctaColor": "rgba(255,82,82,0.7)"
+      "name": "AX-A2",
+      "desc": "升级拾音器与琴颈设计",
+      "img": "ax-a2.jpg"
     }
   ]
 }
