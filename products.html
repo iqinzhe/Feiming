@@ -62,6 +62,21 @@ body.product-mode #product-container {
       }
     }
 
+ /* 移动端优先的响应式设计 */
+    :root {
+      --mobile-breakpoint: 600px;
+      --card-min-width: 280px;
+    }
+
+    /* 系列卡片布局 */
+    .series-overview {
+      display: grid;
+      gap: 20px;
+      padding: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
+    }
+
+
     /* 固定定位解决方案 */
     .site-topbar {
       position: fixed;
@@ -124,23 +139,6 @@ body.product-mode #product-container {
     </ul>
   </nav>
 </header>
-
-    /* 移动端优先的响应式设计 */
-    :root {
-      --mobile-breakpoint: 600px;
-      --card-min-width: 280px;
-    }
-
-    /* 系列卡片布局 */
-    .series-overview {
-      display: grid;
-      gap: 20px;
-      padding: 15px;
-      grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
-    }
-
-
-</head>
 
 <body>
 <header class="site-topbar">
