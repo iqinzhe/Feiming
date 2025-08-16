@@ -12,5 +12,17 @@
       "cover": "images/series-b.jpg",
       "description": "通颈连体贝斯工艺较为复杂..."
     }
+    {
+      "id": "c",
+      "name": "Series C",
+      "cover": "images/series-b.jpg",
+      "description": "通颈连体贝斯工艺较为复杂..."
+    }  
+  {
+      "id": "d",
+      "name": "Series D",
+      "cover": "images/series-b.jpg",
+      "description": "通颈连体贝斯工艺较为复杂..."
+    }
   ]
 }
