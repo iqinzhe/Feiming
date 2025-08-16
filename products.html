@@ -211,10 +211,6 @@ body.product-mode #product-container {
     const loadSeries = () => {
       const urlParams = new URLSearchParams(window.location.search);
       const seriesId = urlParams.get('series');
-      
-      if (seriesId) {
-        document.getElementById('seriesOverview').style.display = 'none';
-        document.getElementById('modelList').style.display = 'block';
         
         fetch(`data/${seriesId}.json?t=${Date.now()}`)
           .then(response => response.json())
