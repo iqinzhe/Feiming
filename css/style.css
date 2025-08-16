@@ -1,22 +1,89 @@
-/* ===== 全局增强样式 ===== */
+/* ===== AX Guitar 终极CSS方案 ===== */
+/* 版本：v3.2.0 | 最后更新：2023-08 */
+/* 核心原则：顶部透明导航永不覆盖，产品样式安全隔离 */
+
+/* ██ 全局不可变样式 ██ */
 :root {
-  --neutral-gray: rgb(128, 128, 128);
-  --glass-dark: rgba(0, 0, 0, 0.3);
-  --text-white: #fff;
-  --nav-text: #007BFF;
-  /* 新增系列主题色 */
+  /* 基础色板 (禁止修改) */
+  --neutral-gray: rgb(128, 128, 128) !important;
+  --glass-dark: rgba(0, 0, 0, 0.3) !important;
+  --text-white: #fff !important;
+  --nav-text: #007BFF !important;
+  
+  /* 产品主题色 (可修改) */
   --series-a: rgba(255,82,82,0.7);
   --series-b: rgba(76,175,80,0.7);
   --series-c: rgba(100,181,246,0.7);
   --series-d: rgba(156,39,176,0.7);
-  --content-padding: clamp(15px, 5vw, 50px);
 }
 
-/* ===== 系列卡片布局 ===== */
+/* ██ 不可覆盖的导航系统 ██ */
+/* >>> 透明顶栏 (兼容iOS) */
+.site-topbar {
+  /* 定位防御 */
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 2147483647 !important;
+  
+  /* 透明效果 */
+  background: var(--glass-dark) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+  backdrop-filter: blur(5px) !important;
+  
+  /* 布局锁定 */
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 12px 5% !important;
+  min-height: 60px !important;
+  box-sizing: border-box !important;
+}
+
+/* >>> 汉堡菜单 (带动画) */
+.mobile-nav {
+  display: none !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  width: 100% !important;
+  opacity: 0 !important;
+  transform: translateY(-10px) !important;
+  transition: all 0.3s ease-out !important;
+  background: var(--glass-dark) !important;
+  backdrop-filter: blur(10px) !important;
+  z-index: 999 !important;
+}
+
+.mobile-nav--open {
+  display: block !important;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* ██ 安全的内容区域 ██ */
+body {
+  background: var(--neutral-gray);
+  color: var(--text-white);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding-top: 70px !important; /* 避开顶部栏 */
+}
+
+.main-content {
+  flex: 1;
+  padding-bottom: env(safe-area-inset-bottom, 20px);
+}
+
+/* ██ 产品展示系统 ██ */
 .series-overview {
   display: grid;
   gap: 30px;
-  padding: var(--content-padding);
+  padding: 20px;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
@@ -24,202 +91,71 @@
   background: rgba(255,255,255,0.1);
   border-radius: 12px;
   overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.3s ease;
   position: relative;
 }
 
-.series-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 5px;
-  background: var(--series-color);
-}
+/* 系列主题标识 */
+.series-card[data-series="a"] { border-top: 4px solid var(--series-a); }
+.series-card[data-series="b"] { border-top: 4px solid var(--series-b); }
+.series-card[data-series="c"] { border-top: 4px solid var(--series-c); }
+.series-card[data-series="d"] { border-top: 4px solid var(--series-d); }
 
 .series-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
-/* 系列主题色绑定 */
-.series-card[data-series="a"]::before { background: var(--series-a); }
-.series-card[data-series="b"]::before { background: var(--series-b); }
-.series-card[data-series="c"]::before { background: var(--series-c); }
-.series-card[data-series="d"]::before { background: var(--series-d); }
-
-.series-card__cover {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
+/* ██ 底部栏保护 ██ */
+.site-bottombar {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 10px 15px !important;
+  position: sticky !important;
+  bottom: 0 !important;
+  background: var(--glass-dark) !important;
+  z-index: 100 !important;
 }
 
-.series-card__content {
-  padding: 20px;
+/* ██ iOS专属优化 ██ */
+@supports (-webkit-touch-callout: none) {
+  .site-topbar {
+    background: rgba(0,0,0,0.45) !important;
+    -webkit-backdrop-filter: saturate(180%) blur(8px) !important;
+  }
+  body {
+    padding-top: calc(70px + env(safe-area-inset-top)) !important;
+  }
 }
 
-.series-card__tagline {
-  font-size: 1.1em;
-  font-weight: 600;
-  color: rgba(255,255,255,0.9);
-  margin-bottom: 10px;
-}
-
-.series-card__intro {
-  font-size: 0.95em;
-  line-height: 1.5;
-  margin-bottom: 15px;
-}
-
-.series-card__highlights {
-  padding-left: 20px;
-  font-size: 0.9em;
-}
-
-.series-card__highlights li {
-  margin-bottom: 8px;
-  position: relative;
-}
-
-.series-card__highlights li::before {
-  content: '•';
-  color: var(--series-color);
-  position: absolute;
-  left: -15px;
-}
-
-/* ===== 系列详情页 ===== */
-.series-detail {
-  padding: var(--content-padding);
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.series-hero {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.series-hero__cover {
-  max-height: 400px;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-.series-description {
-  background: rgba(255,255,255,0.05);
-  padding: 25px;
-  border-radius: 8px;
-  line-height: 1.7;
-  margin: 30px 0;
-  white-space: pre-line;
-}
-
-/* ===== D系列特殊样式 ===== */
-.tn-section {
-  margin: 50px 0;
-  padding: 25px;
-  background: rgba(0,0,0,0.2);
-  border-radius: 8px;
-}
-
-.tn-section__title {
-  color: var(--series-d);
-  font-size: 1.5em;
-  margin-bottom: 20px;
-  position: relative;
-  padding-left: 15px;
-}
-
-.tn-section__title::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 80%;
-  width: 4px;
-  background: var(--series-d);
-}
-
-/* 图文混排布局 */
-.text-with-image {
-  display: grid;
-  gap: 30px;
-  align-items: center;
-}
-
-.text-with-image[data-layout="left"] {
-  grid-template-columns: 1fr 2fr;
-}
-
-.text-with-image[data-layout="right"] {
-  grid-template-columns: 2fr 1fr;
-}
-
-/* 优势列表 */
-.benefits-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-
-.benefit-card {
-  background: rgba(255,255,255,0.05);
-  padding: 20px;
-  border-radius: 8px;
-  border-top: 3px solid var(--series-d);
-}
-
-.benefit-card__title {
-  color: var(--series-d);
-  font-size: 1.2em;
-  margin-bottom: 10px;
-}
-
-/* 对比图 */
-.comparison-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  text-align: center;
-}
-
-.comparison-grid img {
-  max-height: 300px;
-  border-radius: 4px;
-}
-
-/* ===== 响应式调整 ===== */
+/* ██ 响应式设计 ██ */
 @media (max-width: 768px) {
   .series-overview {
     grid-template-columns: 1fr;
+    padding: 15px;
   }
   
-  .text-with-image[data-layout="left"],
-  .text-with-image[data-layout="right"] {
-    grid-template-columns: 1fr;
+  .site-topbar {
+    padding: 10px 15px !important;
   }
   
-  .comparison-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .series-card__cover {
-    height: 150px;
+  .mobile-nav__list a {
+    font-size: 16px !important;
   }
 }
 
-/* ===== 与原有保护样式兼容 ===== */
-.site-topbar,
-.mobile-nav,
-.site-bottombar {
-  color: initial !important;
-  font-size: 16px !important;
-}
-
+/* ██ 原有保护性样式 ██ */
 .protected-nav {
   color: inherit !important;
   font-size: inherit !important;
+}
+
+.topbar__btn:hover {
+  background: rgba(255,255,255,0.1) !important;
+}
+
+.site-bottombar:active {
+  background: rgba(100,100,255,0.1) !important;
 }
