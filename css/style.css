@@ -1,209 +1,222 @@
-/* ===== 全局样式 ===== */
+/* ===== 全局增强样式 ===== */
 :root {
   --neutral-gray: rgb(128, 128, 128);
   --glass-dark: rgba(0, 0, 0, 0.3);
   --text-white: #fff;
-  --nav-text: #007BFF; /* 新增导航文字颜色变量 */
+  --nav-text: #007BFF;
+  /* 新增系列主题色 */
+  --series-a: rgba(255,82,82,0.7);
+  --series-b: rgba(76,175,80,0.7);
+  --series-c: rgba(100,181,246,0.7);
+  --series-d: rgba(156,39,176,0.7);
+  --content-padding: clamp(15px, 5vw, 50px);
 }
 
-body {
-  background: var(--neutral-gray);
-  color: var(--text-white); /* 只影响基础文字 */
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding-top: 60px;
+/* ===== 系列卡片布局 ===== */
+.series-overview {
+  display: grid;
+  gap: 30px;
+  padding: var(--content-padding);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
-/* ===== 受保护的导航栏样式 ===== */
-.site-topbar,
-.mobile-nav {
-  color: initial; /* 重置为浏览器默认 */
-  font-size: 16px; /* 明确设置基准大小 */
+.series-card {
+  background: rgba(255,255,255,0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
 }
 
-.site-topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 5%;
-  background: var(--glass-dark);
-  backdrop-filter: blur(5px);
-  position: fixed;
+.series-card::before {
+  content: '';
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
-  box-sizing: border-box;
+  height: 5px;
+  background: var(--series-color);
 }
 
-.topbar__left, 
-.topbar__right {
-  display: flex;
+.series-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* 系列主题色绑定 */
+.series-card[data-series="a"]::before { background: var(--series-a); }
+.series-card[data-series="b"]::before { background: var(--series-b); }
+.series-card[data-series="c"]::before { background: var(--series-c); }
+.series-card[data-series="d"]::before { background: var(--series-d); }
+
+.series-card__cover {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.series-card__content {
+  padding: 20px;
+}
+
+.series-card__tagline {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 10px;
+}
+
+.series-card__intro {
+  font-size: 0.95em;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.series-card__highlights {
+  padding-left: 20px;
+  font-size: 0.9em;
+}
+
+.series-card__highlights li {
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.series-card__highlights li::before {
+  content: '•';
+  color: var(--series-color);
+  position: absolute;
+  left: -15px;
+}
+
+/* ===== 系列详情页 ===== */
+.series-detail {
+  padding: var(--content-padding);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.series-hero {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.series-hero__cover {
+  max-height: 400px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.series-description {
+  background: rgba(255,255,255,0.05);
+  padding: 25px;
+  border-radius: 8px;
+  line-height: 1.7;
+  margin: 30px 0;
+  white-space: pre-line;
+}
+
+/* ===== D系列特殊样式 ===== */
+.tn-section {
+  margin: 50px 0;
+  padding: 25px;
+  background: rgba(0,0,0,0.2);
+  border-radius: 8px;
+}
+
+.tn-section__title {
+  color: var(--series-d);
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  position: relative;
+  padding-left: 15px;
+}
+
+.tn-section__title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 80%;
+  width: 4px;
+  background: var(--series-d);
+}
+
+/* 图文混排布局 */
+.text-with-image {
+  display: grid;
+  gap: 30px;
   align-items: center;
-  gap: 15px;
 }
 
-.topbar__center {
-  flex-grow: 1;
+.text-with-image[data-layout="left"] {
+  grid-template-columns: 1fr 2fr;
+}
+
+.text-with-image[data-layout="right"] {
+  grid-template-columns: 2fr 1fr;
+}
+
+/* 优势列表 */
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.benefit-card {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 8px;
+  border-top: 3px solid var(--series-d);
+}
+
+.benefit-card__title {
+  color: var(--series-d);
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+/* 对比图 */
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
   text-align: center;
 }
 
-.topbar__logo {
-  height: 30px;
-  width: auto;
-  transition: transform 0.2s;
-}
-
-.topbar__btn {
-  background: none;
-  border: none;
-  font-size: 22px;
-  font-weight: bold;
-  line-height: 1;
-  padding: 6px;
+.comparison-grid img {
+  max-height: 300px;
   border-radius: 4px;
-  color: var(--nav-text); /* 使用导航专用颜色 */
-  cursor: pointer;
-  transition: all 0.15s ease;
 }
 
-.topbar__btn:hover {
-  background: rgba(255,255,255,0.1);
-}
-
-/* ===== 移动导航保护 ===== */
-.mobile-nav {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: var(--glass-dark);
-  backdrop-filter: blur(10px);
-  z-index: 999;
-  padding: 10px 0;
-}
-
-.mobile-nav.mobile-nav--open {
-  display: block;
-}
-
-.mobile-nav__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.mobile-nav__list li {
-  padding: 14px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-.mobile-nav__list a {
-  color: var(--nav-text); /* 使用统一导航色 */
-  text-decoration: none;
-  display: block;
-  font-size: 18px;
-  font-weight: bold;
-  transition: color 0.2s;
-}
-
-.mobile-nav__list a:hover {
-  color: #0056b3;
-}
-
-/* ===== 产品内容专属样式 ===== */
-.series-overview,
-.page-content {
-  --content-text: var(--text-white); /* 内容文字颜色变量 */
-}
-
-.series-card,
-.dynamic-model-card,
-.tn-section {
-  color: var(--content-text);
-}
-
-.series-card p,
-.series-card h2,
-.dynamic-model-card p,
-.dynamic-model-card h2,
-.tn-section p,
-.tn-section h2,
-.model-specs,
-.model-features {
-  color: var(--content-text) !important;
-  font-size: 1em !important; /* 固定产品文字大小 */
-}
-
-/* C系列专属样式 */
-.series-card[href*="series=c"] {
-  border-left: 4px solid rgba(100, 181, 246, 0.7);
-}
-
-/* ===== 底部栏 ===== */
-.site-bottombar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 15px;
-  cursor: pointer;
-  color: initial; /* 保护底部文字颜色 */
-}
-
-.bottombar__label {
-  font-weight: bold;
-  font-size: 15px;
-  line-height: 15px;
-}
-
-.bottombar__logo {
-  height: 25px;
-  width: auto;
-  filter: brightness(1) invert(0);
-}
-
-.site-bottombar:active {
-  background: rgba(100,100,255,0.1);
-}
-
-.site-bottombar:active .bottombar__label,
-.site-bottombar:active .bottombar__logo {
-  transform: scale(0.95);
-}
-
-/* ===== 响应式设计 ===== */
-@media (min-width: 768px) {
-  body { padding-top: 70px; }
-  .site-topbar { 
-    padding: 15px 8%; 
-    height: 60px; 
-    font-size: 16px; /* 保护导航文字大小 */
-  }
-  .topbar__logo { height: 35px; }
-  .page-content { padding: 30px 8%; }
-  .bottombar__logo { height: 18px; }
-  
-  /* 产品内容网格布局 */
+/* ===== 响应式调整 ===== */
+@media (max-width: 768px) {
   .series-overview {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
   }
-  .dynamic-model-card {
-    grid-template-columns: 1fr 2fr;
+  
+  .text-with-image[data-layout="left"],
+  .text-with-image[data-layout="right"] {
+    grid-template-columns: 1fr;
+  }
+  
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .series-card__cover {
+    height: 150px;
   }
 }
 
-/* ===== 工具类 ===== */
-.form-group {
-  background-color: #808080;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 8px;
+/* ===== 与原有保护样式兼容 ===== */
+.site-topbar,
+.mobile-nav,
+.site-bottombar {
+  color: initial !important;
+  font-size: 16px !important;
 }
 
 .protected-nav {
