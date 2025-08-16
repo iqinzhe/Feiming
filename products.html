@@ -12,108 +12,151 @@
     }
 
     /* 通用样式 */
+    body {
+      background: var(--neutral-gray);
+      color: var(--text-white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding-top: 60px;
+    }
 
-body {
-  background: var(--neutral-gray);
-  color: var(--text-white);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding-top: 60px;
-}
+    /* 顶部导航栏*/
+    .site-topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 5%;
+      background: var(--glass-dark);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      height: 60px;
+      box-sizing: border-box;
+    }
 
-/* 顶部导航栏*/
-.site-topbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 5%;
-  background: var(--glass-dark);
-  backdrop-filter: blur(10px);
-  z-index: 100;
-  height: 60px;
-  box-sizing: border-box;
-}
+    .topbar__btn {
+      background: none;
+      border: none;
+      color: var(--text-white);
+      font-size: 20px;
+      cursor: pointer;
+    }
 
-.topbar__btn {
-  background: none;
-  border: none;
-  color: var(--text-white);
-  font-size: 20px;
-  cursor: pointer;
-}
+    /* 移动端导航菜单 */
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: var(--glass-dark);
+      backdrop-filter: blur(10px);
+      z-index: 90;
+      padding: 15px 0;
+    }
 
-/* 移动端导航菜单 */
-.mobile-nav {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: var(--glass-dark);
-  backdrop-filter: blur(10px);
-  z-index: 90;
-  padding: 15px 0;
-}
+    .mobile-nav.mobile-nav--open {
+      display: block;
+    }
 
-.mobile-nav.mobile-nav--open {
-  display: block;
-}
+    .mobile-nav__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
 
-.mobile-nav__list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+    .mobile-nav__list li {
+      padding: 12px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
 
-.mobile-nav__list li {
-  padding: 12px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
+    .mobile-nav__list a {
+      color: var(--text-white);
+      text-decoration: none;
+      display: block;
+    }
 
-.mobile-nav__list a {
-  color: var(--text-white);
-  text-decoration: none;
-  display: block;
-}
+    /* 系列卡片样式 */
+    .series-overview {
+      display: grid;
+      gap: 25px;
+      padding: 30px 5%;
+    }
 
-/* 系列卡片样式 */
-.series-overview {
-  display: grid;
-  gap: 25px;
-  padding: 30px 5%;
-}
+    .series-card {
+      background: rgba(0,0,0,0.2);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s;
+      text-decoration: none;
+      color: inherit;
+    }
 
-.series-card {
-  background: rgba(0,0,0,0.2);
-  border-radius: 10px;
-  overflow: hidden;
-  transition: transform 0.3s;
-  text-decoration: none;
-  color: inherit;
-}
+    .series-card:hover {
+      transform: translateY(-5px);
+    }
 
-.series-card:hover {
-  transform: translateY(-5px);
-}
+    .series-card img {
+      width: 100%;
+      height: auto;
+    }
 
-/* 响应式设计  */
-@media (min-width: 768px) {
-  .series-overview {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  
-  .topbar__logo {
-    height: 35px;
-  }
-}
-</style>
+    .series-card-content {
+      padding: 20px;
+    }
+
+    .series-card h2 {
+      margin-top: 0;
+    }
+
+    .series-card p {
+      margin-bottom: 15px;
+    }
+
+    .series-card-cta {
+      display: inline-block;
+      padding: 8px 15px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+
+    /* 底部栏 */
+    .site-bottombar {
+      text-align: center;
+      padding: 20px;
+      background: var(--glass-dark);
+      margin-top: auto;
+    }
+
+    .bottombar__logo {
+      height: 30px;
+      margin-top: 10px;
+    }
+
+    /* 响应式设计 */
+    @media (min-width: 768px) {
+      .series-overview {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .topbar__logo {
+        height: 35px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .series-overview {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -132,79 +175,80 @@ body {
       <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
     </div>
 
-  <nav class="mobile-nav" id="mobileNav">
-    <ul class="mobile-nav__list">
-      <li><a href="index.html">首页</a></li>
-      <li><a href="instruments.html">产品</a></li>
-      <li><a href="product.html?series=d">特色</a></li>
-      <li><a href="pricing.html">DIY选项</a></li>
-      <li><a href="news.html">新闻</a></li>
-      <li><a href="support.html">支持</a></li>
-    </ul>
-  </nav>
-</header>
+    <nav class="mobile-nav" id="mobileNav">
+      <ul class="mobile-nav__list">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="products.html">产品</a></li>
+        <li><a href="product.html?series=d">特色</a></li>
+        <li><a href="pricing.html">DIY选项</a></li>
+        <li><a href="news.html">新闻</a></li>
+        <li><a href="support.html">支持</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<main class="series-overview">
-  <!-- Series A -->
-  <a class="series-card" href="products.html?series=a?series=a&data=a.json">
-    <img src="images/series a.jpg" alt="A系列" style="width:100%; height:auto;"/>
-    <div style="padding:20px;">
-      <h2 style="margin-top:0;">Series A</h2>
-      <p style="margin-bottom:15px;">螺栓固定结构带来的额外弹性和响应，提供高性价比的现代音色，从一开始栓接就是吉他历史的重要组成部分。</p>
-      <p style="margin-bottom:20px;">螺栓连接的贝斯，除了价格相对便宜，更容易维护和修理，它占据市场主流。由此发展出我们的第一批A系列经典传统产品。</p>
-      <div style="display:inline-block; padding:8px 15px; background:rgba(255,255,255,0.2); border-radius:4px;">
-        查看系列
+  <main class="series-overview">
+    <!-- Series A -->
+    <a class="series-card" href="product.html?series=a">
+      <img src="images/series-a.jpg" alt="A系列"/>
+      <div class="series-card-content">
+        <h2>Series A</h2>
+        <p>经典螺栓固定结构系列</p>
+        <p>螺栓固定结构带来的额外弹性和响应，提供高性价比的现代音色，从一开始栓接就是吉他历史的重要组成部分。</p>
+        <div class="series-card-cta">查看系列</div>
       </div>
-    </div>
-  </a>
+    </a>
 
-  <!-- Series B -->
-  <a class="series-card" href="products.html?series=b?series=b&data=b.json">
-    <img src="images/series b.jpg" alt="B系列" style="width:100%; height:auto;"/>
-    <div style="padding:20px;">
-      <h2 style="margin-top:0;">Series B</h2>
-      <p style="margin-bottom:15px;">通颈连体贝斯工艺较为复杂，常被视为高端贝斯的标志之一。采用多类型木材拼接琴颈与琴体，更具艺术性，视觉冲击力更强，带来更加奢华的外观。</p>
-      <p style="margin-bottom:20px;">连体通颈贝斯通颈贝斯在音色、延音、共鸣、稳定性等方面都有一些优点。</p>
-      <div style="display:inline-block; padding:8px 15px; background:rgba(255,255,255,0.2); border-radius:4px;">
-        查看系列
+    <!-- Series B -->
+    <a class="series-card" href="product.html?series=b">
+      <img src="images/series-b.jpg" alt="B系列"/>
+      <div class="series-card-content">
+        <h2>Series B</h2>
+        <p>高端通颈连体工艺系列</p>
+        <p>通颈连体贝斯工艺较为复杂，常被视为高端贝斯的标志之一。采用多类型木材拼接琴颈与琴体，更具艺术性，视觉冲击力更强。</p>
+        <div class="series-card-cta">查看系列</div>
       </div>
-    </div>
-  </a>
+    </a>
 
-  <!-- Series C -->
-  <a class="series-card" href="products.html?series=c?series=c&data=c.json">
-    <img src="images/series c.jpg" alt="C系列" style="width:100%; height:auto;"/>
-    <div style="padding:20px;">
-      <h2 style="margin-top:0;">Series C</h2>
-      <p style="margin-bottom:15px;">BASS BABY:通过深入研究和评比，我们的C系列迷你BASS BABY采用23.5英寸弦长，整体总长度88cm，总宽度25cm。</p>
-      <p style="margin-bottom:20px;">小巧轻便，易于携带，对手小的初学者（或女性）更友好。</p>
-      <div style="display:inline-block; padding:8px 15px; background:rgba(255,255,255,0.2); border-radius:4px;">
-        查看系列
+    <!-- Series C -->
+    <a class="series-card" href="product.html?series=c">
+      <img src="images/series-c.jpg" alt="C系列"/>
+      <div class="series-card-content">
+        <h2>Series C</h2>
+        <p>迷你便携式贝斯系列</p>
+        <p>BASS BABY:通过深入研究和评比，我们的C系列迷你BASS BABY采用23.5英寸弦长，整体总长度88cm，总宽度25cm。</p>
+        <div class="series-card-cta">查看系列</div>
       </div>
-    </div>
-  </a>
+    </a>
 
-  <!-- Series D -->
-  <a class="series-card" href="products.html?series=d?series=d&data=d.json">
-    <img src="images/d1.jpg" alt="D系列" style="width:100%; height:auto;"/>
-    <div style="padding:20px;">
-      <h2 style="margin-top:0;">Series D</h2>
-      <p style="margin-bottom:15px;">人体工学扭曲琴颈贝斯经过精心设计，能够顺应手腕和手指的自然运动。与传统琴颈不同，它会略微倾斜以适应您的演奏姿势，从而减轻压力并提高舒适度。</p>
-      <p style="margin-bottom:20px;">传统制琴工艺中对琴颈的要求是"平和直"一旦扭曲变形即为不良。而我们颠覆传统顺势而为，充分发挥每一块材料的自然特性，让扭曲变得更疯狂一些！</p>
-      <div style="display:inline-block; padding:8px 15px; background:rgba(255,255,255,0.2); border-radius:4px;">
-        查看系列
+    <!-- Series D -->
+    <a class="series-card" href="product.html?series=d">
+      <img src="images/series-d.jpg" alt="D系列"/>
+      <div class="series-card-content">
+        <h2>Series D</h2>
+        <p>革命性人体工学设计</p>
+        <p>采用革命性扭曲琴颈设计，符合人体工学原理，大幅减少演奏疲劳，获得2023年红点设计大奖。</p>
+        <div class="series-card-cta">查看系列</div>
       </div>
-    </div>
-  </a>
-</main>
+    </a>
+  </main>
 
-<!--底部栏 -->
-<footer class="site-bottombar" id="footerToTop">
-  <div class="bottombar__label">返回顶部</div>
-  <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
-</footer>
+  <!--底部栏 -->
+  <footer class="site-bottombar" id="footerToTop">
+    <div class="bottombar__label">返回顶部</div>
+    <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
+  </footer>
 
-<script src="/js/main.js"></script>
+  <script>
+    // 移动菜单切换
+    document.getElementById('topbarMenuBtn').addEventListener('click', function() {
+      document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
+    });
+
+    // 返回顶部功能
+    document.getElementById('footerToTop').addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
 </body>
 </html>
-
