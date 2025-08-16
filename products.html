@@ -27,13 +27,6 @@ body {
   padding-top: 60px;
 }
 
-/* 动态内容容器 */
-#product-container {
-  display: none;
-}
-body.product-mode #home-container { display: none; }
-body.product-mode #product-container { display: block; }
-
 /* 移动端特定样式 */
 @media (max-width: 600px) {
   body { padding-top: 50px !important; font-size: 14px; }
@@ -104,8 +97,8 @@ main {
   <nav class="mobile-nav" id="mobileNav">
     <ul class="mobile-nav__list">
       <li><a href="index.html">首页</a></li>
-      <li><a href="products.html">产品</a></li>
-      <li><a href="product.html?series=d">特色</a></li>
+      <li><a href="?">产品</a></li>
+      <li><a href="?series=d">特色</a></li>
       <li><a href="pricing.html">DIY选项</a></li>
       <li><a href="news.html">新闻</a></li>
       <li><a href="support.html">支持</a></li>
@@ -114,29 +107,12 @@ main {
 </header>
 
 <main>
-  <div class="series-overview" id="seriesOverview">
-    <script>
-      const seriesData = [
-        {id:'a', name:'Series A', desc:'经典螺栓固定结构系列', img:'series-a.jpg'},
-        {id:'b', name:'Series B', desc:'高端通颈连体工艺系列', img:'series-b.jpg'},
-        {id:'c', name:'Series C', desc:'迷你便携式贝斯系列', img:'series-c.jpg'},
-        {id:'d', name:'Series D', desc:'革命性人体工学设计', img:'series-d.jpg'}
-      ];
-      document.write(seriesData.map(series => `
-        <a class="series-card" href="products.html?series=${series.id}">
-          <img src="images/${series.img}" alt="${series.name}" loading="lazy">
-          <div class="series-card-content">
-            <h2>${series.name}</h2>
-            <p>${series.desc}</p>
-            <div class="series-card-cta">查看产品</div>
-          </div>
-        </a>
-      `).join(''));
-    </script>
-  </div>
+  <!-- 系列总览 -->
+  <div class="series-overview" id="seriesOverview"></div>
 
-  <div class="model-list" id="modelList">
-    <a href="products.html" class="back-button">← 返回系列总览</a>
+  <!-- 产品列表 -->
+  <div class="model-list" id="modelList" style="display:none;">
+    <a href="?" class="back-button">← 返回系列总览</a>
     <div id="loading"></div>
     <div class="models-container" id="modelsContainer"></div>
   </div>
@@ -148,36 +124,46 @@ main {
   <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
 </footer>
 
-<script src="/js/main.js"></script>
 <script>
-  // 强化版加载逻辑
-  const loadSeries = () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const seriesId = urlParams.get('series');
-    if (!seriesId) return;
+const seriesData = [
+  {id:'a', name:'Series A', desc:'经典螺栓固定结构系列', img:'series-a.jpg'},
+  {id:'b', name:'Series B', desc:'高端通颈连体工艺系列', img:'series-b.jpg'},
+  {id:'c', name:'Series C', desc:'迷你便携式贝斯系列', img:'series-c.jpg'},
+  {id:'d', name:'Series D', desc:'革命性人体工学设计', img:'series-d.jpg'}
+];
 
-    fetch(`data/${seriesId}.json?t=${Date.now()}`)
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById('modelsContainer').innerHTML = `
-          <h1>${data.name}</h1>
-          ${data.models.map(model => `
-            <div class="model-card">
-              <img src="${model.image}" alt="${model.name}" loading="lazy">
-              <h3>${model.name}</h3>
-              <p>${model.features}</p>
-              <ul>${model.specs.map(spec => `<li>${spec}</li>`).join('')}</ul>
-            </div>
-          `).join('')}
-        `;
-      })
-      .catch(error => {
-        console.error('加载失败:', error);
-      });
-  };
+const seriesOverview = document.getElementById("seriesOverview");
+const modelList = document.getElementById("modelList");
+const modelsContainer = document.getElementById("modelsContainer");
 
-  document.addEventListener('DOMContentLoaded', loadSeries);
-  window.addEventListener('popstate', loadSeries);
-</script>
-</body>
-</html>
+// 渲染系列总览
+seriesOverview.innerHTML = seriesData.map(series => `
+  <a class="series-card" href="?series=${series.id}">
+    <img src="images/${series.img}" alt="${series.name}" loading="lazy">
+    <div class="series-card-content">
+      <h2>${series.name}</h2>
+      <p>${series.desc}</p>
+      <div class="series-card-cta">查看产品</div>
+    </div>
+  </a>
+`).join("");
+
+// 渲染逻辑
+function renderPage() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const seriesId = urlParams.get("series");
+
+  if (!seriesId) {
+    // 显示总览
+    seriesOverview.style.display = "grid";
+    modelList.style.display = "none";
+    return;
+  }
+
+  // 显示某个系列产品
+  seriesOverview.style.display = "none";
+  modelList.style.display = "block";
+  loadSeries(seriesId);
+}
+
+// 加载产品数据
