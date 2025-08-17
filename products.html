@@ -1,192 +1,176 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>AX斧标贝斯</title>
-<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-<link rel="manifest" href="/icons/manifest.json">
-<link href="/css/style.css" rel="stylesheet">
-<link rel="stylesheet" href="global.css">
-<style>
-:root {
-  --neutral-gray: rgb(128, 128, 128);
-  --glass-dark: rgba(0, 0, 0, 0.3);
-  --text-white: #fff;
-}
-body {
-  background: var(--neutral-gray);
-  color: var(--text-white);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding-top: 60px;
-}
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AX斧标贝斯 | 产品系列</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="global.css">
+  <style>
+    body {
+      background: rgb(128, 128, 128);
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding-top: 60px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    main { flex: 1; padding: 20px; }
 
-/* 移动端特定样式 */
-@media (max-width: 600px) {
-  body { padding-top: 50px !important; font-size: 14px; }
-  .site-topbar { height: 50px !important; padding: 8px 10px !important; }
-  .topbar__logo { height: 25px !important; }
-  .series-card-content { padding: 12px !important; }
-  .series-card-cta { padding: 6px 12px; font-size: 13px; }
-}
+    .nav-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .nav-links a {
+      color: #4dabf7;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-:root {
-  --mobile-breakpoint: 600px;
-  --card-min-width: 280px;
-}
-
-/* 系列卡片布局 */
-.series-overview {
-  display: grid;
-  gap: 20px;
-  padding: 15px;
-  grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
-}
-
-/* 固定定位 */
-.site-topbar {
-  position: fixed; top: 0; left: 0; right: 0;
-  z-index: 1000;
-  backdrop-filter: blur(5px);
-}
-.site-bottombar {
-  position: fixed; bottom: 0; left: 0; right: 0;
-  z-index: 900;
-}
-main {
-  padding-bottom: 70px;
-  padding-top: 70px;
-}
-
-/* 其他样式 */
-.page-content { flex: 1; padding: 20px 5%; margin-top: 20px; }
-.hero { text-align: center; margin-bottom: 40px; }
-.hero img { max-width: 100%; height: auto; border-radius: 8px; }
-.products-overview { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-.product-card { background: rgba(0,0,0,0.2); padding: 20px; border-radius: 8px; text-align: center; }
-.product-card img { max-width: 100%; height: auto; border-radius: 4px; }
-
-@media (min-width: 768px) {
-  body { padding-top: 70px; }
-  .site-topbar { padding: 15px 8%; height: 60px; }
-  .topbar__logo { height: 35px; }
-  .page-content { padding: 30px 8%; }
-}
-</style>
+    .models-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .product-card {
+      background: rgba(0,0,0,0.2);
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .product-card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    .order-button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 16px;
+      background: #4dabf7;
+      color: #fff;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
-
-<!-- 公共导航栏 -->
-<header class="site-topbar">
-  <div class="topbar__left">
-    <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
-  </div>
-  <div class="topbar__center">
-    <a href="index.html"><img class="topbar__logo" src="./images/logo.png" alt="AX Guitar Logo"/></a>
-  </div>
-  <div class="topbar__right">
-    <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
-    <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
-  </div>
-  <nav class="mobile-nav" id="mobileNav">
-    <ul class="mobile-nav__list"
-      <li><a href="products.html">全部产品</a></li> <!-- ✅ 改成 products.html -->
-      <li><a href="products.html?series=d">特色产品</a></li> <!-- ✅ 改成 products.html -->
-      <li><a href="pricing.html">订购产品</a></li>
-      <li><a href="news.html">新闻</a></li>
-      <li><a href="support.html">支持</a></li>
-    </ul>
-  </nav>
-</header>
-
-<main>
-  <!-- 系列总览 -->
-  <div class="series-overview" id="seriesOverview"></div>
-
-  <!-- 产品列表 -->
-  <div class="model-list" id="modelList" style="display:none;">
-    <a href="products.html" class="back-button">← 返回系列总览</a> <!-- ✅ 改成 products.html -->
-    <div id="loading"></div>
-    <div class="models-container" id="modelsContainer"></div>
-  </div>
-</main>
-
-<!-- 底部栏 -->
-<footer class="site-bottombar" id="footerToTop">
-  <div class="bottombar__label">返回顶部</div>
-  <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
-</footer>
-
-<script>
-const seriesData = [
-  {id:'a', name:'Series A', desc:'经典螺栓固定结构系列', img:'series-a.jpg'},
-  {id:'b', name:'Series B', desc:'高端通颈连体工艺系列', img:'series-b.jpg'},
-  {id:'c', name:'Series C', desc:'迷你便携式贝斯系列', img:'series-c.jpg'},
-  {id:'d', name:'Series D', desc:'革命性人体工学设计', img:'series-d.jpg'}
-];
-
-const seriesOverview = document.getElementById("seriesOverview");
-const modelList = document.getElementById("modelList");
-const modelsContainer = document.getElementById("modelsContainer");
-
-// 渲染系列总览
-seriesOverview.innerHTML = seriesData.map(series => `
-  <a class="series-card" href="products.html?series=${series.id}">
-    <img src="images/${series.img}" alt="${series.name}" loading="lazy">
-    <div class="series-card-content">
-      <h2>${series.name}</h2>
-      <p>${series.desc}</p>
-      <div class="series-card-cta">查看产品</div>
+  <!-- 顶部导航 -->
+  <header class="site-topbar">
+    <div class="topbar__left">
+      <button id="topbarMenuBtn">☰</button>
     </div>
-  </a>
-`).join("");
+    <div class="topbar__center">
+      <a href="index.html"><img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/></a>
+    </div>
+    <div class="topbar__right">
+      <button id="topbarSearchBtn">🔍</button>
+      <button id="topbarShareBtn">⤴</button>
+    </div>
+    <nav class="mobile-nav" id="mobileNav">
+      <ul class="mobile-nav__list">
+        <li><a href="instruments.html">全部系列</a></li>
+        <li><a href="products.html?series=d">特色产品</a></li>
+        <li><a href="pricing.html">订购产品</a></li>
+        <li><a href="news.html">新闻</a></li>
+        <li><a href="support.html">支持</a></li>
+      </ul>
+    </nav>
+  </header>
 
-// 渲染逻辑
-function renderPage() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const seriesId = urlParams.get("series");
+  <main>
+    <!-- 导航区域 -->
+    <div class="nav-links">
+      <a href="instruments.html">← 返回系列总览</a>
+      <div id="prevNextNav"></div>
+    </div>
 
-  if (!seriesId) {
-    // 显示总览
-    seriesOverview.style.display = "grid";
-    modelList.style.display = "none";
-    return;
-  }
+    <!-- 产品列表 -->
+    <div id="models-container" class="models-container"></div>
+  </main>
 
-  // 显示某个系列产品
-  seriesOverview.style.display = "none";
-  modelList.style.display = "block";
-  loadSeries(seriesId);
-}
+  <!-- 底部 -->
+  <footer class="site-bottombar" id="footerToTop">
+    <div>返回顶部</div>
+    <img src="images/logo.png" alt="AX Guitar Logo"/>
+  </footer>
 
-// 加载产品数据
-function loadSeries(seriesId) {
-  modelsContainer.innerHTML = `<p>加载中...</p>`;
-  fetch(`data/${seriesId}.json?t=${Date.now()}`)
-    .then(res => res.json())
-    .then(data => {
-   modelsContainer.innerHTML = data.models.map(m => `
-  <div class="product-card">
-    <img src="images/${m.img}" alt="${m.name}" />
-    <h3>${m.name}</h3>
-    <p>${m.desc}</p>
-    <a class="order-button" href="pricing.html">订购</a>
-  </div>
-`).join("");
-    })
-    .catch(err => {
-      modelsContainer.innerHTML = `<p>加载失败：${err}</p>`;
-    });
-}
+  <!-- 公共脚本 -->
+  <script src="main.js"></script>
 
-// 初始化
-renderPage();
-</script>
+  <!-- 产品加载逻辑 -->
+  <script>
+    const seriesOrder = ['a','b','c','d'];
+    const urlParams = new URLSearchParams(window.location.search);
+    const seriesId = urlParams.get('series');
+    const container = document.getElementById('models-container');
+    const navBox = document.getElementById('prevNextNav');
+
+    if (!seriesId) {
+      window.location.href = 'instruments.html';
+    }
+
+    // 渲染上一系列/下一系列按钮
+    function renderPrevNext(seriesId) {
+      const idx = seriesOrder.indexOf(seriesId);
+      let html = '';
+
+      if (idx > 0) {
+        const prevId = seriesOrder[idx-1];
+        html += `<a href="products.html?series=${prevId}">← 上一系列</a>`;
+      }
+      if (idx < seriesOrder.length - 1) {
+        const nextId = seriesOrder[idx+1];
+        if (html) html += ' | ';
+        html += `<a href="products.html?series=${nextId}">下一系列 →</a>`;
+      }
+
+      navBox.innerHTML = html;
+    }
+
+    // 加载 JSON 数据
+    function loadSeries(seriesId) {
+      container.innerHTML = `<p>加载中...</p>`;
+      const jsonUrl = `data/${seriesId}.json?t=${Date.now()}`;
+
+      fetch(jsonUrl)
+        .then(res => {
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          return res.json();
+        })
+        .then(data => {
+          if (!data.series || !data.series[0].models) {
+            throw new Error('数据格式错误：缺少 series 或 models 字段');
+          }
+          const series = data.series[0];
+          renderPrevNext(seriesId);
+          container.innerHTML = series.models.map(m => `
+            <div class="product-card">
+              <img src="${m.image}" alt="${m.name}">
+              <h3>${m.name}</h3>
+              <p>${m.features}</p>
+              <div style="margin-top:10px;">
+                <a class="order-button" href="pricing.html">订购</a>
+                <a class="order-button" style="background:#6c757d; margin-left:8px;"
+                   href="product-detail.html?series=${seriesId}&id=${m.id}">
+                  查看详情
+                </a>
+              </div>
+            </div>
+          `).join('');
+        })
+        .catch(err => {
+          container.innerHTML = `<p style="color:red;">加载失败: ${err.message}</p>`;
+        });
+    }
+
+    loadSeries(seriesId);
+  </script>
 </body>
 </html>
