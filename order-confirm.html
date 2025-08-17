@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AX斧标贝斯 | 订单确认</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="global.css">
+  <style>
+    body {
+      background: rgb(128, 128, 128);
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding-top: 60px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    main {
+      flex: 1;
+      padding: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .confirm-box {
+      background: rgba(0,0,0,0.3);
+      padding: 30px;
+      border-radius: 8px;
+      margin-top: 40px;
+    }
+    .confirm-box h1 {
+      color: #4dabf7;
+      margin-bottom: 20px;
+    }
+    .order-summary {
+      text-align: left;
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 6px;
+      font-size: 15px;
+    }
+    .order-summary p {
+      margin: 6px 0;
+    }
+    .actions {
+      margin-top: 30px;
+    }
+    .actions a {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .btn-primary {
+      background: #4dabf7;
+      color: #fff;
+    }
+    .btn-secondary {
+      background: #6c757d;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <!-- 顶部导航 -->
+  <header class="site-topbar">
+    <div class="topbar__left">
+      <button id="topbarMenuBtn">☰</button>
+    </div>
+    <div class="topbar__center">
+      <a href="index.html"><img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/></a>
+    </div>
+    <div class="topbar__right">
+      <button id="topbarSearchBtn">🔍</button>
+      <button id="topbarShareBtn">⤴</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="confirm-box">
+      <h1>订单提交成功 ✅</h1>
+      <p>感谢您的订购！我们会尽快与您联系确认订单信息。</p>
+
+      <div id="orderSummary" class="order-summary"></div>
+
+      <div class="actions">
+        <a href="instruments.html" class="btn-secondary">继续浏览系列</a>
+        <a href="index.html" class="btn-primary">返回首页</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- 底部 -->
+  <footer class="site-bottombar" id="footerToTop">
+    <div>返回顶部</div>
+    <img src="images/logo.png" alt="AX Guitar Logo"/>
+  </footer>
+
+  <!-- 公共脚本 -->
+  <script src="main.js"></script>
+  <script>
+    // 从 URL 获取订单信息并展示
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderSummaryDiv = document.getElementById('orderSummary');
+
+    if (urlParams.toString()) {
+      let html = "<h3>订单信息</h3>";
+      urlParams.forEach((value, key) => {
+        html += `<p><strong>${key}：</strong> ${value}</p>`;
+      });
+      orderSummaryDiv.innerHTML = html;
+    } else {
+      orderSummaryDiv.innerHTML = "<p>未检测到订单信息。</p>";
+    }
+  </script>
+</body>
+</html>
