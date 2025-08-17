@@ -3,15 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AX斧标贝斯</title>
-<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-<link rel="manifest" href="/icons/manifest.json">
-<link href="/css/style.css" rel="stylesheet">
-<link rel="stylesheet" href="global.css">
+    <title>移动端响应式布局完整示例</title>
     <style>
-
         /* ===== 基础样式 ===== */
         :root {
             --primary-color: #4361ee;
@@ -235,78 +228,241 @@
     </style>
 </head>
 <body>
-          
-            <!-- 汉堡菜单按钮 -->
-<header class="site-topbar">
-  <div class="topbar__left">
-    <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
-  </div>
-  <div class="topbar__center">
-    <a href="index.html"><img class="topbar__logo" src="./images/logo.png" alt="AX Guitar Logo"/></a>
-  </div>
-  <div class="topbar__right">
-    <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
-    <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
-  </div>        
+    <!-- 粘性导航栏 -->
+    <header class="sticky-header safe-area-padding">
+        <nav class="navbar container">
+            <div class="logo">LOGO</div>
             
+            <!-- 汉堡菜单按钮 -->
+            <button class="hamburger-menu" id="hamburgerBtn">
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+            </button>
+            
+            <!-- 桌面导航 -->
+            <div class="desktop-nav">
+                <a href="#" class="btn">首页</a>
+                <a href="#" class="btn">产品</a>
+                <a href="#" class="btn">关于</a>
+                <a href="#" class="btn">联系</a>
+            </div>
+        </nav>
+    </header>
     
     <!-- 移动端导航菜单 -->
     <div class="nav-menu" id="navMenu">
         <button class="close-menu" id="closeMenuBtn">×</button>
-      <li><a href="products.html">全部产品</a></li>
-      <li><a href="products.html?series=d">特色产品</a></li>
-      <li><a href="pricing.html">订购产品</a></li>
-      <li><a href="news.html">新闻</a></li>
-      <li><a href="support.html">支持</a></li>
+        <a href="#" class="nav-link">首页</a>
+        <a href="#" class="nav-link">产品</a>
+        <a href="#" class="nav-link">关于</a>
+        <a href="#" class="nav-link">联系</a>
     </div>
     
     <!-- 页面主要内容 -->
     <main class="container">
-        <h1 class="fluid-text" style="margin: var(--spacing-md) 0">AX斧标贝斯</h1>
+        <h1 class="fluid-text" style="margin: var(--spacing-md) 0">移动端响应式布局</h1>
         
         <!-- 第1个卡片区 - Flexbox -->
         <section style="margin-bottom: var(--spacing-lg)">
+            <h2>Flexbox布局示例</h2>
             <div class="grid-layout grid-responsive gap-md" style="margin-top: var(--spacing-sm)">
-
-   <!-- 卡片1 -->
+                <!-- 卡片1 -->
                 <article class="card">
-                     <img src="./images/d1.jpg" alt="AX Bass展示图"/>
+                    <!-- 替换为您的图片 -->
                     <img src="images/flexbox-align.jpg" alt="Flexbox对齐示例" class="card-img">
                     <div class="card-body">
-                        <h3 class="text-truncate">简介:</h3>
-                            <p>AX品牌创始人，先10年就职于国内知名OEM吉他代工厂技术开发，再10年就职于海外某吉他品牌公司从事吉他生产工艺和产品设计，20年的经验技术累积，量变引起质变，最终促成AX品牌的诞生。</p>
+                        <h3 class="text-truncate">Flexbox对齐技巧</h3>
+                        <!-- 替换为您的自定义文本 -->
                         <p class="line-clamp-2">这里输入关于Flexbox对齐的自定义文本描述，可以详细介绍justify-content和align-items属性的使用方法。</p>
                     </div>
                 </article>
                 
-    <!-- 卡片2 -->
+                <!-- 卡片2 -->
                 <article class="card">
-                   <img src="./images/d2.jpg" alt="Model D 贝斯"/>
+                    <!-- 替换为您的图片 -->
                     <img src="images/flexbox-direction.jpg" alt="Flexbox方向控制" class="card-img">
                     <div class="card-body">
-                        <h3>宣言</h3>
-       <p align="left">每一次拨弦,都是一次与自己对话.</p>
-      <p align="left">每一个低音,都成为你内心的语言.</p>
-      <p align="center">---AX斧标Bass</p>
-                      </div>
+                        <h3>Flexbox方向控制</h3>
+                        <!-- 替换为您的自定义文本 -->
+                        <p class="line-clamp-2">这里输入关于flex-direction的自定义文本描述，说明如何改变主轴方向实现不同布局。</p>
+                    </div>
                 </article>
-                             
-    <!-- 卡片3 -->
+                
+                <!-- 卡片3 -->
                 <article class="card">
-                 <img src="./images/d2.jpg" alt="Model D 贝斯"/>
+                    <!-- 替换为您的图片 -->
+                    <img src="images/flexbox-grow.jpg" alt="Flexbox空间分配" class="card-img">
                     <div class="card-body">
-                        <h3>流体布局</h3>
-                       <a href="products.html" class="order-button">了解更多</a>
+                        <h3>Flexbox空间分配</h3>
+                        <!-- 替换为您的自定义文本 -->
+                        <p class="line-clamp-2">这里输入关于flex-grow的自定义文本描述，解释如何分配剩余空间。</p>
                     </div>
                 </article>
             </div>
         </section>
         
+        <!-- 第2个卡片区 - Grid -->
+        <section style="margin-bottom: var(--spacing-lg)">
+            <h2>Grid布局示例</h2>
+            <div class="grid-layout grid-responsive gap-md" style="margin-top: var(--spacing-sm)">
+                <!-- 卡片1 -->
+                <article class="card">
+                    <!-- 替换为您的图片 -->
+                    <img src="images/grid-areas.jpg" alt="Grid模板区域" class="card-img">
+                    <div class="card-body">
+                        <h3 class="text-truncate">Grid模板区域</h3>
+                        <!-- 替换为您的自定义文本 -->
+                        <p class="line-clamp-2">这里输入关于grid-template-areas的自定义文本描述，说明如何创建直观布局。</p>
+                    </div>
+                </article>
+                
+                <!-- 卡片2 -->
+                <article class="card">
+                    <!-- 替换为您的图片 -->
+                    <img src="images/grid-responsive.jpg" alt="响应式Grid" class="card-img">
+                    <div class="card-body">
+                        <h3>响应式Grid</h3>
+                        <!-- 替换为您的自定义文本 -->
+                        <p class="line-clamp-2">这里输入关于auto-fill和minmax()的自定义文本描述，解释如何创建自适应布局。</p>
+                    </div>
+                </article>
+                
+                <!-- 卡片3 -->
+                <article class="card">
+                    <!-- 替换为您的图片 -->
+                    <img src="images/grid-gap.jpg" alt="Grid间距控制" class="card-img">
+                    <div class="card-body">
+                        <h3>Grid间距控制</h3>
+                        <!-- 替换为您的自定义文本 -->
+                        <p class="line-clamp-2">这里输入关于gap属性的自定义文本描述，说明如何设置行列间距。</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+        
+        <!-- 第3个卡片区 - 响应式设计 -->
+        <section style="margin-bottom: var(--spacing-lg)">
+            <h2>响应式设计示例</h2>
+            <div class="grid-layout grid-responsive gap-md" style="margin-top: var(--spacing-sm)">
+                <!-- 卡片1 -->
+                <article class="card">
+                    <!-- 替换为您的图片 -->
+                    <img src="images/media-queries.jpg" alt="媒体查询" class="card-img">
+                    <div class="card-body">
+                        <h3 class="text-truncate">媒体查询</h3>
+                        <!-- 替换为您的自定义文本 -->
+                        <p class="line-clamp-2">这里输入关于@media规则的自定义文本描述，说明如何针对不同屏幕应用样式。</p>
+                    </div>
+                </article>
+                
+                <!-- 卡片2 -->
+                <article class="card">
+                    <!-- 替换为您的图片 -->
+                    <img src="images/mobile-first.jpg" alt="移动优先" class="card-img">
+                    <div class="card-body">
+                        <h3>移动优先</h3>
+                        <!-- 替换为您的自定义文本 -->
+                        <p class="line-clamp-2">这里输入关于移动优先策略的自定义文本描述，解释设计流程。</p>
+                    </div>
+                </article>
+                
+                <!-- 卡片3 -->
+                <article class="card">
+                    <!-- 替换为您的图片 -->
+                    <img src="images/fluid-layout.jpg" alt="流体布局" class="card-img">
+                    <div class="card-body">
+                        <h3>流体布局</h3>
+                        <!-- 替换为您的自定义文本 -->
+                        <p class="line-clamp-2">这里输入关于百分比和视口单位的自定义文本描述，说明如何创建流动布局。</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+        
+        <!-- 第4个卡片区 - 现代CSS -->
+        <section style="margin-bottom: var(--spacing-lg)">
+            <h2>现代CSS特性</h2>
+            <div class="grid-layout grid-responsive gap-md" style="margin-top: var(--spacing-sm)">
+                <!-- 卡片1 -->
+                <article class="card">
+                    <!-- 替换为您的图片 -->
+                    <img src="images/css-variables.jpg" alt="CSS变量" class="card-img">
+                    <div class="card-body">
+                        <h3 class="text-truncate">CSS变量</h3>
+                        <!-- 替换为您的自定义文本 -->
+                        <p class="line-clamp-2">这里输入关于CSS自定义属性的自定义文本描述，说明主题切换的实现。</p>
+                    </div>
+                </article>
+                
+                <!-- 卡片2 -->
+                <article class="card">
+                    <!-- 替换为您的图片 -->
+                    <img src="images/clamp-function.jpg" alt="clamp()函数" class="card-img">
+                    <div class="card-body">
+                        <h3>clamp()函数</h3>
+                        <!-- 替换为您的自定义文本 -->
+                        <p class="line-clamp-2">这里输入关于clamp()函数的自定义文本描述，解释响应式尺寸设置。</p>
+                    </div>
+                </article>
+                
+                <!-- 卡片3 -->
+                <article class="card">
+                    <!-- 替换为您的图片 -->
+                    <img src="images/aspect-ratio.jpg" alt="aspect-ratio" class="card-img">
+                    <div class="card-body">
+                        <h3>aspect-ratio</h3>
+                        <!-- 替换为您的自定义文本 -->
+                        <p class="line-clamp-2">这里输入关于宽高比属性的自定义文本描述，说明如何保持元素比例。</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+        
+        <!-- 第5个卡片区 - 性能优化 -->
+        <section style="margin-bottom: var(--spacing-lg)">
+            <h2>性能优化技巧</h2>
+            <div class="grid-layout grid-responsive gap-md" style="margin-top: var(--spacing-sm)">
+                <!-- 卡片1 -->
+                <article class="card">
+                    <!-- 替换为您的图片 -->
+                    <img src="images/css-optimization.jpg" alt="CSS优化" class="card-img">
+                    <div class="card-body">
+                        <h3 class="text-truncate">CSS优化</h3>
+                        <!-- 替换为您的自定义文本 -->
+                        <p class="line-clamp-2">这里输入关于CSS优化的自定义文本描述，说明压缩和代码分割的方法。</p>
+                    </div>
+                </article>
+                
+                <!-- 卡片2 -->
+                <article class="card">
+                    <!-- 替换为您的图片 -->
+                    <img src="images/image-optimization.jpg" alt="图片优化" class="card-img">
+                    <div class="card-body">
+                        <h3>图片优化</h3>
+                        <!-- 替换为您的自定义文本 -->
+                        <p class="line-clamp-2">这里输入关于图片优化的自定义文本描述，解释srcset和picture元素的使用。</p>
+                    </div>
+                </article>
+                
+                <!-- 卡片3 -->
+                <article class="card">
+                    <!-- 替换为您的图片 -->
+                    <img src="images/lazy-loading.jpg" alt="懒加载" class="card-img">
+                    <div class="card-body">
+                        <h3>懒加载</h3>
+                        <!-- 替换为您的自定义文本 -->
+                        <p class="line-clamp-2">这里输入关于懒加载的自定义文本描述，说明如何提升首屏速度。</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+    
     <!-- 页脚 -->
-<footer class="site-bottombar" id="footerToTop">
-  <div class="bottombar__label">返回顶部</div>
-  <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
-</footer>
+    <footer class="container" style="padding: var(--spacing-lg) 0; text-align: center;">
+        <p>© 2023 移动端响应式布局示例</p>
+    </footer>
 
     <script>
         // 汉堡菜单交互
