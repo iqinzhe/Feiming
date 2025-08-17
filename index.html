@@ -1,46 +1,242 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>AX斧标贝斯</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AX斧标贝斯</title>
 <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
 <link rel="manifest" href="/icons/manifest.json">
 <link href="/css/style.css" rel="stylesheet">
 <link rel="stylesheet" href="global.css">
-<style>
-:root {
-  --neutral-gray: rgb(128, 128, 128);
-  --glass-dark: rgba(0, 0, 0, 0.3);
-  --text-white: #fff;
-}
-body {
-  background: var(--neutral-gray);
-  color: var(--text-white);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding-top: 60px;
-}
-.page-content { flex: 1; padding: 20px 5%; margin-top: 20px; }
-.hero { text-align: center; margin-bottom: 40px; }
-.hero img { max-width: 100%; height: auto; border-radius: 8px; }
-.product-card { background: rgba(0,0,0,0.2); padding: 20px; border-radius: 8px; text-align: center; }
-.product-card img { max-width: 100%; height: auto; border-radius: 4px; }
-@media (min-width: 768px) {
-  body { padding-top: 70px; }
-  .site-topbar { padding: 15px 8%; height: 60px; }
-  .topbar__logo { height: 35px; }
-  .page-content { padding: 30px 8%; }
-}
-</style>
+    <style>
+
+        /* ===== 基础样式 ===== */
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #7209b7;
+            --text-dark: #212529;
+            --text-light: #f8f9fa;
+            --spacing-xs: 0.8rem;
+            --spacing-sm: 1.6rem;
+            --spacing-md: 2.4rem;
+            --spacing-lg: 3.2rem;
+            --border-radius: 0.8rem;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 62.5%;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 1.6rem;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background-color: #f5f7ff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ===== 布局工具类 ===== */
+        .container {
+            width: 100%;
+            padding: var(--spacing-sm);
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                max-width: 720px;
+                padding: var(--spacing-md);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container { max-width: 960px; }
+        }
+
+        .flex { display: flex; }
+        .flex-center { display: flex; justify-content: center; align-items: center; }
+        .flex-column { flex-direction: column; }
+        .justify-between { justify-content: space-between; }
+
+        .grid { display: grid; }
+        .grid-responsive { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+        .gap-md { gap: var(--spacing-sm); }
+
+        /* ===== 组件样式 ===== */
+        /* 导航栏 */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: var(--spacing-sm) 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* 汉堡菜单 */
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 44px;
+            height: 44px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1000;
+        }
+
+        .hamburger-bar {
+            width: 100%;
+            height: 3px;
+            background-color: var(--text-dark);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* 移动端菜单 */
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            padding-top: 70px;
+            transition: transform 0.4s ease;
+            z-index: 999;
+        }
+
+        .menu-active .nav-menu {
+            transform: translateX(-100%);
+        }
+
+        .menu-active .hamburger-bar:nth-child(1) {
+            transform: translateY(10px) rotate(45deg);
+        }
+
+        .menu-active .hamburger-bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-active .hamburger-bar:nth-child(3) {
+            transform: translateY(-10px) rotate(-45deg);
+        }
+
+        .nav-link {
+            display: block;
+            padding: 16px 24px;
+            color: var(--text-dark);
+            text-decoration: none;
+            border-bottom: 1px solid #eee;
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 2.4rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 767px) {
+            .hamburger-menu { display: flex; }
+            .desktop-nav { display: none; }
+        }
+
+        /* 卡片组件 */
+        .card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 180px; /* 固定高度方便布局 */
+            object-fit: cover; /* 保持图片比例 */
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+        }
+
+        .card-body {
+            padding: var(--spacing-sm);
+        }
+
+        .text-truncate {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* 其他工具类 */
+        .fluid-text { font-size: clamp(1.6rem, 4vw, 2.4rem); }
+        .btn {
+            display: inline-block;
+            padding: 1.2rem 2.4rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .safe-area-padding {
+            padding: 
+                max(env(safe-area-inset-top), var(--spacing-sm)) 
+                max(env(safe-area-inset-right), var(--spacing-sm)) 
+                max(env(safe-area-inset-bottom), var(--spacing-sm)) 
+                max(env(safe-area-inset-left), var(--spacing-sm));
+        }
+    </style>
 </head>
 <body>
-<!-- 公共导航栏 -->
+          
+            <!-- 汉堡菜单按钮 -->
 <header class="site-topbar">
   <div class="topbar__left">
     <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
@@ -51,65 +247,91 @@ body {
   <div class="topbar__right">
     <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
     <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
-  </div>
-  <nav class="mobile-nav" id="mobileNav">
-    <ul class="mobile-nav__list">
+  </div>        
+            
+    
+    <!-- 移动端导航菜单 -->
+    <div class="nav-menu" id="navMenu">
+        <button class="close-menu" id="closeMenuBtn">×</button>
       <li><a href="products.html">全部产品</a></li>
       <li><a href="products.html?series=d">特色产品</a></li>
       <li><a href="pricing.html">订购产品</a></li>
       <li><a href="news.html">新闻</a></li>
       <li><a href="support.html">支持</a></li>
-    </ul>
-  </nav>
-</header>
+    </div>
+    
+    <!-- 页面主要内容 -->
+    <main class="container">
+        <h1 class="fluid-text" style="margin: var(--spacing-md) 0">AX斧标贝斯</h1>
+        
+        <!-- 第1个卡片区 - Flexbox -->
+        <section style="margin-bottom: var(--spacing-lg)">
+            <div class="grid-layout grid-responsive gap-md" style="margin-top: var(--spacing-sm)">
 
-<!-- 首页内容 -->
-<main class="page-content">
-  <section class="hero">
-    <img src="./images/d1.jpg" alt="AX Bass展示图"/>
-    <h1>AX斧标贝斯</h1>
-    <p>AX品牌创始人，先10年就职于国内知名OEM吉他代工厂技术开发，再10年就职于海外某吉他品牌公司从事吉他生产工艺和产品设计，20年的经验技术累积，量变引起质变，最终促成AX品牌的诞生。</p>
-  </section>
-  <section class="products-overview">
-    <div class="product-card">
-      <img src="./images/d2.jpg" alt="Model D 贝斯"/>
-      <h2>Model D</h2>
-      <p align="left">每一次拨弦,都是一次与自己对话.</p>
+   <!-- 卡片1 -->
+                <article class="card">
+                     <img src="./images/d1.jpg" alt="AX Bass展示图"/>
+                    <img src="images/flexbox-align.jpg" alt="Flexbox对齐示例" class="card-img">
+                    <div class="card-body">
+                        <h3 class="text-truncate">简介:</h3>
+                            <p>AX品牌创始人，先10年就职于国内知名OEM吉他代工厂技术开发，再10年就职于海外某吉他品牌公司从事吉他生产工艺和产品设计，20年的经验技术累积，量变引起质变，最终促成AX品牌的诞生。</p>
+                        <p class="line-clamp-2">这里输入关于Flexbox对齐的自定义文本描述，可以详细介绍justify-content和align-items属性的使用方法。</p>
+                    </div>
+                </article>
+                
+    <!-- 卡片2 -->
+                <article class="card">
+                   <img src="./images/d2.jpg" alt="Model D 贝斯"/>
+                    <img src="images/flexbox-direction.jpg" alt="Flexbox方向控制" class="card-img">
+                    <div class="card-body">
+                        <h3>宣言</h3>
+       <p align="left">每一次拨弦,都是一次与自己对话.</p>
       <p align="left">每一个低音,都成为你内心的语言.</p>
       <p align="center">---AX斧标Bass</p>
-      <a href="products.html" class="order-button">了解更多</a>
-    </div>
-  </section>
-</main>
-
-<!-- 公共页脚 -->
+                      </div>
+                </article>
+                             
+    <!-- 卡片3 -->
+                <article class="card">
+                 <img src="./images/d2.jpg" alt="Model D 贝斯"/>
+                    <div class="card-body">
+                        <h3>流体布局</h3>
+                       <a href="products.html" class="order-button">了解更多</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+        
+    <!-- 页脚 -->
 <footer class="site-bottombar" id="footerToTop">
   <div class="bottombar__label">返回顶部</div>
   <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
 </footer>
 
-<script>
-// 顶部菜单交互
-document.getElementById('topbarMenuBtn').addEventListener('click', function() {
-  document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
-});
-document.getElementById('footerToTop').addEventListener('click', function() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-document.getElementById('topbarSearchBtn').addEventListener('click', function() {
-  const q = prompt('请输入搜索关键词');
-  if(q) alert('搜索演示: ' + q);
-});
-document.getElementById('topbarShareBtn').addEventListener('click', function() {
-  try {
-    navigator.share?.({ 
-      title: 'AX斧标贝斯: ' + document.title,
-      url: location.href 
-    }) || alert('请手动分享此页面');
-  } catch(e) {
-    alert('分享出错: ' + e.message);
-  }
-});
-</script>
+    <script>
+        // 汉堡菜单交互
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        function toggleMenu() {
+            document.body.classList.toggle('menu-active');
+        }
+
+        hamburgerBtn.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+
+        // 点击菜单项关闭菜单
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+
+        // 窗口调整时自动关闭菜单
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 767 && document.body.classList.contains('menu-active')) {
+                document.body.classList.remove('menu-active');
+            }
+        });
+    </script>
 </body>
 </html>
