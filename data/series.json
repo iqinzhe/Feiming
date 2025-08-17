@@ -11,18 +11,18 @@
       "name": "Series B",
       "cover": "images/series-b.jpg",
       "description": "通颈连体贝斯工艺较为复杂..."
-    }
+    },
     {
       "id": "c",
       "name": "Series C",
-      "cover": "images/series-b.jpg",
-      "description": "通颈连体贝斯工艺较为复杂..."
-    }  
-  {
+      "cover": "images/series-c.jpg",
+      "description": "迷你便携式贝斯，适合初学者..."
+    },
+    {
       "id": "d",
       "name": "Series D",
-      "cover": "images/series-b.jpg",
-      "description": "通颈连体贝斯工艺较为复杂..."
+      "cover": "images/series-d.jpg",
+      "description": "人体工学扭曲琴颈设计..."
     }
   ]
 }
