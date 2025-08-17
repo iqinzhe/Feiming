@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AX斧标贝斯 | 产品详情</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="global.css">
+  <style>
+    body {
+      background: rgb(128, 128, 128);
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding-top: 60px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    main { flex: 1; padding: 20px; max-width: 900px; margin: 0 auto; }
+
+    .product-hero {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .product-hero img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+    .product-specs {
+      background: rgba(0,0,0,0.2);
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    .product-specs h3 {
+      margin-bottom: 10px;
+    }
+    .product-specs ul {
+      list-style: none;
+      padding: 0;
+    }
+    .product-specs li {
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .product-actions {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .order-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #4dabf7;
+      color: #fff;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 16px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: #4dabf7;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- 顶部导航 -->
+  <header class="site-topbar">
+    <div class="topbar__left">
+      <button id="topbarMenuBtn">☰</button>
+    </div>
+    <div class="topbar__center">
+      <a href="index.html"><img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/></a>
+    </div>
+    <div class="topbar__right">
+      <button id="topbarSearchBtn">🔍</button>
+      <button id="topbarShareBtn">⤴</button>
+    </div>
+    <nav class="mobile-nav" id="mobileNav">
+      <ul class="mobile-nav__list">
+        <li><a href="instruments.html">全部系列</a></li>
+        <li><a href="products.html?series=d">特色产品</a></li>
+        <li><a href="pricing.html">订购产品</a></li>
+        <li><a href="news.html">新闻</a></li>
+        <li><a href="support.html">支持</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div id="productDetail"></div>
+  </main>
+
+  <!-- 底部 -->
+  <footer class="site-bottombar" id="footerToTop">
+    <div>返回顶部</div>
+    <img src="images/logo.png" alt="AX Guitar Logo"/>
+  </footer>
+
+  <!-- 公共脚本 -->
+  <script src="main.js"></script>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const seriesId = urlParams.get('series');
+    const productId = urlParams.get('id');
+    const container = document.getElementById('productDetail');
+
+    if (!seriesId || !productId) {
+      container.innerHTML = `<p style="color:red;">参数缺失，无法加载产品详情。</p>`;
+    } else {
+      const jsonUrl = `data/${seriesId}.json?t=${Date.now()}`;
+      fetch(jsonUrl)
+        .then(res => {
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          return res.json();
+        })
+        .then(data => {
+          const series = data.series[0];
+          const product = series.models.find(m => m.id === productId);
+          if (!product) throw new Error('找不到对应的产品');
+
+          container.innerHTML = `
+            <div class="product-hero">
+              <img src="${product.image}" alt="${product.name}">
+              <h1>${product.name}</h1>
+              <p>${product.features}</p>
+            </div>
+            <div class="product-specs">
+              <h3>规格参数</h3>
+              <ul>
+                ${product.specs.map(s => `<li>${s}</li>`).join('')}
+              </ul>
+            </div>
+            <div class="product-actions">
+              <a class="order-button" href="pricing.html">立即订购</a>
+              <div><a href="products.html?series=${seriesId}" class="back-link">← 返回${series.name}</a></div>
+            </div>
+          `;
+        })
+        .catch(err => {
+          container.innerHTML = `<p style="color:red;">加载失败: ${err.message}</p>`;
+        });
+    }
+  </script>
+</body>
+</html>
