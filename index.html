@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>AX斧标贝斯</title>
+<title>AX斧标贝斯 | 首页</title>
 <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
@@ -15,6 +15,7 @@
   --neutral-gray: rgb(128, 128, 128);
   --glass-dark: rgba(0, 0, 0, 0.3);
   --text-white: #fff;
+  --card-min-width: 280px;
 }
 body {
   background: var(--neutral-gray);
@@ -26,11 +27,52 @@ body {
   margin: 0;
   padding-top: 60px;
 }
-.page-content { flex: 1; padding: 20px 5%; margin-top: 20px; }
-.hero { text-align: center; margin-bottom: 40px; }
-.hero img { max-width: 100%; height: auto; border-radius: 8px; }
-.product-card { background: rgba(0,0,0,0.2); padding: 20px; border-radius: 8px; text-align: center; }
-.product-card img { max-width: 100%; height: auto; border-radius: 4px; }
+
+/* 系列卡片布局 */
+.series-overview {
+  display: grid;
+  gap: 20px;
+  padding: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
+}
+
+/* 页面链接区 */
+.page-links {
+  margin: 40px 0;
+  padding: 20px;
+  text-align: center;
+}
+.page-links ul {
+  list-style: none;
+  padding: 0;
+}
+.page-links li {
+  margin: 10px 0;
+}
+.page-links a {
+  color: var(--text-white);
+  font-size: 18px;
+  text-decoration: none;
+}
+.page-links a:hover {
+  text-decoration: underline;
+}
+
+/* 固定定位 */
+.site-topbar {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+.site-bottombar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  z-index: 900;
+}
+main {
+  padding-bottom: 70px;
+  padding-top: 70px;
+}
+
 @media (min-width: 768px) {
   body { padding-top: 70px; }
   .site-topbar { padding: 15px 8%; height: 60px; }
@@ -40,7 +82,8 @@ body {
 </style>
 </head>
 <body>
-<!-- 公共导航栏 -->
+
+<!-- 顶部导航栏（保持不变） -->
 <header class="site-topbar">
   <div class="topbar__left">
     <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
@@ -59,57 +102,51 @@ body {
       <li><a href="pricing.html">订购产品</a></li>
       <li><a href="news.html">新闻</a></li>
       <li><a href="support.html">支持</a></li>
+      <li><a href="information.html">官方信息</a></li>
     </ul>
   </nav>
 </header>
 
-<!-- 首页内容 -->
-<main class="page-content">
-  <section class="hero">
-    <img src="./images/d1.jpg" alt="AX Bass展示图"/>
-    <h1>AX斧标贝斯</h1>
-    <p>AX品牌创始人，先10年就职于国内知名OEM吉他代工厂技术开发，再10年就职于海外某吉他品牌公司从事吉他生产工艺和产品设计，20年的经验技术累积，量变引起质变，最终促成AX品牌的诞生。</p>
-  </section>
-  <section class="products-overview">
-    <div class="product-card">
-      <img src="./images/d2.jpg" alt="Model D 贝斯"/>
-      <h2>Model D</h2>
-      <p align="left">每一次拨弦,都是一次与自己对话.</p>
-      <p align="left">每一个低音,都成为你内心的语言.</p>
-      <p align="center">---AX斧标Bass</p>
-      <a href="products.html" class="order-button">了解更多</a>
-    </div>
+<main>
+  <!-- 系列卡片总览 -->
+  <section class="series-overview" id="seriesOverview"></section>
+
+  <!-- 页面导航链接 -->
+  <section class="page-links">
+    <ul>
+      <li><a href="news.html">最新动态</a></li>
+      <li><a href="pricing.html">订购产品</a></li>
+      <li><a href="support.html">支持中心</a></li>
+      <li><a href="information.html">官方信息</a></li>
+    </ul>
   </section>
 </main>
 
-<!-- 公共页脚 -->
+<!-- 底部栏（保持不变） -->
 <footer class="site-bottombar" id="footerToTop">
   <div class="bottombar__label">返回顶部</div>
   <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
 </footer>
 
 <script>
-// 顶部菜单交互
-document.getElementById('topbarMenuBtn').addEventListener('click', function() {
-  document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
-});
-document.getElementById('footerToTop').addEventListener('click', function() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-document.getElementById('topbarSearchBtn').addEventListener('click', function() {
-  const q = prompt('请输入搜索关键词');
-  if(q) alert('搜索演示: ' + q);
-});
-document.getElementById('topbarShareBtn').addEventListener('click', function() {
-  try {
-    navigator.share?.({ 
-      title: 'AX斧标贝斯: ' + document.title,
-      url: location.href 
-    }) || alert('请手动分享此页面');
-  } catch(e) {
-    alert('分享出错: ' + e.message);
-  }
-});
+const seriesData = [
+  {id:'a', name:'Series A', desc:'螺栓固定结构带来的额外弹性和响应，提供高性价比的现代音色。', img:'series-a.jpg'},
+  {id:'b', name:'Series B', desc:'高端通颈连体工艺系列，奢华外观与稳定表现。', img:'series-b.jpg'},
+  {id:'c', name:'Series C', desc:'迷你便携式贝斯，短弦长设计，适合初学者。', img:'series-c.jpg'},
+  {id:'d', name:'Series D', desc:'革命性人体工学扭曲琴颈设计，提升舒适度。', img:'series-d.jpg'}
+];
+
+const seriesOverview = document.getElementById("seriesOverview");
+seriesOverview.innerHTML = seriesData.map(series => `
+  <a class="series-card" href="products.html?series=${series.id}">
+    <img src="images/${series.img}" alt="${series.name}" loading="lazy">
+    <div class="series-card-content">
+      <h2>${series.name}</h2>
+      <p>${series.desc}</p>
+      <div class="series-card-cta">查看产品</div>
+    </div>
+  </a>
+`).join("");
 </script>
 </body>
 </html>
