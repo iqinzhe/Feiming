@@ -1,16 +1,40 @@
 {
-  "models": [
+  "series": [
     {
-      "id": "b1",
-      "name": "B1 Model",
-      "desc": "通颈连体工艺",
-      "img": "b1.jpg"
-    },
-    {
-      "id": "b2",
-      "name": "B2 Model",
-      "desc": "扇品贝斯",
-      "img": "b2.jpg"
+      "id": "b",
+      "name": "Series B",
+      "description": "通颈连体贝斯工艺较为复杂，常被视为高端贝斯的标志之一。采用多类型木材拼接琴颈与琴体，更具艺术性，视觉冲击力更强，带来更加奢华的外观。\n连体通颈贝斯通颈贝斯在音色、延音、共鸣、稳定性等方面都有一些优点。",
+      "cover": "images/series-b.jpg",
+      "models": [
+        {
+          "id": "b1",
+          "name": "B1 Model",
+          "image": "images/b1.jpg",
+          "features": "灵感源自50年代经典吉他，重现复古音色",
+          "specs": [
+            "琴体: 桤木",
+            "琴颈: 枫木",
+            "指板: 枫木",
+            "拾音器: P90 × 2",
+            "琴桥: 复古式"
+          ],
+          "ctaColor": "rgba(76,175,80,0.7)"
+        },
+        {
+          "id": "b2",
+          "name": "B2 Model",
+          "image": "images/b2.jpg",
+          "features": "经典设计结合现代技术，提供更稳定的音准",
+          "specs": [
+            "琴体: 桃花心木",
+            "琴颈: 枫木",
+            "指板: 玫瑰木",
+            "拾音器: Humbucker × 2",
+            "琴桥: 现代固定式"
+          ],
+          "ctaColor": "rgba(76,175,80,0.7)"
+         }
+      ]
     }
   ]
 }
