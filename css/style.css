@@ -329,6 +329,46 @@ img {
   overflow: hidden;
 }
 
+/* 系列卡片样式优化 */
+.series-card {
+  display: block;
+  background: rgba(0,0,0,0.4); /* 半透明背景，避免文字贴图消失 */
+  border-radius: 8px;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--text-white);
+}
+
+.series-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.series-card-content {
+  padding: 15px;
+  background: rgba(0,0,0,0.6); /* 内容区再加深一点，确保文字清晰 */
+}
+
+.series-card-content h2 {
+  margin: 8px 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.series-card-content p {
+  font-size: 14px;
+  margin: 5px 0 10px;
+}
+
+.series-card-cta {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffd700; /* 用金色做对比按钮色 */
+}
+
+
 .fluid-text { font-size: clamp(1.6rem, 4vw, 2.4rem); }
 .fluid-padding { padding: clamp(1rem, 3vw, 3rem); }
 
