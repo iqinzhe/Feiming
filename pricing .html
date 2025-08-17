@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AX斧标贝斯 | 在线订购</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="global.css">
+  <style>
+    body {
+      background: rgb(128, 128, 128);
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding-top: 60px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    main { flex: 1; padding: 20px; max-width: 700px; margin: 0 auto; }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    form {
+      background: rgba(0,0,0,0.3);
+      padding: 20px;
+      border-radius: 8px;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .form-actions {
+      text-align: center;
+    }
+    .submit-button {
+      background: #4dabf7;
+      color: #fff;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .submit-button:hover {
+      background: #339af0;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 15px;
+      color: #ccc;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- 顶部导航 -->
+  <header class="site-topbar">
+    <div class="topbar__left">
+      <button id="topbarMenuBtn">☰</button>
+    </div>
+    <div class="topbar__center">
+      <a href="index.html"><img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/></a>
+    </div>
+    <div class="topbar__right">
+      <button id="topbarSearchBtn">🔍</button>
+      <button id="topbarShareBtn">⤴</button>
+    </div>
+    <nav class="mobile-nav" id="mobileNav">
+      <ul class="mobile-nav__list">
+        <li><a href="instruments.html">全部系列</a></li>
+        <li><a href="pricing.html">订购产品</a></li>
+        <li><a href="news.html">新闻</a></li>
+        <li><a href="support.html">支持</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>在线订购</h1>
+    <form id="orderForm">
+      <!-- 订购人信息 -->
+      <label for="customerName">订购人姓名 *</label>
+      <input type="text" id="customerName" name="customerName" required>
+
+      <label for="phone">联系电话 *</label>
+      <input type="tel" id="phone" name="phone" required pattern="[0-9+ -]{6,15}" placeholder="例如: +62 812345678">
+
+      <!-- 收货信息 -->
+      <label for="receiverName">收货人姓名 *</label>
+      <input type="text" id="receiverName" name="receiverName" required>
+
+      <label for="address">收货地址 *</label>
+      <textarea id="address" name="address" required placeholder="国家、省份/州、市、街道、邮编"></textarea>
+
+      <!-- 产品选择 -->
+      <label for="product">选择型号 *</label>
+      <select id="product" name="product" required>
+        <option value="">请选择型号</option>
+        <option value="A1 Model">A1 Model</option>
+        <option value="B1 Model">B1 Model</option>
+        <option value="B2 Model">B2 Model</option>
+        <option value="C1 Mini Bass">C1 Mini Bass</option>
+        <option value="C2 Travel Bass">C2 Travel Bass</option>
+        <option value="Model D">Model D</option>
+      </select>
+
+      <label for="quantity">数量 *</label>
+      <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+
+      <!-- 额外说明 -->
+      <label for="customization">改造定制需求</label>
+      <textarea id="customization" name="customization" placeholder="例如：换拾音器、特殊颜色、雕刻等"></textarea>
+
+      <label for="notes">订单备注</label>
+      <textarea id="notes" name="notes"></textarea>
+
+      <div class="form-actions">
+        <button type="submit" class="submit-button">提交订单</button>
+      </div>
+    </form>
+
+    <div class="form-actions">
+      <a href="javascript:history.back()" class="back-link">← 返回上一页</a>
+    </div>
+  </main>
+
+  <!-- 底部 -->
+  <footer class="site-bottombar" id="footerToTop">
+    <div>返回顶部</div>
+    <img src="images/logo.png" alt="AX Guitar Logo"/>
+  </footer>
+
+  <!-- 公共脚本 -->
+  <script src="main.js"></script>
+  <script>
+    // 捕获 URL 参数，自动填充产品型号
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('product');
+    if (productId) {
+      document.getElementById('product').value = productId;
+    }
+
+    // 表单提交逻辑
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const orderTime = new Date().toLocaleString();
+
+      let snapshot = "【订单详情快照】\\n";
+      formData.forEach((value, key) => {
+        snapshot += key + ": " + value + "\\n";
+      });
+      snapshot += "下单时间: " + orderTime + "\\n";
+
+      // 模拟下单，跳转到确认页并传递订单信息
+      const params = new URLSearchParams(formData);
+      params.append("orderTime", orderTime);
+      window.location.href = "order-confirm.html?" + params.toString();
+    });
+  </script>
+</body>
+</html>
