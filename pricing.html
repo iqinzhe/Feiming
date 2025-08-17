@@ -1,761 +1,178 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>订单</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-    <link rel="manifest" href="/icons/manifest.json">
-    <link href="/css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="global.css">
-    <!-- 引入EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-        // 初始化EmailJS
-        (function() {
-            emailjs.init('9mFxGUlwnnrz5WbL7'); // 您的EmailJS用户ID
-        })();
-    </script>
-    <style>
-     
-         /* 关于页面特有样式 */
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 20px;
-        }
-        form {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        /* 表格样式 */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        th, td {
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 12px;
-            text-align: left;
-        }
-        th {
-            background-color: rgba(255,255,255,0.15);
-            font-weight: bold;
-        }
-        tr:nth-child(even) {
-            background-color: rgba(255,255,255,0.05);
-        }
-        tr:hover {
-            background-color: rgba(255,255,255,0.2);
-        }
-        .price {
-            text-align: right;
-            white-space: nowrap;
-        }
-        tr.selected {
-            background-color: #d4edff !important;
-            color: #000 !important;
-        }
-        .summary {
-            position: sticky;
-            bottom: 20px;
-            background-color: #333;
-            color: white;
-            padding: 15px;
-            border-radius: 4px;
-            z-index: 100;
-        }
-        .category-desc {
-            font-size: 14px;
-            color: #ccc;
-            margin-top: -10px;
-            margin-bottom: 15px;
-        }
-        
-        /* 菜单打开时页面锁定 */
-        body.menu-open {
-            overflow: hidden;
-        }
-        
-        body.menu-open::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 999;
-        }
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AX斧标贝斯 | 在线订购</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="global.css">
+  <style>
+    body {
+      background: rgb(128, 128, 128);
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding-top: 60px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    main { flex: 1; padding: 20px; max-width: 700px; margin: 0 auto; }
 
-        /* 新增表单状态提示样式 */
-        .form-message {
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 4px;
-            display: none;
-        }
-        .form-message.success {
-            background: rgba(0, 255, 0, 0.2);
-            display: block;
-        }
-        .form-message.error {
-            background: rgba(255, 0, 0, 0.2);
-            display: block;
-        }
-    </style>
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    form {
+      background: rgba(0,0,0,0.3);
+      padding: 20px;
+      border-radius: 8px;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .form-actions {
+      text-align: center;
+    }
+    .submit-button {
+      background: #4dabf7;
+      color: #fff;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .submit-button:hover {
+      background: #339af0;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 15px;
+      color: #ccc;
+      text-decoration: none;
+    }
+  </style>
 </head>
-
 <body>
-<!-- 顶部栏 (与index.html保持一致) -->
-<header class="site-topbar">
-  <div class="topbar__left">
-    <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
-  </div>
-  <div class="topbar__center">
-    <a href="index.html">
-      <img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
-    </a>
-  </div>
-  <div class="topbar__right">
-    <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
-    <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
-  </div>
-  <nav class="mobile-nav" id="mobileNav" aria-label="主导航">
-    <ul class="mobile-nav__list"
-      <li><a href="products.html">全部产品</a></li>
-      <li><a href="product.html?series=d">特色产品</a></li>
-      <li><a href="pricing.html">订购产品</a></li>
-      <li><a href="news.html">新闻</a></li>
-      <li><a href="support.html">支持</a></li>
-    </ul>
-  </nav>
-</header>
-
-<!-- 主内容区 -->
-<h1>DIY选项和定价</h1>
-
-<form id="pricingForm">
-    <div class="form-group">
-        <label for="name">姓名：</label>
-        <input type="text" id="name" name="name" required>
+  <!-- 顶部导航 -->
+  <header class="site-topbar">
+    <div class="topbar__left">
+      <button id="topbarMenuBtn">☰</button>
     </div>
-    <div class="form-group">
-        <label for="phone">手机：</label>
-        <input type="text" id="phone" name="phone">
+    <div class="topbar__center">
+      <a href="index.html"><img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/></a>
     </div>
-
+    <div class="topbar__right">
+      <button id="topbarSearchBtn">🔍</button>
+      <button id="topbarShareBtn">⤴</button>
     </div>
-</form>
+    <nav class="mobile-nav" id="mobileNav">
+      <ul class="mobile-nav__list">
+        <li><a href="instruments.html">全部系列</a></li>
+        <li><a href="pricing.html">订购产品</a></li>
+        <li><a href="news.html">新闻</a></li>
+        <li><a href="support.html">支持</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <h2>琴型</h2>
-    <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>A-系列</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="1000">
-            <td>B-系列</td>
-            <td class="price">¥1000</td>
-        </tr>
-        <tr data-price="1500">
-            <td>C-系列</td>
-            <td class="price">¥1500</td>
-        </tr>
-        <tr data-price="0">
-            <td>D-系列</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>AX Handmade Workshop</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="1500">
-            <td>E-无头系列</td>
-            <td class="price">¥1500</td>
-        </tr>
-    </table>
+  <main>
+    <h1>在线订购</h1>
+    <form id="orderForm">
+      <!-- 订购人信息 -->
+      <label for="customerName">订购人姓名 *</label>
+      <input type="text" id="customerName" name="customerName" required>
 
-    <h2>弦数</h2>
-    <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>6弦</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="1500">
-            <td>7弦</td>
-            <td class="price">¥1500</td>
-        </tr>
-    </table>
+      <label for="phone">联系电话 *</label>
+      <input type="tel" id="phone" name="phone" required pattern="[0-9+ -]{6,15}" placeholder="例如: +62 812345678">
 
-    <h2>连接方式</h2>
-    <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>粘接</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>栓接</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>通颈</td>
-            <td class="price">¥0</td>
-        </tr>
-    </table>
+      <!-- 收货信息 -->
+      <label for="receiverName">收货人姓名 *</label>
+      <input type="text" id="receiverName" name="receiverName" required>
 
-    <h2>琴颈木材</h2>
-    <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>桤木</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>桃花芯</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="700">
-            <td>沼泽梣木</td>
-            <td class="price">¥700</td>
-        </tr>
-        <tr data-price="0">
-            <td>安格斯</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>黑胡桃</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>其他</td>
-            <td class="price">¥0</td>
-        </tr>
-    </table>
+      <label for="address">收货地址 *</label>
+      <textarea id="address" name="address" required placeholder="国家、省份/州、市、街道、邮编"></textarea>
 
-    <h2>琴体木材</h2>
-    <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="1800">
-            <td>虎纹枫木</td>
-            <td class="price">¥1800</td>
-        </tr>
-        <tr data-price="3000">
-            <td>絮状枫木</td>
-            <td class="price">¥3000</td>
-        </tr>
-        <tr data-price="4000">
-            <td>七叶树瘤</td>
-            <td class="price">¥4000</td>
-        </tr>
-        <tr data-price="1900">
-            <td>黑胡桃树瘤</td>
-            <td class="price">¥1900</td>
-        </tr>
-        <tr data-price="1700">
-            <td>渍纹枫木</td>
-            <td class="price">¥1700</td>
-        </tr>
-        <tr data-price="0">
-            <td>其他</td>
-            <td class="price">¥0</td>
-        </tr>
-    </table>
+      <!-- 产品选择 -->
+      <label for="product">选择型号 *</label>
+      <select id="product" name="product" required>
+        <option value="">请选择型号</option>
+        <option value="A1 Model">A1 Model</option>
+        <option value="B1 Model">B1 Model</option>
+        <option value="B2 Model">B2 Model</option>
+        <option value="C1 Mini Bass">C1 Mini Bass</option>
+        <option value="C2 Travel Bass">C2 Travel Bass</option>
+        <option value="Model D">Model D</option>
+      </select>
 
-    <h2>贴面木材</h2>
-    <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>枫木</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="600">
-            <td>多拼枫木</td>
-            <td class="price">¥600</td>
-        </tr>
-        <tr data-price="1600">
-            <td>多拼虎纹枫木</td>
-            <td class="price">¥1600</td>
-        </tr>
-        <tr data-price="1500">
-            <td>雀眼枫木</td>
-            <td class="price">¥1500</td>
-        </tr>
-        <tr data-price="600">
-            <td>加拿大枫木</td>
-            <td class="price">¥600</td>
-        </tr>
-        <tr data-price="400">
-            <td>烤枫木</td>
-            <td class="price">¥400</td>
-        </tr>
-        <tr data-price="900">
-            <td>鸡翅木</td>
-            <td class="price">¥900</td>
-        </tr>
-        <tr data-price="7000">
-            <td>碳纤维 (仅无头琴)</td>
-            <td class="price">¥7000</td>
-        </tr>
-        <tr data-price="500">
-            <td>雀眼枫木</td>
-            <td class="price">¥500</td>
-        </tr>
-        <tr data-price="0">
-            <td>印度玫瑰木</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>乌木</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="400">
-            <td>十二雄蕊破布木</td>
-            <td class="price">¥400</td>
-        </tr>
-        <tr data-price="600">
-            <td>烤雀眼枫木</td>
-            <td class="price">¥600</td>
-        </tr>
-        <tr data-price="0">
-            <td>其他</td>
-            <td class="price">¥0</td>
-        </tr>
-    </table>
+      <label for="quantity">数量 *</label>
+      <input type="number" id="quantity" name="quantity" min="1" value="1" required>
 
-    <h2>指板木材</h2>
-    <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>标准</td>
-            <td class="price">¥0</td>
-        </tr>
-    </table>
+      <!-- 额外说明 -->
+      <label for="customization">改造定制需求</label>
+      <textarea id="customization" name="customization" placeholder="例如：换拾音器、特殊颜色、雕刻等"></textarea>
 
-    <h2>定制选项</h2>
-    <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="1500">
-            <td>ax 3-Piece Body</td>
-            <td class="price">¥1500</td>
-        </tr>
-        <tr data-price="1000">
-            <td>Or Tone-block</td>
-            <td class="price">¥1000</td>
-        </tr>
-    </table>
+      <label for="notes">订单备注</label>
+      <textarea id="notes" name="notes"></textarea>
 
-    <h2>品数</h2>
-    <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>22品</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>24品</td>
-            <td class="price">¥0</td>
-        </tr>
-    </table>
+      <div class="form-actions">
+        <button type="submit" class="submit-button">提交订单</button>
+      </div>
+    </form>
 
-    <h2>品丝规格</h2>
-    <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>标准</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="1500">
-            <td>不锈钢</td>
-            <td class="price">¥1500</td>
-        </tr>
-    </table>
-
-    <h2>品丝宽度</h2>
-    <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>品丝宽度 2.4</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>品丝宽度 2.7</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>品丝宽度 2.9</td>
-            <td class="price">¥0</td>
-        </tr>
-    </table>
-
-    <h2>中间木材</h2>
-    <table>
-        <tr>
-            <td>标准</td>
-            <td class="price">¥0</td>
-        </tr>
-    </table>
-
-    <h2>两侧木材</h2>
-    <table>
-        <tr>
-            <td>标准</td>
-            <td class="price">¥0</td>
-        </tr>
-    </table>
-
-    <h2>指板弧度</h2>
-    <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>标准 10"</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="500">
-            <td>Custom: 7.25" 9.5" 12" 14"</td>
-            <td class="price">¥500</td>
-        </tr>
-        <tr data-price="1000">
-            <td>混合弧度</td>
-            <td class="price">¥1000</td>
-        </tr>
-    </table>
-
-    <h2>品记</h2>
-    <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>鲍鱼壳圆点</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>白贝圆点</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="1200">
-            <td>鲍鱼壳方块</td>
-            <td class="price">¥1200</td>
-        </tr>
-        <tr data-price="700">
-            <td>白贝方块</td>
-            <td class="price">¥700</td>
-        </tr>
-        <tr data-price="700">
-            <td>贴面木质方块</td>
-            <td class="price">¥700</td>
-        </tr>
-        <tr data-price="1000">
-            <td>其他木质方块</td>
-            <td class="price">¥1000</td>
-        </tr>
-        <tr data-price="0">
-            <td>定制镶嵌</td>
-            <td class="price">¥0</td>
-        </tr>
-    </table>
-
-    <h2>旋钮以及拾音器外壳</h2>
-    <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>标准</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="500">
-            <td>木制旋钮</td>
-            <td class="price">¥500</td>
-        </tr>
-        <tr data-price="1000">
-            <td>木制拾音器壳</td>
-            <td class="price">¥1000</td>
-        </tr>
-        <tr data-price="1500">
-            <td>原位拾音器壳</td>
-            <td class="price">¥1500</td>
-        </tr>
-        <tr data-price="700">
-            <td>木制后盖板</td>
-            <td class="price">¥700</td>
-        </tr>
-    </table>
-
-    <h2>琴桥和卷弦器</h2>
-    <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>固定</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="500">
-            <td>两点单摇颤音</td>
-            <td class="price">¥500</td>
-        </tr>
-        <tr data-price="500">
-            <td>六点单摇颤音</td>
-            <td class="price">¥500</td>
-        </tr>
-        <tr data-price="1000">
-            <td>双摇颤音</td>
-            <td class="price">¥1000</td>
-        </tr>
-        <tr data-price="0">
-            <td>标准</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="300">
-            <td>其他</td>
-            <td class="price">¥300</td>
-        </tr>
-    </table>
-
-    <h2>拾音器</h2>
-    <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>FishMan</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="50">
-            <td>Seymour Duncan</td>
-            <td class="price">¥50</td>
-        </tr>
-        <tr data-price="0">
-            <td>Dimarzio</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>EMG</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>标准拾音器列表</td>
-            <td class="price">¥0</td>
-        </tr>
-    </table>
-
-    <h2>电路</h2>
-    <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>标准</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="200">
-            <td>主动电路定制</td>
-            <td class="price">¥200</td>
-        </tr>
-        <tr data-price="100">
-            <td>被动电路定制</td>
-            <td class="price">¥100</td>
-        </tr>
-    </table>
-
-    <h2>油漆质感</h2>
-    <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>哑光</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="1200">
-            <td>亮光</td>
-            <td class="price">¥1200</td>
-        </tr>
-        <tr data-price="700">
-            <td>超薄哑光</td>
-            <td class="price">¥700</td>
-        </tr>
-    </table>
-
-    <h2>颜色</h2>
-    <table>
-        <tr>
-            <th>选项</th>
-            <th>价格</th>
-        </tr>
-        <tr data-price="0">
-            <td>标准</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>金色</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>镀铬</td>
-            <td class="price">¥0</td>
-        </tr>
-        <tr data-price="0">
-            <td>黑色</td>
-            <td class="price">¥0</td>
-        </tr>
-    </table>
-
-    <!-- 备注 -->
-    <div class="form-group">
-        <label for="notes">留言内容：</label>
-        <textarea id="notes" name="notes" rows="4" cols="50"></textarea> 
+    <div class="form-actions">
+      <a href="javascript:history.back()" class="back-link">← 返回上一页</a>
     </div>
+  </main>
 
-    <!-- 底部汇总栏 -->
-    <div class="summary">
-        <span class="summary-label">总价：</span>
-        <span class="summary-value" id="summaryPrice">¥0</span>
-        <button type="button" id="submitBtn" style="margin-left:20px;padding:8px 16px;background:#28a745;color:#fff;border:none;border-radius:4px;cursor:pointer;">提交</button>
-    </div>
-    
-    <!-- 表单状态提示 -->
-    <div id="formMessage" class="form-message"></div>
-</form>
+  <!-- 底部 -->
+  <footer class="site-bottombar" id="footerToTop">
+    <div>返回顶部</div>
+    <img src="images/logo.png" alt="AX Guitar Logo"/>
+  </footer>
 
-<!-- 底部栏 -->
-<footer class="site-bottombar" id="toTopBtn">
-  <div class="bottombar__label">返回顶部</div>
-  <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
-</footer>
-
-<script src="/js/main.js"></script>
-
-<script>
-// 初始化EmailJS和表单处理
-document.addEventListener('DOMContentLoaded', function() {
-    // 点击行高亮并更新总价（保持不变）
-    document.querySelectorAll("table").forEach(table => {
-        let rows = table.querySelectorAll("tr[data-price]");
-        rows.forEach(row => {
-            row.addEventListener("click", () => {
-                rows.forEach(r => r.classList.remove("selected"));
-                row.classList.add("selected");
-                updateTotal();
-            });
-        });
-    });
-
-    // 更新总价函数（保持不变）
-    function updateTotal() {
-        let total = 0;
-        document.querySelectorAll("tr.selected").forEach(row => {
-            total += parseFloat(row.getAttribute("data-price") || 0);
-        });
-        document.getElementById("summaryPrice").textContent = "¥" + total;
+  <!-- 公共脚本 -->
+  <script src="main.js"></script>
+  <script>
+    // 捕获 URL 参数，自动填充产品型号
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('product');
+    if (productId) {
+      document.getElementById('product').value = productId;
     }
 
-    // 提交按钮点击事件（修改为使用EmailJS）
-    document.getElementById("submitBtn").addEventListener("click", function() {
-        const formMessage = document.getElementById("formMessage");
-        const submitBtn = this;
-        
-        // 验证必填字段
-        if (!document.getElementById("name").value) {
-            formMessage.textContent = "请输入您的姓名";
-            formMessage.className = "form-message error";
-            return;
-        }
+    // 表单提交逻辑
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const orderTime = new Date().toLocaleString();
 
-        // 收集表单数据
-        const formData = {
-           name: document.getElementById("name").value,
-           phone: document.getElementById("phone").value,
-           notes: document.getElementById("notes").value,
-           selections: [],
-           total: document.getElementById("summaryPrice").textContent
-        };
+      let snapshot = "【订单详情快照】\\n";
+      formData.forEach((value, key) => {
+        snapshot += key + ": " + value + "\\n";
+      });
+      snapshot += "下单时间: " + orderTime + "\\n";
 
-        // 收集所有选中的选项
-        document.querySelectorAll("tr.selected").forEach(row => {
-            let option = row.cells[0].textContent;
-            let price = row.cells[1].textContent;
-            formData.selections.push(`${option} - ${price}`);
-        });
-
-        // 显示发送状态
-        formMessage.textContent = "正在发送...";
-        formMessage.className = "form-message";
-        formMessage.style.display = "block";
-        submitBtn.disabled = true;
-
-        // 使用EmailJS发送邮件
-        emailjs.send('service_6q2tc8m', 'template_npq8364', formData)
-            .then(function(response) {
-                formMessage.textContent = "提交成功！我们会尽快与您联系。";
-                formMessage.className = "form-message success";
-                submitBtn.disabled = false;
-                
-                // 可选：3秒后自动清除成功消息
-                setTimeout(() => {
-                    formMessage.style.display = "none";
-                }, 3000);
-            }, function(error) {
-                formMessage.textContent = "提交失败，请稍后再试。错误: " + error.text;
-                formMessage.className = "form-message error";
-                submitBtn.disabled = false;
-                console.error("EmailJS发送失败:", error);
-            });
+      // 模拟下单，跳转到确认页并传递订单信息
+      const params = new URLSearchParams(formData);
+      params.append("orderTime", orderTime);
+      window.location.href = "order-confirm.html?" + params.toString();
     });
-});
-</script>
-
+  </script>
 </body>
 </html>
