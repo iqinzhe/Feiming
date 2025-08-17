@@ -41,10 +41,16 @@ body {
   margin: 40px 0;
   padding: 20px;
   text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
 }
 .page-links ul {
   list-style: none;
   padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 .page-links li {
   margin: 10px 0;
@@ -53,24 +59,111 @@ body {
   color: var(--text-white);
   font-size: 18px;
   text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background: rgba(0,0,0,0.2);
+  transition: background 0.3s ease;
 }
 .page-links a:hover {
-  text-decoration: underline;
+  background: rgba(0,0,0,0.4);
+  text-decoration: none;
+}
+
+/* 最新动态 */
+.latest-news {
+  background: rgba(0,0,0,0.2);
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+}
+.news-item {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.news-item:last-child {
+  border-bottom: none;
+}
+.news-date {
+  font-weight: bold;
+  color: #ccc;
+  margin-bottom: 5px;
+}
+.read-more {
+  color: #4dabf7;
+  text-decoration: none;
+  font-size: 14px;
+  display: inline-block;
+  margin-top: 5px;
 }
 
 /* 固定定位 */
 .site-topbar {
-  position: fixed; top: 0; left: 0; right: 0;
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  right: 0;
   z-index: 1000;
   backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 5%;
 }
 .site-bottombar {
-  position: fixed; bottom: 0; left: 0; right: 0;
-  z-index: 900;
+  margin-top: auto;
+  padding: 20px 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 main {
-  padding-bottom: 70px;
-  padding-top: 70px;
+  flex: 1;
+  padding-bottom: 20px;
+}
+
+.topbar__center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 移动菜单样式 */
+.mobile-nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--glass-dark);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+  padding: 10px 0;
+}
+
+.mobile-nav.mobile-nav--open {
+  display: block;
+}
+
+.mobile-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-nav__list li {
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.mobile-nav__list a {
+  color: var(--text-white);
+  text-decoration: none;
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 @media (min-width: 768px) {
@@ -78,12 +171,23 @@ main {
   .site-topbar { padding: 15px 8%; height: 60px; }
   .topbar__logo { height: 35px; }
   .page-content { padding: 30px 8%; }
+  
+  .page-links ul {
+    gap: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-links ul {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
 </style>
 </head>
 <body>
 
-<!-- 顶部导航栏（保持不变） -->
+<!-- 顶部导航栏 -->
 <header class="site-topbar">
   <div class="topbar__left">
     <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
@@ -108,13 +212,27 @@ main {
 </header>
 
 <main>
+  <!-- 最新动态 -->
+  <section class="latest-news">
+    <h2>最新动态</h2>
+    <div class="news-item">
+      <div class="news-date">2026年6月15日</div>
+      <p>AX贝斯亮相国际乐器展，获得专业乐手一致好评...</p>
+      <a href="events.html" class="read-more">阅读全文 →</a>
+    </div>
+    <div class="news-item">
+      <div class="news-date">2026年3月10日</div>
+      <p>AX品牌与知名音乐人达成合作，推出签名款贝斯...</p>
+      <a href="events.html" class="read-more">阅读全文 →</a>
+    </div>
+  </section>
+
   <!-- 系列卡片总览 -->
   <section class="series-overview" id="seriesOverview"></section>
 
   <!-- 页面导航链接 -->
   <section class="page-links">
     <ul>
-      <li><a href="news.html">最新动态</a></li>
       <li><a href="pricing.html">订购产品</a></li>
       <li><a href="support.html">支持中心</a></li>
       <li><a href="information.html">官方信息</a></li>
@@ -122,7 +240,7 @@ main {
   </section>
 </main>
 
-<!-- 底部栏（保持不变） -->
+<!-- 底部栏 -->
 <footer class="site-bottombar" id="footerToTop">
   <div class="bottombar__label">返回顶部</div>
   <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
@@ -147,6 +265,64 @@ seriesOverview.innerHTML = seriesData.map(series => `
     </div>
   </a>
 `).join("");
+
+// 初始化移动菜单
+const menuBtn = document.getElementById('topbarMenuBtn');
+const mobileNav = document.getElementById('mobileNav');
+let menuOpen = false;
+
+menuBtn.addEventListener('click', function() {
+  menuOpen = !menuOpen;
+  if (menuOpen) {
+    mobileNav.classList.add('mobile-nav--open');
+  } else {
+    mobileNav.classList.remove('mobile-nav--open');
+  }
+});
+
+// 点击菜单外区域关闭菜单
+document.addEventListener('click', function(event) {
+  if (!mobileNav.contains(event.target) && event.target !== menuBtn) {
+    mobileNav.classList.remove('mobile-nav--open');
+    menuOpen = false;
+  }
+});
+
+// Search button
+const searchBtn = document.getElementById('topbarSearchBtn');
+searchBtn?.addEventListener('click', function() {
+  const query = prompt('请输入搜索关键词');
+  if (query) {
+    alert(`搜索演示: ${query}`);
+  }
+});
+
+// Share button
+const shareBtn = document.getElementById('topbarShareBtn');
+shareBtn?.addEventListener('click', function() {
+  try {
+    if (navigator.share) {
+      navigator.share({
+        title: document.title,
+        url: location.href
+      });
+    } else {
+      alert('请手动复制链接分享: ' + location.href);
+    }
+  } catch (e) {
+    console.error('分享失败:', e);
+    alert('分享功能出错，请重试');
+  }
+});
+
+// Back to top
+const footer = document.getElementById('footerToTop');
+footer?.addEventListener('click', function() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
 </script>
 </body>
 </html>
