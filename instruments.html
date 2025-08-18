@@ -4,53 +4,33 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AX斧标贝斯 | 系列总览</title>
-  <!-- 图标和样式引用（与index.html一致） -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-  <link rel="manifest" href="/icons/manifest.json">
-  <link href="/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="global.css">
   <style>
-    :root {
-      --neutral-gray: rgb(128, 128, 128);
-      --glass-dark: rgba(0, 0, 0, 0.3);
-      --text-white: #fff;
-      --card-min-width: 280px;
-    }
     body {
-      background: var(--neutral-gray);
-      color: var(--text-white);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      background: rgb(128, 128, 128);
+      color: #fff;
       font-family: Arial, sans-serif;
       margin: 0;
       padding-top: 60px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
-    main { 
-      flex: 1; 
-      padding: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
+    main { flex: 1; padding: 20px; }
 
-    /* 系列卡片布局（保留原有样式+优化） */
     .series-overview {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
-      padding: 15px;
     }
     .series-card {
+      display: block;
       background: rgba(0,0,0,0.3);
       border-radius: 12px;
       overflow: hidden;
+      text-decoration: none;
+      color: white;
       transition: transform 0.2s ease;
     }
     .series-card:hover {
@@ -58,47 +38,31 @@
     }
     .series-card img {
       width: 100%;
-      height: 200px;
-      object-fit: cover;
+      height: auto;
+      display: block;
     }
     .series-card-content {
       padding: 15px;
     }
     .series-card-cta {
-      color: #4dabf7;
-      font-weight: bold;
       margin-top: 10px;
-      display: inline-block;
+      font-weight: bold;
+      color: #4dabf7;
     }
-
-    /* 从index.html复制的顶部导航样式 */
-    .site-topbar {
-      position: fixed; 
-      top: 0; 
-      left: 0; 
-      right: 0;
-      z-index: 1000;
-      backdrop-filter: blur(5px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 5%;
-    }
-    /* 其他导航样式与index.html完全一致... */
   </style>
 </head>
 <body>
-  <!-- 统一标准的顶部导航栏 -->
+  <!-- 顶部导航 -->
   <header class="site-topbar">
     <div class="topbar__left">
-      <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
+      <button id="topbarMenuBtn">☰</button>
     </div>
     <div class="topbar__center">
-      <a href="index.html"><img class="topbar__logo" src="./images/logo.png" alt="AX Guitar Logo"/></a>
+      <a href="index.html"><img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/></a>
     </div>
     <div class="topbar__right">
-      <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
-      <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
+      <button id="topbarSearchBtn">🔍</button>
+      <button id="topbarShareBtn">⤴</button>
     </div>
     <nav class="mobile-nav" id="mobileNav">
       <ul class="mobile-nav__list">
@@ -112,23 +76,20 @@
   </header>
 
   <main>
-    <!-- 保留完整的静态标题和容器 -->
     <h1>系列总览</h1>
-    <div class="series-overview" id="seriesOverview">
-      <!-- 默认加载状态 -->
-      <div class="loading" style="text-align:center; padding:50px;">
-        加载中...
-      </div>
-    </div>
+    <div id="seriesOverview" class="series-overview"></div>
   </main>
 
+  <!-- 底部 -->
   <footer class="site-bottombar" id="footerToTop">
     <div>返回顶部</div>
     <img src="images/logo.png" alt="AX Guitar Logo"/>
   </footer>
 
+  <!-- 公共脚本 -->
+  <script src="main.js"></script>
   <script>
-    // 系列数据加载（保留原有逻辑+错误处理）
+    // 系列信息（封面图 + 简介）
     const seriesData = [
       {id:'a', name:'Series A', desc:'经典螺栓固定结构系列', img:'series-a.jpg'},
       {id:'b', name:'Series B', desc:'高端通颈连体工艺系列', img:'series-b.jpg'},
@@ -136,41 +97,18 @@
       {id:'d', name:'Series D', desc:'革命性人体工学设计', img:'series-d.jpg'}
     ];
 
-    function renderSeries() {
-      const container = document.getElementById('seriesOverview');
-      try {
-        container.innerHTML = seriesData.map(series => `
-          <a class="series-card" href="products.html?series=${series.id}">
-            <img src="images/${series.img}" alt="${series.name}" loading="lazy">
-            <div class="series-card-content">
-              <h2>${series.name}</h2>
-              <p>${series.desc}</p>
-              <div class="series-card-cta">查看全系列 →</div>
-            </div>
-          </a>
-        `).join('');
-      } catch (e) {
-        container.innerHTML = `
-          <div class="error" style="color:#ff6b6b; text-align:center;">
-            加载失败，请<a href="javascript:location.reload()">刷新页面</a>
-          </div>
-        `;
-      }
-    }
+    const seriesOverview = document.getElementById("seriesOverview");
 
-    // 初始化页面
-    document.addEventListener('DOMContentLoaded', () => {
-      renderSeries();
-      
-      // 从index.html复制的交互逻辑
-      const menuBtn = document.getElementById('topbarMenuBtn');
-      const mobileNav = document.getElementById('mobileNav');
-      menuBtn.addEventListener('click', () => {
-        mobileNav.classList.toggle('mobile-nav--open');
-      });
-      
-      // 其他交互（搜索/分享/返回顶部）...
-    });
+    seriesOverview.innerHTML = seriesData.map(series => `
+      <a class="series-card" href="products.html?series=${series.id}">
+        <img src="images/${series.img}" alt="${series.name}">
+        <div class="series-card-content">
+          <h2>${series.name}</h2>
+          <p>${series.desc}</p>
+          <div class="series-card-cta">查看全系列</div>
+        </div>
+      </a>
+    `).join("");
   </script>
 </body>
 </html>

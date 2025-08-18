@@ -1,192 +1,75 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- 头部元信息（同index.html） -->
   <title>AX斧标贝斯 | 系列详情</title>
-  <!-- 图标和样式引用（与index.html一致） -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-  <link rel="manifest" href="/icons/manifest.json">
-  <link href="/css/style.css" rel="stylesheet">
-  <link rel="stylesheet" href="global.css">
   <style>
-    :root {
-      --neutral-gray: rgb(128, 128, 128);
-      --glass-dark: rgba(0, 0, 0, 0.3);
-      --text-white: #fff;
-    }
-    body {
-      background: var(--neutral-gray);
-      color: var(--text-white);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding-top: 60px;
-    }
-    main {
-      flex: 1;
-      padding: 20px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    /* 系列详情页专属样式 */
-    .series-cover {
-      width: 100%;
-      border-radius: 8px;
-      margin: 20px 0;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-    .models-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-    }
-    .model-card {
-      background: rgba(0,0,0,0.2);
-      padding: 15px;
-      border-radius: 8px;
-      transition: transform 0.2s;
-    }
-    .model-card:hover {
-      transform: translateY(-5px);
-    }
-    .model-card img {
-      width: 100%;
-      border-radius: 4px;
-      margin-bottom: 10px;
-    }
-
-    /* 状态提示样式 */
-    .loading, .error {
-      text-align: center;
-      padding: 40px;
-    }
-    .error { color: #ff6b6b; }
-
-    /* 顶部导航样式（与index.html完全一致） */
-    .site-topbar {
-      position: fixed; 
-      top: 0; 
-      left: 0; 
-      right: 0;
-      z-index: 1000;
-      backdrop-filter: blur(5px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 5%;
-    }
-    /* 其他导航样式... */
+    /* 详情页专属样式 */
+    .series-detail { max-width: 1000px; margin: 0 auto; padding: 20px; }
+    .series-cover { width: 100%; border-radius: 8px; margin-bottom: 20px; }
+    .models-list { display: grid; gap: 20px; margin-top: 30px; }
+    .model-card { border: 1px solid #444; padding: 15px; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <!-- 统一标准的顶部导航栏 -->
-  <header class="site-topbar">
-    <div class="topbar__left">
-      <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
-    </div>
-    <div class="topbar__center">
-      <a href="index.html"><img class="topbar__logo" src="./images/logo.png" alt="AX Guitar Logo"/></a>
-    </div>
-    <div class="topbar__right">
-      <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
-      <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
-    </div>
-    <nav class="mobile-nav" id="mobileNav">
-      <ul class="mobile-nav__list">
-        <li><a href="instruments.html">全部系列</a></li>
-        <li><a href="products.html?series=d">特色产品</a></li>
-        <li><a href="pricing.html">订购产品</a></li>
-        <li><a href="news.html">新闻</a></li>
-        <li><a href="support.html">支持</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!-- 共用顶部导航（同index.html） -->
 
-  <main>
-    <!-- 完整的静态结构（JS动态填充内容） -->
-    <div class="series-detail" id="seriesDetail">
-      <div class="loading">加载中...</div>
-    </div>
+  <main class="series-detail" id="seriesDetail">
+    <!-- 动态内容将在这里渲染 -->
+    <div class="loading">加载中...</div>
   </main>
 
-  <footer class="site-bottombar" id="footerToTop">
-    <div>返回顶部</div>
-    <img src="images/logo.png" alt="AX Guitar Logo"/>
-  </footer>
-
   <script>
-    // 增强版数据加载逻辑
-    async function loadSeriesDetail() {
-      const container = document.getElementById('seriesDetail');
-      const seriesId = new URLSearchParams(window.location.search).get('id');
+    // 从URL获取系列ID（如 ?id=a）
+    const seriesId = new URLSearchParams(window.location.search).get('id');
+    
+    if (!seriesId) {
+      document.getElementById('seriesDetail').innerHTML = `
+        <p class="error">未指定系列，<a href="index.html">返回首页</a></p>
+      `;
+    } else {
+      // 加载对应系列的JSON数据
+      fetch(`json/${seriesId}.json`)
+        .then(response => response.json())
+        .then(data => {
+          const series = data.series[0];
+          let modelsHTML = '';
 
-      if (!seriesId) {
-        container.innerHTML = `
-          <div class="error">
-            <p>未指定系列ID</p>
-            <a href="instruments.html">浏览所有系列</a>
-          </div>
-        `;
-        return;
-      }
+          if (series.models) {
+            modelsHTML = `
+              <h2>包含型号</h2>
+              <div class="models-list">
+                ${series.models.map(model => `
+                  <div class="model-card">
+                    <h3>${model.name}</h3>
+                    <img src="${model.image}" alt="${model.name}" width="200">
+                    <p>${model.features}</p>
+                    <ul>
+                      ${model.specs.map(spec => `<li>${spec}</li>`).join('')}
+                    </ul>
+                  </div>
+                `).join('')}
+              </div>
+            `;
+          }
 
-      try {
-        const response = await fetch(`data/${seriesId}.json`);
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        
-        const data = await response.json();
-        const series = data.series[0];
-
-        container.innerHTML = `
-          <h1>${series.name}</h1>
-          <img src="${series.cover}" alt="${series.name}" class="series-cover">
-          <div>${series.description.replace(/\n/g, '<br>')}</div>
-          
-          ${series.models ? `
-            <h2 style="margin-top:40px;">包含型号</h2>
-            <div class="models-list">
-              ${series.models.map(model => `
-                <div class="model-card">
-                  <img src="${model.image}" alt="${model.name}" loading="lazy">
-                  <h3>${model.name}</h3>
-                  <p>${model.features}</p>
-                  <ul>
-                    ${model.specs.map(spec => `<li>${spec}</li>`).join('')}
-                  </ul>
-                </div>
-              `).join('')}
-            </div>
-          ` : ''}
-        `;
-      } catch (error) {
-        console.error('加载失败:', error);
-        container.innerHTML = `
-          <div class="error">
-            <p>加载失败: ${error.message}</p>
-            <a href="javascript:location.reload()">重试</a>
-          </div>
-        `;
-      }
+          document.getElementById('seriesDetail').innerHTML = `
+            <h1>${series.name}</h1>
+            <img src="${series.cover}" alt="${series.name}" class="series-cover">
+            <p>${series.description.replace(/\n/g, '<br>')}</p>
+            ${modelsHTML}
+          `;
+        })
+        .catch(error => {
+          console.error('加载详情失败:', error);
+          document.getElementById('seriesDetail').innerHTML = `
+            <p class="error">
+              加载失败，请检查链接是否正确。<br>
+              <a href="index.html">返回首页</a>
+            </p>
+          `;
+        });
     }
-
-    // 初始化页面
-    document.addEventListener('DOMContentLoaded', () => {
-      loadSeriesDetail();
-      
-      // 顶部导航交互（与index.html一致）
-      const menuBtn = document.getElementById('topbarMenuBtn');
-      const mobileNav = document.getElementById('mobileNav');
-      menuBtn.addEventListener('click', () => {
-        mobileNav.classList.toggle('mobile-nav--open');
-      });
-    });
   </script>
 </body>
 </html>

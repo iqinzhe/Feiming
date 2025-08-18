@@ -4,14 +4,9 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AX斧标贝斯 | 产品详情</title>
-  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-  <link rel="manifest" href="/icons/manifest.json">
-  <link href="/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="global.css">
   <style>
-    /* 100% 还原原始背景色和基础样式 */
     body {
       background: rgb(128, 128, 128);
       color: #fff;
@@ -22,14 +17,8 @@
       display: flex;
       flex-direction: column;
     }
-    main { 
-      flex: 1; 
-      padding: 20px; 
-      max-width: 900px; 
-      margin: 0 auto;
-    }
+    main { flex: 1; padding: 20px; max-width: 900px; margin: 0 auto; }
 
-    /* 产品详情区域（完全保留原始结构） */
     .product-hero {
       text-align: center;
       margin-bottom: 30px;
@@ -40,7 +29,7 @@
       margin-bottom: 15px;
     }
     .product-specs {
-      background: rgba(0,0,0,0.2); /* 原始透明度值 */
+      background: rgba(0,0,0,0.2);
       padding: 20px;
       border-radius: 8px;
       margin-top: 20px;
@@ -75,81 +64,20 @@
       color: #4dabf7;
       text-decoration: none;
     }
-
-    /* 从index.html复制的顶部导航栏（功能+样式完全一致） */
-    .site-topbar {
-      position: fixed; 
-      top: 0; 
-      left: 0; 
-      right: 0;
-      z-index: 1000;
-      backdrop-filter: blur(5px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 5%;
-    }
-    .topbar__center {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    .topbar__btn {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 20px;
-      cursor: pointer;
-    }
-    .mobile-nav {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      background: rgba(0,0,0,0.3);
-      backdrop-filter: blur(10px);
-      z-index: 999;
-      padding: 10px 0;
-    }
-    .mobile-nav.mobile-nav--open {
-      display: block;
-    }
-    .mobile-nav__list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    .mobile-nav__list li {
-      padding: 14px 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    .mobile-nav__list a {
-      color: #fff;
-      text-decoration: none;
-      display: block;
-      font-size: 18px;
-      font-weight: bold;
-    }
-    @media (min-width: 768px) {
-      body { padding-top: 70px; }
-      .site-topbar { padding: 15px 8%; height: 60px; }
-      .topbar__logo { height: 35px; }
-    }
   </style>
 </head>
 <body>
-  <!-- 与index.html完全一致的顶部导航栏 -->
+  <!-- 顶部导航 -->
   <header class="site-topbar">
     <div class="topbar__left">
-      <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
+      <button id="topbarMenuBtn">☰</button>
     </div>
     <div class="topbar__center">
-      <a href="index.html"><img class="topbar__logo" src="./images/logo.png" alt="AX Guitar Logo"/></a>
+      <a href="index.html"><img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/></a>
     </div>
     <div class="topbar__right">
-      <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
-      <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
+      <button id="topbarSearchBtn">🔍</button>
+      <button id="topbarShareBtn">⤴</button>
     </div>
     <nav class="mobile-nav" id="mobileNav">
       <ul class="mobile-nav__list">
@@ -163,88 +91,59 @@
   </header>
 
   <main>
-    <!-- 100% 保留原始产品详情结构 -->
-    <div class="product-hero" id="productHero">
-      <img id="productImage" src="" alt="产品图">
-      <h1 id="productName">产品名称加载中...</h1>
-      <p id="productFeatures"></p>
-    </div>
-
-    <!-- 完全还原的规格参数区域 -->
-    <div class="product-specs">
-      <h3>规格参数</h3>
-      <ul id="productSpecs">
-        <!-- 动态生成内容将保留此容器结构 -->
-        <li>琴颈材质: 加载中...</li>
-        <li>琴体木材: 加载中...</li>
-      </ul>
-    </div>
-
-    <div class="product-actions">
-      <a class="order-button" href="pricing.html">立即订购</a>
-      <a id="backLink" href="#" class="back-link">← 返回系列</a>
-    </div>
+    <div id="productDetail"></div>
   </main>
 
+  <!-- 底部 -->
   <footer class="site-bottombar" id="footerToTop">
     <div>返回顶部</div>
     <img src="images/logo.png" alt="AX Guitar Logo"/>
   </footer>
 
+  <!-- 公共脚本 -->
+  <script src="main.js"></script>
   <script>
-    // 增强版数据加载（保留原始逻辑+错误处理）
-    document.addEventListener('DOMContentLoaded', () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const seriesId = urlParams.get('series');
-      const productId = urlParams.get('id');
+    const urlParams = new URLSearchParams(window.location.search);
+    const seriesId = urlParams.get('series');
+    const productId = urlParams.get('id');
+    const container = document.getElementById('productDetail');
 
-      // 顶部导航交互（与index.html完全一致）
-      const menuBtn = document.getElementById('topbarMenuBtn');
-      const mobileNav = document.getElementById('mobileNav');
-      menuBtn.addEventListener('click', () => {
-        mobileNav.classList.toggle('mobile-nav--open');
-      });
+    if (!seriesId || !productId) {
+      container.innerHTML = `<p style="color:red;">参数缺失，无法加载产品详情。</p>`;
+    } else {
+      const jsonUrl = `data/${seriesId}.json?t=${Date.now()}`;
+      fetch(jsonUrl)
+        .then(res => {
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          return res.json();
+        })
+        .then(data => {
+          const series = data.series[0];
+          const product = series.models.find(m => m.id === productId);
+          if (!product) throw new Error('找不到对应的产品');
 
-      // 返回顶部功能
-      document.getElementById('footerToTop').addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-
-      if (seriesId && productId) {
-        fetch(`data/${seriesId}.json`)
-          .then(res => {
-            if (!res.ok) throw new Error('网络响应异常');
-            return res.json();
-          })
-          .then(data => {
-            const product = data.series[0].models.find(m => m.id === productId);
-            if (!product) throw new Error('未找到该产品');
-            
-            // 填充产品数据（完全保留原始DOM操作方式）
-            document.getElementById('productImage').src = product.image;
-            document.getElementById('productName').textContent = product.name;
-            document.getElementById('productFeatures').textContent = product.features;
-            
-            // 生成规格列表（严格保留原始ul>li结构）
-            const specsContainer = document.getElementById('productSpecs');
-            specsContainer.innerHTML = product.specs.map(spec => 
-              `<li>${spec}</li>`
-            ).join('');
-
-            // 设置返回链接
-            document.getElementById('backLink').href = `products.html?series=${seriesId}`;
-          })
-          .catch(err => {
-            console.error(err);
-            document.getElementById('productName').textContent = '加载失败';
-            document.getElementById('productSpecs').innerHTML = 
-              '<li style="color:#ff6b6b">数据加载失败，请刷新页面</li>';
-          });
-      } else {
-        document.getElementById('productSpecs').innerHTML = 
-          '<li style="color:#ff6b6b">URL参数缺失</li>';
-      }
-    });
+          container.innerHTML = `
+            <div class="product-hero">
+              <img src="${product.image}" alt="${product.name}">
+              <h1>${product.name}</h1>
+              <p>${product.features}</p>
+            </div>
+            <div class="product-specs">
+              <h3>规格参数</h3>
+              <ul>
+                ${product.specs.map(s => `<li>${s}</li>`).join('')}
+              </ul>
+            </div>
+            <div class="product-actions">
+              <a class="order-button" href="pricing.html">立即订购</a>
+              <div><a href="products.html?series=${seriesId}" class="back-link">← 返回${series.name}</a></div>
+            </div>
+          `;
+        })
+        .catch(err => {
+          container.innerHTML = `<p style="color:red;">加载失败: ${err.message}</p>`;
+        });
+    }
   </script>
 </body>
 </html>
