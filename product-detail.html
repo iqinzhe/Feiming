@@ -4,18 +4,27 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AX斧标贝斯 | 产品详情</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+  <link rel="manifest" href="/icons/manifest.json">
+  <link href="/css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="global.css">
   <style>
+    :root {
+      --neutral-gray: rgb(128, 128, 128);
+      --glass-dark: rgba(0, 0, 0, 0.3);
+      --text-white: #fff;
+    }
     body {
-      background: rgb(128, 128, 128);
-      color: #fff;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding-top: 60px;
+      background: var(--neutral-gray);
+      color: var(--text-white);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding-top: 60px;
     }
     main { flex: 1; padding: 20px; max-width: 900px; margin: 0 auto; }
 
@@ -64,20 +73,81 @@
       color: #4dabf7;
       text-decoration: none;
     }
+
+    /* 从index.html复制的顶部导航样式 */
+    .site-topbar {
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 5%;
+    }
+    .topbar__center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .topbar__btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: var(--glass-dark);
+      backdrop-filter: blur(10px);
+      z-index: 999;
+      padding: 10px 0;
+    }
+    .mobile-nav.mobile-nav--open {
+      display: block;
+    }
+    .mobile-nav__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .mobile-nav__list li {
+      padding: 14px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .mobile-nav__list a {
+      color: var(--text-white);
+      text-decoration: none;
+      display: block;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    @media (min-width: 768px) {
+      body { padding-top: 70px; }
+      .site-topbar { padding: 15px 8%; height: 60px; }
+      .topbar__logo { height: 35px; }
+    }
   </style>
 </head>
 <body>
-  <!-- 顶部导航 -->
+  <!-- 统一修改的顶部导航栏 -->
   <header class="site-topbar">
     <div class="topbar__left">
-      <button id="topbarMenuBtn">☰</button>
+      <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
     </div>
     <div class="topbar__center">
-      <a href="index.html"><img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/></a>
+      <a href="index.html"><img class="topbar__logo" src="./images/logo.png" alt="AX Guitar Logo"/></a>
     </div>
     <div class="topbar__right">
-      <button id="topbarSearchBtn">🔍</button>
-      <button id="topbarShareBtn">⤴</button>
+      <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
+      <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
     </div>
     <nav class="mobile-nav" id="mobileNav">
       <ul class="mobile-nav__list">
@@ -100,9 +170,47 @@
     <img src="images/logo.png" alt="AX Guitar Logo"/>
   </footer>
 
-  <!-- 公共脚本 -->
-  <script src="main.js"></script>
   <script>
+    // 从index.html复制的交互逻辑
+    const menuBtn = document.getElementById('topbarMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    let menuOpen = false;
+
+    menuBtn.addEventListener('click', function() {
+      menuOpen = !menuOpen;
+      mobileNav.classList.toggle('mobile-nav--open', menuOpen);
+    });
+
+    document.addEventListener('click', function(event) {
+      if (!mobileNav.contains(event.target) {
+        mobileNav.classList.remove('mobile-nav--open');
+        menuOpen = false;
+      }
+    });
+
+    // 搜索功能
+    document.getElementById('topbarSearchBtn').addEventListener('click', function() {
+      const query = prompt('请输入搜索关键词');
+      if (query) alert(`搜索演示: ${query}`);
+    });
+
+    // 分享功能
+    document.getElementById('topbarShareBtn').addEventListener('click', function() {
+      try {
+        navigator.share ? 
+          navigator.share({ title: document.title, url: location.href }) : 
+          alert('请手动复制链接分享: ' + location.href);
+      } catch (e) {
+        alert('分享功能出错，请重试');
+      }
+    });
+
+    // 返回顶部
+    document.getElementById('footerToTop').addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // 原有产品详情逻辑
     const urlParams = new URLSearchParams(window.location.search);
     const seriesId = urlParams.get('series');
     const productId = urlParams.get('id');
@@ -111,17 +219,12 @@
     if (!seriesId || !productId) {
       container.innerHTML = `<p style="color:red;">参数缺失，无法加载产品详情。</p>`;
     } else {
-      const jsonUrl = `data/${seriesId}.json?t=${Date.now()}`;
-      fetch(jsonUrl)
-        .then(res => {
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
-          return res.json();
-        })
+      fetch(`data/${seriesId}.json?t=${Date.now()}`)
+        .then(res => res.ok ? res.json() : Promise.reject(`HTTP ${res.status}`))
         .then(data => {
-          const series = data.series[0];
-          const product = series.models.find(m => m.id === productId);
-          if (!product) throw new Error('找不到对应的产品');
-
+          const product = data.series[0].models.find(m => m.id === productId);
+          if (!product) throw new Error('找不到产品');
+          
           container.innerHTML = `
             <div class="product-hero">
               <img src="${product.image}" alt="${product.name}">
@@ -130,13 +233,11 @@
             </div>
             <div class="product-specs">
               <h3>规格参数</h3>
-              <ul>
-                ${product.specs.map(s => `<li>${s}</li>`).join('')}
-              </ul>
+              <ul>${product.specs.map(s => `<li>${s}</li>`).join('')}</ul>
             </div>
             <div class="product-actions">
               <a class="order-button" href="pricing.html">立即订购</a>
-              <div><a href="products.html?series=${seriesId}" class="back-link">← 返回${series.name}</a></div>
+              <div><a href="products.html?series=${seriesId}" class="back-link">← 返回系列</a></div>
             </div>
           `;
         })

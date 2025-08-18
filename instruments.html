@@ -4,24 +4,34 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AX斧标贝斯 | 系列总览</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+  <link rel="manifest" href="/icons/manifest.json">
+  <link href="/css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="global.css">
   <style>
+    :root {
+      --neutral-gray: rgb(128, 128, 128);
+      --glass-dark: rgba(0, 0, 0, 0.3);
+      --text-white: #fff;
+      --card-min-width: 280px;
+    }
     body {
-      background: rgb(128, 128, 128);
-      color: #fff;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding-top: 60px;
+      background: var(--neutral-gray);
+      color: var(--text-white);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding-top: 60px;
     }
     main { flex: 1; padding: 20px; }
 
     .series-overview {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
       gap: 20px;
     }
     .series-card {
@@ -49,20 +59,81 @@
       font-weight: bold;
       color: #4dabf7;
     }
+
+    /* 从index.html复制的顶部导航样式 */
+    .site-topbar {
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 5%;
+    }
+    .topbar__center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .topbar__btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: var(--glass-dark);
+      backdrop-filter: blur(10px);
+      z-index: 999;
+      padding: 10px 0;
+    }
+    .mobile-nav.mobile-nav--open {
+      display: block;
+    }
+    .mobile-nav__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .mobile-nav__list li {
+      padding: 14px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .mobile-nav__list a {
+      color: var(--text-white);
+      text-decoration: none;
+      display: block;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    @media (min-width: 768px) {
+      body { padding-top: 70px; }
+      .site-topbar { padding: 15px 8%; height: 60px; }
+      .topbar__logo { height: 35px; }
+    }
   </style>
 </head>
 <body>
-  <!-- 顶部导航 -->
+  <!-- 统一修改的顶部导航栏 -->
   <header class="site-topbar">
     <div class="topbar__left">
-      <button id="topbarMenuBtn">☰</button>
+      <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
     </div>
     <div class="topbar__center">
-      <a href="index.html"><img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/></a>
+      <a href="index.html"><img class="topbar__logo" src="./images/logo.png" alt="AX Guitar Logo"/></a>
     </div>
     <div class="topbar__right">
-      <button id="topbarSearchBtn">🔍</button>
-      <button id="topbarShareBtn">⤴</button>
+      <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
+      <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
     </div>
     <nav class="mobile-nav" id="mobileNav">
       <ul class="mobile-nav__list">
@@ -80,16 +151,42 @@
     <div id="seriesOverview" class="series-overview"></div>
   </main>
 
-  <!-- 底部 -->
   <footer class="site-bottombar" id="footerToTop">
     <div>返回顶部</div>
     <img src="images/logo.png" alt="AX Guitar Logo"/>
   </footer>
 
-  <!-- 公共脚本 -->
-  <script src="main.js"></script>
   <script>
-    // 系列信息（封面图 + 简介）
+    // 从index.html复制的交互逻辑
+    const menuBtn = document.getElementById('topbarMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    let menuOpen = false;
+
+    menuBtn.addEventListener('click', function() {
+      menuOpen = !menuOpen;
+      mobileNav.classList.toggle('mobile-nav--open', menuOpen);
+    });
+
+    document.addEventListener('click', function(event) {
+      if (!mobileNav.contains(event.target)) {
+        mobileNav.classList.remove('mobile-nav--open');
+        menuOpen = false;
+      }
+    });
+
+    // 搜索和分享功能
+    document.getElementById('topbarSearchBtn').addEventListener('click', () => 
+      prompt('请输入搜索关键词') && alert('搜索功能演示'));
+    
+    document.getElementById('topbarShareBtn').addEventListener('click', () => 
+      navigator.share?.({ title: document.title, url: location.href }) || 
+      alert('请手动复制链接分享: ' + location.href));
+
+    // 返回顶部
+    document.getElementById('footerToTop').addEventListener('click', () => 
+      window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // 原有系列展示逻辑
     const seriesData = [
       {id:'a', name:'Series A', desc:'经典螺栓固定结构系列', img:'series-a.jpg'},
       {id:'b', name:'Series B', desc:'高端通颈连体工艺系列', img:'series-b.jpg'},
@@ -97,11 +194,9 @@
       {id:'d', name:'Series D', desc:'革命性人体工学设计', img:'series-d.jpg'}
     ];
 
-    const seriesOverview = document.getElementById("seriesOverview");
-
-    seriesOverview.innerHTML = seriesData.map(series => `
+    document.getElementById("seriesOverview").innerHTML = seriesData.map(series => `
       <a class="series-card" href="products.html?series=${series.id}">
-        <img src="images/${series.img}" alt="${series.name}">
+        <img src="images/${series.img}" alt="${series.name}" loading="lazy">
         <div class="series-card-content">
           <h2>${series.name}</h2>
           <p>${series.desc}</p>
