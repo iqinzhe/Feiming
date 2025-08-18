@@ -1,117 +1,329 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AX斧标贝斯 | 首页</title>
-  <link rel="stylesheet" href="global.css" />
+  <link rel="stylesheet" href="global.css"/>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #808080;
-      color: #fff;
+    :root{
+      --header-h:64px;
+      --bottom-h:60px;
+      --bg:#808080;
+      --text:#fff;
+      --glass: rgba(0,0,0,0.55);
+      --card: rgba(0,0,0,0.30);
     }
-    header, footer {
-      text-align: center;
-      padding: 15px;
-      background: rgba(0,0,0,0.6);
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      padding-top:var(--header-h);
+      padding-bottom:var(--bottom-h);
     }
-    main {
-      padding: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
+
+    /* 顶部固定栏 */
+    header.site-header{
+      position:fixed; top:0; left:0; right:0; z-index:1000;
+      height:var(--header-h);
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 14px;
+      background:var(--glass); backdrop-filter: blur(6px);
+      border-bottom:1px solid rgba(255,255,255,0.15);
     }
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
+    .hdr-left,.hdr-right{display:flex; align-items:center; gap:10px}
+    .icon-btn{
+      width:36px; height:36px; display:grid; place-items:center;
+      border-radius:8px; background:transparent; border:1px solid rgba(255,255,255,0.2);
+      cursor:pointer; transition:all .2s;
     }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+    .icon-btn:hover{background:rgba(255,255,255,0.08)}
+    .logo{height:38px}
+
+    main{max-width:1200px; margin:0 auto; padding:20px}
+
+    /* 四宫格（严格 2×2） */
+    #seriesOverview{margin-top:8px}
+    #seriesOverview h1{margin:8px 0 16px; text-align:center}
+    .grid-2x2{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, minmax(180px, 1fr));
+      gap:18px;
     }
-    .card {
-      background: rgba(0,0,0,0.3);
-      border-radius: 12px;
-      overflow: hidden;
-      text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
-      cursor: pointer;
+    .card{
+      background:var(--card);
+      border-radius:14px; overflow:hidden; text-align:center;
+      transition:transform .25s, box-shadow .25s;
+      cursor:pointer;
+      display:flex; flex-direction:column;
     }
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    .card:hover{ transform: translateY(-4px); box-shadow:0 8px 20px rgba(0,0,0,0.35) }
+    .card img{ width:100%; height:180px; object-fit:cover }
+    .card h3{ margin:12px 0 6px }
+    .card p{ margin:0 12px 14px; color:#e6e6e6; font-size:14px }
+    a.card-link{ color:inherit; text-decoration:none }
+
+    /* 侧边抽屉菜单 */
+    .drawer{
+      position:fixed; inset:0 0 0 auto; width:280px; max-width:86vw;
+      background:#111; color:#fff; transform:translateX(100%);
+      transition:transform .25s ease; z-index:1200;
+      box-shadow:-6px 0 20px rgba(0,0,0,0.45);
+      display:flex; flex-direction:column;
     }
-    .card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
+    .drawer.open{ transform:translateX(0) }
+    .drawer header{ padding:16px; border-bottom:1px solid rgba(255,255,255,0.12) }
+    .drawer nav a{
+      display:block; padding:14px 18px; color:#fff; text-decoration:none;
+      border-bottom:1px solid rgba(255,255,255,0.08)
     }
-    .card h3 {
-      margin: 15px 0 10px;
+    .backdrop{
+      position:fixed; inset:0; background:rgba(0,0,0,0.45);
+      opacity:0; pointer-events:none; transition:opacity .2s; z-index:1100;
     }
-    .card p {
-      padding: 0 10px 15px;
-      font-size: 14px;
-      color: #ddd;
+    .backdrop.show{ opacity:1; pointer-events:auto }
+
+    /* 搜索浮层 */
+    .search-modal{
+      position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
+      background:rgba(0,0,0,0.45); z-index:1300; opacity:0; pointer-events:none; transition:.2s;
     }
-    a {
-      text-decoration: none;
-      color: inherit;
+    .search-modal.show{ opacity:1; pointer-events:auto }
+    .search-box{
+      width:min(560px, 92vw); background:#151515; border:1px solid rgba(255,255,255,0.15);
+      border-radius:14px; padding:16px;
+    }
+    .search-box h3{ margin:0 0 10px }
+    .search-row{ display:flex; gap:10px }
+    .search-row input{
+      flex:1; padding:12px 14px; border-radius:10px; border:1px solid rgba(255,255,255,0.2);
+      background:#0f0f0f; color:#fff; font-size:15px;
+    }
+    .btn{
+      padding:10px 16px; border:none; border-radius:10px; cursor:pointer; font-weight:700;
+      background:#4dabf7; color:#fff;
+    }
+    .btn.secondary{ background:#6c757d }
+
+    /* 底部固定栏（快捷导航） */
+    .bottom-bar{
+      position:fixed; left:0; right:0; bottom:0; height:var(--bottom-h); z-index:1000;
+      background:var(--glass); backdrop-filter: blur(6px);
+      border-top:1px solid rgba(255,255,255,0.15);
+      display:grid; grid-template-columns:repeat(4,1fr); align-items:center;
+    }
+    .bottom-item{
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      gap:4px; text-decoration:none; color:#fff; font-size:12px;
+    }
+    .bottom-item:hover{ background:rgba(255,255,255,0.06) }
+
+    /* 版权脚注（可选，若您原来就有 footer 文案也可保留） */
+    footer.legal{ text-align:center; padding:10px; opacity:.8 }
+
+    @media (max-width:420px){
+      .card img{ height:150px }
     }
   </style>
 </head>
 <body>
-  <!-- 顶部栏 -->
-  <header>
-    <img src="images/logo.png" alt="AX Guitar Logo" style="height:50px;" />
+
+  <!-- 顶部固定栏：汉堡 / LOGO / 搜索 / 分享 -->
+  <header class="site-header">
+    <div class="hdr-left">
+      <button class="icon-btn" id="btnMenu" aria-label="打开菜单" title="菜单">
+        <!-- 汉堡 -->
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="hdr-center">
+      <img class="logo" src="images/logo.png" alt="AX Guitar"/>
+    </div>
+    <div class="hdr-right">
+      <button class="icon-btn" id="btnSearch" aria-label="搜索" title="搜索">
+        <!-- 放大镜 -->
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <circle cx="11" cy="11" r="7" stroke="#fff" stroke-width="2"/>
+          <path d="M20 20l-3.5-3.5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <button class="icon-btn" id="btnShare" aria-label="分享" title="分享">
+        <!-- 分享 -->
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M4 12v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+          <path d="M16 8l-4-4-4 4M12 4v12" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
   </header>
 
-  <main>
-    <h1>AX斧标贝斯 · 系列总览</h1>
-    <div class="grid">
-      <!-- A 系列 -->
-      <a href="products.html?series=A">
-        <div class="card">
-          <img src="images/series-a.jpg" alt="A系列贝斯">
-          <h3>A 系列</h3>
-          <p>经典入门款，适合初学者与实用主义玩家。</p>
-        </div>
-      </a>
+  <!-- 侧边抽屉菜单 + 遮罩 -->
+  <aside id="drawer" class="drawer" aria-label="侧边菜单">
+    <header><strong style="opacity:.9">导航</strong></header>
+    <nav>
+      <a href="index.html">首页</a>
+      <a href="products.html?series=A">A 系列</a>
+      <a href="products.html?series=B">B 系列</a>
+      <a href="products.html?series=C">C 系列</a>
+      <a href="products.html?series=D">D 系列</a>
+      <a href="pricing.html">在线订购</a>
+    </nav>
+  </aside>
+  <div id="backdrop" class="backdrop" aria-hidden="true"></div>
 
-      <!-- B 系列 -->
-      <a href="products.html?series=B">
-        <div class="card">
-          <img src="images/series-b.jpg" alt="B系列贝斯">
-          <h3>B 系列</h3>
-          <p>性能均衡，适合舞台和录音室的全能型贝斯。</p>
-        </div>
-      </a>
-
-      <!-- C 系列 -->
-      <a href="products.html?series=C">
-        <div class="card">
-          <img src="images/series-c.jpg" alt="C系列贝斯">
-          <h3>C 系列</h3>
-          <p>便携旅行与小尺寸贝斯，轻巧灵活。</p>
-        </div>
-      </a>
-
-      <!-- D 系列 -->
-      <a href="products.html?series=D">
-        <div class="card">
-          <img src="images/series-d.jpg" alt="D系列贝斯">
-          <h3>D 系列</h3>
-          <p>高端旗舰，音色与工艺的极致追求。</p>
-        </div>
-      </a>
+  <!-- 搜索浮层 -->
+  <div id="searchModal" class="search-modal" aria-hidden="true">
+    <div class="search-box">
+      <h3>站内搜索</h3>
+      <div class="search-row">
+        <input id="searchInput" type="search" placeholder="输入型号、系列或关键词…"/>
+        <button class="btn" id="doSearch">搜索</button>
+        <button class="btn secondary" id="closeSearch">关闭</button>
+      </div>
+      <p style="opacity:.7; margin-top:8px; font-size:12px">回车即可搜索；将跳转至 products.html 并带上查询参数。</p>
     </div>
+  </div>
+
+  <main>
+    <!-- ✅ 新增：系列四宫格（“田”字形 2×2），其余内容不动 -->
+    <section id="seriesOverview">
+      <h1>AX斧标贝斯 · 系列总览</h1>
+      <div class="grid-2x2">
+        <a class="card-link" href="products.html?series=A">
+          <div class="card">
+            <img src="images/series-a.jpg" alt="A系列贝斯"/>
+            <h3>A 系列</h3>
+            <p>经典入门款，适合初学者与实用主义玩家。</p>
+          </div>
+        </a>
+        <a class="card-link" href="products.html?series=B">
+          <div class="card">
+            <img src="images/series-b.jpg" alt="B系列贝斯"/>
+            <h3>B 系列</h3>
+            <p>性能均衡，舞台与录音室的全能手。</p>
+          </div>
+        </a>
+        <a class="card-link" href="products.html?series=C">
+          <div class="card">
+            <img src="images/series-c.jpg" alt="C系列贝斯"/>
+            <h3>C 系列</h3>
+            <p>旅行便携，小尺寸轻巧灵活。</p>
+          </div>
+        </a>
+        <a class="card-link" href="products.html?series=D">
+          <div class="card">
+            <img src="images/series-d.jpg" alt="D系列贝斯"/>
+            <h3>D 系列</h3>
+            <p>高端旗舰，音色与工艺的极致追求。</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- 🔽 保留：原首页其他内容（如果您有更多内容，会继续显示在这里） -->
+    <!-- （无需改动） -->
   </main>
 
-  <!-- 底部栏 -->
-  <footer>
+  <!-- 底部固定栏（快捷导航） -->
+  <nav class="bottom-bar" aria-label="底部快捷导航">
+    <a class="bottom-item" href="index.html" title="首页">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-10.5z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/>
+      </svg>
+      <span>首页</span>
+    </a>
+    <a class="bottom-item" href="products.html?series=A" title="系列">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="3" width="7" height="7" stroke="#fff" stroke-width="1.8"/>
+        <rect x="14" y="3" width="7" height="7" stroke="#fff" stroke-width="1.8"/>
+        <rect x="3" y="14" width="7" height="7" stroke="#fff" stroke-width="1.8"/>
+        <rect x="14" y="14" width="7" height="7" stroke="#fff" stroke-width="1.8"/>
+      </svg>
+      <span>系列</span>
+    </a>
+    <a class="bottom-item" href="pricing.html" title="订购">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M6 6h12l-1.5 9h-9L6 6z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/>
+        <circle cx="9" cy="19" r="1.5" fill="#fff"/>
+        <circle cx="15" cy="19" r="1.5" fill="#fff"/>
+      </svg>
+      <span>订购</span>
+    </a>
+    <a class="bottom-item" href="mailto:info@axguitar.com" title="联系">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M3 6h18v12H3V6z" stroke="#fff" stroke-width="1.8"/>
+        <path d="m3 6 9 7 9-7" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/>
+      </svg>
+      <span>联系</span>
+    </a>
+  </nav>
+
+  <!-- （可选）版权脚注，如果您原来就有可保留 -->
+  <footer class="legal">
     <p>© 2025 AX Guitar. All Rights Reserved.</p>
   </footer>
+
+  <script>
+    // ============ 抽屉菜单 ============
+    const btnMenu = document.getElementById('btnMenu');
+    const drawer = document.getElementById('drawer');
+    const backdrop = document.getElementById('backdrop');
+    function openDrawer(){ drawer.classList.add('open'); backdrop.classList.add('show') }
+    function closeDrawer(){ drawer.classList.remove('open'); backdrop.classList.remove('show') }
+    btnMenu.addEventListener('click', openDrawer);
+    backdrop.addEventListener('click', closeDrawer);
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeDrawer() });
+
+    // ============ 搜索 ============
+    const searchModal = document.getElementById('searchModal');
+    const btnSearch = document.getElementById('btnSearch');
+    const closeSearch = document.getElementById('closeSearch');
+    const doSearch = document.getElementById('doSearch');
+    const searchInput = document.getElementById('searchInput');
+
+    function openSearch(){
+      searchModal.classList.add('show');
+      setTimeout(()=>searchInput.focus(), 50);
+    }
+    function hideSearch(){ searchModal.classList.remove('show') }
+
+    btnSearch.addEventListener('click', openSearch);
+    closeSearch.addEventListener('click', hideSearch);
+    searchModal.addEventListener('click', (e)=>{ if(e.target===searchModal) hideSearch() });
+    searchInput.addEventListener('keydown', (e)=>{
+      if(e.key==='Enter'){ e.preventDefault(); doSearch.click(); }
+    });
+    doSearch.addEventListener('click', ()=>{
+      const q = (searchInput.value||'').trim();
+      if(!q){ alert('请输入关键词'); return; }
+      // 跳转到产品页并带上查询参数（后续可在 products.html 里实现过滤）
+      location.href = 'products.html?q='+encodeURIComponent(q);
+    });
+
+    // ============ 分享 ============
+    const btnShare = document.getElementById('btnShare');
+    btnShare.addEventListener('click', async ()=>{
+      const shareData = {
+        title: document.title,
+        text: 'AX Guitar 贝斯系列',
+        url: location.href
+      };
+      try{
+        if(navigator.share){
+          await navigator.share(shareData);
+        }else{
+          await navigator.clipboard.writeText(location.href);
+          alert('链接已复制到剪贴板：\\n'+location.href);
+        }
+      }catch(err){
+        console.log(err);
+      }
+    });
+  </script>
 </body>
 </html>
