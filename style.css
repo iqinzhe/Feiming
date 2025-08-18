@@ -89,7 +89,6 @@ img {
   color: initial;
   font-size: 16px;
 }
-
 .site-topbar {
   display: flex;
   justify-content: space-between;
@@ -103,15 +102,6 @@ img {
   right: 0;
   z-index: 1000;
   box-sizing: border-box;
-}
-
-.sticky-header {
-  position: sticky;
-  top: 0;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  z-index: 100;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 .topbar__left, 
@@ -140,17 +130,13 @@ img {
   line-height: 1;
   padding: 6px;
   border-radius: 4px;
-  color: var(--nav-text);
+  color: var(--nav-text); /* 使用导航专用颜色 */
   cursor: pointer;
-  transition: var(--transition);
-  min-width: 44px;
-  min-height: 44px;
+  transition: all 0.15s ease;
 }
 
 .topbar__btn:hover {
   background: rgba(255,255,255,0.1);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow);
 }
 
 /* ===== 移动导航保护 ===== */
