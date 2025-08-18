@@ -1,54 +1,72 @@
 /**
- * AX Guitar - 核心交互脚本
- * 功能：顶部栏菜单/搜索/分享 + 底部栏返回顶部
+ * AX Guitar 网站核心功能
+ * 功能包含：菜单控制、搜索、分享、返回顶部
  */
+
+// DOM加载完成后执行
 document.addEventListener('DOMContentLoaded', function() {
-  // ================= 顶部栏功能 =================
+  initMobileMenu();
+  setupSearch();
+  setupShare();
+  setupBackToTop();
+});
+
+// 移动菜单控制
+function initMobileMenu() {
   const menuBtn = document.getElementById('topbarMenuBtn');
   const mobileNav = document.getElementById('mobileNav');
-  const searchBtn = document.getElementById('searchBtn');
-  const shareBtn = document.getElementById('shareBtn');
-
-  // 1. 移动菜单控制
+  
   if (menuBtn && mobileNav) {
     menuBtn.addEventListener('click', function() {
       mobileNav.classList.toggle('mobile-nav--open');
-      const isOpen = mobileNav.classList.contains('mobile-nav--open');
-      menuBtn.setAttribute('aria-expanded', isOpen);
+      console.debug('菜单状态:', mobileNav.classList.contains('mobile-nav--open'));
     });
   }
+}
 
-  // 2. 搜索功能
+// 搜索功能
+function setupSearch() {
+  const searchBtn = document.getElementById('topbarSearchBtn');
+  
   searchBtn?.addEventListener('click', function() {
-    const query = prompt('请输入搜索关键词', '');
+    const query = prompt('请输入搜索关键词');
     if (query) {
-      window.location.href = `/search?q=${encodeURIComponent(query)}`;
+      alert(`搜索演示: ${query}`);
+      // 实际项目中这里应该是搜索跳转
+      // window.location.href = `/search?q=${encodeURIComponent(query)}`;
     }
   });
+}
 
-  // 3. 分享功能
-  shareBtn?.addEventListener('click', async function() {
+// 分享功能
+function setupShare() {
+  const shareBtn = document.getElementById('topbarShareBtn');
+  
+  shareBtn?.addEventListener('click', function() {
     try {
       if (navigator.share) {
-        await navigator.share({
+        navigator.share({
           title: document.title,
-          url: window.location.href
+          url: location.href
         });
       } else {
-        await navigator.clipboard.writeText(window.location.href);
-        alert('链接已复制到剪贴板');
+        alert('请手动复制链接分享: ' + location.href);
       }
     } catch (e) {
-      console.log('分享取消');
+      console.error('分享失败:', e);
+      alert('分享功能出错，请重试');
     }
   });
+}
 
-  // ================= 底部栏功能 =================
-  const footer = document.getElementById('siteFooter');
+// 返回顶部
+function setupBackToTop() {
+  const footer = document.getElementById('footerToTop');
+  
   footer?.addEventListener('click', function() {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
   });
-});
+}
