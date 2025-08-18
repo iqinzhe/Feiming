@@ -94,19 +94,15 @@
   <main>
     <h1>在线订购</h1>
     <form id="orderForm">
-      <!-- 订购人信息 -->
-      <label for="customerName">订购人姓名 *</label>
+      <!-- 收货人信息 -->
+      <label for="customerName">收货人 *</label>
       <input type="text" id="customerName" name="customerName" required>
 
       <label for="phone">联系电话 *</label>
-      <input type="tel" id="phone" name="phone" required pattern="[0-9+ -]{6,15}" placeholder="例如: +62 812345678">
-
-      <!-- 收货信息 -->
-      <label for="receiverName">收货人姓名 *</label>
-      <input type="text" id="receiverName" name="receiverName" required>
+      <input type="tel" id="phone" name="phone" required pattern="[0-9+ -]{6,15}" placeholder="例如: +86 012345678">
 
       <label for="address">收货地址 *</label>
-      <textarea id="address" name="address" required placeholder="国家、省份/州、市、街道、邮编"></textarea>
+      <textarea id="address" name="address" required placeholder="省、市、街道、邮编（选填）"></textarea>
 
       <!-- 产品选择 -->
       <label for="product">选择型号 *</label>
@@ -124,8 +120,8 @@
       <input type="number" id="quantity" name="quantity" min="1" value="1" required>
 
       <!-- 额外说明 -->
-      <label for="customization">改造定制需求</label>
-      <textarea id="customization" name="customization" placeholder="例如：换拾音器、特殊颜色、雕刻等"></textarea>
+      <label for="customization">定制要求</label>
+      <textarea id="customization" name="customization" placeholder="例如：刻字，换电子配件、特殊颜色、等"></textarea>
 
       <label for="notes">订单备注</label>
       <textarea id="notes" name="notes"></textarea>
