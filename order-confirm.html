@@ -1,138 +1,163 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8"/>
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AX斧标贝斯 | 订单确认</title>
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="global.css">
+  <link rel="stylesheet" href="global.css"/>
   <style>
     body {
-      background: rgb(128, 128, 128);
-      color: #fff; font-family: Arial, sans-serif;
-      margin: 0; padding-top: 60px;
-      min-height: 100vh; display: flex; flex-direction: column;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #808080;
+      color: #fff;
     }
-    main { flex: 1; padding: 20px; max-width: 800px; margin: 0 auto; }
-    .confirm-box { background: rgba(0,0,0,0.3); padding: 30px; border-radius: 8px; margin-top: 20px; }
-    .confirm-box h1 { color: #4dabf7; text-align: center; }
-    .order-id { text-align: center; font-size: 20px; font-weight: bold; margin: 15px 0; color: #ffd43b; }
-    h2 { margin-top: 25px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 5px; }
-    table.order-summary { width: 100%; border-collapse: collapse; margin-top: 10px; background: rgba(255,255,255,0.05); }
-    table.order-summary th, table.order-summary td { border: 1px solid rgba(255,255,255,0.2); padding: 10px; text-align: left; }
-    table.order-summary th { background: rgba(255,255,255,0.1); width: 25%; }
-    .actions { margin-top: 30px; text-align: center; }
-    .actions a, .actions button {
-      display: inline-block; margin: 10px; padding: 10px 20px;
-      border-radius: 4px; text-decoration: none; font-weight: bold; cursor: pointer;
+    header, footer {
+      text-align: center;
+      padding: 15px;
+      background: rgba(0,0,0,0.6);
+    }
+    main {
+      padding: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .order-box {
+      background: rgba(0,0,0,0.3);
+      padding: 20px;
+      border-radius: 12px;
+    }
+    .order-box img {
+      width: 200px;
+      border-radius: 8px;
+      display: block;
+      margin: 0 auto 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 15px;
+    }
+    th, td {
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background: rgba(255,255,255,0.1);
+      width: 25%;
+    }
+    .btn {
+      display: inline-block;
+      margin: 10px 5px 0;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
     }
     .btn-primary { background: #4dabf7; color: #fff; }
     .btn-secondary { background: #6c757d; color: #fff; }
-    .btn-warning { background: #ffd43b; color: #000; }
-    .btn-copy {
-      margin-left: 10px; padding: 4px 8px; font-size: 12px;
-      background: #4dabf7; color: #fff; border: none; border-radius: 4px; cursor: pointer;
-    }
-    .btn-copy:hover { background: #339af0; }
+    .btn-primary:hover { background: #339af0; }
+    .btn-secondary:hover { background: #5c636a; }
   </style>
 </head>
 <body>
-  <header class="site-topbar">
-    <div class="topbar__left"><button id="topbarMenuBtn">☰</button></div>
-    <div class="topbar__center"><a href="index.html"><img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/></a></div>
-    <div class="topbar__right"><button id="topbarSearchBtn">🔍</button><button id="topbarShareBtn">⤴</button></div>
+  <!-- 顶部栏 -->
+  <header>
+    <img src="images/logo.png" alt="AX Guitar Logo" style="height:50px;" />
   </header>
 
   <main>
-    <div class="confirm-box" id="orderBox">
-      <h1>订单提交成功 ✅</h1>
-      <p style="text-align:center;">感谢您的订购！我们会尽快与您联系确认订单信息。</p>
-      <div id="orderId" class="order-id"></div>
-
-      <h2>客户信息</h2>
-      <table id="customerInfo" class="order-summary"></table>
-
-      <h2>订单信息</h2>
-      <table id="orderInfo" class="order-summary"></table>
-
-      <div class="actions">
-        <a href="instruments.html" class="btn-secondary">继续浏览系列</a>
-        <a href="index.html" class="btn-primary">返回首页</a>
-        <button onclick="window.print()" class="btn-warning">打印订单</button>
-      </div>
+    <h1>订单确认</h1>
+    <div id="orderBox" class="order-box">
+      <p style="text-align:center;">加载中...</p>
     </div>
   </main>
 
-  <footer class="site-bottombar" id="footerToTop">
-    <div>返回顶部</div><img src="images/logo.png" alt="AX Guitar Logo"/>
+  <!-- 底部栏 -->
+  <footer>
+    <p>© 2025 AX Guitar. All Rights Reserved.</p>
   </footer>
 
-  <script src="main.js"></script>
   <script>
-    // 订单编号
-    function generateOrderId() {
-      const now = new Date();
-      const year = now.getFullYear();
-      const month = String(now.getMonth()+1).padStart(2, '0');
-      const day = String(now.getDate()).padStart(2, '0');
-      const rand = Math.floor(Math.random() * 900 + 100);
-      return `AX${year}${month}${day}-${rand}`;
-    }
-    document.getElementById("orderId").textContent = "订单编号：" + generateOrderId();
+    const seriesFiles = [
+      "data/a.json",
+      "data/b.json",
+      "data/c.json",
+      "data/d.json"
+    ];
 
-    // 获取URL参数
-    const urlParams = new URLSearchParams(window.location.search);
-    const customerInfoTable = document.getElementById('customerInfo');
-    const orderInfoTable = document.getElementById('orderInfo');
-
-    const customerFields = ["customerName","phone","receiverName","province","city","town","street","number"];
-    const orderFields = ["product","quantity","customization","notes","orderTime"];
-
-    function translateField(key) {
-      const map = {
-        customerName:"订购人姓名", phone:"联系电话",
-        receiverName:"收货人姓名", province:"省", city:"市/县",
-        town:"乡/镇", street:"街道", number:"门牌号",
-        product:"产品型号", quantity:"数量", customization:"改造定制需求",
-        notes:"订单备注", orderTime:"下单时间"
-      };
-      return map[key] || key;
-    }
-
-    function renderTable(table, fields, type) {
-      let html = "";
-      fields.forEach(f => {
-        const value = urlParams.get(f);
-        if (value) html += `<tr><th>${translateField(f)}</th><td>${value}</td></tr>`;
-      });
-
-      if (type === "customer") {
-        const addr = [urlParams.get("province"), urlParams.get("city"), urlParams.get("town"), urlParams.get("street"), urlParams.get("number")]
-          .filter(Boolean).join("");
-        if (addr) {
-          html += `<tr><th>完整收货地址</th>
-            <td>
-              <span id="fullAddress">${addr}</span>
-              <button class="btn-copy" onclick="copyAddress()">复制</button>
-            </td></tr>`;
+    async function findProductByName(name) {
+      for (const file of seriesFiles) {
+        try {
+          const res = await fetch(file);
+          const data = await res.json();
+          const product = data.find(p => p.name === name || p.id === name);
+          if (product) return product;
+        } catch (e) {
+          console.error("读取失败:", file, e);
         }
       }
-
-      table.innerHTML = html || "<tr><td>暂无信息</td></tr>";
+      return null;
     }
 
-    renderTable(customerInfoTable, customerFields, "customer");
-    renderTable(orderInfoTable, orderFields, "order");
+    async function renderOrder() {
+      const orderBox = document.getElementById("orderBox");
+      const orderData = sessionStorage.getItem("lastOrder");
 
-    // 复制地址功能
+      if (!orderData) {
+        orderBox.innerHTML = "<p style='text-align:center;'>未找到订单信息。</p>";
+        return;
+      }
+
+      const order = JSON.parse(orderData);
+      const product = await findProductByName(order.product);
+
+      if (!product) {
+        orderBox.innerHTML = "<p style='text-align:center;'>未找到产品信息。</p>";
+        return;
+      }
+
+      // 拼接快照
+      orderBox.innerHTML = `
+        <img src="${product.image || 'images/placeholder.jpg'}" alt="${product.name}">
+        <table>
+          <tr><th>型号</th><td>${product.id} - ${product.name}</td></tr>
+          <tr><th>订购人</th><td>${order.name}</td></tr>
+          <tr><th>联系电话</th><td>${order.phone}</td></tr>
+          <tr><th>收货人</th><td>${order.receiver}</td></tr>
+          <tr><th>收货地址</th><td id="orderAddress">${order.address}</td></tr>
+          <tr><th>数量</th><td>${order.quantity}</td></tr>
+          <tr><th>备注</th><td>${order.remark || "无"}</td></tr>
+        </table>
+
+        <h3>产品规格快照</h3>
+        <table>
+          ${Object.entries(product.specs || {}).map(([k,v]) => 
+            `<tr><th>${k}</th><td>${v}</td></tr>`
+          ).join("")}
+        </table>
+
+        <div style="text-align:center;">
+          <button class="btn btn-primary" onclick="copyAddress()">复制收货地址</button>
+          <a href="index.html" class="btn btn-secondary">返回首页</a>
+        </div>
+      `;
+    }
+
     function copyAddress() {
-      const text = document.getElementById("fullAddress").innerText;
-      navigator.clipboard.writeText(text).then(() => {
-        alert("地址已复制到剪贴板！");
-      }).catch(() => {
-        alert("复制失败，请手动选择并复制。");
+      const addr = document.getElementById("orderAddress").innerText;
+      navigator.clipboard.writeText(addr).then(() => {
+        alert("收货地址已复制！");
       });
     }
+
+    renderOrder();
   </script>
 </body>
 </html>
