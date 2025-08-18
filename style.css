@@ -393,6 +393,16 @@ img {
   margin: 5px 0 10px;
 }
 
+/* 分享按钮图标 */
+#topbarShareBtn {
+  font-size: 25px; /* 单独调整分享图标大小 */
+}
+
+/* 汉堡菜单图标 */
+#topbarMenuBtn {
+  font-size: 30px; /* 单独调整菜单图标大小 */
+}
+
 .series-card-cta {
   margin-top: 8px;
   font-size: 14px;
