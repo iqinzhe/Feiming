@@ -151,6 +151,7 @@ main {
     </div>
   </main>
 
+  <script>
     // 订单编号
     function generateOrderId() {
       const now = new Date();
@@ -216,6 +217,38 @@ main {
       });
     }
   </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("9mFxGUlwnnrz5WbL7"); // 使用用户提供的 User ID (Public Key)
+    })();
+
+    function sendOrderEmail() {
+      const params = {
+        order_id: document.getElementById("orderId").innerText,
+        customer_name: urlParams.get("customerName") || "未知用户",
+        phone: urlParams.get("phone") || "",
+        product: urlParams.get("product") || "",
+        quantity: urlParams.get("quantity") || "",
+        address: document.getElementById("fullAddress")?.innerText || "未填写",
+        notes: urlParams.get("notes") || ""
+      };
+
+      emailjs.send("service_6q2tc8m", "template_npq8364", params)
+        .then(function(response) {
+          console.log("邮件发送成功", response.status, response.text);
+        }, function(error) {
+          console.error("邮件发送失败", error);
+        });
+    }
+
+    // 页面加载完成后自动发送邮件
+    window.onload = function() {
+      sendOrderEmail();
+    };
+  </script>
 </body>
 </html>
+
 
