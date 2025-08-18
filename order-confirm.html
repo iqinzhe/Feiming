@@ -29,6 +29,11 @@
     .btn-primary { background: #4dabf7; color: #fff; }
     .btn-secondary { background: #6c757d; color: #fff; }
     .btn-warning { background: #ffd43b; color: #000; }
+    .btn-copy {
+      margin-left: 10px; padding: 4px 8px; font-size: 12px;
+      background: #4dabf7; color: #fff; border: none; border-radius: 4px; cursor: pointer;
+    }
+    .btn-copy:hover { background: #339af0; }
   </style>
 </head>
 <body>
@@ -93,16 +98,41 @@
       };
       return map[key] || key;
     }
-    function renderTable(table, fields) {
+
+    function renderTable(table, fields, type) {
       let html = "";
       fields.forEach(f => {
         const value = urlParams.get(f);
         if (value) html += `<tr><th>${translateField(f)}</th><td>${value}</td></tr>`;
       });
+
+      if (type === "customer") {
+        const addr = [urlParams.get("province"), urlParams.get("city"), urlParams.get("town"), urlParams.get("street"), urlParams.get("number")]
+          .filter(Boolean).join("");
+        if (addr) {
+          html += `<tr><th>完整收货地址</th>
+            <td>
+              <span id="fullAddress">${addr}</span>
+              <button class="btn-copy" onclick="copyAddress()">复制</button>
+            </td></tr>`;
+        }
+      }
+
       table.innerHTML = html || "<tr><td>暂无信息</td></tr>";
     }
-    renderTable(customerInfoTable, customerFields);
-    renderTable(orderInfoTable, orderFields);
+
+    renderTable(customerInfoTable, customerFields, "customer");
+    renderTable(orderInfoTable, orderFields, "order");
+
+    // 复制地址功能
+    function copyAddress() {
+      const text = document.getElementById("fullAddress").innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("地址已复制到剪贴板！");
+      }).catch(() => {
+        alert("复制失败，请手动选择并复制。");
+      });
+    }
   </script>
 </body>
 </html>
