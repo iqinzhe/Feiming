@@ -1,33 +1,20 @@
-/* ===== 全局样式 ===== */
+/* ===== 全局变量 ===== */
 :root {
   --primary-color: #4361ee;
   --secondary-color: #7209b7;
   --neutral-gray: rgb(128, 128, 128);
   --glass-dark: rgba(0, 0, 0, 0.3);
   --text-white: #fff;
-  --nav-text: #007BFF;
   --text-dark: #212529;
-  --text-light: #f8f9fa;
   --spacing-xs: 0.8rem;
   --spacing-sm: 1.6rem;
-  --spacing-md: 2.4rem;
-  --spacing-lg: 3.2rem;
   --border-radius: 0.8rem;
-  --shadow: 0 4px 12px rgba(0,0,0,0.1);
-  --transition: all 0.3s ease;
+  --topbar-height: 60px;
+  --topbar-bg: rgba(0, 0, 0, 0.7);
+  --topbar-blur: 5px;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 62.5%;
-  scroll-behavior: smooth;
-}
-
+/* ===== 基础样式 ===== */
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 1.6rem;
@@ -38,45 +25,10 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
-  padding-top: 60px;
-  overflow-x: hidden;
+  padding-top: var(--topbar-height);
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* ===== 布局工具类 ===== */
-.flex { display: flex; }
-.flex-center { display: flex; justify-content: center; align-items: center; }
-.flex-column { flex-direction: column; }
-.flex-wrap { flex-wrap: wrap; }
-.justify-between { justify-content: space-between; }
-.justify-around { justify-content: space-around; }
-.align-center { align-items: center; }
-
-.grid { display: grid; }
-.grid-col-2 { grid-template-columns: repeat(2, 1fr); }
-.grid-col-3 { grid-template-columns: repeat(3, 1fr); }
-.grid-responsive { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
-.gap-sm { gap: var(--spacing-xs); }
-.gap-md { gap: var(--spacing-sm); }
-
-.container {
-  width: 100%;
-  padding: var(--spacing-sm);
-  margin: 0 auto;
-}
-
-/* ===== 顶部栏优化版 ===== */
-:root {
-  --topbar-height: 60px;
-  --topbar-bg: rgba(0, 0, 0, 0.7);
-  --topbar-blur: 5px;
-}
-
+/* ===== 顶部栏 ===== */
 .site-topbar {
   position: fixed;
   top: 0;
@@ -92,8 +44,26 @@ img {
   z-index: 1000;
 }
 
+.topbar__btn {
+  font-size: calc(var(--topbar-height) * 0.4);
+  width: var(--topbar-height);
+  height: var(--topbar-height);
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.topbar__btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
 .topbar__logo {
-  height: calc(var(--topbar-height) - 15px);
+  height: calc(var(--topbar-height) * 0.8);
   transition: transform 0.3s ease;
 }
 
@@ -101,17 +71,7 @@ img {
   transform: scale(1.05);
 }
 
-.topbar__btn {
-  font-size: 22px;
-  background: transparent;
-  border: none;
-  color: white;
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 4px;
-  transition: background 0.2s;
-}
-
+/* ===== 移动菜单 ===== */
 .mobile-nav {
   display: none;
   position: absolute;
@@ -129,6 +89,8 @@ img {
 
 .mobile-nav__list {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .mobile-nav__list li {
@@ -136,21 +98,36 @@ img {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* ===== 底部栏优化版 ===== */
+.mobile-nav__list a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+}
+
+/* ===== 底部栏 ===== */
 .site-bottombar {
   background: #222;
   color: rgba(255, 255, 255, 0.8);
-  padding: 20px 5%;
-  text-align: center;
+  padding: 10px 5%;
+  margin-top: auto;
 }
 
 .bottombar__content {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
   gap: 15px;
+}
+
+.bottombar__label::after {
+  content: "返回顶部";
+  font-size: 14px;
+  line-height: 30px;
+  font-weight: bold;
 }
 
 .bottombar__logo {
@@ -163,65 +140,12 @@ img {
   opacity: 1;
 }
 
-.bottombar__label::after {
-  content: "返回顶部";
-  display: block;
-  font-weight: bold;
-  font-size: 14px;
-}
-
-/* ===== 产品内容样式 ===== */
-.series-card {
-  display: block;
-  background: rgba(0,0,0,0.4);
-  border-radius: 8px;
-  overflow: hidden;
-  text-decoration: none;
-  color: var(--text-white);
-}
-
-.series-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.series-card-content {
-  padding: 15px;
-  background: rgba(0,0,0,0.6);
-}
-
-/* ===== 按钮样式 ===== */
-.btn {
-  display: inline-block;
-  min-width: 44px;
-  min-height: 44px;
-  padding: 1.2rem 2.4rem;
-  background: var(--primary-color);
-  color: white;
-  border-radius: var(--border-radius);
-  text-align: center;
-  text-decoration: none;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition);
-  border: none;
-}
-
 /* ===== 响应式设计 ===== */
 @media (min-width: 768px) {
-  body { padding-top: 70px; }
-  .site-topbar { 
-    padding: 0 8%; 
-    height: 70px;
+  :root {
+    --topbar-height: 70px;
   }
-  .topbar__logo { height: 40px; }
-  .container {
-    max-width: 720px;
-    padding: var(--spacing-md);
+  .site-topbar {
+    padding: 0 8%;
   }
-}
-
-@media (min-width: 1024px) {
-  .container { max-width: 960px; }
 }
