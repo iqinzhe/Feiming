@@ -4,7 +4,7 @@
       "id": "a",
       "name": "Series A",
       "description": "通颈连体贝斯工艺较为复杂，常被视为高端贝斯的标志之一。采用多类型木材拼接琴颈与琴体，更具艺术性，视觉冲击力更强，带来更加奢华的外观。\n连体通颈贝斯通颈贝斯在音色、延音、共鸣、稳定性等方面都有一些优点。",
-      "cover": "images/series-b.jpg",
+      "cover": "images/series-A.jpg",
       "models": [
         {
           "id": "a1",
@@ -22,7 +22,7 @@
         },
         {
           "id": "a2",
-          "name": "BA2 Model",
+          "name": "A2 Model",
           "image": "images/a2.jpg",
           "features": "经典设计结合现代技术，提供更稳定的音准",
           "specs": [
