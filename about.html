@@ -101,6 +101,63 @@
   <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
 </footer>
 
-<script src="/js/main.js"></script>
+// 初始化移动菜单
+const menuBtn = document.getElementById('topbarMenuBtn');
+const mobileNav = document.getElementById('mobileNav');
+let menuOpen = false;
+
+menuBtn.addEventListener('click', function() {
+  menuOpen = !menuOpen;
+  if (menuOpen) {
+    mobileNav.classList.add('mobile-nav--open');
+  } else {
+    mobileNav.classList.remove('mobile-nav--open');
+  }
+});
+
+// 点击菜单外区域关闭菜单
+document.addEventListener('click', function(event) {
+  if (!mobileNav.contains(event.target) && event.target !== menuBtn) {
+    mobileNav.classList.remove('mobile-nav--open');
+    menuOpen = false;
+  }
+});
+
+// Search button
+const searchBtn = document.getElementById('topbarSearchBtn');
+searchBtn?.addEventListener('click', function() {
+  const query = prompt('请输入搜索关键词');
+  if (query) {
+    alert(`搜索演示: ${query}`);
+  }
+});
+
+// Share button
+const shareBtn = document.getElementById('topbarShareBtn');
+shareBtn?.addEventListener('click', function() {
+  try {
+    if (navigator.share) {
+      navigator.share({
+        title: document.title,
+        url: location.href
+      });
+    } else {
+      alert('请手动复制链接分享: ' + location.href);
+    }
+  } catch (e) {
+    console.error('分享失败:', e);
+    alert('分享功能出错，请重试');
+  }
+});
+
+// Back to top
+const footer = document.getElementById('footerToTop');
+footer?.addEventListener('click', function() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
+</script>
 </body>
 </html>
