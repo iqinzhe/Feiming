@@ -19,90 +19,64 @@
     }
     main { flex: 1; padding: 20px; max-width: 700px; margin: 0 auto; }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+    h1 { text-align: center; margin-bottom: 20px; }
     form {
       background: rgba(0,0,0,0.3);
       padding: 20px;
       border-radius: 8px;
     }
-    label {
-      display: block;
-      margin: 10px 0 5px;
-      font-weight: bold;
-    }
+    label { display: block; margin: 10px 0 5px; font-weight: bold; }
     input, select, textarea {
-      width: 100%;
-      padding: 10px;
-      border: none;
-      border-radius: 4px;
-      margin-bottom: 15px;
-      font-size: 14px;
+      width: 100%; padding: 10px; border: none; border-radius: 4px;
+      margin-bottom: 15px; font-size: 14px;
     }
-    textarea {
-      resize: vertical;
-      min-height: 80px;
-    }
-    .form-actions {
-      text-align: center;
-    }
+    textarea { resize: vertical; min-height: 80px; }
+    .form-actions { text-align: center; }
     .submit-button {
-      background: #4dabf7;
-      color: #fff;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 4px;
-      font-size: 16px;
-      cursor: pointer;
+      background: #4dabf7; color: #fff;
+      padding: 12px 24px; border: none; border-radius: 4px;
+      font-size: 16px; cursor: pointer;
     }
-    .submit-button:hover {
-      background: #339af0;
-    }
+    .submit-button:hover { background: #339af0; }
     .back-link {
-      display: inline-block;
-      margin-top: 15px;
-      color: #ccc;
-      text-decoration: none;
+      display: inline-block; margin-top: 15px;
+      color: #ccc; text-decoration: none;
+    }
+    .address-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
     }
   </style>
 </head>
 <body>
   <!-- 顶部导航 -->
   <header class="site-topbar">
-    <div class="topbar__left">
-      <button id="topbarMenuBtn">☰</button>
-    </div>
-    <div class="topbar__center">
-      <a href="index.html"><img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/></a>
-    </div>
-    <div class="topbar__right">
-      <button id="topbarSearchBtn">🔍</button>
-      <button id="topbarShareBtn">⤴</button>
-    </div>
-    <nav class="mobile-nav" id="mobileNav">
-      <ul class="mobile-nav__list">
-        <li><a href="instruments.html">全部系列</a></li>
-        <li><a href="pricing.html">订购产品</a></li>
-        <li><a href="news.html">新闻</a></li>
-        <li><a href="support.html">支持</a></li>
-      </ul>
-    </nav>
+    <div class="topbar__left"><button id="topbarMenuBtn">☰</button></div>
+    <div class="topbar__center"><a href="index.html"><img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/></a></div>
+    <div class="topbar__right"><button id="topbarSearchBtn">🔍</button><button id="topbarShareBtn">⤴</button></div>
   </header>
 
   <main>
     <h1>在线订购</h1>
     <form id="orderForm">
-      <!-- 收货人信息 -->
+      <!-- 订购人信息 -->
       <label for="customerName">收货人 *</label>
       <input type="text" id="customerName" name="customerName" required>
 
       <label for="phone">联系电话 *</label>
-      <input type="tel" id="phone" name="phone" required pattern="[0-9+ -]{6,15}" placeholder="例如: +86 012345678">
+      <input type="tel" id="phone" name="phone" required pattern="[0-9+ -]{6,15}" placeholder="例如: +62 812345678">
 
-      <label for="address">收货地址 *</label>
-      <textarea id="address" name="address" required placeholder="省、市、街道、邮编（选填）"></textarea>
+      <label>收货地址 *</label>
+      <div class="address-grid">
+        <input type="text" id="province" name="province" placeholder="省" required>
+        <input type="text" id="city" name="city" placeholder="市 / 县" required>
+      </div>
+      <div class="address-grid">
+        <input type="text" id="town" name="town" placeholder="乡 / 镇" required>
+        <input type="text" id="street" name="street" placeholder="街道" required>
+      </div>
+      <input type="text" id="number" name="number" placeholder="门牌号" required>
 
       <!-- 产品选择 -->
       <label for="product">选择型号 *</label>
@@ -121,7 +95,7 @@
 
       <!-- 额外说明 -->
       <label for="customization">定制要求</label>
-      <textarea id="customization" name="customization" placeholder="例如：刻字，换电子配件、特殊颜色、等"></textarea>
+      <textarea id="customization" name="customization" placeholder="例如：刻字，换配件、特殊颜色等"></textarea>
 
       <label for="notes">订单备注</label>
       <textarea id="notes" name="notes"></textarea>
@@ -142,29 +116,19 @@
     <img src="images/logo.png" alt="AX Guitar Logo"/>
   </footer>
 
-  <!-- 公共脚本 -->
+  <!-- 脚本 -->
   <script src="main.js"></script>
   <script>
     // 捕获 URL 参数，自动填充产品型号
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get('product');
-    if (productId) {
-      document.getElementById('product').value = productId;
-    }
+    if (productId) document.getElementById('product').value = productId;
 
-    // 表单提交逻辑
+    // 提交逻辑
     document.getElementById('orderForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const formData = new FormData(this);
       const orderTime = new Date().toLocaleString();
-
-      let snapshot = "【订单详情快照】\\n";
-      formData.forEach((value, key) => {
-        snapshot += key + ": " + value + "\\n";
-      });
-      snapshot += "下单时间: " + orderTime + "\\n";
-
-      // 模拟下单，跳转到确认页并传递订单信息
       const params = new URLSearchParams(formData);
       params.append("orderTime", orderTime);
       window.location.href = "order-confirm.html?" + params.toString();

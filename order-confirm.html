@@ -9,89 +9,29 @@
   <style>
     body {
       background: rgb(128, 128, 128);
-      color: #fff;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding-top: 60px;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      color: #fff; font-family: Arial, sans-serif;
+      margin: 0; padding-top: 60px;
+      min-height: 100vh; display: flex; flex-direction: column;
     }
-    main {
-      flex: 1;
-      padding: 20px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .confirm-box {
-      background: rgba(0,0,0,0.3);
-      padding: 30px;
-      border-radius: 8px;
-      margin-top: 20px;
-    }
-    .confirm-box h1 {
-      color: #4dabf7;
-      text-align: center;
-    }
-    .order-id {
-      text-align: center;
-      font-size: 20px;
-      font-weight: bold;
-      margin: 15px 0;
-      color: #ffd43b;
-    }
-    h2 {
-      margin-top: 25px;
-      border-bottom: 1px solid rgba(255,255,255,0.3);
-      padding-bottom: 5px;
-    }
-    table.order-summary {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 6px;
-      overflow: hidden;
-    }
-    table.order-summary th,
-    table.order-summary td {
-      border: 1px solid rgba(255,255,255,0.2);
-      padding: 10px;
-      text-align: left;
-    }
-    table.order-summary th {
-      background: rgba(255,255,255,0.1);
-      width: 30%;
-    }
-    .actions {
-      margin-top: 30px;
-      text-align: center;
-    }
+    main { flex: 1; padding: 20px; max-width: 800px; margin: 0 auto; }
+    .confirm-box { background: rgba(0,0,0,0.3); padding: 30px; border-radius: 8px; margin-top: 20px; }
+    .confirm-box h1 { color: #4dabf7; text-align: center; }
+    .order-id { text-align: center; font-size: 20px; font-weight: bold; margin: 15px 0; color: #ffd43b; }
+    h2 { margin-top: 25px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 5px; }
+    table.order-summary { width: 100%; border-collapse: collapse; margin-top: 10px; background: rgba(255,255,255,0.05); }
+    table.order-summary th, table.order-summary td { border: 1px solid rgba(255,255,255,0.2); padding: 10px; text-align: left; }
+    table.order-summary th { background: rgba(255,255,255,0.1); width: 25%; }
+    .actions { margin-top: 30px; text-align: center; }
     .actions a, .actions button {
-      display: inline-block;
-      margin: 10px;
-      padding: 10px 20px;
-      border-radius: 4px;
-      text-decoration: none;
-      font-weight: bold;
-      cursor: pointer;
+      display: inline-block; margin: 10px; padding: 10px 20px;
+      border-radius: 4px; text-decoration: none; font-weight: bold; cursor: pointer;
     }
-    .btn-primary {
-      background: #4dabf7;
-      color: #fff;
-    }
-    .btn-secondary {
-      background: #6c757d;
-      color: #fff;
-    }
-    .btn-warning {
-      background: #ffd43b;
-      color: #000;
-    }
+    .btn-primary { background: #4dabf7; color: #fff; }
+    .btn-secondary { background: #6c757d; color: #fff; }
+    .btn-warning { background: #ffd43b; color: #000; }
   </style>
 </head>
 <body>
-  <!-- 顶部导航 -->
   <header class="site-topbar">
     <div class="topbar__left"><button id="topbarMenuBtn">☰</button></div>
     <div class="topbar__center"><a href="index.html"><img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/></a></div>
@@ -102,15 +42,11 @@
     <div class="confirm-box" id="orderBox">
       <h1>订单提交成功 ✅</h1>
       <p style="text-align:center;">感谢您的订购！我们会尽快与您联系确认订单信息。</p>
-
-      <!-- 订单编号 -->
       <div id="orderId" class="order-id"></div>
 
-      <!-- 客户信息 -->
       <h2>客户信息</h2>
       <table id="customerInfo" class="order-summary"></table>
 
-      <!-- 订单信息 -->
       <h2>订单信息</h2>
       <table id="orderInfo" class="order-summary"></table>
 
@@ -122,62 +58,49 @@
     </div>
   </main>
 
-  <!-- 底部 -->
   <footer class="site-bottombar" id="footerToTop">
-    <div>返回顶部</div>
-    <img src="images/logo.png" alt="AX Guitar Logo"/>
+    <div>返回顶部</div><img src="images/logo.png" alt="AX Guitar Logo"/>
   </footer>
 
-  <!-- 公共脚本 -->
   <script src="main.js"></script>
   <script>
-    // 生成订单编号
+    // 订单编号
     function generateOrderId() {
       const now = new Date();
       const year = now.getFullYear();
       const month = String(now.getMonth()+1).padStart(2, '0');
       const day = String(now.getDate()).padStart(2, '0');
-      const rand = Math.floor(Math.random() * 900 + 100); // 100-999
+      const rand = Math.floor(Math.random() * 900 + 100);
       return `AX${year}${month}${day}-${rand}`;
     }
-
-    // 显示订单编号
     document.getElementById("orderId").textContent = "订单编号：" + generateOrderId();
 
-    // 从 URL 获取订单信息并分类展示
+    // 获取URL参数
     const urlParams = new URLSearchParams(window.location.search);
     const customerInfoTable = document.getElementById('customerInfo');
     const orderInfoTable = document.getElementById('orderInfo');
 
-    const customerFields = ["customerName", "phone", "receiverName", "address"];
-    const orderFields = ["product", "quantity", "customization", "notes", "orderTime"];
+    const customerFields = ["customerName","phone","receiverName","province","city","town","street","number"];
+    const orderFields = ["product","quantity","customization","notes","orderTime"];
 
     function translateField(key) {
       const map = {
-        customerName: "订购人姓名",
-        phone: "联系电话",
-        receiverName: "收货人姓名",
-        address: "收货地址",
-        product: "产品型号",
-        quantity: "数量",
-        customization: "改造定制需求",
-        notes: "订单备注",
-        orderTime: "下单时间"
+        customerName:"订购人姓名", phone:"联系电话",
+        receiverName:"收货人姓名", province:"省", city:"市/县",
+        town:"乡/镇", street:"街道", number:"门牌号",
+        product:"产品型号", quantity:"数量", customization:"改造定制需求",
+        notes:"订单备注", orderTime:"下单时间"
       };
       return map[key] || key;
     }
-
     function renderTable(table, fields) {
       let html = "";
       fields.forEach(f => {
         const value = urlParams.get(f);
-        if (value) {
-          html += `<tr><th>${translateField(f)}</th><td>${value}</td></tr>`;
-        }
+        if (value) html += `<tr><th>${translateField(f)}</th><td>${value}</td></tr>`;
       });
       table.innerHTML = html || "<tr><td>暂无信息</td></tr>";
     }
-
     renderTable(customerInfoTable, customerFields);
     renderTable(orderInfoTable, orderFields);
   </script>
