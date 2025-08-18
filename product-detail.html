@@ -1,55 +1,77 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <!-- 头部元信息保持不变（与之前修复版相同） -->
+  <!-- 头部元信息保持不变 -->
 </head>
 <body>
-  <!-- 统一标准的顶部导航栏（与index.html完全一致） -->
+  <!-- 统一标准的顶部导航栏 -->
   <header class="site-topbar">
-    <!-- 与之前修复版相同的导航栏代码 -->
+    <!-- 与之前完全一致 -->
   </header>
 
   <main>
-    <!-- 保留原有的完整静态结构，仅将动态部分用id标记 -->
-    <div class="product-hero" id="productHero">
-      <img id="productImage" src="" alt="">
-      <h1 id="productName"></h1>
-      <p id="productFeatures"></p>
+    <!-- 修复重点：完整的静态结构 + 动态填充 -->
+    <div class="product-hero">
+      <img id="productImage" src="" alt="产品图" style="max-width:100%">
+      <h1 id="productName">产品名称</h1>
+      <p id="productFeatures">产品特性描述</p>
     </div>
+
+    <!-- 修复点：补全规格参数静态结构 -->
     <div class="product-specs">
       <h3>规格参数</h3>
-      <ul id="productSpecs"></ul>
+      <ul id="productSpecs">
+        <!-- 动态生成内容将在这里插入 -->
+        <li>默认规格1</li>
+        <li>默认规格2</li>
+      </ul>
     </div>
+
     <div class="product-actions">
       <a class="order-button" href="pricing.html">立即订购</a>
-      <div><a id="backLink" href="" class="back-link">← 返回系列</a></div>
+      <a id="backLink" href="#" class="back-link">← 返回系列</a>
     </div>
   </main>
 
-  <!-- 底部栏保持不变 -->
+  <footer class="site-bottombar" id="footerToTop">
+    <!-- 底部保持不变 -->
+  </footer>
 
   <script>
-    // 动态加载逻辑（优化版）
-    const urlParams = new URLSearchParams(window.location.search);
-    const seriesId = urlParams.get('series');
-    const productId = urlParams.get('id');
+    // 增强版数据加载
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const seriesId = urlParams.get('series');
+      const productId = urlParams.get('id');
 
-    if (seriesId && productId) {
-      fetch(`data/${seriesId}.json`)
-        .then(res => res.json())
-        .then(data => {
-          const product = data.series[0].models.find(m => m.id === productId);
-          if (product) {
-            // 填充静态结构
-            document.getElementById('productImage').src = product.image;
-            document.getElementById('productName').textContent = product.name;
-            document.getElementById('productFeatures').textContent = product.features;
+      if (seriesId && productId) {
+        fetch(`data/${seriesId}.json`)
+          .then(res => res.json())
+          .then(data => {
+            const product = data.series[0].models.find(m => m.id === productId);
+            if (product) {
+              // 填充产品信息
+              document.getElementById('productImage').src = product.image;
+              document.getElementById('productName').textContent = product.name;
+              document.getElementById('productFeatures').textContent = product.features;
+              
+              // 修复重点：完整生成规格列表
+              const specsList = document.getElementById('productSpecs');
+              specsList.innerHTML = product.specs.map(spec => 
+                `<li>${spec}</li>`
+              ).join('');
+
+              // 设置返回链接
+              document.getElementById('backLink').href = `products.html?series=${seriesId}`;
+            }
+          })
+          .catch(err => {
+            console.error('加载失败:', err);
             document.getElementById('productSpecs').innerHTML = 
-              product.specs.map(s => `<li>${s}</li>`).join('');
-            document.getElementById('backLink').href = `products.html?series=${seriesId}`;
-          }
-        });
-    }
+              '<li style="color:#ff6b6b">加载规格参数失败</li>';
+          });
+      }
+    });
   </script>
 </body>
 </html>
