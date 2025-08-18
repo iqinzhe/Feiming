@@ -1,182 +1,137 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AX斧标贝斯 | 在线订购</title>
-  <link rel="stylesheet" href="global.css"/>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="global.css">
   <style>
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #808080;
+      background: rgb(128, 128, 128);
       color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding-top: 60px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
-    header, footer {
-      text-align: center;
-      padding: 15px;
-      background: rgba(0,0,0,0.6);
-    }
-    main {
-      padding: 20px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+    main { flex: 1; padding: 20px; max-width: 700px; margin: 0 auto; }
+
+    h1 { text-align: center; margin-bottom: 20px; }
     form {
       background: rgba(0,0,0,0.3);
       padding: 20px;
-      border-radius: 12px;
+      border-radius: 8px;
     }
-    .form-group {
-      margin-bottom: 15px;
-    }
-    label {
-      display: block;
-      margin-bottom: 5px;
-    }
+    label { display: block; margin: 10px 0 5px; font-weight: bold; }
     input, select, textarea {
-      width: 100%;
-      padding: 10px;
-      border-radius: 6px;
-      border: none;
-      font-size: 14px;
+      width: 100%; padding: 10px; border: none; border-radius: 4px;
+      margin-bottom: 15px; font-size: 14px;
     }
-    textarea { resize: vertical; }
-    button {
-      margin-top: 15px;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      background: #4dabf7;
-      color: #fff;
+    textarea { resize: vertical; min-height: 80px; }
+    .form-actions { text-align: center; }
+    .submit-button {
+      background: #4dabf7; color: #fff;
+      padding: 12px 24px; border: none; border-radius: 4px;
+      font-size: 16px; cursor: pointer;
     }
-    button:hover {
-      background: #339af0;
+    .submit-button:hover { background: #339af0; }
+    .back-link {
+      display: inline-block; margin-top: 15px;
+      color: #ccc; text-decoration: none;
+    }
+    .address-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
     }
   </style>
 </head>
 <body>
-  <!-- 顶部栏 -->
-  <header>
-    <img src="images/logo.png" alt="AX Guitar Logo" style="height:50px;" />
+  <!-- 顶部导航 -->
+  <header class="site-topbar">
+    <div class="topbar__left"><button id="topbarMenuBtn">☰</button></div>
+    <div class="topbar__center"><a href="index.html"><img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/></a></div>
+    <div class="topbar__right"><button id="topbarSearchBtn">🔍</button><button id="topbarShareBtn">⤴</button></div>
   </header>
 
   <main>
     <h1>在线订购</h1>
     <form id="orderForm">
-      <div class="form-group">
-        <label for="product">选择型号 *</label>
-        <select id="product" name="product" required>
-          <option value="">加载中...</option>
-        </select>
+      <!-- 订购人信息 -->
+      <label for="customerName">收货人 *</label>
+      <input type="text" id="customerName" name="customerName" required>
+
+      <label for="phone">联系电话 *</label>
+      <input type="tel" id="phone" name="phone" required pattern="[0-9+ -]{6,15}" placeholder="例如: +62 812345678">
+
+      <label>收货地址 *</label>
+      <div class="address-grid">
+        <input type="text" id="province" name="province" placeholder="省" required>
+        <input type="text" id="city" name="city" placeholder="市 / 县" required>
       </div>
-      <div class="form-group">
-        <label for="name">姓名 *</label>
-        <input type="text" id="name" name="name" required>
+      <div class="address-grid">
+        <input type="text" id="town" name="town" placeholder="乡 / 镇" required>
+        <input type="text" id="street" name="street" placeholder="街道" required>
       </div>
-      <div class="form-group">
-        <label for="phone">电话 *</label>
-        <input type="tel" id="phone" name="phone" required>
+      <input type="text" id="number" name="number" placeholder="门牌号" required>
+
+      <!-- 产品选择 -->
+      <label for="product">选择型号 *</label>
+      <select id="product" name="product" required>
+        <option value="">请选择型号</option>
+        <option value="A1 Model">A1 Model</option>
+        <option value="B1 Model">B1 Model</option>
+        <option value="B2 Model">B2 Model</option>
+        <option value="C1 Mini Bass">C1 Mini Bass</option>
+        <option value="C2 Travel Bass">C2 Travel Bass</option>
+        <option value="Model D">Model D</option>
+      </select>
+
+      <label for="quantity">数量 *</label>
+      <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+
+      <!-- 额外说明 -->
+      <label for="customization">定制要求</label>
+      <textarea id="customization" name="customization" placeholder="例如：刻字，换配件、特殊颜色等"></textarea>
+
+      <label for="notes">订单备注</label>
+      <textarea id="notes" name="notes"></textarea>
+
+      <div class="form-actions">
+        <button type="submit" class="submit-button">提交订单</button>
       </div>
-      <div class="form-group">
-        <label for="receiver">收货人 *</label>
-        <input type="text" id="receiver" name="receiver" required>
-      </div>
-      <div class="form-group">
-        <label>收货地址 *</label>
-        <input type="text" id="province" placeholder="________省" required>
-        <input type="text" id="city" placeholder="________市(县)" required>
-        <input type="text" id="town" placeholder="________乡(镇)" required>
-        <input type="text" id="street" placeholder="________街道" required>
-        <input type="text" id="number" placeholder="________号" required>
-      </div>
-      <div class="form-group">
-        <label for="quantity">数量 *</label>
-        <input type="number" id="quantity" name="quantity" min="1" required>
-      </div>
-      <div class="form-group">
-        <label for="remark">订单备注</label>
-        <textarea id="remark" name="remark"></textarea>
-      </div>
-      <button type="submit">提交订单</button>
     </form>
+
+    <div class="form-actions">
+      <a href="javascript:history.back()" class="back-link">← 返回上一页</a>
+    </div>
   </main>
 
-  <!-- 底部栏 -->
-  <footer>
-    <p>© 2025 AX Guitar. All Rights Reserved.</p>
+  <!-- 底部 -->
+  <footer class="site-bottombar" id="footerToTop">
+    <div>返回顶部</div>
+    <img src="images/logo.png" alt="AX Guitar Logo"/>
   </footer>
 
+  <!-- 脚本 -->
+  <script src="main.js"></script>
   <script>
+    // 捕获 URL 参数，自动填充产品型号
     const urlParams = new URLSearchParams(window.location.search);
-    const preselectProduct = urlParams.get("product");
+    const productId = urlParams.get('product');
+    if (productId) document.getElementById('product').value = productId;
 
-    const productSelect = document.getElementById("product");
-
-    const seriesFiles = [
-      "data/a.json",
-      "data/b.json",
-      "data/c.json",
-      "data/d.json"
-    ];
-
-    async function loadAllProducts() {
-      let allProducts = [];
-
-      for (const file of seriesFiles) {
-        try {
-          const res = await fetch(file);
-          const data = await res.json();
-          allProducts = allProducts.concat(data);
-        } catch (e) {
-          console.error("加载失败:", file, e);
-        }
-      }
-
-      productSelect.innerHTML = '<option value="">请选择型号</option>';
-
-      allProducts.forEach(p => {
-        const option = document.createElement("option");
-        option.value = p.name;
-        option.textContent = `${p.id} - ${p.name}`;
-        if (preselectProduct && (preselectProduct === p.id || preselectProduct === p.name)) {
-          option.selected = true;
-        }
-        productSelect.appendChild(option);
-      });
-    }
-
-    loadAllProducts();
-
-    // 模拟提交
-    document.getElementById("orderForm").addEventListener("submit", function(e) {
+    // 提交逻辑
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
       e.preventDefault();
-
-      const order = {
-        product: productSelect.value,
-        name: document.getElementById("name").value,
-        phone: document.getElementById("phone").value,
-        receiver: document.getElementById("receiver").value,
-        address: 
-          document.getElementById("province").value + " " +
-          document.getElementById("city").value + " " +
-          document.getElementById("town").value + " " +
-          document.getElementById("street").value + " " +
-          document.getElementById("number").value,
-        quantity: document.getElementById("quantity").value,
-        remark: document.getElementById("remark").value
-      };
-
-      // 模拟跳转到确认页
-      sessionStorage.setItem("lastOrder", JSON.stringify(order));
-      window.location.href = "order-confirm.html";
+      const formData = new FormData(this);
+      const orderTime = new Date().toLocaleString();
+      const params = new URLSearchParams(formData);
+      params.append("orderTime", orderTime);
+      window.location.href = "order-confirm.html?" + params.toString();
     });
   </script>
 </body>
