@@ -11,7 +11,6 @@
 <link href="/css/style.css" rel="stylesheet">
 <link rel="stylesheet" href="global.css">
 <style>
-
 :root {
   --neutral-gray: rgb(128, 128, 128);
   --glass-dark: rgba(0, 0, 0, 0.3);
@@ -37,77 +36,37 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
 }
 
-/* 紧凑型导航链接样式 */
-.compact-nav-links {
-  margin: 20px 0;
+/* 页面链接区 */
+.page-links {
+  margin: 40px 0;
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
 }
-
-.compact-nav-container {
+.page-links ul {
+  list-style: none;
+  padding: 0;
   display: flex;
-  justify-content: space-around;
-  gap: 10px;
-  padding: 0 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
-
-.compact-nav-item {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none;
+.page-links li {
+  margin: 10px 0;
+}
+.page-links a {
   color: var(--text-white);
+  font-size: 18px;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 4px;
   background: rgba(0,0,0,0.2);
- height: 45px; /* 直接设置固定高度（根据需求调整数值） */
-  aspect-ratio: auto; /* 如果固定高度则建议移除宽高比限制 */
-  border-radius: 8px;
-  padding: 12px 8px;
-  transition: all 0.2s ease;
-  aspect-ratio: 1/1.4; /* 1:1.68的宽高比 */
+  transition: background 0.3s ease;
 }
-
-.compact-nav-item:hover {
-  background: rgba(0,0,0,0.3);
-  transform: translateY(-2px);
-}
-
-.nav-icon {
-  font-size: 1.5rem;
-  margin-bottom: 8px;
-}
-
-.nav-text {
-  font-size: 0.9rem;
-  font-weight: bold;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 100%;
-}
-
-.nav-tooltip {
-  font-size: 0.7rem;
-  opacity: 0.8;
-  text-align: center;
-  margin-top: 4px;
-  display: none;
-}
-
-@media (min-width: 768px) {
-  .compact-nav-item {
-    padding: 15px 10px;
-  }
-  .nav-icon {
-    font-size: 1.2rem;
-  }
-  .nav-text {
-    font-size: 1rem;
-    white-space: normal;
-  }
-  .nav-tooltip {
-    display: block;
-  }
+.page-links a:hover {
+  background: rgba(0,0,0,0.4);
+  text-decoration: none;
 }
 
 /* 最新动态 */
@@ -254,45 +213,25 @@ main {
 
 <main>
   <!-- 最新动态 -->
-<section class="events-section">
-    <div class="section-header">
-        <h2>最新动态</h2>
-        <a href="events.html" class="view-all">阅读更多 →</a>
-    </div>
-
-    <!-- 动态内容容器 -->
-    <div id="latest-events" class="events-preview">
-        <!-- 内容将通过JavaScript动态加载 -->
-    </div>
-</section>
+  <section class="latest-news">
+    <h2>最新动态</h2>
+    <div class="news-item">
+      <div class="news-date">2027年10月1日</div>
+      <p>AX斧标贝斯隆重推出特色人体工学系列:自然扭曲琴颈与胴身，贴合演奏姿势，减轻腕部压力。</p>
+      <a href="events.html" class="read-more">阅读全文 →</a>
+    </div>     
+  </section>
 
   <!-- 系列卡片总览 -->
   <section class="series-overview" id="seriesOverview"></section>
 
-  <!-- ===== 紧凑型导航链接 (替换原.page-links) ===== -->
-  <section class="compact-nav-links" aria-label="快捷导航">
-    <div class="compact-nav-container">
-      <!-- 订购产品 -->
-      <a href="pricing.html" class="compact-nav-item" aria-label="订购产品">
-        <span class="nav-icon" role="img" aria-hidden="true">🛒</span>
-        <span class="nav-text">订购产品</span>
-        <span class="nav-tooltip">查看价格与购买方式</span>
-      </a>
-      
-      <!-- 支持中心 -->
-      <a href="support.html" class="compact-nav-item" aria-label="支持中心">
-        <span class="nav-icon" role="img" aria-hidden="true">🛠️</span>
-        <span class="nav-text">支持中心</span>
-        <span class="nav-tooltip">获取帮助与文档</span>
-      </a>
-      
-      <!-- 官方信息 -->
-      <a href="news.html" class="compact-nav-item" aria-label="官方信息">
-        <span class="nav-icon" role="img" aria-hidden="true">ℹ️</span>
-        <span class="nav-text">官方信息</span>
-        <span class="nav-tooltip">品牌新闻与公告</span>
-      </a>
-    </div>
+  <!-- 页面导航链接 -->
+  <section class="page-links">
+    <ul>
+      <li><a href="pricing.html">订购产品</a></li>
+      <li><a href="support.html">支持中心</a></li>
+      <li><a href="news.html">官方信息</a></li>
+    </ul>
   </section>
 </main>
 
@@ -349,3 +288,5 @@ document.addEventListener('click', function(event) {
 });
 
 </script>
+</body>
+</html>
