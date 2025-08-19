@@ -28,7 +28,7 @@ body {
   padding-top: 60px;
 }
 
-/* 系列卡片布局 */
+/* 系列卡片布局 - 修复问题1 */
 .series-overview {
   display: grid;
   gap: 20px;
@@ -43,6 +43,8 @@ body {
   text-decoration: none;
   color: var(--text-white);
   transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .series-card:hover {
@@ -57,6 +59,9 @@ body {
 
 .series-card-content {
   padding: 15px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .series-card-content h2 {
@@ -69,12 +74,15 @@ body {
   color: #ccc;
   font-size: 0.9rem;
   line-height: 1.4;
+  flex-grow: 1;
 }
 
 .series-card-cta {
   color: #4dabf7;
   font-weight: bold;
-  font-size: 0.9rem;
+  font-size: 1rem; /* 加大字体 - 修复问题1 */
+  text-align: right;
+  margin-top: auto;
 }
 
 /* 紧凑型导航链接样式 */
@@ -133,31 +141,23 @@ body {
   display: none;
 }
 
-/* 最新动态 - 紧凑样式 */
+/* 最新动态 - 修复问题2和问题3 */
 .latest-news {
   background: rgba(0,0,0,0.2);
-  padding: 15px 20px;
+  padding: 20px;
   margin: 20px 15px;
   border-radius: 8px;
-  max-height: 130px;
+  max-height: 150px; /* 稍微增加高度以容纳更大字体 */
   overflow: hidden;
   position: relative;
 }
 
-.latest-news::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 30px;
-  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));
-  pointer-events: none;
-}
+/* 移除渐变遮罩 - 修复问题3 */
+/* .latest-news::after 已移除 */
 
 .news-item {
-  margin-bottom: 10px;
-  padding-bottom: 10px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
   overflow: hidden;
 }
@@ -168,10 +168,10 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-bottom: 6px;
-  line-height: 1.3;
+  margin-bottom: 8px;
+  line-height: 1.4;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.2rem; /* 加大标题字体 - 修复问题2 */
 }
 
 .news-content {
@@ -180,25 +180,25 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-bottom: 8px;
-  line-height: 1.4;
+  margin-bottom: 10px;
+  line-height: 1.5;
   color: #e0e0e0;
-  font-size: 0.9rem;
+  font-size: 1rem; /* 加大内容字体 - 修复问题2 */
 }
 
 .news-date {
   font-weight: bold;
   color: #ccc;
-  margin-bottom: 4px;
-  font-size: 0.8rem;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
 }
 
 .read-more {
   color: #4dabf7;
   text-decoration: none;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   display: inline-block;
-  margin-top: 3px;
+  margin-top: 5px;
   font-weight: bold;
 }
 
@@ -212,12 +212,12 @@ body {
   color: #4dabf7;
   text-decoration: none;
   font-weight: bold;
-  margin-top: 10px;
-  padding: 6px;
+  margin-top: 15px;
+  padding: 8px;
   background: rgba(255,255,255,0.1);
   border-radius: 4px;
   transition: background-color 0.3s ease;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .view-all-news:hover {
@@ -227,10 +227,10 @@ body {
 
 .loading {
   text-align: center;
-  padding: 15px;
+  padding: 20px;
   color: #ccc;
   font-style: italic;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 /* 顶部固定定位 */
@@ -349,6 +349,22 @@ main {
   }
   .series-overview {
     grid-template-columns: 1fr;
+  }
+  
+  /* 移动端新闻栏调整 */
+  .latest-news {
+    margin: 20px 10px;
+    padding: 15px;
+    max-height: 140px;
+  }
+  
+  .news-title {
+    font-size: 1.1rem;
+  }
+  
+  .news-content {
+    font-size: 0.95rem;
+    -webkit-line-clamp: 2;
   }
 }
 </style>
