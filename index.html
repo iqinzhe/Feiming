@@ -56,14 +56,6 @@ body {
   max-height: 7.5em; /* 约等于 5 行高度 */
 }
 
-/* 修复最新动态栏占满全屏的问题 */
-.events-section,
-#latest-events {
-  height: auto !important;   /* 高度自适应内容 */
-  max-height: none !important;
-  overflow: visible !important;
-}
-
 /* 顶部固定定位 */
 .site-topbar {
   position: fixed; 
@@ -94,6 +86,19 @@ main {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+}
+
+/* ============================= */
+/* 修复：最新动态区域高度自适应   */
+/* ============================= */
+.events-section,
+#latest-events {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  flex: none !important;
+  overflow: visible !important;
+  padding: 10px 0;
 }
 </style>
 </head>
