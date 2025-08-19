@@ -11,6 +11,7 @@
 <link href="/css/style.css" rel="stylesheet">
 <link rel="stylesheet" href="global.css">
 <style>
+
 :root {
   --neutral-gray: rgb(128, 128, 128);
   --glass-dark: rgba(0, 0, 0, 0.3);
@@ -28,61 +29,12 @@ body {
   padding-top: 60px;
 }
 
-/* 系列卡片布局 - 修复问题1 */
+/* 系列卡片布局 */
 .series-overview {
   display: grid;
   gap: 20px;
   padding: 15px;
   grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
-}
-
-.series-card {
-  background: rgba(0,0,0,0.2);
-  border-radius: 8px;
-  overflow: hidden;
-  text-decoration: none;
-  color: var(--text-white);
-  transition: transform 0.3s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.series-card:hover {
-  transform: translateY(-5px);
-}
-
-.series-card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-
-.series-card-content {
-  padding: 15px;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.series-card-content h2 {
-  margin: 0 0 10px 0;
-  font-size: 1.2rem;
-}
-
-.series-card-content p {
-  margin: 0 0 15px 0;
-  color: #ccc;
-  font-size: 0.9rem;
-  line-height: 1.4;
-  flex-grow: 1;
-}
-
-.series-card-cta {
-  color: #4dabf7;
-  font-weight: bold;
-  font-size: 1rem; /* 加大字体 - 修复问题1 */
-  text-align: right;
-  margin-top: auto;
 }
 
 /* 紧凑型导航链接样式 */
@@ -106,11 +58,12 @@ body {
   text-decoration: none;
   color: var(--text-white);
   background: rgba(0,0,0,0.2);
-  height: 45px;
+ height: 45px; /* 直接设置固定高度（根据需求调整数值） */
+  aspect-ratio: auto; /* 如果固定高度则建议移除宽高比限制 */
   border-radius: 8px;
-  padding: 8px;
+  padding: 12px 8px;
   transition: all 0.2s ease;
-  aspect-ratio: 1/1.4;
+  aspect-ratio: 1/1.4; /* 1:1.68的宽高比 */
 }
 
 .compact-nav-item:hover {
@@ -141,96 +94,48 @@ body {
   display: none;
 }
 
-/* 最新动态 - 修复问题2和问题3 */
+@media (min-width: 768px) {
+  .compact-nav-item {
+    padding: 15px 10px;
+  }
+  .nav-icon {
+    font-size: 1.2rem;
+  }
+  .nav-text {
+    font-size: 1rem;
+    white-space: normal;
+  }
+  .nav-tooltip {
+    display: block;
+  }
+}
+
+/* 最新动态 */
 .latest-news {
   background: rgba(0,0,0,0.2);
   padding: 20px;
-  margin: 20px 15px;
+  margin: 20px 0;
   border-radius: 8px;
-  max-height: 150px; /* 稍微增加高度以容纳更大字体 */
-  overflow: hidden;
-  position: relative;
 }
-
-/* 移除渐变遮罩 - 修复问题3 */
-/* .latest-news::after 已移除 */
-
 .news-item {
-  margin-bottom: 12px;
-  padding-bottom: 12px;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
-  overflow: hidden;
 }
-
-.news-title {
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin-bottom: 8px;
-  line-height: 1.4;
-  font-weight: bold;
-  font-size: 1.2rem; /* 加大标题字体 - 修复问题2 */
+.news-item:last-child {
+  border-bottom: none;
 }
-
-.news-content {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin-bottom: 10px;
-  line-height: 1.5;
-  color: #e0e0e0;
-  font-size: 1rem; /* 加大内容字体 - 修复问题2 */
-}
-
 .news-date {
   font-weight: bold;
   color: #ccc;
-  margin-bottom: 6px;
-  font-size: 0.9rem;
+  margin-bottom: 5px;
 }
-
 .read-more {
   color: #4dabf7;
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 14px;
   display: inline-block;
   margin-top: 5px;
-  font-weight: bold;
-}
-
-.read-more:hover {
-  text-decoration: underline;
-}
-
-.view-all-news {
-  display: block;
-  text-align: center;
-  color: #4dabf7;
-  text-decoration: none;
-  font-weight: bold;
-  margin-top: 15px;
-  padding: 8px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-  font-size: 1rem;
-}
-
-.view-all-news:hover {
-  background: rgba(255,255,255,0.2);
-  text-decoration: underline;
-}
-
-.loading {
-  text-align: center;
-  padding: 20px;
-  color: #ccc;
-  font-style: italic;
-  font-size: 1rem;
 }
 
 /* 顶部固定定位 */
@@ -245,7 +150,6 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 12px 5%;
-  background: rgba(0,0,0,0.3);
 }
 .site-bottombar {
   margin-top: auto;
@@ -255,7 +159,6 @@ body {
   justify-content: center;
   align-items: center;
   gap: 10px;
-  background: rgba(0,0,0,0.2);
 }
 main {
   flex: 1;
@@ -266,19 +169,6 @@ main {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-}
-
-.topbar__logo {
-  height: 30px;
-}
-
-.topbar__btn {
-  background: none;
-  border: none;
-  color: var(--text-white);
-  font-size: 1.2rem;
-  cursor: pointer;
-  padding: 5px;
 }
 
 /* 移动菜单样式 */
@@ -321,50 +211,17 @@ main {
   body { padding-top: 70px; }
   .site-topbar { padding: 15px 8%; height: 60px; }
   .topbar__logo { height: 35px; }
+  .page-content { padding: 30px 8%; }
   
-  .compact-nav-item {
-    padding: 6px 4px;
-    aspect-ratio: 1/1.3;
-  }
-  .nav-icon {
-    font-size: 1.2rem;
-  }
-  .nav-text {
-    font-size: 1rem;
-    white-space: normal;
-  }
-  .nav-tooltip {
-    display: block;
+  .page-links ul {
+    gap: 30px;
   }
 }
 
 @media (max-width: 600px) {
-  .compact-nav-container {
+  .page-links ul {
     flex-direction: column;
-  }
-  .compact-nav-item {
-    aspect-ratio: auto;
-    height: auto;
-    padding: 12px;
-  }
-  .series-overview {
-    grid-template-columns: 1fr;
-  }
-  
-  /* 移动端新闻栏调整 */
-  .latest-news {
-    margin: 20px 10px;
-    padding: 15px;
-    max-height: 140px;
-  }
-  
-  .news-title {
-    font-size: 1.1rem;
-  }
-  
-  .news-content {
-    font-size: 0.95rem;
-    -webkit-line-clamp: 2;
+    gap: 10px;
   }
 }
 </style>
@@ -397,32 +254,39 @@ main {
 
 <main>
   <!-- 最新动态 -->
-  <section class="latest-news">
-    <h2>最新动态</h2>
-    <div id="events-preview-container">
-      <div class="loading">加载最新动态...</div>
+<section class="events-section">
+    <div class="section-header">
+        <h2>最新动态</h2>
+        <a href="events.html" class="view-all">阅读更多 →</a>
     </div>
-    <a href="events.html" class="view-all-news">查看更多动态 →</a>
-  </section>
+
+    <!-- 动态内容容器 -->
+    <div id="latest-events" class="events-preview">
+        <!-- 内容将通过JavaScript动态加载 -->
+    </div>
+</section>
 
   <!-- 系列卡片总览 -->
   <section class="series-overview" id="seriesOverview"></section>
 
-  <!-- 紧凑型导航链接 -->
+  <!-- ===== 紧凑型导航链接 (替换原.page-links) ===== -->
   <section class="compact-nav-links" aria-label="快捷导航">
     <div class="compact-nav-container">
+      <!-- 订购产品 -->
       <a href="pricing.html" class="compact-nav-item" aria-label="订购产品">
         <span class="nav-icon" role="img" aria-hidden="true">🛒</span>
         <span class="nav-text">订购产品</span>
         <span class="nav-tooltip">查看价格与购买方式</span>
       </a>
       
+      <!-- 支持中心 -->
       <a href="support.html" class="compact-nav-item" aria-label="支持中心">
         <span class="nav-icon" role="img" aria-hidden="true">🛠️</span>
         <span class="nav-text">支持中心</span>
         <span class="nav-tooltip">获取帮助与文档</span>
       </a>
       
+      <!-- 官方信息 -->
       <a href="news.html" class="compact-nav-item" aria-label="官方信息">
         <span class="nav-icon" role="img" aria-hidden="true">ℹ️</span>
         <span class="nav-text">官方信息</span>
@@ -435,11 +299,14 @@ main {
 <!-- 底部栏 -->
 <footer class="site-bottombar" id="footerToTop">
   <div class="bottombar__label">返回顶部</div>
-  <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo" height="30"/>
+  <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
 </footer>
 
+  <script src="/js/main.js"></script>
+</body>
+</html>
+
 <script>
-// 系列数据
 const seriesData = [
   {id:'a', name:'Series A', desc:'螺栓固定结构带来的额外弹性和响应，提供高性价比的现代音色。', img:'series-a.jpg'},
   {id:'b', name:'Series B', desc:'高端通颈连体工艺系列，奢华外观与稳定表现。', img:'series-b.jpg'},
@@ -447,7 +314,6 @@ const seriesData = [
   {id:'d', name:'Series D', desc:'革命性人体工学扭曲琴颈设计，提升舒适度。', img:'series-d.jpg'}
 ];
 
-// 渲染系列卡片
 const seriesOverview = document.getElementById("seriesOverview");
 seriesOverview.innerHTML = seriesData.map(series => `
   <a class="series-card" href="products.html?series=${series.id}">
@@ -482,68 +348,4 @@ document.addEventListener('click', function(event) {
   }
 });
 
-// ======================
-// 动态加载events内容 - 只显示最新一条
-// ======================
-function loadEventsPreview() {
-  // 从events.html中提取的数据
-  const eventsData = [
-    {
-      id: 1,
-      title: "自然扭曲琴颈与胴身系列发布",
-      date: "2025-08-15",
-      description: "我们的自然扭曲设计能够与人体实现更无缝的交互。其符合人体工程学的设计提高了手部、腕部和手臂的效率，降低了患上腕管综合症和肌肉腱炎等重复性劳损的风险。还能减轻对此类患者的伤害。",
-      url: "events.html#event1",
-      isNew: true
-    },
-    {
-      id: 2,
-      title: "专业品质。经典 AX设计。",
-      date: "2025-06-15",
-      description: "AX E series  新增了绗缝枫木面板和配套的绗缝枫木琴头。这款贝斯精致的美学设计赋予了它舞台演出般的风格和可靠的品质。AX E series 拥有 24 品、34英寸有效弦长和宽薄枫木琴颈，演奏舒适，令人爱不释手。",
-      url: "events.html#event2",
-      isNew: false
-    }
-  ];
-
-  const container = document.getElementById('events-preview-container');
-  
-  // 按日期降序排序，只取最新1条
-  const latestEvent = [...eventsData].sort((a, b) => 
-    new Date(b.date) - new Date(a.date)
-  )[0];
-
-  if (!latestEvent) {
-    container.innerHTML = '<div class="loading">暂无动态</div>';
-    return;
-  }
-
-  container.innerHTML = `
-    <div class="news-item">
-      <div class="news-date">${formatDate(latestEvent.date)}</div>
-      <div class="news-title">${latestEvent.title}</div>
-      <div class="news-content">${latestEvent.description}</div>
-      <a href="${latestEvent.url}" class="read-more">阅读全文</a>
-    </div>
-  `;
-}
-
-// 格式化日期显示
-function formatDate(dateStr) {
-  const date = new Date(dateStr);
-  return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
-}
-
-// 页面加载时执行
-document.addEventListener('DOMContentLoaded', function() {
-  loadEventsPreview();
-  
-  // 返回顶部功能
-  document.getElementById('footerToTop').addEventListener('click', function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-});
 </script>
-
-</body>
-</html>
