@@ -46,13 +46,14 @@ body {
   margin-top: 5px;
 }
 
-/* 限制首页新闻正文最多显示 6 行 */
+/* 限制首页新闻正文最多显示 5 行 */
 .news-item p {
   display: -webkit-box;
-  -webkit-line-clamp: 6; /* 限制显示 6 行 */
+  -webkit-line-clamp: 5; /* 限制显示 5 行 */
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-height: 7.5em; /* 约等于 5 行高度，避免撑满屏幕 */
 }
 
 /* 顶部固定定位 */
