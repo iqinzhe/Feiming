@@ -1,171 +1,42 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AX斧标BASS</title>
-    <style>
-        /* === 基础样式 === */
-        body {
-            font-family: 'Helvetica', sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background: #f8f8f8;
-            color: #333;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        h1 {
-            text-align: center;
-            margin: 40px 0 30px;
-            color: #222;
-            font-weight: 300;
-            font-size: 2rem;
-        }
-
-        /* === 卡片样式 === */
-        .event-card {
-            position: relative; /* 为new-badge提供定位基准 */
-            background: white;
-            border-radius: 6px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
-            transition: transform 0.3s;
-        }
-        .event-card:hover {
-            transform: translateY(-3px);
-        }
-        .event-img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-bottom: 1px solid #eee;
-        }
-        .event-content {
-            padding: 25px;
-        }
-
-        /* === "最新动态"角标样式 === */
-        .new-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #e74c3c;
-            color: white;
-            padding: 3px 8px;
-            font-size: 0.8rem;
-            border-radius: 3px;
-        }
-        
-        /* === 按钮样式 === */
-        .btn {
-            display: inline-block;
-            padding: 8px 20px;
-            background: #222;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 0.9rem;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AX斧标BASS - 最新动态</title>
 </head>
 <body>
-    <div class="container">
-        <h1>最新动态</h1>
-        
-        <!-- 活动卡片将动态插入到这个容器中 -->
-        <div id="events-container"></div>
-    </div>
-
-    <script>
-        // ======================
-        // 数据层：定义活动数组
-        // ======================
-        const events = [
-            // ======================
-            // 活动项目1开始（自然扭曲系列）
-            // ======================
-            {
-                id: 1,
-                title: "自然扭曲琴颈与胴身系列发布",
-                date: "2025-08-15", // 格式：YYYY-MM-DD（便于自动排序）
-                location: "北京123 AX加工中心",
-                image: "images/example 000.jpg",
-                description: "我们的自然扭曲设计能够与人体实现更无缝的交互。其符合人体工程学的设计提高了手部、腕部和手臂的效率，降低了患上腕管综合症和肌肉腱炎等重复性劳损的风险。还能减轻对此类患者的伤害。",
-                cta: "预约参加发布会",
-                isNew: true // 标记是否为最新活动
-            },
-            // ======================
-            // 活动项目1结束
-            // ======================
-            
-            // ======================
-            // 活动项目2开始（经典AX设计）
-            // ======================
-            {
-                id: 2,
-                title: "专业品质。经典 AX设计。",
-                date: "2025-06-15", // 格式：YYYY-MM-DD（便于自动排序）
-                location: "上海567 AX加工中心",
-                image: "images/example 000.jpg",
-                description: "AX E series  新增了绗缝枫木面板和配套的绗缝枫木琴头。这款贝斯精致的美学设计赋予了它舞台演出般的风格和可靠的品质。AX E series 拥有 24 品、34英寸有效弦长和宽薄枫木琴颈，演奏舒适，令人爱不释手。85/15 \"S\" 双线圈拾音器和三档拨片开关，搭配推拉式线圈音色控制，带来多功能性和全频音色。它是一款适合巡演音乐家、专业乐手和家庭吉他手使用的乐器。",
-                cta: "预约参加发布会",
-                isNew: false // 标记是否为最新活动
-            }
-            // ======================
-            // 活动项目2结束
-            // ======================
-            
-            // 可以在此处添加更多活动项目...
-        ];
-
-        // ======================
-        // 逻辑层：渲染活动卡片
-        // ======================
-        function renderEvents() {
-            const container = document.getElementById('events-container');
-            container.innerHTML = ''; // 清空容器
-
-            // 1. 按日期降序排序（最新在最前）
-            const sortedEvents = [...events].sort((a, b) => {
-                return new Date(b.date) - new Date(a.date); // 日期对象相减实现排序
-            });
-
-            // 2. 动态生成HTML
-            sortedEvents.forEach(event => {
-                const card = `
-                    <div class="event-card">
-                        ${event.isNew ? '<span class="new-badge">最新动态</span>' : ''}
-                        <img src="${event.image}" alt="${event.title}" class="event-img">
-                        <div class="event-content">
-                            <h3 class="event-title">${event.title}</h3>
-                            <div class="event-meta">
-                                ${formatDate(event.date)} | ${event.location} <!-- 格式化日期显示 -->
-                            </div>
-                            <p class="event-description">${event.description}</p>
-                            <a href="#" class="btn">${event.cta}</a>
-                        </div>
-                    </div>
-                `;
-                container.innerHTML += card;
-            });
-        }
-
-        // ======================
-        // 工具函数：格式化日期
-        // ======================
-        function formatDate(dateStr) {
-            const date = new Date(dateStr);
-            return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
-        }
-
-        // 页面加载时自动渲染
-        window.onload = renderEvents;
-    </script>
+  <div class="container">
+    <h1>最新动态</h1>
+    <div id="events-container"></div>
+  </div>
+  <script src="events.js"></script>
+  <script>
+    function formatDate(dateStr) {
+      const date = new Date(dateStr);
+      return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
+    }
+    function renderEvents() {
+      const container = document.getElementById('events-container');
+      container.innerHTML = '';
+      const sortedEvents = [...events].sort((a,b)=> new Date(b.date)-new Date(a.date));
+      sortedEvents.forEach(event => {
+        const card = `
+          <div class="event-card">
+            ${event.isNew ? '<span class="new-badge">最新动态</span>' : ''}
+            <img src="${event.image}" alt="${event.title}" class="event-img">
+            <div class="event-content">
+              <h3 class="event-title">${event.title}</h3>
+              <div class="event-meta">${formatDate(event.date)} | ${event.location}</div>
+              <p class="event-description">${event.description}</p>
+              <a href="#" class="btn">${event.cta}</a>
+            </div>
+          </div>
+        `;
+        container.innerHTML += card;
+      });
+    }
+    renderEvents();
+  </script>
 </body>
 </html>
