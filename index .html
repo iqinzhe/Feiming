@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AX斧标贝斯 | 首页</title>
+<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+<link rel="manifest" href="/icons/manifest.json">
+<link href="/css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="global.css">
+<style>
+:root {
+  --neutral-gray: rgb(128, 128, 128);
+  --glass-dark: rgba(0, 0, 0, 0.3);
+  --text-white: #fff;
+  --card-min-width: 280px;
+}
+body {
+  background: var(--neutral-gray);
+  color: var(--text-white);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding-top: 60px;
+}
+
+/* 系列卡片布局 */
+.series-overview {
+  display: grid;
+  gap: 20px;
+  padding: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
+}
+
+/* 页面链接区 */
+.page-links {
+  margin: 40px 0;
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+.page-links ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.page-links li {
+  margin: 10px 0;
+}
+.page-links a {
+  color: var(--text-white);
+  font-size: 18px;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background: rgba(0,0,0,0.2);
+  transition: background 0.3s ease;
+}
+.page-links a:hover {
+  background: rgba(0,0,0,0.4);
+  text-decoration: none;
+}
+
+/* 最新动态 */
+.latest-news {
+  background: rgba(0,0,0,0.2);
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+}
+.news-item {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.news-item:last-child {
+  border-bottom: none;
+}
+.news-date {
+  font-weight: bold;
+  color: #ccc;
+  margin-bottom: 5px;
+}
+.read-more {
+  color: #4dabf7;
+  text-decoration: none;
+  font-size: 14px;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+/* 顶部固定定位 */
+.site-topbar {
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  right: 0;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 5%;
+}
+.site-bottombar {
+  margin-top: auto;
+  padding: 20px 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+main {
+  flex: 1;
+  padding-bottom: 20px;
+}
+
+.topbar__center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 移动菜单样式 */
+.mobile-nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--glass-dark);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+  padding: 10px 0;
+}
+
+.mobile-nav.mobile-nav--open {
+  display: block;
+}
+
+.mobile-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-nav__list li {
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.mobile-nav__list a {
+  color: var(--text-white);
+  text-decoration: none;
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  body { padding-top: 70px; }
+  .site-topbar { padding: 15px 8%; height: 60px; }
+  .topbar__logo { height: 35px; }
+  .page-content { padding: 30px 8%; }
+  
+  .page-links ul {
+    gap: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-links ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- 顶部导航栏 -->
+<header class="site-topbar">
+  <div class="topbar__left">
+    <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
+  </div>
+  <div class="topbar__center">
+    <a href="index.html"><img class="topbar__logo" src="./images/logo.png" alt="AX Guitar Logo"/></a>
+  </div>
+  <div class="topbar__right">
+    <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
+    <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
+  </div>
+  <nav class="mobile-nav" id="mobileNav">
+    <ul class="mobile-nav__list">
+      <li><a href="index.html">首页</a></li>
+      <li><a href="products.html">产品</a></li>
+      <li><a href="products.html?series=d">特色</a></li>
+      <li><a href="pricing.html">订购</a></li>
+      <li><a href="news.html">新闻</a></li>
+      <li><a href="support.html">支持</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <!-- 最新动态 -->
+  <section class="latest-news">
+    <h2>最新活动</h2>
+    <!-- 跳转到events.html的链接 -->
+    <a href="events.html" class="view-all" aria-label="查看所有活动">
+        阅读更多<span>→</span>
+    </a>
+</div>     
+  </section>
+
+  <!-- 系列卡片总览 -->
+  <section class="series-overview" id="seriesOverview"></section>
+
+  <!-- 页面导航链接 -->
+  <section class="page-links">
+    <ul>
+      <li><a href="pricing.html">订购产品</a></li>
+      <li><a href="support.html">支持中心</a></li>
+      <li><a href="news.html">官方信息</a></li>
+    </ul>
+  </section>
+</main>
+
+<!-- 底部栏 -->
+<footer class="site-bottombar" id="footerToTop">
+  <div class="bottombar__label">返回顶部</div>
+  <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
+</footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>
+
+<script>
+const seriesData = [
+  {id:'a', name:'Series A', desc:'螺栓固定结构带来的额外弹性和响应，提供高性价比的现代音色。', img:'series-a.jpg'},
+  {id:'b', name:'Series B', desc:'高端通颈连体工艺系列，奢华外观与稳定表现。', img:'series-b.jpg'},
+  {id:'c', name:'Series C', desc:'迷你便携式贝斯，短弦长设计，适合初学者。', img:'series-c.jpg'},
+  {id:'d', name:'Series D', desc:'革命性人体工学扭曲琴颈设计，提升舒适度。', img:'series-d.jpg'}
+];
+
+const seriesOverview = document.getElementById("seriesOverview");
+seriesOverview.innerHTML = seriesData.map(series => `
+  <a class="series-card" href="products.html?series=${series.id}">
+    <img src="images/${series.img}" alt="${series.name}" loading="lazy">
+    <div class="series-card-content">
+      <h2>${series.name}</h2>
+      <p>${series.desc}</p>
+      <div class="series-card-cta">查看全系列</div>
+    </div>
+  </a>
+`).join("");
+
+// 初始化移动菜单
+const menuBtn = document.getElementById('topbarMenuBtn');
+const mobileNav = document.getElementById('mobileNav');
+let menuOpen = false;
+
+menuBtn.addEventListener('click', function() {
+  menuOpen = !menuOpen;
+  if (menuOpen) {
+    mobileNav.classList.add('mobile-nav--open');
+  } else {
+    mobileNav.classList.remove('mobile-nav--open');
+  }
+});
+
+// 点击菜单外区域关闭菜单
+document.addEventListener('click', function(event) {
+  if (!mobileNav.contains(event.target) && event.target !== menuBtn) {
+    mobileNav.classList.remove('mobile-nav--open');
+    menuOpen = false;
+  }
+});
+
+</script>
+</body>
+</html>
