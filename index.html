@@ -116,14 +116,14 @@ body {
   padding: 20px;
   margin: 20px 0;
   border-radius: 8px;
+ max-height: 120px; /* 稍微增加高度以容纳更大字体 */
+  overflow: hidden;
+  position: relative;
 }
 .news-item {
   margin-bottom: 15px;
   padding-bottom: 15px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-.news-item:last-child {
-  border-bottom: none;
 }
 .news-date {
   font-weight: bold;
@@ -254,22 +254,18 @@ main {
 
 <main>
   <!-- 最新动态 -->
-<section class="events-section">
-    <div class="section-header">
-        <h2>最新动态</h2>
-        <a href="events.html" class="view-all">阅读更多 →</a>
+  <section class="latest-news">
+    <h2>最新动态</h2>
+    <div id="events-preview-container">
+      <div class="loading">加载最新动态...</div>
     </div>
-
-    <!-- 动态内容容器 -->
-    <div id="latest-events" class="events-preview">
-        <!-- 内容将通过JavaScript动态加载 -->
-    </div>
-</section>
+    <a href="events.html" class="view-all-news">查看更多动态 →</a>
+  </section>
 
   <!-- 系列卡片总览 -->
   <section class="series-overview" id="seriesOverview"></section>
 
-  <!-- ===== 紧凑型导航链接 (替换原.page-links) ===== -->
+  <!-- ===== 紧凑型导航链接 ===== -->
   <section class="compact-nav-links" aria-label="快捷导航">
     <div class="compact-nav-container">
       <!-- 订购产品 -->
@@ -314,6 +310,7 @@ const seriesData = [
   {id:'d', name:'Series D', desc:'革命性人体工学扭曲琴颈设计，提升舒适度。', img:'series-d.jpg'}
 ];
 
+// 渲染系列卡片
 const seriesOverview = document.getElementById("seriesOverview");
 seriesOverview.innerHTML = seriesData.map(series => `
   <a class="series-card" href="products.html?series=${series.id}">
