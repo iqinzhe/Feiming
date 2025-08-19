@@ -415,3 +415,20 @@ img {
     max(env(safe-area-inset-left), var(--spacing-sm));
 }
 
+/* 文字截断样式 */
+.event-card .description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* 限制3行 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.5;
+    max-height: 4.5em; /* 3行 x 1.5行高 */
+}
+
+/* 悬停时显示"点击展开"提示 */
+.event-card:hover .description::after {
+    content: " [点击展开]";
+    color: #e74c3c;
+    font-size: 0.9em;
+}
