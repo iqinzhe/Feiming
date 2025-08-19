@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>AX斧标BASS | 首页</title>
+<title>AX斧标贝斯 | 首页</title>
 <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
@@ -37,7 +37,7 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
 }
 
-/* 底部3个导航链接样式 */
+/* 紧凑型导航链接样式 */
 .compact-nav-links {
   margin: 20px 0;
 }
@@ -58,7 +58,7 @@ body {
   text-decoration: none;
   color: var(--text-white);
   background: rgba(0,0,0,0.2);
-  height: 55px;
+  height: 45px;
   aspect-ratio: auto;
   border-radius: 8px;
   padding: 12px 8px;
@@ -72,8 +72,8 @@ body {
 }
 
 .nav-icon {
-  font-size: 2.5rem;
-  margin-bottom: 30px;
+  font-size: 1.5rem;
+  margin-bottom: 8px;
 }
 
 .nav-text {
@@ -116,7 +116,7 @@ body {
   padding: 20px;
   margin: 20px 0;
   border-radius: 8px;
-  height: 150px;
+  height: 135px;
   overflow: hidden;
   position: relative;
 }
@@ -136,6 +136,14 @@ body {
   font-size: 14px;
   display: inline-block;
   margin-top: 5px;
+}
+
+.news-desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* 顶部固定定位 */
@@ -367,12 +375,11 @@ const latestEvent = [...events].sort((a, b) => new Date(b.date) - new Date(a.dat
 const previewContainer = document.getElementById("events-preview-container");
 if (latestEvent) {
   previewContainer.innerHTML = `
-    <div class="news-item">
+    <a href="events.html" class="news-item" style="display:block; color:inherit; text-decoration:none;">
       <div class="news-date">${formatDate(latestEvent.date)} | ${latestEvent.location}</div>
       <h4>${latestEvent.title}</h4>
-      <p>${latestEvent.description.slice(0, 60)}...</p>
-      <a href="events.html" class="read-more">阅读全文</a>
-    </div>
+      <p class="news-desc">${latestEvent.description}</p>
+    </a>
   `;
 }
 
