@@ -53,7 +53,15 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-height: 7.5em; /* 约等于 5 行高度，避免撑满屏幕 */
+  max-height: 7.5em; /* 约等于 5 行高度 */
+}
+
+/* 修复最新动态栏占满全屏的问题 */
+.events-section,
+#latest-events {
+  height: auto !important;   /* 高度自适应内容 */
+  max-height: none !important;
+  overflow: visible !important;
 }
 
 /* 顶部固定定位 */
