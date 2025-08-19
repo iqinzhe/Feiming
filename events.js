@@ -1,22 +1,17 @@
 const events = [
   {
-    id: 1,
-    title: "自然扭曲琴颈与胴身系列发布",
-    date: "2025-08-15",
-    location: "北京123 AX加工中心",
-    image: "images/example-1.jpg",
-    description: "我们的自然扭曲设计能够与人体实现更无缝的交互。其符合人体工程学的设计提高了手部效率，降低劳损风险。",
-    cta: "预约参加发布会",
-    isNew: true
+    date: "2025-08-10",
+    title: "新品 AXB-500 上市",
+    description: "我们正式推出 AXB-500 电贝斯，采用全新拾音器系统，适合舞台和录音室使用。"
   },
   {
-    id: 2,
-    title: "专业品质。经典 AX设计。",
-    date: "2025-06-15",
-    location: "上海567 AX加工中心",
-    image: "images/example-2.jpg",
-    description: "AX E series 新增了绗缝枫木面板和琴头，赋予舞台风格和可靠品质，配备24品、34英寸弦长与双线圈拾音器。",
-    cta: "预约参加发布会",
-    isNew: false
+    date: "2025-07-15",
+    title: "AX Guitar 参展雅加达乐器展",
+    description: "AX Guitar 团队参加了 2025 雅加达国际乐器展，展示了最新系列贝斯与吉他。"
+  },
+  {
+    date: "2025-06-01",
+    title: "社区活动日",
+    description: "AX Guitar 在泗水举办了一场音乐社区活动，欢迎所有贝斯和吉他爱好者参与交流。"
   }
 ];
