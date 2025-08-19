@@ -61,9 +61,9 @@ body {
  height: 45px; /* 直接设置固定高度（根据需求调整数值） */
   aspect-ratio: auto; /* 如果固定高度则建议移除宽高比限制 */
   border-radius: 8px;
-  padding: 12px 8px;
+  padding: 8px 8px;/* 微调宽高比 */
   transition: all 0.2s ease;
-  aspect-ratio: 1/1.4; /* 1:1.68的宽高比 */
+  aspect-ratio: 1/1.4; /* 1:1.68的宽高比，减小第二个数字会降低高度 */
 }
 
 .compact-nav-item:hover {
@@ -77,7 +77,7 @@ body {
 }
 
 .nav-text {
-  font-size: 0.9rem;
+  font-size: 1.2rem;/* 同步缩小图标 */
   font-weight: bold;
   text-align: center;
   white-space: nowrap;
@@ -96,11 +96,10 @@ body {
 
 @media (min-width: 768px) {
   .compact-nav-item {
-    padding: 15px 10px;
+    padding: 6px 4px;/* 移动端更紧凑 */
   }
   .nav-icon {
-    font-size: 1.2rem;
-  }
+    font-size: 1.2rem;/* 同步缩小图标 */  }
   .nav-text {
     font-size: 1rem;
     white-space: normal;
