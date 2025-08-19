@@ -1,270 +1,171 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>品牌大事记 | AX新闻中心</title>
-<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-<link rel="manifest" href="/icons/manifest.json">
-<link href="../css/style.css" rel="stylesheet"/> 
-<link rel="stylesheet" href="global.css">
-  <style>
-    
-    /* ===== 时间轴特有样式 ===== */
-    .timeline-header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    
-    .timeline {
-      position: relative;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px 0;
-    }
-    
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: rgba(255,255,255,0.2);
-      transform: translateX(-50%);
-    }
-    
-    .timeline-item {
-      position: relative;
-      margin-bottom: 40px;
-    }
-    
-    .timeline-content {
-      width: calc(50% - 40px);
-      padding: 20px;
-      background: rgba(0,0,0,0.3);
-      border-radius: 8px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-    }
-    
-    .timeline-item:nth-child(odd) .timeline-content {
-      margin-left: auto;
-    }
-    
-    .timeline-date {
-      position: absolute;
-      top: 20px;
-      width: 100px;
-      text-align: center;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0,0,0,0.5);
-      padding: 5px 10px;
-      border-radius: 20px;
-      font-weight: bold;
-    }
-    
-    .back-link {
-      display: inline-block;
-      margin-bottom: 20px;
-      color: white;
-      text-decoration: none;
-    }
-    
-    @media (max-width: 768px) {
-      .timeline::before {
-        left: 20px;
-      }
-      
-      .timeline-content {
-        width: calc(100% - 60px);
-        margin-left: 40px !important;
-      }
-      
-      .timeline-date {
-        left: 20px;
-        transform: none;
-        text-align: left;
-      }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AX斧标BASS</title>
+    <style>
+        /* === 基础样式 === */
+        body {
+            font-family: 'Helvetica', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: #f8f8f8;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin: 40px 0 30px;
+            color: #222;
+            font-weight: 300;
+            font-size: 2rem;
+        }
 
-/* 顶部固定定位 */
-.site-topbar {
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  right: 0;
-  z-index: 1000;
-  backdrop-filter: blur(5px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 5%;
-}
-.site-bottombar {
-  margin-top: auto;
-  padding: 20px 0;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-main {
-  flex: 1;
-  padding-bottom: 20px;
-}
+        /* === 卡片样式 === */
+        .event-card {
+            position: relative; /* 为new-badge提供定位基准 */
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            transition: transform 0.3s;
+        }
+        .event-card:hover {
+            transform: translateY(-3px);
+        }
+        .event-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+        }
+        .event-content {
+            padding: 25px;
+        }
 
-.topbar__center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-/* 移动菜单样式 */
-.mobile-nav {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: var(--glass-dark);
-  backdrop-filter: blur(10px);
-  z-index: 999;
-  padding: 10px 0;
-}
-
-.mobile-nav.mobile-nav--open {
-  display: block;
-}
-
-.mobile-nav__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.mobile-nav__list li {
-  padding: 14px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-.mobile-nav__list a {
-  color: var(--text-white);
-  text-decoration: none;
-  display: block;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-@media (min-width: 768px) {
-  body { padding-top: 70px; }
-  .site-topbar { padding: 15px 8%; height: 60px; }
-  .topbar__logo { height: 35px; }
-  .page-content { padding: 30px 8%; }
-  
-  .page-links ul {
-    gap: 30px;
-  }
-}
-
-@media (max-width: 600px) {
-  .page-links ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
-</style>
+        /* === "最新动态"角标样式 === */
+        .new-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #e74c3c;
+            color: white;
+            padding: 3px 8px;
+            font-size: 0.8rem;
+            border-radius: 3px;
+        }
+        
+        /* === 按钮样式 === */
+        .btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background: #222;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <h1>最新动态</h1>
+        
+        <!-- 活动卡片将动态插入到这个容器中 -->
+        <div id="events-container"></div>
+    </div>
 
-<!-- 标准顶部栏 -->
-<header class="site-topbar">
-  <div class="topbar__left">
-    <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
-  </div>
-  
-  <div class="topbar__center">
-    <a href="../index.html">
-      <img class="topbar__logo" src="../images/logo.png" alt="AX Guitar Logo"/>
-    </a>
-  </div>
-  <div class="topbar__right">
-    <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
-    <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
-  </div>
-  
-  <nav class="mobile-nav" id="mobileNav" aria-label="主导航">
-    <ul class="mobile-nav__list">
-      <li><a href="index.html">首页</a></li>
-      <li><a href="products.html">产品</a></li>
-      <li><a href="products.html?series=d">特色</a></li>
-      <li><a href="pricing.html">订购</a></li>
-      <li><a href="news.html">新闻</a></li>
-      <li><a href="support.html">支持</a></li>
-    </ul>
-  </nav>
-</header>
+    <script>
+        // ======================
+        // 数据层：定义活动数组
+        // ======================
+        const events = [
+            // ======================
+            // 活动项目1开始（自然扭曲系列）
+            // ======================
+            {
+                id: 1,
+                title: "自然扭曲琴颈与胴身系列发布",
+                date: "2025-08-15", // 格式：YYYY-MM-DD（便于自动排序）
+                location: "北京123 AX加工中心",
+                image: "images/examp000.jpg",
+                description: "我们的自然扭曲设计能够与人体实现更无缝的交互。其符合人体工程学的设计提高了手部、腕部和手臂的效率，降低了患上腕管综合症和肌肉腱炎等重复性劳损的风险。还能减轻对此类患者的伤害。",
+                cta: "预约参加发布会",
+                isNew: true // 标记是否为最新活动
+            },
+            // ======================
+            // 活动项目1结束
+            // ======================
+            
+            // ======================
+            // 活动项目2开始（经典AX设计）
+            // ======================
+            {
+                id: 2,
+                title: "专业品质。经典 AX设计。",
+                date: "2025-06-15", // 格式：YYYY-MM-DD（便于自动排序）
+                location: "上海567 AX加工中心",
+                image: "images/examp000.jpg",
+                description: "AX E series  新增了绗缝枫木面板和配套的绗缝枫木琴头。这款贝斯精致的美学设计赋予了它舞台演出般的风格和可靠的品质。AX E series 拥有 24 品、34英寸有效弦长和宽薄枫木琴颈，演奏舒适，令人爱不释手。85/15 \"S\" 双线圈拾音器和三档拨片开关，搭配推拉式线圈音色控制，带来多功能性和全频音色。它是一款适合巡演音乐家、专业乐手和家庭吉他手使用的乐器。",
+                cta: "预约参加发布会",
+                isNew: false // 标记是否为最新活动
+            }
+            // ======================
+            // 活动项目2结束
+            // ======================
+            
+            // 可以在此处添加更多活动项目...
+        ];
 
-<!-- 页面内容 -->
-<main class="page-content">
-  <a href="../news.html" class="back-link">← 返回新闻中心</a>
-  
-  <div class="timeline-header">
-    <h1>AX品牌大事记</h1>
-    <p>从代工到自主品牌的蜕变之路</p>
-  </div>
-  
-  <div class="timeline">
-    <div class="timeline-item">
-      <div class="timeline-date">2000年</div>
-      <div class="timeline-content">
-        <h3>创始人进入乐器行业</h3>
-        <p>加入国内知名OEM吉他代工厂，开始积累乐器制造经验，学习传统制琴工艺。</p>
-      </div>
-    </div>
-    
-    <div class="timeline-item">
-      <div class="timeline-date">2010年</div>
-      <div class="timeline-content">
-        <h3>海外品牌任职</h3>
-        <p>加入国际知名吉他品牌，负责产品设计与生产工艺改进，掌握现代制琴技术。</p>
-      </div>
-    </div>
-    
-    <div class="timeline-item">
-      <div class="timeline-date">2025年</div>
-      <div class="timeline-content">
-        <h3>AX品牌创立</h3>
-        <p>在上海正式注册AX品牌，推出首款Model A贝斯，融合20年制琴经验。</p>
-      </div>
-    </div>
-    
-    <div class="timeline-item">
-      <div class="timeline-date">2026年</div>
-      <div class="timeline-content">
-        <h3>获得行业认可</h3>
-        <p>AX贝斯被多位知名音乐人选用，产品进入专业乐器店，确立品牌地位。</p>
-      </div>
-    </div>
-    
-    <div class="timeline-item">
-      <div class="timeline-date">2027年</div>
-      <div class="timeline-content">
-        <h3>国际参展</h3>
-        <p>首次参加NAMM Show国际乐器展，获得全球乐手和媒体的广泛关注。</p>
-      </div>
-    </div>
-  </div>
-</main>
+        // ======================
+        // 逻辑层：渲染活动卡片
+        // ======================
+        function renderEvents() {
+            const container = document.getElementById('events-container');
+            container.innerHTML = ''; // 清空容器
 
-<!-- 底部栏 -->
-<footer class="site-bottombar" id="footerToTop">
-  <div class="bottombar__label">返回顶部</div>
-  <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
-</footer>
+            // 1. 按日期降序排序（最新在最前）
+            const sortedEvents = [...events].sort((a, b) => {
+                return new Date(b.date) - new Date(a.date); // 日期对象相减实现排序
+            });
 
-<script src="/js/main.js"></script>
+            // 2. 动态生成HTML
+            sortedEvents.forEach(event => {
+                const card = `
+                    <div class="event-card">
+                        ${event.isNew ? '<span class="new-badge">最新动态</span>' : ''}
+                        <img src="${event.image}" alt="${event.title}" class="event-img">
+                        <div class="event-content">
+                            <h3 class="event-title">${event.title}</h3>
+                            <div class="event-meta">
+                                ${formatDate(event.date)} | ${event.location} <!-- 格式化日期显示 -->
+                            </div>
+                            <p class="event-description">${event.description}</p>
+                            <a href="#" class="btn">${event.cta}</a>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += card;
+            });
+        }
+
+        // ======================
+        // 工具函数：格式化日期
+        // ======================
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
+        }
+
+        // 页面加载时自动渲染
+        window.onload = renderEvents;
+    </script>
 </body>
 </html>
