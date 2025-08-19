@@ -4,8 +4,18 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AX斧标贝斯 | 首页</title>
-  <link href="/css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="global.css">
+  <link href="/css/style.css" rel="stylesheet">
+  <style>
+    /* 新增：限制动态区域高度为6行左右 */
+    .events-preview {
+      max-height: 150px;  /* 根据实际字体大小调整 */
+      overflow: hidden;   /* 隐藏超出部分 */
+    }
+    .news-item p {
+      margin: 0.5em 0;   /* 控制段落间距 */
+    }
+  </style>
 </head>
 <body>
 <header class="site-topbar">
@@ -32,7 +42,7 @@ function formatDate(dateStr) {
   const date = new Date(dateStr);
   return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
 }
-function truncateText(text, maxLength = 80) {
+function truncateText(text, maxLength = 100) {  /* 调整字符数限制 */
   return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
 }
 function renderLatestEvents() {
