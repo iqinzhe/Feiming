@@ -25,7 +25,6 @@ img {
 /* ===== 系列卡片核心样式 ===== */
 .series-card {
   display: block;
-  background: rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   overflow: hidden;
   transition: transform 0.2s ease;
@@ -34,7 +33,6 @@ img {
 }
 
 .series-card:hover {
-  background: rgba(0, 0, 0, 0.3);
   transform: translateY(-3px);
 }
 
@@ -42,10 +40,16 @@ img {
   width: 100%;
   height: 160px;
   object-fit: cover;
+  display: block; /* 新增：确保图片无间隙 */
 }
 
 .series-card-content {
+  background: rgba(0, 0, 0, 0.2);
   padding: 15px;
+}
+
+.series-card:hover .series-card-content {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .series-card h2 {
