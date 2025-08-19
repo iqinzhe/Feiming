@@ -58,12 +58,12 @@ body {
   text-decoration: none;
   color: var(--text-white);
   background: rgba(0,0,0,0.2);
-  height: 45px; /* 直接设置固定高度（根据需求调整数值） */
-  aspect-ratio: auto; /* 如果固定高度则建议移除宽高比限制 */
+  height: 45px;
+  aspect-ratio: auto;
   border-radius: 8px;
   padding: 12px 8px;
   transition: all 0.2s ease;
-  aspect-ratio: 1/1.4; /* 1:1.68的宽高比 */
+  aspect-ratio: 1/1.4;
 }
 
 .compact-nav-item:hover {
@@ -116,7 +116,7 @@ body {
   padding: 20px;
   margin: 20px 0;
   border-radius: 8px;
-  height: 135px; /* 稍微增加高度以容纳更大字体 */
+  height: 135px;
   overflow: hidden;
   position: relative;
 }
@@ -268,21 +268,16 @@ main {
   <!-- ===== 紧凑型导航链接 ===== -->
   <section class="compact-nav-links" aria-label="快捷导航">
     <div class="compact-nav-container">
-      <!-- 订购产品 -->
       <a href="pricing.html" class="compact-nav-item" aria-label="订购产品">
         <span class="nav-icon" role="img" aria-hidden="true">🛒</span>
         <span class="nav-text">订购产品</span>
         <span class="nav-tooltip">查看价格与购买方式</span>
       </a>
-      
-      <!-- 支持中心 -->
       <a href="support.html" class="compact-nav-item" aria-label="支持中心">
         <span class="nav-icon" role="img" aria-hidden="true">🛠️</span>
         <span class="nav-text">支持中心</span>
         <span class="nav-tooltip">获取帮助与文档</span>
       </a>
-      
-      <!-- 官方信息 -->
       <a href="news.html" class="compact-nav-item" aria-label="官方信息">
         <span class="nav-icon" role="img" aria-hidden="true">ℹ️</span>
         <span class="nav-text">官方信息</span>
@@ -337,7 +332,6 @@ menuBtn.addEventListener('click', function() {
   }
 });
 
-// 点击菜单外区域关闭菜单
 document.addEventListener('click', function(event) {
   if (!mobileNav.contains(event.target) && event.target !== menuBtn) {
     mobileNav.classList.remove('mobile-nav--open');
@@ -345,4 +339,45 @@ document.addEventListener('click', function(event) {
   }
 });
 
+// ===== 最新动态预览逻辑 =====
+const events = [
+  {
+    id: 1,
+    title: "自然扭曲琴颈与胴身系列发布",
+    date: "2025-08-15",
+    location: "北京123 AX加工中心",
+    image: "images/examp000.jpg",
+    description: "我们的自然扭曲设计能够与人体实现更无缝的交互。其符合人体工程学的设计提高了手部、腕部和手臂的效率...",
+    cta: "预约参加发布会",
+    isNew: true
+  },
+  {
+    id: 2,
+    title: "专业品质。经典 AX设计。",
+    date: "2025-06-15",
+    location: "上海567 AX加工中心",
+    image: "images/examp000.jpg",
+    description: "AX E series 新增了绗缝枫木面板和配套的绗缝枫木琴头...",
+    cta: "预约参加发布会",
+    isNew: false
+  }
+];
+
+const latestEvent = [...events].sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+const previewContainer = document.getElementById("events-preview-container");
+if (latestEvent) {
+  previewContainer.innerHTML = `
+    <div class="news-item">
+      <div class="news-date">${formatDate(latestEvent.date)} | ${latestEvent.location}</div>
+      <h4>${latestEvent.title}</h4>
+      <p>${latestEvent.description.slice(0, 60)}...</p>
+      <a href="events.html" class="read-more">阅读全文</a>
+    </div>
+  `;
+}
+
+function formatDate(dateStr) {
+  const date = new Date(dateStr);
+  return `${date.getFullYear()}年${date.getMonth()+1}月${date.getDate()}日`;
+}
 </script>
