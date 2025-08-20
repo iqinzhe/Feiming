@@ -37,7 +37,7 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
 }
 
-/* 紧凑型导航链接样式 */
+/* 下部3个导航按钮样式 */
 .compact-nav-links {
   margin: 20px 0;
 }
@@ -116,7 +116,7 @@ body {
   padding: 20px;
   margin: 20px 0;
   border-radius: 8px;
-  height: 160px;
+  height: 180px;
   overflow: hidden;
   position: relative;
 }
@@ -189,15 +189,15 @@ main {
 
 /* slogan 样式 + 动画 */
 .site-slogan {
-  font-size: 1.5rem; /* 调大桌面端字体 */
+  font-size: 2.5rem; /* 调大桌面端字体 */
   font-weight: bold;
   color: #f5f5f5;
   margin-top: 6px;
-  letter-spacing: 1.2px;
+  letter-spacing: 1.8px;
   font-style: italic;
   opacity: 0;
-  animation: fadeInSlogan 2.5s ease forwards, breathing 6s ease-in-out infinite;
-  animation-delay: 0s, 2.5s; /* 先淡入，之后呼吸循环 */
+  animation: fadeInSlogan .5s ease forwards, breathing 3s ease-in-out infinite;
+  animation-delay: 0s, .5s; /* 先淡入，之后呼吸循环 */
 }
 
 @keyframes fadeInSlogan {
