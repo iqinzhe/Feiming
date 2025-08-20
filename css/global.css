@@ -27,8 +27,8 @@ h1, h2, h3, h4, h5, h6 {
 h1 { font-size: 1.7rem;   /* 32px */ }
 h2 { font-size: 1.6rem;/* 28px */ }
 h3 { font-size: 1.5rem; /* 24px */ }
-h4 { font-size: 1.25rem;/* 20px */ }
-h5 { font-size: 1.125rem;/* 18px */ }
+h4 { font-size: 1.3rem;/* 20px */ }
+h5 { font-size: 1.2rem;/* 18px */ }
 h6 { font-size: 1rem;   /* 16px */ }
 
 /* === 段落 === */
