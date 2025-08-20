@@ -240,8 +240,23 @@ img {
   padding: var(--spacing-sm);
 }
 
+/* A系列专属样式 */
+.series-card[href*="series=a"] {
+  border-left: 4px solid rgba(100, 181, 246, 0.7);
+}
+
+/* B系列专属样式 */
+.series-card[href*="series=b"] {
+  border-left: 4px solid rgba(100, 181, 246, 0.7);
+}
+
 /* C系列专属样式 */
 .series-card[href*="series=c"] {
+  border-left: 4px solid rgba(100, 181, 246, 0.7);
+}
+
+/* D系列专属样式 */
+.series-card[href*="series=d"] {
   border-left: 4px solid rgba(100, 181, 246, 0.7);
 }
 
