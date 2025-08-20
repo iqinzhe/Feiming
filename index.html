@@ -190,18 +190,18 @@ main {
   font-style: italic;
   opacity: 0;
   animation: fadeInSlogan 2.5s ease forwards, breathing 6s ease-in-out infinite;
-  animation-delay: 0s, 2.5s; /* 先执行淡入，之后呼吸循环 */
+  animation-delay: 0s, 2.5s; /* 先淡入，之后呼吸循环 */
 }
 
 @keyframes fadeInSlogan {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 0.95; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to { opacity: 0.95; transform: translateY(0) scale(1); }
 }
 
 @keyframes breathing {
-  0%   { opacity: 0.95; }
-  50%  { opacity: 0.7; }
-  100% { opacity: 0.95; }
+  0%   { opacity: 0.95; transform: scale(1); }
+  50%  { opacity: 0.7; transform: scale(1.03); }
+  100% { opacity: 0.95; transform: scale(1); }
 }
 
 /* 移动菜单样式 */
