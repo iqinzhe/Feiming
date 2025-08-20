@@ -177,6 +177,31 @@ main {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  text-align: center;
+}
+
+/* slogan 样式 + 动画 */
+.site-slogan {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #f5f5f5;
+  margin-top: 6px;
+  letter-spacing: 1px;
+  font-style: italic;
+  opacity: 0;
+  animation: fadeInSlogan 2.5s ease forwards, breathing 6s ease-in-out infinite;
+  animation-delay: 0s, 2.5s; /* 先执行淡入，之后呼吸循环 */
+}
+
+@keyframes fadeInSlogan {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 0.95; transform: translateY(0); }
+}
+
+@keyframes breathing {
+  0%   { opacity: 0.95; }
+  50%  { opacity: 0.7; }
+  100% { opacity: 0.95; }
 }
 
 /* 移动菜单样式 */
@@ -243,6 +268,7 @@ main {
   </div>
   <div class="topbar__center">
     <a href="index.html"><img class="topbar__logo" src="./images/logo.png" alt="AX Guitar Logo"/></a>
+    <div class="site-slogan">每一次拨弦，都是一次心灵的飞舞共鸣！</div>
   </div>
   <div class="topbar__right">
     <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
