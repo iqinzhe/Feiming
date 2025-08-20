@@ -118,9 +118,10 @@ main {
 }
 
 @media (min-width: 768px) {
-  body { padding-top: 70px; }
-  .site-topbar { padding: 15px 8%; height: 60px; }
-  .topbar__logo { height: 35px; }
+  /* C系列专属样式 */
+.series-card[href*="series=c"] {
+  border-left: 4px solid rgba(100, 181, 246, 0.7);
+} { height: 35px; }
   .page-content { padding: 30px 8%; }
   
   .page-links ul {
@@ -146,7 +147,7 @@ main {
   </header>
 
   <main>
-    <h1>在线订购</h1>
+    <h2>在线订购</h2>
     <form id="orderForm">
       <!-- 订购人信息 -->
       <label for="customerName">收货人 *</label>
