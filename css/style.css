@@ -250,6 +250,8 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 20px;
+  overflow: hidden;
   gap: 5px;
   padding: 8px 15px;
   cursor: pointer;
