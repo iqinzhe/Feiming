@@ -188,28 +188,22 @@ main {
 }
 
 /* slogan 样式 + 动画 */
-.site-slogan {
-  font-size: 2.5rem; /* 调大桌面端字体 */
-  font-weight: bold;
-  color: #f5f5f5;
-  margin-top: 6px;
-  letter-spacing: 1.8px;
-  font-style: italic;
-  opacity: 0;
-  animation: fadeInSlogan .5s ease forwards, breathing 3s ease-in-out infinite;
-  animation-delay: 0s, .5s; /* 先淡入，之后呼吸循环 */
+  font-size: 1.6rem;       /* 字体更大，更醒目 */
+  font-weight: bold;       /* 粗体，强调力度 */
+  background: linear-gradient(90deg, #FFD700, #FFFFFF, #FFD700);
+  -webkit-background-clip: text;     /* 渐变色文字 */
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 12px rgba(255, 215, 0, 0.6); /* 金色光晕 */
+  margin: 20px auto;
+  text-align: center;
+  animation: pulseAd 3s ease-in-out infinite;   /* 脉动动画 */
+}
+@keyframes pulseAd {
+  0%   { text-shadow: 0 0 8px rgba(255,215,0,0.4); transform: scale(1); }
+  50%  { text-shadow: 0 0 18px rgba(255,215,0,0.8); transform: scale(1.05); }
+  100% { text-shadow: 0 0 8px rgba(255,215,0,0.4); transform: scale(1); }
 }
 
-@keyframes fadeInSlogan {
-  from { opacity: 0; transform: translateY(10px) scale(0.98); }
-  to { opacity: 0.95; transform: translateY(0) scale(1); }
-}
-
-@keyframes breathing {
-  0%   { opacity: 0.95; transform: scale(1); }
-  50%  { opacity: 0.7; transform: scale(1.03); }
-  100% { opacity: 0.95; transform: scale(1); }
-}
 
 /* 移动端字体调整 */
 @media (max-width: 600px) {
