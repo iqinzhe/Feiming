@@ -1,45 +1,60 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>最终完整版网页</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>网页模板</title>
+  <link rel="stylesheet" href="css/level1.css">
 </head>
 <body>
+
   <!-- 顶部栏 -->
-  <header class="topbar">
-    <div class="hamburger" id="hamburger">☰</div>
-    <div class="center-box">
-      <img src="logo.png" alt="Logo" class="logo">
-      <p class="slogan">每次拨弦都是心灵的飞舞共鸣！</p>
+  <header class="top-bar">
+    <div class="top-row">
+      <!-- 汉堡菜单 -->
+      <div class="hamburger" id="hamburger">
+        ☰
+      </div>
+
+      <!-- logo + 宣传语 -->
+      <div class="center-box">
+        <img src="images/logo.png" alt="Logo" class="logo">
+        <p class="slogan">每次拨弦都是心灵的飞舞共鸣！</p>
+      </div>
+
+      <!-- 分享按钮 -->
+      <div class="share" id="shareBtn">
+        ⤴
+      </div>
     </div>
-    <div class="share" id="share">🔗</div>
+
+    <!-- 汉堡菜单展开内容 -->
+    <nav class="menu" id="menu">
+      <ul>
+        <li><a href="#">首页</a></li>
+        <li><a href="#">产品</a></li>
+        <li><a href="#">关于我们</a></li>
+        <li><a href="#">联系</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <!-- 汉堡菜单展开 -->
-  <nav class="menu" id="menu">
-    <a href="#home">首页</a>
-    <a href="#products">产品</a>
-    <a href="#about">关于我们</a>
-    <a href="#contact">联系我们</a>
-  </nav>
-
-  <!-- 中间内容 -->
-  <main>
-    <section>
-      <h1>欢迎来到吉他世界</h1>
-      <p>这里是中间内容区，背景为中性灰 RGB(200,200,200)。</p>
-    </section>
+  <!-- 中间主体 -->
+  <main class="content">
+    <h1>欢迎来到音乐世界</h1>
+    <p>这里是网页内容区域……</p>
+    <h2>小标题示例</h2>
+    <p>更多文本演示……</p>
   </main>
 
   <!-- 底部栏 -->
   <footer class="footer" id="footer">
-    <img src="logo.png" alt="Logo" class="footer-logo">
-    <p>返回顶部</p>
+    <div class="footer-content">
+      <img src="images/logo.png" alt="Logo" class="footer-logo">
+      <p>返回顶部</p>
+    </div>
   </footer>
 
-  <!-- 功能JS -->
-  <script src="js/script.js"></script>
+  <script src="js/level1.js"></script>
 </body>
 </html>
