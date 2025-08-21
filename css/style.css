@@ -384,7 +384,7 @@ img {
 
 .compact-nav-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: row;
   gap: 10px;
   padding: 0 15px;
 }
