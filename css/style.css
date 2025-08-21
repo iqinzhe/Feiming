@@ -184,13 +184,13 @@ img {
 
 .menu li a {
   text-decoration: none;
-  color: #4361ee;
+  color: #4361ee;/* 宝石蓝 */
   font-weight: bold;
   display: block;
   min-height: 50px;
   display: flex;
   align-items: center;
-  font-size: 18px;
+  font-size: 25px;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
