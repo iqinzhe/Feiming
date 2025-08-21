@@ -280,7 +280,7 @@ img {
 
 .series-card img {
     width: 100%;
-    height: 220px; /* 图片固定高度 */
+    height: auto; /* 图片固定高度 */
     object-fit: cover;
     display: block;
 }
@@ -288,7 +288,7 @@ img {
 .series-card-content {
     padding: 15px;
     background: rgba(0, 0, 0, 0.6);
-    height: 160px; /* 内容区域固定高度 */
+    height: auto; /* 内容区域固定高度 */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
