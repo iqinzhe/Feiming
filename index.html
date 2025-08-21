@@ -9,54 +9,38 @@
 </head>
 <body>
 
+  <!-- 顶部栏 -->
+  <header class="topbar">
+    <div class="hamburger" id="hamburger">&#9776;</div>
+    <img src="images/logo.png" alt="Logo" class="logo">
+    <p class="slogan">每次拨弦都是心灵的飞舞共鸣！</p>
+    <input type="text" placeholder="搜索..." class="search-box" id="searchBox">
+    <button class="share-btn" id="shareBtn">🔗</button>
+  </header>
+
+  <!-- 菜单展开 -->
+  <nav class="menu" id="menu">
+    <ul>
+      <li><a href="#">首页</a></li>
+      <li><a href="#">产品</a></li>
+      <li><a href="#">关于我们</a></li>
+      <li><a href="#">联系</a></li>
+    </ul>
+  </nav>
+
+  <!-- 中间内容 -->
+  <main class="content">
+    <h1>欢迎来到吉他世界</h1>
+    <p>这里是网页主体内容区域，可以根据需要扩展。</p>
+    <h2>二级标题</h2>
+    <p>一些示例文字……</p>
+  </main>
+
   <!-- 底部栏 -->
   <footer class="footer" id="footer">
     <img src="images/logo.png" alt="Logo" class="footer-logo">
     <span>返回顶部</span>
   </footer>
 
-  <script src="/js/main.js"></script>
 </body>
 </html>
-
-<script>
-const seriesData = [
-  {id:'a', name:'Series A', desc:'螺栓固定结构带来的额外弹性和响应，提供高性价比的现代音色。', img:'series-a.jpg'},
-  {id:'b', name:'Series B', desc:'高端通颈连体工艺系列，奢华外观与稳定表现。', img:'series-b.jpg'},
-  {id:'c', name:'Series C', desc:'迷你便携式贝斯，短弦长设计，适合初学者。', img:'series-c.jpg'},
-  {id:'d', name:'Series D', desc:'革命性人体工学扭曲琴颈设计，提升舒适度。', img:'series-d.jpg'}
-];
-
-// 渲染系列卡片
-const seriesOverview = document.getElementById("seriesOverview");
-seriesOverview.innerHTML = seriesData.map(series => `
-  <a class="series-card" href="products.html?series=${series.id}">
-    <img src="images/${series.img}" alt="${series.name}" loading="lazy">
-    <div class="series-card-content">
-      <h2>${series.name}</h2>
-      <p>${series.desc}</p>
-      <div class="series-card-cta">查看全系列</div>
-    </div>
-  </a>
-`).join("");
-
-// 初始化移动菜单
-const menuBtn = document.getElementById('topbarMenuBtn');
-const mobileNav = document.getElementById('mobileNav');
-let menuOpen = false;
-
-menuBtn.addEventListener('click', function() {
-  menuOpen = !menuOpen;
-  if (menuOpen) {
-    mobileNav.classList.add('mobile-nav--open');
-  } else {
-    mobileNav.classList.remove('mobile-nav--open');
-  }
-});
-
-document.addEventListener('click', function(event) {
-  if (!mobileNav.contains(event.target) && event.target !== menuBtn) {
-    mobileNav.classList.remove('mobile-nav--open');
-    menuOpen = false;
-  }
-});
