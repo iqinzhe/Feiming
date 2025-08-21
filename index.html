@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>网页模板</title>
-  <link rel="stylesheet" href="css/level1.css">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>AX斧标贝斯 | 首页</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="manifest" href="/icons/manifest.json">
+    <link href="/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="global.css">
+    <style>
+      /* 这里可以放置页面特定的CSS样式 */
+    </style>
 </head>
 <body>
-
   <!-- 顶部栏 -->
   <header class="top-bar">
     <div class="top-row">
@@ -31,30 +38,123 @@
     <!-- 汉堡菜单展开内容 -->
     <nav class="menu" id="menu">
       <ul>
-        <li><a href="#">首页</a></li>
-        <li><a href="#">产品</a></li>
-        <li><a href="#">关于我们</a></li>
-        <li><a href="#">联系</a></li>
+        <li><a href="index.html">首页</a></li>
+        <li><a href="products.html">产品</a></li>
+        <li><a href="products.html?series=d">特色</a></li>
+        <li><a href="pricing.html">订购</a></li>
+        <li><a href="support.html">支持</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- 中间主体 -->
-  <main class="content">
-    <h1>欢迎来到音乐世界</h1>
-    <p>这里是网页内容区域……</p>
-    <h2>小标题示例</h2>
-    <p>更多文本演示……</p>
+  <main>
+    <!-- 最新动态 -->
+    <section class="latest-news">
+      <h3>最新动态</h3>
+      <div id="events-preview-container">
+        <div class="loading">加载最新动态...</div>
+      </div>
+      <a href="events.html" class="view-all-news">查看更多动态 →</a>
+    </section>
+
+    <!-- 系列卡片总览 -->
+    <section class="series-overview" id="seriesOverview"></section>
+
+    <!-- 紧凑型导航链接 -->
+    <section class="compact-nav-links" aria-label="快捷导航">
+      <div class="compact-nav-container">
+        <a href="pricing.html" class="compact-nav-item" aria-label="订购产品">
+          <span class="nav-icon" role="img" aria-hidden="true">🛒</span>
+          <span class="nav-text">订购产品</span>
+          <span class="nav-tooltip">订购产品</span>
+        </a>
+        <a href="support.html" class="compact-nav-item" aria-label="支持中心">
+          <span class="nav-icon" role="img" aria-hidden="true">🛠️</span>
+          <span class="nav-text">支持中心</span>
+          <span class="nav-tooltip">获取帮助与文档</span>
+        </a>
+        <a href="events.html" class="compact-nav-item" aria-label="官方信息">
+          <span class="nav-icon" role="img" aria-hidden="true">ℹ️</span>
+          <span class="nav-text">官方信息</span>
+          <span class="nav-tooltip">新闻公告</span>
+        </a>
+      </div>
+    </section>
   </main>
 
   <!-- 底部栏 -->
-  <footer class="footer" id="footer">
-    <div class="footer-content">
-      <img src="images/logo.png" alt="Logo" class="footer-logo">
-      <p>返回顶部</p>
-    </div>
+  <footer class="site-bottombar" id="footerToTop">
+    <div class="bottombar__label">返回顶部</div>
+    <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
   </footer>
 
-  <script src="js/level1.js"></script>
+  <script src="/js/main.js"></script>
+  <script>
+    const seriesData = [
+      {id:'a', name:'Series A', desc:'螺栓固定结构带来的额外弹性和响应，提供高性价比的现代音色。', img:'series-a.jpg'},
+      {id:'b', name:'Series B', desc:'高端通颈连体工艺系列，奢华外观与稳定表现。', img:'series-b.jpg'},
+      {id:'c', name:'Series C', desc:'迷你便携式贝斯，短弦长设计，适合初学者。', img:'series-c.jpg'},
+      {id:'d', name:'Series D', desc:'革命性人体工学扭曲琴颈设计，提升舒适度。', img:'series-d.jpg'}
+    ];
+
+    // 渲染系列卡片
+    const seriesOverview = document.getElementById("seriesOverview");
+    if (seriesOverview) {
+      seriesOverview.innerHTML = seriesData.map(series => `
+        <a class="series-card" href="products.html?series=${series.id}">
+          <img src="images/${series.img}" alt="${series.name}" loading="lazy">
+          <div class="series-card-content">
+            <h2>${series.name}</h2>
+            <p>${series.desc}</p>
+            <div class="series-card-cta">查看全系列</div>
+          </div>
+        </a>
+      `).join("");
+    }
+
+    // ===== 最新动态预览逻辑 =====
+    const events = [
+      {
+        id: 1,
+        title: "自然扭曲琴颈与胴身系列发布",
+        date: "2025-08-15",
+        location: "北京123 AX加工中心",
+        image: "images/examp000.jpg",
+        description: "我们的自然扭曲设计能够与人体实现更无缝的交互。其符合人体工程学的设计提高了手部、腕部和手臂的效率...",
+        cta: "预约参加发布会",
+        isNew: true
+      },
+      {
+        id: 2,
+        title: "专业品质。经典 AX设计。",
+        date: "2025-06-15",
+        location: "上海567 AX加工中心",
+        image: "images/examp000.jpg",
+        description: "AX E series 新增了绗缝枫木面板和配套的绗缝枫木琴头...",
+        cta: "预约参加发布会",
+        isNew: false
+      }
+    ];
+
+    const latestEvent = [...events].sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+    const previewContainer = document.getElementById("events-preview-container");
+    if (previewContainer && latestEvent) {
+      previewContainer.innerHTML = `
+        <a href="events.html" class="news-card">
+          <div class="news-date">${formatDate(latestEvent.date)} | ${latestEvent.location}</div>
+          <h4>${latestEvent.title}</h4>
+          <p class="news-desc">${latestEvent.description}</p>
+        </a>
+      `;
+    }
+
+    function formatDate(dateStr) {
+      const date = new Date(dateStr);
+      return `${date.getFullYear()}年${date.getMonth()+1}月${date.getDate()}日`;
+    }
+
+    // 注意：原代码中的移动菜单初始化部分引用了不存在的元素
+    // (topbarMenuBtn 和 mobileNav)，这些已被移除
+  </script>
 </body>
 </html>
