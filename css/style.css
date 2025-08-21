@@ -391,7 +391,7 @@ img {
 
 .compact-nav-item {
   flex: 1;
-  min-width: 0;
+  min-width: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
