@@ -1,89 +1,108 @@
-/* 全局样式 */
+/* 全局基础样式 */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: rgb(200,200,200);
+  background-color: rgb(200, 200, 200);
+  line-height: 1.6;
 }
 
 /* 顶部栏 */
-.topbar {
+.top-bar {
   position: fixed;
   top: 0;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 15px;
   backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, 0.6);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
   z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* 左右按钮 */
-.hamburger, .share {
+/* 顶部内容一行 */
+.top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+}
+
+/* 汉堡按钮 */
+.hamburger {
   font-size: 24px;
   cursor: pointer;
-  user-select: none;
 }
 
-/* 中间 LOGO + 口号 */
+/* 分享按钮 */
+.share {
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* 居中logo和宣传语 */
 .center-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: center;
 }
 .logo {
   height: 40px;
+  display: block;
+  margin: 0 auto;
 }
 .slogan {
   font-size: 14px;
-  color: #333;
-  margin-top: 4px;
+  margin: 4px 0 0;
   animation: breathing 2s infinite;
 }
 
 /* 宣传语动画 */
 @keyframes breathing {
-  0%, 100% { opacity: 1; }
+  0% { opacity: 1; }
   50% { opacity: 0.5; }
+  100% { opacity: 1; }
 }
 
-/* 汉堡菜单下拉 */
+/* 汉堡菜单展开 */
 .menu {
-  position: fixed;
-  top: 60px; /* 顶部栏高度后 */
-  left: 0;
-  width: 120px; /* 窄条按钮宽度 */
-  background: rgba(255,255,255,0.8);
-  backdrop-filter: blur(6px);
-  box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
   display: none;
-  flex-direction: column;
+  background: rgba(255,255,255,0.9);
+  text-align: center;
 }
-.menu a {
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.menu li {
   padding: 10px;
+}
+.menu li a {
   text-decoration: none;
   color: #333;
-  border-bottom: 1px solid #ddd;
+  font-weight: bold;
 }
-.menu a:hover {
-  background: rgba(0,0,0,0.05);
+.menu.show {
+  display: block;
+  animation: slideDown 0.3s ease;
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* 内容 */
-main {
-  padding: 100px 20px 80px; /* 留出顶部和底部空间 */
+/* 主体内容 */
+.content {
+  padding: 100px 20px 60px; /* 留出顶部和底部的空间 */
 }
 
 /* 底部栏 */
 .footer {
+  text-align: center;
+  padding: 20px;
+  background: #f0f0f0;
+  cursor: pointer;
+}
+.footer-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 15px;
-  background: rgba(240,240,240,0.9);
-  cursor: pointer;
 }
 .footer-logo {
   height: 30px;
