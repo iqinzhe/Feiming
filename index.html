@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>吉他网页模板</title>
-  <link rel="stylesheet" href="CSS/level 1.css">
+  <link rel="stylesheet" href="CSS/level 1.css" />
   <script defer src="js/level 1.js"></script>
 </head>
 <body>
 
-  <!-- 顶部栏 -->
-  <header class="topbar">
+  <!-- 顶部栏（固定 + 毛玻璃） -->
+  <header class="topbar" role="banner">
     <div class="topbar-left">
-      <div class="hamburger" id="hamburger">&#9776;</div>
+      <button class="hamburger" id="hamburger" aria-label="展开菜单" aria-expanded="false" aria-controls="menu">☰</button>
     </div>
+
     <div class="topbar-center">
-      <img src="images/logo.png" alt="Logo" class="logo">
-      <p class="slogan">每次拨弦都是心灵的飞舞共鸣！</p>
+      <img src="images/logo.png" alt="Logo" class="logo" />
+      <p class="slogan" aria-live="polite">每次拨弦都是心灵的飞舞共鸣！</p>
     </div>
+
     <div class="topbar-right">
-      <input type="text" placeholder="搜索..." class="search-box" id="searchBox">
-      <button class="share-btn" id="shareBtn">🔗</button>
+      <label class="sr-only" for="searchBox">搜索</label>
+      <input type="search" id="searchBox" class="search-box" placeholder="搜索..." />
+      <button class="share-btn" id="shareBtn" aria-label="分享当前页面">🔗</button>
     </div>
   </header>
 
-  <!-- 展开的汉堡菜单 -->
-  <nav class="menu" id="menu">
+  <!-- 抽屉菜单 -->
+  <nav class="menu" id="menu" aria-hidden="true">
     <ul>
       <li><a href="#">首页</a></li>
       <li><a href="#">产品</a></li>
@@ -34,24 +37,29 @@
     </ul>
   </nav>
 
-  <!-- 主体内容 -->
-  <main class="content">
+  <!-- 主体 -->
+  <main class="content" role="main">
     <h1>欢迎来到吉他世界</h1>
     <p>这里是网页主体内容区域，可以根据需要扩展。</p>
+
     <h2>二级标题</h2>
-    <p>滚动下去试试底部栏效果……</p>
+    <p>滚动下去试试底部栏回到顶部的效果……</p>
+
     <h3>三级标题</h3>
-    <p>测试文字 1234567890 …</p>
+    <p>示例文本。</p>
+
     <h4>四级标题</h4>
-    <p>测试文字 1234567890 …</p>
+    <p>示例文本。</p>
+
     <h5>五级标题</h5>
-    <p>测试文字 1234567890 …</p>
-    <p style="margin-bottom:1000px;">（加长内容，方便滚动测试）</p>
+    <p>示例文本。</p>
+
+    <div class="spacer" aria-hidden="true"></div>
   </main>
 
-  <!-- 底部栏 -->
-  <footer class="footer" id="footer">
-    <img src="images/logo.png" alt="Logo" class="footer-logo">
+  <!-- 底部栏（不固定，点击任意处回顶） -->
+  <footer class="footer" id="footer" role="contentinfo" tabindex="0" aria-label="返回顶部">
+    <img src="images/logo.png" alt="Logo" class="footer-logo" />
     <span>返回顶部</span>
   </footer>
 
