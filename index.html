@@ -3,49 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>完整页面示例</title>
-  <link rel="stylesheet" href="css/level1.css">
+  <title>最终完整版网页</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <!-- 顶部栏 -->
-  <div class="top-bar">
-    <!-- 左侧：汉堡菜单 -->
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
-    <!-- 中间：LOGO + 宣传语 -->
+  <header class="topbar">
+    <div class="hamburger" id="hamburger">☰</div>
     <div class="center-box">
-      <img src="images/logo.png" alt="LOGO" class="logo">
-      <div class="tagline">健康生活，从豆开始</div>
+      <img src="logo.png" alt="Logo" class="logo">
+      <p class="slogan">每次拨弦都是心灵的飞舞共鸣！</p>
     </div>
+    <div class="share" id="share">🔗</div>
+  </header>
 
-    <!-- 右侧：分享图标 -->
-    <div class="share">
-      <img src="images/share.png" alt="分享">
-    </div>
-  </div>
+  <!-- 汉堡菜单展开 -->
+  <nav class="menu" id="menu">
+    <a href="#home">首页</a>
+    <a href="#products">产品</a>
+    <a href="#about">关于我们</a>
+    <a href="#contact">联系我们</a>
+  </nav>
 
-  <!-- 主体内容 -->
+  <!-- 中间内容 -->
   <main>
-    <h1>欢迎来到我们的网页</h1>
-    <p>这里是内容区……</p>
+    <section>
+      <h1>欢迎来到吉他世界</h1>
+      <p>这里是中间内容区，背景为中性灰 RGB(200,200,200)。</p>
+    </section>
   </main>
 
   <!-- 底部栏 -->
-  <div class="bottom-bar">
-    <div class="bottom-item">首页</div>
-    <div class="bottom-item">产品</div>
-    <div class="bottom-item">联系我们</div>
-    <div class="bottom-item">关于我们</div>
-  </div>
+  <footer class="footer" id="footer">
+    <img src="logo.png" alt="Logo" class="footer-logo">
+    <p>返回顶部</p>
+  </footer>
 
-  <script>
-    function toggleMenu() {
-      alert("这里可以展开汉堡菜单！");
-    }
-  </script>
+  <!-- 功能JS -->
+  <script src="js/script.js"></script>
 </body>
 </html>
