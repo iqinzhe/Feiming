@@ -92,24 +92,29 @@ img {
   padding: 8px 16px;
 }
 
+/* 加大汉堡菜单图标 */
 .hamburger {
-  font-size: 24px;
+  font-size: 28px;
   cursor: pointer;
-  min-width: 44px;
-  min-height: 44px;
+  min-width: 50px;
+  min-height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #4361ee;
+  font-weight: bold;
 }
 
+/* 加大分享图标 */
 .share {
-  font-size: 22px;
+  font-size: 26px;
   cursor: pointer;
-  min-width: 44px;
-  min-height: 44px;
+  min-width: 50px;
+  min-height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #4361ee;
 }
 
 .center-box {
@@ -136,10 +141,14 @@ img {
   50% { opacity: 0.6; }
 }
 
+/* 汉堡菜单展开内容 - 改为透明背景 */
 .menu {
   display: none;
-  background: rgba(255,255,255,0.95);
-  text-align: center;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  text-align: left;
+  padding: 15px 0;
+  border-top: 1px solid rgba(67, 97, 238, 0.3);
 }
 
 .menu.show {
@@ -161,22 +170,33 @@ img {
 .menu ul {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0 20px;
 }
 
 .menu li {
-  padding: 12px;
+  padding: 16px 15px;
+  border-bottom: 1px solid rgba(67, 97, 238, 0.1);
+}
+
+.menu li:last-child {
+  border-bottom: none;
 }
 
 .menu li a {
   text-decoration: none;
-  color: #333;
+  color: #4361ee;
   font-weight: bold;
   display: block;
-  min-height: 44px;
+  min-height: 50px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  font-size: 18px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.menu li a:hover {
+  color: #2a4cc8;
+  transform: translateX(5px);
 }
 
 /* ===== 最新动态 ===== */
@@ -374,22 +394,6 @@ img {
   display: none;
 }
 
-@media (min-width: 768px) {
-  .compact-nav-item {
-    padding: 15px 10px;
-  }
-  .nav-icon {
-    font-size: 2.3rem;
-  }
-  .nav-text {
-    font-size: 1.6rem;
-    white-space: normal;
-  }
-  .nav-tooltip {
-    display: block;
-  }
-}
-
 /* ===== 底部栏样式 ===== */
 .site-bottombar {
   display: flex;
@@ -432,12 +436,29 @@ img {
     padding: 6px 12px;
   }
   
+  .hamburger {
+    font-size: 26px;
+    min-width: 45px;
+    min-height: 45px;
+  }
+  
+  .share {
+    font-size: 24px;
+    min-width: 45px;
+    min-height: 45px;
+  }
+  
   .logo {
     height: 35px;
   }
   
   .slogan {
     font-size: 12px;
+  }
+  
+  .menu li a {
+    font-size: 16px;
+    min-height: 45px;
   }
   
   .series-overview {
@@ -483,14 +504,50 @@ img {
     padding: 10px 20px;
   }
   
+  .menu {
+    text-align: center;
+    padding: 20px 0;
+  }
+  
   .menu ul {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 25px;
+    padding: 0;
   }
   
   .menu li {
-    padding: 15px 0;
+    padding: 0;
+    border-bottom: none;
+  }
+  
+  .menu li a {
+    min-height: 60px;
+    font-size: 16px;
+    padding: 0 20px;
+  }
+  
+  .menu li a:hover {
+    transform: translateY(-2px);
+  }
+  
+  .nav-tooltip {
+    display: block;
+  }
+}
+
+@media (min-width: 1024px) {
+  .compact-nav-item {
+    padding: 15px 10px;
+  }
+  
+  .nav-icon {
+    font-size: 2.3rem;
+  }
+  
+  .nav-text {
+    font-size: 1.6rem;
+    white-space: normal;
   }
 }
 
@@ -522,5 +579,17 @@ img {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+  
+  .menu li a:hover {
+    transform: none;
+  }
+  
+  .series-card:hover {
+    transform: none;
+  }
+  
+  .compact-nav-item:hover {
+    transform: none;
   }
 }
