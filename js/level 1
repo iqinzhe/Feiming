@@ -1,4 +1,4 @@
-// 菜单展开收起
+// 汉堡菜单展开/收起
 const hamburger = document.getElementById('hamburger');
 const menu = document.getElementById('menu');
 hamburger.addEventListener('click', () => {
@@ -12,7 +12,7 @@ shareBtn.addEventListener('click', async () => {
     try {
       await navigator.share({
         title: document.title,
-        text: '快来看AX斧标贝斯！',
+        text: '快来看看这个吉他网页！',
         url: window.location.href
       });
     } catch (err) {
@@ -23,7 +23,7 @@ shareBtn.addEventListener('click', async () => {
   }
 });
 
-// 搜索功能
+// 搜索功能（回车触发）
 const searchBox = document.getElementById('searchBox');
 searchBox.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
@@ -31,7 +31,7 @@ searchBox.addEventListener('keypress', (e) => {
   }
 });
 
-// 底部回到顶部
+// 底部栏回到顶部
 const footer = document.getElementById('footer');
 footer.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
