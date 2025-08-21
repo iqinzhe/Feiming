@@ -2,7 +2,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: rgb(200, 200, 200);
+  background-color: rgb(200, 200, 200); /* 中间背景色 */
 }
 h1, h2, h3, h4, h5 {
   margin: 1em 0;
@@ -13,34 +13,49 @@ h1, h2, h3, h4, h5 {
 .topbar {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: space-around;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px); /* 毛玻璃效果 */
   background: rgba(255, 255, 255, 0.6);
-  padding: 10px;
+  padding: 10px 20px;
   z-index: 1000;
+  box-sizing: border-box;
+}
+.topbar-left, .topbar-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.topbar-center {
+  flex: 2;
+  text-align: center;
 }
 .logo {
+  display: block;
+  margin: 0 auto;
   height: 40px;
 }
 .slogan {
+  margin: 5px 0 0 0;
   font-size: 1.1em;
-  animation: breathe 3s infinite alternate;
+  animation: breathe 2.5s infinite alternate;
 }
 @keyframes breathe {
   0% { opacity: 0.5; }
   100% { opacity: 1; }
 }
 .hamburger {
-  font-size: 24px;
+  font-size: 26px;
   cursor: pointer;
 }
 .search-box {
   padding: 5px;
   border-radius: 5px;
   border: 1px solid #999;
+  margin-right: 10px;
 }
 .share-btn {
   cursor: pointer;
@@ -53,28 +68,31 @@ h1, h2, h3, h4, h5 {
 .menu {
   display: none;
   position: fixed;
-  top: 60px;
+  top: 70px; /* 顶部栏下方 */
   left: 0;
   width: 200px;
   background: rgba(255, 255, 255, 0.95);
   border-right: 1px solid #ccc;
-  padding: 10px;
+  padding: 15px;
+  z-index: 999;
 }
 .menu ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 .menu ul li {
-  margin: 10px 0;
+  margin: 12px 0;
 }
 .menu ul li a {
   text-decoration: none;
   color: #333;
+  font-size: 16px;
 }
 
 /* 内容 */
 .content {
-  margin-top: 80px;
+  margin-top: 120px; /* 让出顶部栏空间 */
   padding: 20px;
 }
 
