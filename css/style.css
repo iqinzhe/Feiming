@@ -379,7 +379,7 @@ img {
 
 /* ===== 下部3个导航按钮样式 ===== */
 .compact-nav-links {
-  margin: 10px 0;
+  margin: 8px 0;
 }
 
 .compact-nav-container {
@@ -412,7 +412,7 @@ img {
 
 .nav-icon {
   font-size: 2rem;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
 }
 
 .nav-text {
