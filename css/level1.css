@@ -1,111 +1,91 @@
-/* ===== 顶部栏 ===== */
-.top-bar {
+/* 全局样式 */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: rgb(200,200,200);
+}
+
+/* 顶部栏 */
+.topbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #f0f0f0;   /* 背景色，可自行修改 */
-  padding: 5px 10px;
-  height: 60px;
-  box-sizing: border-box;
+  padding: 10px 15px;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 1000;
 }
 
-/* 汉堡菜单 */
-.hamburger {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 25px;
-  height: 18px;
+/* 左右按钮 */
+.hamburger, .share {
+  font-size: 24px;
   cursor: pointer;
-}
-.hamburger span {
-  display: block;
-  height: 3px;
-  background: #333;
-  border-radius: 2px;
+  user-select: none;
 }
 
-/* 中间：LOGO + 宣传语 */
+/* 中间 LOGO + 口号 */
 .center-box {
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex: 1;
 }
-.center-box .logo {
-  height: 30px;
-  margin-bottom: 3px;
+.logo {
+  height: 40px;
 }
-.center-box .tagline {
+.slogan {
   font-size: 14px;
   color: #333;
-  font-weight: bold;
-  text-align: center;
-  white-space: nowrap;
+  margin-top: 4px;
+  animation: breathing 2s infinite;
 }
 
-/* 分享图标 */
-.share img {
-  width: 22px;
-  height: 22px;
-  cursor: pointer;
+/* 宣传语动画 */
+@keyframes breathing {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
 
-/* ===== 底部栏 ===== */
-.bottom-bar {
+/* 汉堡菜单下拉 */
+.menu {
   position: fixed;
-  bottom: 0;
+  top: 60px; /* 顶部栏高度后 */
   left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background: #f0f0f0;
-  padding: 8px 0;
-  border-top: 1px solid #ccc;
-  box-sizing: border-box;
+  width: 120px; /* 窄条按钮宽度 */
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(6px);
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+  display: none;
+  flex-direction: column;
 }
-.bottom-item {
-  font-size: 14px;
+.menu a {
+  padding: 10px;
+  text-decoration: none;
   color: #333;
-  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+.menu a:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+/* 内容 */
+main {
+  padding: 100px 20px 80px; /* 留出顶部和底部空间 */
+}
+
+/* 底部栏 */
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  background: rgba(240,240,240,0.9);
   cursor: pointer;
-  flex: 1;
 }
-.bottom-item:hover {
-  color: #007bff;
-  font-weight: bold;
-}
-
-/* ===== 响应式优化 ===== */
-@media (max-width: 480px) {
-  .top-bar {
-    padding: 5px;
-    height: 55px;
-  }
-  .center-box .logo {
-    height: 24px;
-  }
-  .center-box .tagline {
-    font-size: 12px;
-  }
-  .share img {
-    width: 20px;
-    height: 20px;
-  }
-  .bottom-item {
-    font-size: 12px;
-  }
-}
-
-@media (min-width: 768px) {
-  .center-box .logo {
-    height: 40px;
-  }
-  .center-box .tagline {
-    font-size: 16px;
-  }
-  .bottom-item {
-    font-size: 16px;
-  }
+.footer-logo {
+  height: 30px;
+  margin-bottom: 5px;
 }
