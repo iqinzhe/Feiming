@@ -261,7 +261,7 @@ img {
 .series-overview {
     display: grid;
     gap: 20px;
-    padding: 20px;
+    padding: 15px;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 最小300px，最大1fr */
 }
 
@@ -274,7 +274,7 @@ img {
     text-decoration: none;
     color: var(--text-white);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 450px; /* 固定高度 */
+    height: 380px; /* 固定高度 */
     width: 100%; /* 宽度自适应网格 */
 }
 
