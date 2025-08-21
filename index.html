@@ -1,67 +1,51 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>吉他网页模板</title>
-  <link rel="stylesheet" href="css/level1.css" />
-  <script defer src="js/level1.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>完整页面示例</title>
+  <link rel="stylesheet" href="css/level1.css">
 </head>
 <body>
-
-  <!-- 顶部栏（固定 + 毛玻璃） -->
-  <header class="topbar" role="banner">
-    <div class="topbar-left">
-      <button class="hamburger" id="hamburger" aria-label="展开菜单" aria-expanded="false" aria-controls="menu">☰</button>
+  <!-- 顶部栏 -->
+  <div class="top-bar">
+    <!-- 左侧：汉堡菜单 -->
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
 
-    <div class="topbar-center">
-      <img src="images/logo.png" alt="Logo" class="logo" />
-      <p class="slogan" aria-live="polite">每次拨弦都是心灵的飞舞共鸣！</p>
+    <!-- 中间：LOGO + 宣传语 -->
+    <div class="center-box">
+      <img src="images/logo.png" alt="LOGO" class="logo">
+      <div class="tagline">健康生活，从豆开始</div>
     </div>
 
-    <div class="topbar-right">
-      <label class="sr-only" for="searchBox">搜索</label>
-      <input type="search" id="searchBox" class="search-box" placeholder="搜索..." />
-      <button class="share-btn" id="shareBtn" aria-label="分享当前页面">🔗</button>
+    <!-- 右侧：分享图标 -->
+    <div class="share">
+      <img src="images/share.png" alt="分享">
     </div>
-  </header>
+  </div>
 
-  <!-- 抽屉菜单 -->
-  <nav class="menu" id="menu" aria-hidden="true">
-    <ul>
-      <li><a href="#">首页</a></li>
-      <li><a href="#">产品</a></li>
-      <li><a href="#">关于我们</a></li>
-      <li><a href="#">联系</a></li>
-    </ul>
-  </nav>
-
-  <!-- 主体 -->
-  <main class="content" role="main">
-    <h1>欢迎来到吉他世界</h1>
-    <p>这里是网页主体内容区域，可以根据需要扩展。</p>
-
-    <h2>二级标题</h2>
-    <p>滚动下去试试底部栏回到顶部的效果……</p>
-
-    <h3>三级标题</h3>
-    <p>示例文本。</p>
-
-    <h4>四级标题</h4>
-    <p>示例文本。</p>
-
-    <h5>五级标题</h5>
-    <p>示例文本。</p>
-
-    <div class="spacer" aria-hidden="true"></div>
+  <!-- 主体内容 -->
+  <main>
+    <h1>欢迎来到我们的网页</h1>
+    <p>这里是内容区……</p>
   </main>
 
-  <!-- 底部栏（不固定，点击任意处回顶） -->
-  <footer class="footer" id="footer" role="contentinfo" tabindex="0" aria-label="返回顶部">
-    <img src="images/logo.png" alt="Logo" class="footer-logo" />
-    <span>返回顶部</span>
-  </footer>
+  <!-- 底部栏 -->
+  <div class="bottom-bar">
+    <div class="bottom-item">首页</div>
+    <div class="bottom-item">产品</div>
+    <div class="bottom-item">联系我们</div>
+    <div class="bottom-item">关于我们</div>
+  </div>
 
+  <script>
+    function toggleMenu() {
+      alert("这里可以展开汉堡菜单！");
+    }
+  </script>
 </body>
 </html>
