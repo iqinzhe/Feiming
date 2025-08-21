@@ -393,14 +393,14 @@ img {
   flex: 1;
   min-width: auto;
   display: flex;
-  flex-direction: row;
+  flex-direction: center;
   align-items: center;
   text-decoration: none;
   color: var(--text-white);
   background: rgba(0,0,0,0.2);
   height: 25px;
   border-radius: 8px;
-  padding: 3px;
+  padding: 1px;
   transition: all 0.2s ease;
   aspect-ratio: 1/1.4;
 }
