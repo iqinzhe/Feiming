@@ -257,21 +257,60 @@ img {
 }
 
 /* ===== 系列卡片样式 ===== */
+/* 系列卡片布局 */
 .series-overview {
-  display: grid;
-  gap: 15px;
-  padding: 15px;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: grid;
+    gap: 20px;
+    padding: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 最小300px，最大1fr */
 }
 
+/* 系列卡片样式 */
 .series-card {
-  display: block;
-  background: rgba(0, 0, 0, 0.4);
-  border-radius: 8px;
-  overflow: hidden;
-  text-decoration: none;
-  color: var(--text-white);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: block;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--text-white);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 380px; /* 固定高度 */
+    width: 100%; /* 宽度自适应网格 */
+}
+
+.series-card img {
+    width: 100%;
+    height: 220px; /* 图片固定高度 */
+    object-fit: cover;
+    display: block;
+}
+
+.series-card-content {
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.6);
+    height: 160px; /* 内容区域固定高度 */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.series-card-content h2 {
+    margin: 0 0 8px 0;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--text-white);
+}
+
+.series-card-content p {
+    font-size: 1.4rem;
+    margin: 0 0 12px 0;
+    color: #e0e0e0;
+    line-height: 1.4;
+    flex-grow: 1; /* 描述文字区域可以伸缩 */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* 最多显示3行 */
+    -webkit-box-orient: vertical;
 }
 
 /* 彩色竖条 - 使用边框方案确保不遮挡图片 */
