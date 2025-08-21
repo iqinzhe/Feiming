@@ -393,7 +393,7 @@ img {
   flex: 1;
   min-width: auto;
   display: flex;
-  flex-direction: center;
+  flex-direction: row;
   align-items: center;
   text-decoration: none;
   color: var(--text-white);
@@ -412,7 +412,8 @@ img {
 
 .nav-icon {
   font-size: 2rem;
-  margin-bottom: 2px;
+  margin-right: 4px; /* ← 这个控制图标与右侧文本的间距 */
+  /* 修改这个值来调整水平间距，比如：margin-right: 8px; */
 }
 
 .nav-text {
