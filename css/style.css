@@ -144,7 +144,7 @@ img {
 /* 汉堡菜单展开内容 - 改为透明背景 */
 .menu {
   display: none;
-  background: rgba(255, 255, 255, 0.15);
+  background: transparent;/* 全透明 */
   backdrop-filter: blur(15px);
   text-align: left;
   padding: 15px 0;
