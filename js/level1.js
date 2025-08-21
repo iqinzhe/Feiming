@@ -1,0 +1,91 @@
+// ====== 工具 ======
+const $ = (sel, ctx = document) => ctx.querySelector(sel);
+
+// ====== A-4：汉堡菜单展开/收纳（切换 class，更语义） ======
+const hamburger = $('#hamburger');
+const menu = $('#menu');
+
+function closeMenu() {
+  menu.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', 'false');
+  menu.setAttribute('aria-hidden', 'true');
+}
+
+function toggleMenu() {
+  const isOpen = menu.classList.toggle('open');
+  hamburger.setAttribute('aria-expanded', String(isOpen));
+  menu.setAttribute('aria-hidden', String(!isOpen));
+}
+
+hamburger.addEventListener('click', toggleMenu);
+
+// 点击菜单内链接自动收起
+menu.addEventListener('click', (e) => {
+  if (e.target.matches('a')) closeMenu();
+});
+
+// 点击页面空白处收起
+document.addEventListener('click', (e) => {
+  const clickedInside = e.target.closest('.menu') || e.target.closest('#hamburger');
+  if (!clickedInside) closeMenu();
+});
+
+// Esc 收起
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeMenu();
+});
+
+// ====== A-7：分享功能（有真实动作；含兼容降级） ======
+const shareBtn = $('#shareBtn');
+shareBtn.addEventListener('click', async () => {
+  const shareData = {
+    title: document.title,
+    text: '快来看看这个吉他网页！',
+    url: location.href
+  };
+
+  if (navigator.share) {
+    try { await navigator.share(shareData); } 
+    catch (err) { /* 用户取消或出错时静默 */ }
+  } else if (navigator.clipboard && navigator.clipboard.writeText) {
+    try { 
+      await navigator.clipboard.writeText(shareData.url);
+      alert('已复制链接到剪贴板');
+    } catch {
+      alert('复制失败，请手动复制：' + shareData.url);
+    }
+  } else {
+    alert('当前浏览器不支持分享；请手动复制链接：' + shareData.url);
+  }
+});
+
+// ====== A-7：检索框（Enter 触发） ======
+const searchBox = $('#searchBox');
+searchBox.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    const q = searchBox.value.trim();
+    if (!q) return;
+    // 简单演示：弹窗 + 高亮第一处匹配标题
+    alert('你搜索了: ' + q);
+
+    const headings = Array.from(document.querySelectorAll('h1, h2, h3, h4, h5'));
+    const target = headings.find(h => h.textContent.includes(q));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      target.style.outline = '2px solid #222';
+      setTimeout(() => (target.style.outline = ''), 1500);
+    }
+  }
+});
+
+// ====== C-2：底部栏任意处点击“丝滑回顶” ======
+const footer = $('#footer');
+const smoothToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+footer.addEventListener('click', smoothToTop);
+// 键盘可用（回车/空格）
+footer.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    smoothToTop();
+  }
+});
