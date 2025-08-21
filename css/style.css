@@ -92,29 +92,24 @@ img {
   padding: 8px 16px;
 }
 
-/* 加大汉堡菜单图标 */
 .hamburger {
-  font-size: 28px;
+  font-size: 24px;
   cursor: pointer;
-  min-width: 50px;
-  min-height: 50px;
+  min-width: 44px;
+  min-height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #4361ee;
-  font-weight: bold;
 }
 
-/* 加大分享图标 */
 .share {
-  font-size: 26px;
+  font-size: 22px;
   cursor: pointer;
-  min-width: 50px;
-  min-height: 50px;
+  min-width: 44px;
+  min-height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #4361ee;
 }
 
 .center-box {
@@ -141,14 +136,10 @@ img {
   50% { opacity: 0.6; }
 }
 
-/* 汉堡菜单展开内容 - 改为透明背景 */
 .menu {
   display: none;
-  background: transparent;/* 全透明 */
-  backdrop-filter: blur(15px);
-  text-align: left;
-  padding: 15px 0;
-  border-top: 1px solid rgba(67, 97, 238, 0.3);
+  background: rgba(255,255,255,0.95);
+  text-align: center;
 }
 
 .menu.show {
@@ -170,33 +161,22 @@ img {
 .menu ul {
   list-style: none;
   margin: 0;
-  padding: 0 20px;
+  padding: 0;
 }
 
 .menu li {
-  padding: 16px 15px;
-  border-bottom: 1px solid rgba(67, 97, 238, 0.1);
-}
-
-.menu li:last-child {
-  border-bottom: none;
+  padding: 12px;
 }
 
 .menu li a {
   text-decoration: none;
-  color: #4361ee;/* 宝石蓝 */
+  color: #333;
   font-weight: bold;
   display: block;
-  min-height: 50px;
+  min-height: 44px;
   display: flex;
   align-items: center;
-  font-size: 25px;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.menu li a:hover {
-  color: #2a4cc8;
-  transform: translateX(5px);
+  justify-content: center;
 }
 
 /* ===== 最新动态 ===== */
@@ -261,7 +241,7 @@ img {
   display: grid;
   gap: 15px;
   padding: 15px;
-  grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
 .series-card {
@@ -338,116 +318,109 @@ img {
   background: rgba(255, 215, 0, 0.3);
 }
 
-/* 下部3个导航按钮样式 */
+/* ===== 下部3个导航按钮样式 ===== */
 .compact-nav-links {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
 .compact-nav-container {
-    display: flex;
-    justify-content: space-around;
-    gap: 10px;
-    padding: 0 15px;
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  padding: 0 15px;
 }
 
-/* 默认状态（桌面端）：水平排列 */
 .compact-nav-item {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    color: var(--text-white);
-    background: rgba(0,0,0,0.2);
-    height: 60px;
-    border-radius: 8px;
-    padding: 5px;
-    transition: all 0.2s ease;
-    aspect-ratio: 1/1.4;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-white);
+  background: rgba(0,0,0,0.2);
+  height: 60px;
+  border-radius: 8px;
+  padding: 5px;
+  transition: all 0.2s ease;
+  aspect-ratio: 1/1.4;
 }
 
 .compact-nav-item:hover {
-    background: rgba(0,0,0,0.3);
-    transform: translateY(-2px);
+  background: rgba(0,0,0,0.3);
+  transform: translateY(-2px);
 }
 
 .nav-icon {
-    font-size: 2rem;
-    margin-bottom: 5px;
+  font-size: 2rem;
+  margin-bottom: 5px;
 }
 
 .nav-text {
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 100%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
 }
 
 .nav-tooltip {
-    font-size: 0.7rem;
-    opacity: 0.8;
-    text-align: center;
-    margin-top: 4px;
-    display: none;
+  font-size: 0.7rem;
+  opacity: 0.8;
+  text-align: center;
+  margin-top: 4px;
+  display: none;
 }
 
-/* 手机端：垂直排列 */
-@media (max-width: 767px) {
-    .compact-nav-container {
-        flex-direction: column; /* 改为垂直排列 */
-        gap: 8px;
-    }
-    
-    .compact-nav-item {
-        height: 50px;
-        aspect-ratio: auto; /* 取消宽高比限制 */
-        flex-direction: row; /* 图标和文字水平排列 */
-        justify-content: flex-start; /* 内容靠左 */
-        padding: 10px;
-    }
-    
-    .nav-icon {
-        margin-bottom: 0;
-        margin-right: 10px;
-        font-size: 1.8rem;
-    }
-    
-    .nav-text {
-        font-size: 1.4rem;
-    }
-    
-    .nav-tooltip {
-        display: none;
-    }
-}
-
-/* 桌面端：水平排列 */
 @media (min-width: 768px) {
-    .compact-nav-container {
-        flex-direction: row; /* 明确设置为水平排列 */
-        justify-content: space-around;
-    }
-    
-    .compact-nav-item {
-        padding: 15px 10px;
-    }
-    
-    .nav-icon {
-        font-size: 2.3rem;
-    }
-    
-    .nav-text {
-        font-size: 1.6rem;
-        white-space: normal;
-    }
-    
-    .nav-tooltip {
-        display: block;
-    }
+  .compact-nav-item {
+    padding: 15px 10px;
+  }
+  .nav-icon {
+    font-size: 2.3rem;
+  }
+  .nav-text {
+    font-size: 1.6rem;
+    white-space: normal;
+  }
+  .nav-tooltip {
+    display: block;
+  }
+}
+
+/* ===== 底部栏样式 ===== */
+.site-bottombar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 15px;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.2);
+  margin-top: auto;
+}
+
+.bottombar__label {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: var(--text-white);
+}
+
+.bottombar__logo {
+  height: 20px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+.site-bottombar:active {
+  background: rgba(100, 100, 255, 0.1);
+}
+
+.site-bottombar:active .bottombar__label,
+.site-bottombar:active .bottombar__logo {
+  transform: scale(0.95);
 }
 
 /* ===== 响应式设计 ===== */
@@ -460,29 +433,12 @@ img {
     padding: 6px 12px;
   }
   
-  .hamburger {
-    font-size: 26px;
-    min-width: 45px;
-    min-height: 45px;
-  }
-  
-  .share {
-    font-size: 24px;
-    min-width: 45px;
-    min-height: 45px;
-  }
-  
   .logo {
     height: 35px;
   }
   
   .slogan {
     font-size: 12px;
-  }
-  
-  .menu li a {
-    font-size: 16px;
-    min-height: 45px;
   }
   
   .series-overview {
@@ -528,50 +484,14 @@ img {
     padding: 10px 20px;
   }
   
-  .menu {
-    text-align: center;
-    padding: 20px 0;
-  }
-  
   .menu ul {
     display: flex;
     justify-content: center;
-    gap: 25px;
-    padding: 0;
+    gap: 20px;
   }
   
   .menu li {
-    padding: 0;
-    border-bottom: none;
-  }
-  
-  .menu li a {
-    min-height: 60px;
-    font-size: 16px;
-    padding: 0 20px;
-  }
-  
-  .menu li a:hover {
-    transform: translateY(-2px);
-  }
-  
-  .nav-tooltip {
-    display: block;
-  }
-}
-
-@media (min-width: 1024px) {
-  .compact-nav-item {
-    padding: 15px 10px;
-  }
-  
-  .nav-icon {
-    font-size: 2.3rem;
-  }
-  
-  .nav-text {
-    font-size: 1.6rem;
-    white-space: normal;
+    padding: 15px 0;
   }
 }
 
@@ -603,17 +523,5 @@ img {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-  
-  .menu li a:hover {
-    transform: none;
-  }
-  
-  .series-card:hover {
-    transform: none;
-  }
-  
-  .compact-nav-item:hover {
-    transform: none;
   }
 }
