@@ -1,33 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>AX斧标贝斯 | 首页</title>
-<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-<link rel="manifest" href="/icons/manifest.json">
-<link href="/css/style.css" rel="stylesheet">
-<link rel="stylesheet" href="global.css">
-<style>
-
-:root {
-  --neutral-gray: rgb(128, 128, 128);
-  --glass-dark: rgba(0, 0, 0, 0.3);
-  --text-white: #fff;
-  --card-min-width: 280px;
-}
-body {
-  background: var(--neutral-gray);
-  color: var(--text-white);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding-top: 55px;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AX斧标贝斯</title>
+  <link rel="stylesheet" href="CSS/level 1.css">
+  <script defer src="js/level 1.js"></script>
+</head>
+<body>
 
 /* 系列卡片布局 */
 .series-overview {
@@ -275,21 +255,19 @@ main {
 </head>
 <body>
 
-<!-- 顶部导航栏 -->
-<header class="site-topbar">
-  <div class="topbar__left">
-    <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
-  </div>
-  <div class="topbar__center">
-    <a href="index.html"><img class="topbar__logo" src="./images/logo.png" alt="AX Guitar Logo"/></a>
-    <div class="site-slogan">每次拨弦都是心灵的飞舞共鸣！</div>
-  </div>
-  <div class="topbar__right">
-    <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
-    <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
-  </div>
-  <nav class="mobile-nav" id="mobileNav">
-    <ul class="mobile-nav__list">
+
+  <!-- 顶部栏 -->
+  <header class="topbar">
+    <div class="hamburger" id="hamburger">&#9776;</div>
+    <img src="images/logo.png" alt="Logo" class="logo">
+    <p class="slogan">每次拨弦都是心灵的飞舞共鸣！</p>
+    <input type="text" placeholder="搜索..." class="search-box" id="searchBox">
+    <button class="share-btn" id="shareBtn">🔗</button>
+  </header>
+
+  <!-- 菜单展开 -->
+  <nav class="menu" id="menu">
+    <ul>
       <li><a href="index.html">首页</a></li>
       <li><a href="products.html">产品</a></li>
       <li><a href="products.html?series=d">特色</a></li>
@@ -297,7 +275,6 @@ main {
       <li><a href="support.html">支持</a></li>
     </ul>
   </nav>
-</header>
 
 <main>
   <!-- 最新动态 -->
@@ -334,11 +311,11 @@ main {
   </section>
 </main>
 
-<!-- 底部栏 -->
-<footer class="site-bottombar" id="footerToTop">
-  <div class="bottombar__label">返回顶部</div>
-  <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
-</footer>
+  <!-- 底部栏 -->
+  <footer class="footer" id="footer">
+    <img src="images/logo.png" alt="Logo" class="footer-logo">
+    <span>返回顶部</span>
+  </footer>
 
   <script src="/js/main.js"></script>
 </body>
@@ -385,45 +362,3 @@ document.addEventListener('click', function(event) {
     menuOpen = false;
   }
 });
-
-// ===== 最新动态预览逻辑 =====
-const events = [
-  {
-    id: 1,
-    title: "自然扭曲琴颈与胴身系列发布",
-    date: "2025-08-15",
-    location: "北京123 AX加工中心",
-    image: "images/examp000.jpg",
-    description: "我们的自然扭曲设计能够与人体实现更无缝的交互。其符合人体工程学的设计提高了手部、腕部和手臂的效率...",
-    cta: "预约参加发布会",
-    isNew: true
-  },
-  {
-    id: 2,
-    title: "专业品质。经典 AX设计。",
-    date: "2025-06-15",
-    location: "上海567 AX加工中心",
-    image: "images/examp000.jpg",
-    description: "AX E series 新增了绗缝枫木面板和配套的绗缝枫木琴头...",
-    cta: "预约参加发布会",
-    isNew: false
-  }
-];
-
-const latestEvent = [...events].sort((a, b) => new Date(b.date) - new Date(a.date))[0];
-const previewContainer = document.getElementById("events-preview-container");
-if (latestEvent) {
-  previewContainer.innerHTML = `
-    <a href="events.html" class="news-card">
-      <div class="news-date">${formatDate(latestEvent.date)} | ${latestEvent.location}</div>
-      <h4>${latestEvent.title}</h4>
-      <p class="news-desc">${latestEvent.description}</p>
-    </a>
-  `;
-}
-
-function formatDate(dateStr) {
-  const date = new Date(dateStr);
-  return `${date.getFullYear()}年${date.getMonth()+1}月${date.getDate()}日`;
-}
-</script>
