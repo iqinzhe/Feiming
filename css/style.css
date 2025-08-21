@@ -130,8 +130,8 @@ img {
 }
 
 .slogan {
-  font-size: 14px;
-  margin: 4px 0 0;
+  font-size: 16px;
+  margin: 3px 0 0;
   color: var(--text-dark);
   animation: breathing 2s infinite;
 }
