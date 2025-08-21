@@ -379,14 +379,14 @@ img {
 
 /* ===== 下部3个导航按钮样式 ===== */
 .compact-nav-links {
-  margin: 15px 0;
+  margin: 8px 0;
 }
 
 .compact-nav-container {
   display: flex;
   justify-content: row;
   gap: 10px;
-  padding: 0 15px;
+  padding: 0 10px;
 }
 
 .compact-nav-item {
@@ -400,7 +400,7 @@ img {
   background: rgba(0,0,0,0.2);
   height: 25px;
   border-radius: 8px;
-  padding: 8px;
+  padding: 15px;
   transition: all 0.2s ease;
   aspect-ratio: 1/1.4;
 }
