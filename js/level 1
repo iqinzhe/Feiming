@@ -1,0 +1,38 @@
+// 菜单展开收起
+const hamburger = document.getElementById('hamburger');
+const menu = document.getElementById('menu');
+hamburger.addEventListener('click', () => {
+  menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+});
+
+// 分享功能
+const shareBtn = document.getElementById('shareBtn');
+shareBtn.addEventListener('click', async () => {
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: document.title,
+        text: '快来看AX斧标贝斯！',
+        url: window.location.href
+      });
+    } catch (err) {
+      console.error('分享取消或失败:', err);
+    }
+  } else {
+    alert('当前浏览器不支持分享功能');
+  }
+});
+
+// 搜索功能
+const searchBox = document.getElementById('searchBox');
+searchBox.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    alert('你搜索了: ' + searchBox.value);
+  }
+});
+
+// 底部回到顶部
+const footer = document.getElementById('footer');
+footer.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
