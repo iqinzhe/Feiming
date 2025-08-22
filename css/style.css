@@ -94,7 +94,7 @@ img {
 
 /* 分享按钮 */
 .top-bar__share {
-  font-size: 35px;
+  font-size: 50px;
   cursor: pointer;
   min-width: 50px;
   min-height: 50px;
@@ -136,7 +136,6 @@ img {
   --primary-hover: #2a4cc8;        /* 悬停颜色：深蓝色 */
 }
 
-/* ===== 汉堡菜单组件 ===== */
 .menu {
   display: none;                    /* 默认隐藏菜单 */
   background: rgba(255, 255, 255, 0.15); /* 半透明白色背景，15%不透明度 */
@@ -150,19 +149,6 @@ img {
 .menu--show {
   display: block;                   /* 显示菜单 */
   animation: slideDown 0.3s ease;   /* 添加下滑动画，0.3秒，缓动效果 */
-}
-
-/* 菜单触发按钮 */
-.menu__button {
-  font-size: 35px;                  /* 字体大小35px */
-  cursor: pointer;                  /* 鼠标指针变为手型，表示可点击 */
-  min-width: 50px;                  /* 最小宽度50px */
-  min-height: 50px;                 /* 最小高度50px */
-  display: flex;                    /* 使用flex布局 */
-  align-items: center;              /* 垂直居中 */
-  justify-content: center;          /* 水平居中 */
-  color: var(--primary-color);      /* 使用CSS变量设置颜色 */
-  font-weight: bold;                /* 字体加粗 */
 }
 
 /* 菜单列表容器 */
@@ -475,8 +461,8 @@ img {
   }
   
   .menu__link {
-    font-size: 16px;
-    min-height: 45px;
+    font-size: 20px;
+    min-height: 30px;
   }
   
   .series-overview {
@@ -540,7 +526,7 @@ img {
   }
   
   .menu__link {
-    min-height: 60px;
+    min-height: 50px;
     font-size: 16px;
     padding: 0 20px;
   }
