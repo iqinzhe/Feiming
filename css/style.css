@@ -245,8 +245,10 @@ img {
 }
 
 .menu a:active {
-  background: rgba(0, 71, 171, 0.25); /* 点击效果 */
-  transform: translateX(1px);
+/* 汉堡菜单展开状态 */
+.hamburger-menu.active {
+  background: none !important;
+  box-shadow: none !important;
 }
 
 /* 当前页面高亮样式 - 类似Excel选中行 */
