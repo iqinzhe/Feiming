@@ -13,47 +13,28 @@
 </head>
 <body>
 
-  <!-- 顶部栏 -->
-  <header class="top-bar">
-    <div class="top-bar__row">
-      <!-- 汉堡菜单按钮 -->
-      <div class="hamburger-btn hamburger-btn--large" id="hamburger">
-        ☰
-      </div>
-      
-      <!-- logo + 宣传语 -->
-      <div class="center-content">
-        <img src="images/logo.png" alt="AX斧标贝斯 Logo" class="center-content__logo">
-        <p class="center-content__slogan">每次拨弦都是心灵的飞舞共鸣！</p>
-      </div>
-
-      <!-- 分享按钮 -->
-      <div class="share-btn share-btn--large" id="shareBtn">
-        ↺
-      </div>
+<!-- 顶部栏 -->
+<header class="top-bar">
+  <div class="top-bar__row">
+    <div class="top-bar__hamburger" id="hamburger">☰</div>
+    <div class="top-bar__center">
+      <img src="images/logo.png" alt="Logo" class="top-bar__logo">
+      <p class="top-bar__slogan">每次拨弦都是心灵的飞舞共鸣！</p>
     </div>
-
-    <!-- 汉堡菜单展开内容 -->
-    <nav class="hamburger-menu" id="menu">
-      <ul class="hamburger-menu__list">
-        <li class="hamburger-menu__item">
-          <a href="index.html" class="hamburger-menu__link hamburger-menu__link--active">首页</a>
-        </li>
-        <li class="hamburger-menu__item">
-          <a href="products.html" class="hamburger-menu__link">产品</a>
-        </li>
-        <li class="hamburger-menu__item">
-          <a href="products.html?series=d" class="hamburger-menu__link">特色</a>
-        </li>
-        <li class="hamburger-menu__item">
-          <a href="pricing.html" class="hamburger-menu__link">订购</a>
-        </li>
-        <li class="hamburger-menu__item">
-          <a href="support.html" class="hamburger-menu__link">支持</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
+    <div class="top-bar__share" id="shareBtn">↺</div>
+  </div>
+    
+  <!-- 汉堡菜单 -->
+  <nav class="menu" id="menu">
+    <ul class="menu__list">
+      <li class="menu__item"><a href="index.html" class="menu__link">首页</a></li>
+      <li class="menu__item"><a href="products.html" class="menu__link">产品</a></li>
+      <li class="menu__item"><a href="products.html?series=d" class="menu__link">特色</a></li>
+      <li class="menu__item"><a href="pricing.html" class="menu__link">订购</a></li>
+      <li class="menu__item"><a href="support.html" class="menu__link">支持</a></li>
+    </ul>
+  </nav>
+</header>
     
   <main>
     <!-- 最新动态 -->
@@ -69,23 +50,13 @@
     <section class="series-grid" id="seriesOverview"></section>
 
     <!-- 紧凑型导航链接 -->
-    <nav class="bottom-nav" aria-label="快捷导航">
-      <div class="bottom-nav__container">
-        <a href="pricing.html" class="bottom-nav__item" aria-label="订购产品">
-          <span class="bottom-nav__icon" role="img" aria-hidden="true">🛒</span>
-          <span class="bottom-nav__text">订购产品</span>
-          <span class="bottom-nav__tooltip">订购产品</span>
-        </a>
-        <a href="support.html" class="bottom-nav__item" aria-label="支持中心">
-          <span class="bottom-nav__icon" role="img" aria-hidden="true">🛠️</span>
-          <span class="bottom-nav__text">支持中心</span>
-          <span class="bottom-nav__tooltip">获取帮助与文档</span>
-        </a>
-        <a href="events.html" class="bottom-nav__item" aria-label="官方信息">
-          <span class="bottom-nav__icon" role="img" aria-hidden="true">ℹ️</span>
-          <span class="bottom-nav__text">官方信息</span>
-          <span class="bottom-nav__tooltip">新闻公告</span>
-        </a>
+<section class="compact-nav" aria-label="快捷导航">
+  <div class="compact-nav__container">
+    <a href="pricing.html" class="compact-nav__item" aria-label="订购产品">
+      <span class="compact-nav__icon" role="img" aria-hidden="true">🛒</span>
+      <span class="compact-nav__text">订购产品</span>
+      <span class="compact-nav__tooltip">订购产品</span>
+    </a>
       </div>
     </nav>
   </main>
