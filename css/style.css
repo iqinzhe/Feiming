@@ -131,11 +131,10 @@ img {
 /* ===== 汉堡菜单组件 ===== */
 .menu {
   display: none;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(15px);
+  background: transparent; /* 不再占满屏幕 */
+  padding: 10px 0;
   text-align: left;
-  padding: 15px 0;
-  border-top: 1px solid rgba(67, 97, 238, 0.3);
+  border: none;
 }
 
 .menu--show {
@@ -143,31 +142,18 @@ img {
   animation: slideDown 0.3s ease;
 }
 
-.menu__button {
-  font-size: 30px;
-  cursor: pointer;
-  min-width: 50px;
-  min-height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #4361ee;
-  font-weight: bold;
-}
-
 .menu__list {
   list-style: none;
   margin: 0;
-  padding: 0 20px;
+  padding: 0 15px;
 }
 
 .menu__item {
-  padding: 16px 15px;
-  border-bottom: 1px solid rgba(67, 97, 238, 0.1);
-}
-
-.menu__item:last-child {
-  border-bottom: none;
+  margin: 8px 0;
+  background: rgba(255, 255, 255, 0.8); /* 浅色背景 */
+  border: 1px solid rgba(67, 97, 238, 0.4);
+  border-radius: var(--border-radius);
+  overflow: hidden;
 }
 
 .menu__link {
@@ -175,27 +161,14 @@ img {
   color: #4361ee;
   font-weight: bold;
   display: block;
-  min-height: 25px;
-  display: flex;
-  align-items: center;
-  font-size: 25px;
-  transition: color 0.3s ease, transform 0.3s ease;
+  padding: 12px 16px;
+  font-size: 18px;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .menu__link:hover {
+  background: rgba(67, 97, 238, 0.1);
   color: #2a4cc8;
-  transform: translateX(5px);
-}
-
-@keyframes slideDown {
-  from { 
-    opacity: 0; 
-    transform: translateY(-10px); 
-  }
-  to { 
-    opacity: 1; 
-    transform: translateY(0); 
-  }
 }
 
 /* ===== 最新动态 ===== */
