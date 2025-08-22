@@ -275,7 +275,7 @@ img {
     width: 100%;
 }
 
-/* 彩色竖条 - 保持原有选择器 */
+/* 侧边彩色竖条 */
 .series-card[href*="series=a"] {
   border-left: 4px solid #64b5f6;
 }
