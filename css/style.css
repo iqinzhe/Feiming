@@ -175,10 +175,10 @@ img {
   color: #4361ee;
   font-weight: bold;
   display: block;
-  min-height: 30px;
+  min-height: 25px;
   display: flex;
   align-items: center;
-  font-size: 18px;
+  font-size: 25px;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
