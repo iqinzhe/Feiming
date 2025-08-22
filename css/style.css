@@ -2,7 +2,7 @@
    全局样式与变量
    ================================================== */
 :root {
-  --primary-color: #4361ee;         /* 宝石蓝：品牌主色，汉堡图标等 */
+  --primary-color: #4361ee;         /* 宝石蓝：品牌主色，汉堡图标、菜单文字 */
   --secondary-color: #7209b7;
   --neutral-gray: rgb(128, 128, 128);
   --glass-dark: rgba(0, 0, 0, 0.3);
@@ -16,16 +16,12 @@
   --border-radius: 0.8rem;
   --shadow: 0 4px 12px rgba(0,0,0,0.1);
   --transition: all 0.3s ease;
-  /* 新增：菜单按钮背景（暖色调） */
-  --menu-chip-bg: rgba(248, 242, 234, 0.92);
-  --menu-chip-border: rgba(140, 110, 90, 0.38);
+  /* 菜单按钮背景（暖色调，与宝石蓝文字协调） */
+  --menu-chip-bg: rgba(240, 230, 210, 0.92);
+  --menu-chip-border: rgba(240, 210, 180, 0.6);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 html { font-size: 62.5%; scroll-behavior: smooth; }
 
@@ -88,17 +84,15 @@ img { max-width: 100%; height: auto; display: block; }
 /* ==================================================
    汉堡菜单组件
    ================================================== */
-/* --- 优化：独立小标签按钮，暖灰色，不再整块遮挡 --- */
 .menu {
   display: none;
-  background: transparent !important; /* 根本避免背景遮挡 */
+  background: transparent !important;
   backdrop-filter: none !important;
   border: 0 !important;
   padding: 8px 0;
 }
 .menu--show { display: block; animation: slideDown 0.25s ease; }
 
-/* 确保汉堡图标保持宝石蓝 & 尺寸 */
 .top-bar__hamburger,
 .menu__button {
   color: var(--primary-color) !important;
@@ -108,9 +102,11 @@ img { max-width: 100%; height: auto; display: block; }
   line-height: 1 !important;
 }
 
+/* 调整：手机端也居中对齐，视觉对称 */
 .menu__list {
   display: flex !important;
   flex-wrap: wrap;
+  justify-content: center; /* 关键：菜单项整体居中 */
   gap: 8px;
   padding: 0 12px;
   margin: 0;
@@ -119,7 +115,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .menu__item { border: 0 !important; padding: 0 !important; margin: 0; background: transparent !important; }
 
-/* 每个导航项自适应宽度（按文字） */
+/* 每个导航项：自适应宽度 + 宝石蓝文字 */
 .menu__link {
   display: inline-flex !important;
   align-items: center;
@@ -128,19 +124,19 @@ img { max-width: 100%; height: auto; display: block; }
   border-radius: var(--border-radius);
   background: var(--menu-chip-bg);
   border: 1px solid var(--menu-chip-border);
-  color: #2b2b2b;
+  color: var(--primary-color); /* 改为宝石蓝，与汉堡图标一致 */
   font-weight: 600;
   font-size: 1.6rem;
   text-decoration: none;
   line-height: 1;
   transition: var(--transition);
-  width: max-content; /* 核心：自适应文字 */
+  width: max-content;
 }
 
 .menu__link:hover {
-  background: rgba(248, 242, 234, 0.98);
-  color: #1f1f1f;
-  transform: none !important; /* 不要左右漂移 */
+  background: rgba(240, 230, 210, 0.98); /* 与暖色背景协调 */
+  color: var(--primary-color);
+  transform: none !important;
 }
 
 @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
@@ -177,7 +173,7 @@ img { max-width: 100%; height: auto; display: block; }
    下部3个导航按钮样式
    ================================================== */
 .compact-nav { margin: 8px 0; }
-.compact-nav__container { display: flex; gap: 10px; padding: 0 10px; /* 修正：原来有 justify-content: row; 是无效属性 */ }
+.compact-nav__container { display: flex; gap: 10px; padding: 0 10px; }
 .compact-nav__item { flex: 1; display: flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--text-white); background: rgba(0,0,0,0.2); height: 25px; border-radius: 8px; padding: 1px; transition: all 0.2s ease; aspect-ratio: 1/1.4; }
 .compact-nav__item:hover { background: rgba(0,0,0,0.3); transform: translateY(-2px); }
 .compact-nav__icon { font-size: 2rem; margin-bottom: 2px; }
@@ -237,7 +233,6 @@ img { max-width: 100%; height: auto; display: block; }
 .fluid-text { font-size: clamp(1.6rem, 4vw, 2.4rem); }
 .fluid-padding { padding: clamp(1rem, 3vw, 3rem); }
 
-/* 可访问性优化：动画最小化 */
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   .menu__link:hover, .series-card:hover, .compact-nav__item:hover { transform: none; }
