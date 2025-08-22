@@ -128,74 +128,30 @@ img {
   35% { opacity: 0.35; }
 }
 
-/* ===== 汉堡菜单组件 ===== */
+/* 只修改汉堡菜单展开的内容，不影响固定 top-bar */
 .menu {
-  display: none;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(15px);
-  text-align: left;
-  padding: 15px 0;
-  border-top: 1px solid rgba(67, 97, 238, 0.3);
+  background: transparent; /* 背景完全透明 */
+  box-shadow: none;
 }
 
-.menu--show {
-  display: block;
-  animation: slideDown 0.3s ease;
-}
-
-.menu__button {
-  font-size: 35px;
-  cursor: pointer;
-  min-width: 50px;
-  min-height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #4361ee;
-  font-weight: bold;
-}
-
-.menu__list {
-  list-style: none;
-  margin: 0;
-  padding: 0 20px;
-}
-
-.menu__item {
-  padding: 16px 15px;
-  border-bottom: 1px solid rgba(67, 97, 238, 0.1);
-}
-
-.menu__item:last-child {
-  border-bottom: none;
-}
-
+/* 菜单项按钮 */
 .menu__link {
-  text-decoration: none;
-  color: #4361ee;
-  font-weight: bold;
   display: block;
-  min-height: 50px;
-  display: flex;
-  align-items: center;
-  font-size: 18px;
-  transition: color 0.3s ease, transform 0.3s ease;
+  background: rgba(255, 255, 255, 0.2); 
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 12px;
+  padding: 10px 15px;
+
+  color: #4361ee;   /* 保留宝石蓝 */
+  font-weight: bold;
+  text-align: center;
 }
 
+/* 悬停时的效果 */
 .menu__link:hover {
+  background: rgba(255, 255, 255, 0.35);
   color: #2a4cc8;
-  transform: translateX(5px);
-}
-
-@keyframes slideDown {
-  from { 
-    opacity: 0; 
-    transform: translateY(-10px); 
-  }
-  to { 
-    opacity: 1; 
-    transform: translateY(0); 
-  }
 }
 
 /* ===== 最新动态 ===== */
