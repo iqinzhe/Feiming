@@ -495,7 +495,7 @@ img {
 
 .nav-icon {
   font-size: 2rem;
-  margin-right: 2px; /* ← 这个控制图标与右侧文本的间距 */
+  margin-right: 0.5px; /* ← 这个控制图标与右侧文本的间距 */
   /* 修改这个值来调整水平间距，比如：margin-right: 8px; */
 }
 
