@@ -199,6 +199,89 @@ img {
   transform: translateX(5px);
 }
 
+/* ===== 导航菜单样式 - Excel列式竖直排列 ===== */
+.menu {
+  margin-left: 20px; /* 控制整个导航菜单靠左的距离 */
+}
+
+.menu ul {
+  display: flex;
+  flex-direction: column; /* 改为竖直排列 */
+  justify-content: flex-start; /* 靠上对齐 */
+  align-items: flex-start; /* 靠左对齐 */
+  gap: 8px; /* 菜单项之间的垂直间距 */
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  width: 150px; /* 固定宽度，类似Excel列宽 */
+}
+
+.menu li {
+  margin: 0;
+  padding: 0;
+  width: 100%; /* 每个li占满整个宽度 */
+}
+
+.menu a {
+  display: block;
+  text-decoration: none;
+  color: #0047AB; /* 宝石蓝色 */
+  padding: 12px 15px; /* 按钮内边距 */
+  background: rgba(0, 71, 171, 0.1); /* 宝石蓝透明背景 */
+  border: 1px solid rgba(0, 71, 171, 0.2); /* 宝石蓝边框 */
+  border-radius: 4px; /* 稍微减小圆角，更接近Excel风格 */
+  transition: all 0.2s ease; /* 平滑过渡效果 */
+  font-weight: 500;
+  width: 100%; /* 按钮占满整个li宽度 */
+  box-sizing: border-box; /* 确保padding不会影响宽度 */
+  text-align: left; /* 文字左对齐 */
+}
+
+.menu a:hover {
+  background: rgba(0, 71, 171, 0.2); /* 悬停时增加宝石蓝透明度 */
+  color: #00308F; /* 悬停时稍深的宝石蓝色 */
+  transform: translateX(2px); /* 改为向右轻微移动 */
+  box-shadow: 2px 0 8px rgba(0, 71, 171, 0.2); /* 右侧阴影 */
+}
+
+.menu a:active {
+  background: rgba(0, 71, 171, 0.25); /* 点击效果 */
+  transform: translateX(1px);
+}
+
+/* 当前页面高亮样式 - 类似Excel选中行 */
+.menu a[aria-current="page"] {
+  background: rgba(0, 71, 171, 0.15); /* 当前页面背景 */
+  border-left: 3px solid #0047AB; /* 左侧标识线 */
+  font-weight: bold;
+}
+
+/* Excel风格的隔行变色效果（可选） */
+.menu li:nth-child(even) a {
+  background: rgba(0, 71, 171, 0.05); /* 偶数行稍浅 */
+}
+
+.menu li:nth-child(odd) a {
+  background: rgba(0, 71, 171, 0.1); /* 奇数行稍深 */
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .menu ul {
+    width: 120px; /* 移动端稍窄的列宽 */
+    gap: 6px;
+  }
+  
+  .menu {
+    margin-left: 10px; /* 减小左边距 */
+  }
+  
+  .menu a {
+    padding: 10px 12px; /* 移动端稍小的内边距 */
+    font-size: 0.9rem; /* 稍小的字体 */
+  }
+}
+
 /* ===== 最新动态 ===== */
 .latest-news {
   background: rgba(0,0,0,0.2);
