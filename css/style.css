@@ -164,18 +164,40 @@ img {
   to { 
     opacity: 1; 
     transform: translateY(0); 
+
+/* ===== 汉堡菜单展开内容 - 简约现代风格 ===== */
+.menu {
+  display: none;
+  background: transparent; /* 移除背景色，减少视觉噪音 */
+  text-align: left;
+  padding: 10px 0; /* 减少内边距，更紧凑 */
+}
+
+.menu.show {
+  display: block;
+  animation: subtleSlideDown 0.25s ease-out; /* 更 subtle 的动画 */
+}
+
+@keyframes subtleSlideDown {
+  from { 
+    opacity: 0; 
+    transform: translateY(-8px); /* 减少移动距离 */
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
   }
 }
 
 .menu ul {
   list-style: none;
   margin: 0;
-  padding: 0 20px;
+  padding: 0 15px; /* 减少侧边内边距 */
 }
 
 .menu li {
-  padding: 16px 15px;
-  border-bottom: 1px solid rgba(67, 97, 238, 0.1);
+  padding: 12px 10px; /* 减少内边距 */
+  border-bottom: 1px solid rgba(67, 97, 238, 0.08); /* 更淡的分隔线 */
 }
 
 .menu li:last-child {
@@ -184,19 +206,131 @@ img {
 
 .menu li a {
   text-decoration: none;
-  color: #4361ee;
-  font-weight: bold;
+  color: #4361ee; /* 保持品牌色 */
+  font-weight: 600; /* 稍细的字重 */
   display: block;
-  min-height: 50px;
+  min-height: 40px; /* 减少高度 */
   display: flex;
   align-items: center;
-  font-size: 18px;
-  transition: color 0.3s ease, transform 0.3s ease;
+  font-size: 16px; /* 稍小的字体 */
+  transition: all 0.2s ease; /* 简化过渡效果 */
+  padding: 8px 12px; /* 按钮式内边距 */
+  border-radius: 6px; /* 添加圆角 */
 }
 
 .menu li a:hover {
   color: #2a4cc8;
-  transform: translateX(5px);
+  background: rgba(67, 97, 238, 0.08); /* 淡色背景代替位移 */
+  transform: none; /* 移除位移，减少视觉干扰 */
+}
+
+.menu li a:active {
+  background: rgba(67, 97, 238, 0.12); /* 点击反馈 */
+}
+
+/* 当前页面高亮状态 */
+.menu li a.active {
+  background: rgba(67, 97, 238, 0.1);
+  color: #2a4cc8;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .menu {
+    padding: 8px 0;
+  }
+  
+  .menu ul {
+    padding: 0 12px;
+  }
+  
+  .menu li {
+    padding: 10px 8px;
+  }
+  
+  .menu li a {
+    font-size: 15px;
+    min-height: 36px;
+    padding: 6px 10px;
+  }
+}
+
+.menu ul {
+  display: flex;
+  flex-direction: column; /* 改为竖直排列 */
+  justify-content: flex-start; /* 靠上对齐 */
+  align-items: flex-start; /* 靠左对齐 */
+  gap: 8px; /* 菜单项之间的垂直间距 */
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  width: 150px; /* 固定宽度，类似Excel列宽 */
+}
+
+.menu li {
+  margin: 0;
+  padding: 0;
+  width: 100%; /* 每个li占满整个宽度 */
+}
+
+.menu a {
+  display: block;
+  text-decoration: none;
+  color: #0047AB; /* 宝石蓝色 */
+  padding: 12px 15px; /* 按钮内边距 */
+  background: rgba(0, 71, 171, 0.1); /* 宝石蓝透明背景 */
+  border: 1px solid rgba(0, 71, 171, 0.2); /* 宝石蓝边框 */
+  border-radius: 4px; /* 稍微减小圆角，更接近Excel风格 */
+  transition: all 0.2s ease; /* 平滑过渡效果 */
+  font-weight: 500;
+  width: 100%; /* 按钮占满整个li宽度 */
+  box-sizing: border-box; /* 确保padding不会影响宽度 */
+  text-align: left; /* 文字左对齐 */
+}
+
+.menu a:hover {
+  background: rgba(0, 71, 171, 0.2); /* 悬停时增加宝石蓝透明度 */
+  color: #00308F; /* 悬停时稍深的宝石蓝色 */
+  transform: translateX(2px); /* 改为向右轻微移动 */
+  box-shadow: 2px 0 8px rgba(0, 71, 171, 0.2); /* 右侧阴影 */
+}
+
+.menu a:active {
+  background: rgba(0, 71, 171, 0.25); /* 点击效果 */
+  transform: translateX(1px);
+}
+
+/* 当前页面高亮样式 - 类似Excel选中行 */
+.menu a[aria-current="page"] {
+  background: rgba(0, 71, 171, 0.15); /* 当前页面背景 */
+  border-left: 3px solid #0047AB; /* 左侧标识线 */
+  font-weight: bold;
+}
+
+/* Excel风格的隔行变色效果（可选） */
+.menu li:nth-child(even) a {
+  background: rgba(0, 71, 171, 0.05); /* 偶数行稍浅 */
+}
+
+.menu li:nth-child(odd) a {
+  background: rgba(0, 71, 171, 0.1); /* 奇数行稍深 */
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .menu ul {
+    width: 120px; /* 移动端稍窄的列宽 */
+    gap: 6px;
+  }
+  
+  .menu {
+    margin-left: 10px; /* 减小左边距 */
+  }
+  
+  .menu a {
+    padding: 10px 12px; /* 移动端稍小的内边距 */
+    font-size: 0.9rem; /* 稍小的字体 */
+  }
 }
 
 /* ===== 最新动态 ===== */
@@ -393,7 +527,7 @@ img {
   flex: 1;
   min-width: auto;
   display: flex;
-  flex-direction: center;
+  flex-direction: row;
   align-items: center;
   text-decoration: none;
   color: var(--text-white);
@@ -412,7 +546,8 @@ img {
 
 .nav-icon {
   font-size: 2rem;
-  margin-bottom: 2px;
+  margin-right: 2px; /* ← 这个控制图标与右侧文本的间距 */
+  /* 修改这个值来调整水平间距，比如：margin-right: 8px; */
 }
 
 .nav-text {
