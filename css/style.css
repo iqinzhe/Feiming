@@ -92,19 +92,6 @@ img {
   padding: 8px 16px;
 }
 
-/* 汉堡菜单按钮 */
-.top-bar__hamburger {
-  font-size: 35px;
-  cursor: pointer;
-  min-width: 50px;
-  min-height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #4361ee;
-  font-weight: bold;
-}
-
 /* 分享按钮 */
 .top-bar__share {
   font-size: 35px;
@@ -141,7 +128,7 @@ img {
   35% { opacity: 0.35; }
 }
 
-/* ===== 汉堡菜单样式 ===== */
+/* ===== 汉堡菜单组件 ===== */
 .menu {
   display: none;
   background: rgba(255, 255, 255, 0.15);
@@ -156,15 +143,16 @@ img {
   animation: slideDown 0.3s ease;
 }
 
-@keyframes slideDown {
-  from { 
-    opacity: 0; 
-    transform: translateY(-10px); 
-  }
-  to { 
-    opacity: 1; 
-    transform: translateY(0); 
-  }
+.menu__button {
+  font-size: 35px;
+  cursor: pointer;
+  min-width: 50px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4361ee;
+  font-weight: bold;
 }
 
 .menu__list {
@@ -197,6 +185,17 @@ img {
 .menu__link:hover {
   color: #2a4cc8;
   transform: translateX(5px);
+}
+
+@keyframes slideDown {
+  from { 
+    opacity: 0; 
+    transform: translateY(-10px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
 }
 
 /* ===== 最新动态 ===== */
@@ -276,7 +275,7 @@ img {
     width: 100%;
 }
 
-/* 彩色竖条 - 保持原有选择器 */
+/*侧边 彩色竖条  */
 .series-card[href*="series=a"] {
   border-left: 4px solid #64b5f6;
 }
@@ -340,7 +339,7 @@ img {
   background: rgba(255, 215, 0, 0.3);
 }
 
-/* ===== 下部3个导航按钮样式 ===== */
+/* ===== 下部3个快捷导航 ===== */
 .compact-nav {
   margin: 8px 0;
 }
