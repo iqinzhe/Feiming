@@ -129,6 +129,32 @@ img {
 }
 
 
+/* ===== 汉堡菜单组件（修正版，区分 top-bar 与 menu） ===== */
+.menu {
+  background: transparent; /* 展开菜单背景全透明 */
+  box-shadow: none;
+}
+
+/* 菜单项按钮：每个文字加框，玻璃磨砂效果 */
+.menu__link {
+  display: block;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 12px;
+  padding: 10px 15px;
+  color: #4361ee;   /* 保持宝石蓝 */
+  font-weight: bold;
+  text-align: center;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* 悬停时的效果 */
+.menu__link:hover {
+  background: rgba(255, 255, 255, 0.35);
+  color: #2a4cc8;
+}
+
 
 .menu--show {
   display: block;
