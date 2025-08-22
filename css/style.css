@@ -131,7 +131,7 @@ img {
 /* ===== 汉堡菜单组件 ===== */
 
 :root {
-  --menu-link-width: 200px;        /* 定义菜单链接宽度 */
+  --menu-link-width: 50px;        /* 定义菜单链接宽度 */
   --primary-color: #4361ee;        /* 主色调：蓝色 */
   --primary-hover: #2a4cc8;        /* 悬停颜色：深蓝色 */
 }
@@ -140,9 +140,9 @@ img {
 .menu {
   display: none;                    /* 默认隐藏菜单 */
   background: rgba(255, 255, 255, 0.15); /* 半透明白色背景，15%不透明度 */
-  backdrop-filter: blur(15px);      /* 背景模糊效果，15px模糊半径 */
+  backdrop-filter: blur(0px);      /* 背景模糊效果，15px模糊半径 */
   text-align: left;                 /* 文本左对齐 */
-  padding: 15px 0;                  /* 上下内边距15px，左右0 */
+  padding: 10px 0;                  /* 上下内边距15px，左右0 */
   border-top: 1px solid rgba(67, 97, 238, 0.3); /* 顶部边框，30%不透明度的蓝色 */
 }
 
