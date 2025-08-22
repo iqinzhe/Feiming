@@ -209,11 +209,11 @@ img {
   flex-direction: column; /* 改为竖直排列 */
   justify-content: flex-start; /* 靠上对齐 */
   align-items: flex-start; /* 靠左对齐 */
-  gap: 12px; /* 菜单项之间的垂直间距 */
+  gap: 8px; /* 菜单项之间的垂直间距 */
   padding: 0;
   margin: 0;
   list-style: none;
-  width: 120px; /* 固定宽度，类似Excel列宽 */
+  width: 150px; /* 固定宽度，类似Excel列宽 */
 }
 
 .menu li {
@@ -245,10 +245,8 @@ img {
 }
 
 .menu a:active {
-/* 汉堡菜单展开状态 */
-.hamburger-menu.active {
-  background: none !important;
-  box-shadow: none !important;
+  background: rgba(0, 71, 171, 0.25); /* 点击效果 */
+  transform: translateX(1px);
 }
 
 /* 当前页面高亮样式 - 类似Excel选中行 */
@@ -497,7 +495,7 @@ img {
 
 .nav-icon {
   font-size: 2rem;
-  margin-right: 0.5px; /* ← 这个控制图标与右侧文本的间距 */
+  margin-right: 2px; /* ← 这个控制图标与右侧文本的间距 */
   /* 修改这个值来调整水平间距，比如：margin-right: 8px; */
 }
 
