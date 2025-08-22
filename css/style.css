@@ -80,7 +80,7 @@ img {
   top: 0;
   width: 100%;
   backdrop-filter: blur(10px);
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.6);
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
@@ -94,7 +94,7 @@ img {
 
 /* 分享按钮 */
 .top-bar__share {
-  font-size: 50px;
+  font-size: 35px;
   cursor: pointer;
   min-width: 50px;
   min-height: 50px;
@@ -129,75 +129,72 @@ img {
 }
 
 /* ===== 汉堡菜单组件 ===== */
-
-:root {
-  --menu-link-width: 50px;        /* 定义菜单链接宽度 */
-  --primary-color: #4361ee;        /* 主色调：蓝色 */
-  --primary-hover: #2a4cc8;        /* 悬停颜色：深蓝色 */
-}
-
 .menu {
-  display: none;                    /* 默认隐藏菜单 */
-  background: rgba(255, 255, 255, 0.15); /* 半透明白色背景，15%不透明度 */
-  backdrop-filter: blur(0px);      /* 背景模糊效果，15px模糊半径 */
-  text-align: left;                 /* 文本左对齐 */
-  padding: 10px 0;                  /* 上下内边距15px，左右0 */
-  border-top: 1px solid rgba(67, 97, 238, 0.3); /* 顶部边框，30%不透明度的蓝色 */
+  display: none;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  text-align: left;
+  padding: 15px 0;
+  border-top: 1px solid rgba(67, 97, 238, 0.3);
 }
 
-/* 菜单显示状态 */
 .menu--show {
-  display: block;                   /* 显示菜单 */
-  animation: slideDown 0.3s ease;   /* 添加下滑动画，0.3秒，缓动效果 */
+  display: block;
+  animation: slideDown 0.3s ease;
 }
 
-/* 菜单列表容器 */
+.menu__button {
+  font-size: 35px;
+  cursor: pointer;
+  min-width: 50px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4361ee;
+  font-weight: bold;
+}
+
 .menu__list {
-  list-style: none;                 /* 移除列表默认样式（圆点） */
-  margin: 0;                        /* 外边距归零 */
-  padding: 0 20px;                  /* 左右内边距20px，上下为0 */
+  list-style: none;
+  margin: 0;
+  padding: 0 20px;
 }
 
-/* 单个菜单项 */
 .menu__item {
-  padding: 16px 15px;               /* 内边距：上下16px，左右15px */
-  border-bottom: 1px solid rgba(67, 97, 238, 0.1); /* 底部边框，10%不透明度的蓝色 */
+  padding: 16px 15px;
+  border-bottom: 1px solid rgba(67, 97, 238, 0.1);
 }
 
-/* 最后一个菜单项移除边框 */
 .menu__item:last-child {
-  border-bottom: none;              /* 移除底部边框 */
+  border-bottom: none;
 }
 
-/* 菜单链接 */
 .menu__link {
-  text-decoration: none;            /* 移除下划线 */
-  color: var(--primary-color);      /* 使用CSS变量设置链接颜色 */
-  font-weight: bold;                /* 字体加粗 */
-  display: block;                   /* 块级显示 */
-  width: var(--menu-link-width);    /* 使用CSS变量设置固定宽度 */
-  min-height: 50px;                 /* 最小高度50px，确保点击区域足够大 */
-  display: flex;                    /* 使用flex布局 */
-  align-items: center;              /* 垂直居中 */
-  font-size: 18px;                  /* 字体大小18px */
-  transition: color 0.3s ease, transform 0.3s ease; /* 过渡效果 */
+  text-decoration: none;
+  color: #4361ee;
+  font-weight: bold;
+  display: block;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
-/* 菜单链接悬停效果 */
 .menu__link:hover {
-  color: var(--primary-hover);      /* 悬停时使用深蓝色 */
-  transform: translateX(5px);       /* 向右平移5px，产生微动效 */
+  color: #2a4cc8;
+  transform: translateX(5px);
 }
 
-/* 下滑动画关键帧 */
 @keyframes slideDown {
   from { 
-    opacity: 0;                     /* 完全透明 */
-    transform: translateY(-10px);   /* 向上偏移10px */
+    opacity: 0; 
+    transform: translateY(-10px); 
   }
   to { 
-    opacity: 1;                     /* 完全不透明 */
-    transform: translateY(0);       /* 回到原始位置 */
+    opacity: 1; 
+    transform: translateY(0); 
   }
 }
 
@@ -441,19 +438,19 @@ img {
   }
   
   .top-bar__hamburger {
-    font-size: 30px;
+    font-size: 26px;
     min-width: 45px;
     min-height: 45px;
   }
   
   .top-bar__share {
-    font-size: 30px;
+    font-size: 24px;
     min-width: 45px;
     min-height: 45px;
   }
   
   .top-bar__logo {
-    height: 30px;
+    height: 35px;
   }
   
   .top-bar__slogan {
@@ -461,8 +458,8 @@ img {
   }
   
   .menu__link {
-    font-size: 20px;
-    min-height: 30px;
+    font-size: 16px;
+    min-height: 45px;
   }
   
   .series-overview {
@@ -526,7 +523,7 @@ img {
   }
   
   .menu__link {
-    min-height: 50px;
+    min-height: 60px;
     font-size: 16px;
     padding: 0 20px;
   }
