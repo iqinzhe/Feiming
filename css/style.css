@@ -144,7 +144,7 @@ img {
 }
 
 .menu__button {
-  font-size: 35px;
+  font-size: 30px;
   cursor: pointer;
   min-width: 50px;
   min-height: 50px;
@@ -175,7 +175,7 @@ img {
   color: #4361ee;
   font-weight: bold;
   display: block;
-  min-height: 50px;
+  min-height: 30px;
   display: flex;
   align-items: center;
   font-size: 18px;
