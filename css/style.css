@@ -128,38 +128,7 @@ img {
   35% { opacity: 0.35; }
 }
 
-/* ===== 汉堡菜单组件 ===== */
-/* 让整个菜单背景完全透明 */
-.menu {
-  background: transparent !important;
-  box-shadow: none !important; /* 去掉阴影 */
-}
 
-/* 菜单项容器（文字按钮） */
-.menu a {
-  display: block;
-  margin: 10px 20px;
-  padding: 10px 15px;
-  border-radius: 12px; /* 圆角按钮 */
-  color: #fff; /* 文字颜色（白色更显眼） */
-  font-size: 18px;
-  text-align: center;
-
-  /* 玻璃磨砂效果 */
-  background: rgba(255, 255, 255, 0.2); 
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px); /* Safari 兼容 */
-
-  /* 增强文字可读性 */
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-  transition: all 0.3s ease;
-}
-
-/* 鼠标/手指悬停效果 */
-.menu a:hover {
-  background: rgba(255, 255, 255, 0.35);
-  color: #ffcc00; /* 例如高亮黄色 */
-}
 
 .menu--show {
   display: block;
