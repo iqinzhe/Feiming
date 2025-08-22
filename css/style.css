@@ -164,18 +164,40 @@ img {
   to { 
     opacity: 1; 
     transform: translateY(0); 
+
+/* ===== 汉堡菜单展开内容 - 简约现代风格 ===== */
+.menu {
+  display: none;
+  background: transparent; /* 移除背景色，减少视觉噪音 */
+  text-align: left;
+  padding: 10px 0; /* 减少内边距，更紧凑 */
+}
+
+.menu.show {
+  display: block;
+  animation: subtleSlideDown 0.25s ease-out; /* 更 subtle 的动画 */
+}
+
+@keyframes subtleSlideDown {
+  from { 
+    opacity: 0; 
+    transform: translateY(-8px); /* 减少移动距离 */
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
   }
 }
 
 .menu ul {
   list-style: none;
   margin: 0;
-  padding: 0 20px;
+  padding: 0 15px; /* 减少侧边内边距 */
 }
 
 .menu li {
-  padding: 16px 15px;
-  border-bottom: 1px solid rgba(67, 97, 238, 0.1);
+  padding: 12px 10px; /* 减少内边距 */
+  border-bottom: 1px solid rgba(67, 97, 238, 0.08); /* 更淡的分隔线 */
 }
 
 .menu li:last-child {
@@ -184,24 +206,53 @@ img {
 
 .menu li a {
   text-decoration: none;
-  color: #4361ee;
-  font-weight: bold;
+  color: #4361ee; /* 保持品牌色 */
+  font-weight: 600; /* 稍细的字重 */
   display: block;
-  min-height: 50px;
+  min-height: 40px; /* 减少高度 */
   display: flex;
   align-items: center;
-  font-size: 18px;
-  transition: color 0.3s ease, transform 0.3s ease;
+  font-size: 16px; /* 稍小的字体 */
+  transition: all 0.2s ease; /* 简化过渡效果 */
+  padding: 8px 12px; /* 按钮式内边距 */
+  border-radius: 6px; /* 添加圆角 */
 }
 
 .menu li a:hover {
   color: #2a4cc8;
-  transform: translateX(5px);
+  background: rgba(67, 97, 238, 0.08); /* 淡色背景代替位移 */
+  transform: none; /* 移除位移，减少视觉干扰 */
 }
 
-/* ===== 导航菜单样式 - Excel列式竖直排列 ===== */
-.menu {
-  margin-left: 20px; /* 控制整个导航菜单靠左的距离 */
+.menu li a:active {
+  background: rgba(67, 97, 238, 0.12); /* 点击反馈 */
+}
+
+/* 当前页面高亮状态 */
+.menu li a.active {
+  background: rgba(67, 97, 238, 0.1);
+  color: #2a4cc8;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .menu {
+    padding: 8px 0;
+  }
+  
+  .menu ul {
+    padding: 0 12px;
+  }
+  
+  .menu li {
+    padding: 10px 8px;
+  }
+  
+  .menu li a {
+    font-size: 15px;
+    min-height: 36px;
+    padding: 6px 10px;
+  }
 }
 
 .menu ul {
