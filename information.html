@@ -5,220 +5,214 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>官方信息 | AX信息中心</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-<link rel="manifest" href="/icons/manifest.json">
-<link href="css/style.css" rel="stylesheet"/>
-<link rel="stylesheet" href="global.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+  <link rel="manifest" href="/icons/manifest.json">
+  <link href="css/style.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="global.css">
   <style>
+    /* ===== 全局标准样式 ===== */
+    :root {
+      --neutral-gray: rgb(128, 128, 128);
+      --glass-dark: rgba(0, 0, 0, 0.3);
+      --text-white: #fff;
+      --border-color: rgba(255, 255, 255, 0.2);
+      --card-bg: rgba(0, 0, 0, 0.25);
+    }
 
-/* ===== 全局标准样式 ===== */
-:root {
-  --neutral-gray: rgb(128, 128, 128);
-  --glass-dark: rgba(0, 0, 0, 0.3);
-  --text-white: #fff;
-  --border-color: rgba(255, 255, 255, 0.2);
-  --card-bg: rgba(0, 0, 0, 0.25);
-}
+    body {
+      background: var(--neutral-gray);
+      color: var(--text-white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding-top: 60px;
+    }
 
-body {
-  background: var(--neutral-gray);
-  color: var(--text-white);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  font-family: Arial, sans-serif;
-  margin: 0; /* 移除默认边距 */
-  padding-top: 60px; /* 为固定顶部栏留出空间 */
-}
+    /* ===== 内容区样式 ===== */
+    .page-content {
+      flex: 1;
+      padding: 20px 5%;
+      margin-top: 20px;
+    }
 
-/* ===== 内容区样式 ===== */
-.page-content {
-  flex: 1;
-  padding: 20px 5%;
-  margin-top: 20px; /* 增加顶部内边距防止内容被顶部栏遮挡 */
-}
+    /* 信息卡片样式 */
+    .info-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      margin-bottom: 25px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
 
-.hero {
-  text-align: center;
-  margin-bottom: 40px;
-}
+    /* 为所有卡片添加右侧装饰条 */
+    .info-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 6px;
+    }
 
-.hero img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
+    /* 条款与条件卡片 - 淡蓝色 */
+    .info-card:nth-of-type(1)::after {
+      background-color: #90caf9;
+    }
 
-.products-overview {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-}
+    /* 隐私政策卡片 - 淡绿色 */
+    .info-card:nth-of-type(2)::after {
+      background-color: #a5d6a7;
+    }
 
-.product-card {
-  background: rgba(0,0,0,0.2);
-  padding: 20px;
-  border-radius: 8px;
-  text-align: center;
-}
+    /* 加州65号提案卡片 - 淡黄色 */
+    .info-card:nth-of-type(3)::after {
+      background-color: #fff59d;
+    }
 
-.product-card img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 4px;
-}
+    /* 假冒产品警告卡片 - 淡粉色 */
+    .info-card:nth-of-type(4)::after {
+      background-color: #f8bbd0;
+    }
 
-/* 顶部固定定位 */
-.site-topbar {
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  right: 0;
-  z-index: 1000;
-  backdrop-filter: blur(5px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 5%;
-}
-.site-bottombar {
-  margin-top: auto;
-  padding: 20px 0;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-}
-main {
-  flex: 1;
-  padding-bottom: 20px;
-}
+    .card-header {
+      padding: 15px 20px;
+      border-bottom: 1px solid var(--border-color);
+      background: rgba(0, 0, 0, 0.1);
+    }
 
-.topbar__center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
+    .card-title {
+      margin: 0;
+      font-size: 1.4rem;
+      color: var(--text-white);
+    }
 
-/* 移动菜单样式 */
-.mobile-nav {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: var(--glass-dark);
-  backdrop-filter: blur(10px);
-  z-index: 999;
-  padding: 10px 0;
-}
+    .card-content {
+      padding: 20px;
+      max-height: 120px;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
 
-.mobile-nav.mobile-nav--open {
-  display: block;
-}
+    .card-content.expanded {
+      max-height: 1000px;
+    }
 
-.mobile-nav__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+    .card-content p {
+      margin-top: 0;
+      line-height: 1.6;
+    }
 
-.mobile-nav__list li {
-  padding: 14px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
+    .card-content h3 {
+      margin: 15px 0 5px;
+      color: var(--text-white);
+      font-size: 1.1rem;
+    }
 
-.mobile-nav__list a {
-  color: var(--text-white);
-  text-decoration: none;
-  display: block;
-  font-size: 18px;
-  font-weight: bold;
-}
+    .read-more {
+      padding: 12px 20px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.15);
+      cursor: pointer;
+      color: #ccc;
+      border-top: 1px solid var(--border-color);
+      transition: background 0.3s;
+    }
 
-/* 信息卡片样式 */
-.info-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  margin-bottom: 25px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
+    .read-more:hover {
+      background: rgba(0, 0, 0, 0.25);
+    }
 
-.card-header {
-  padding: 15px 20px;
-  border-bottom: 1px solid var(--border-color);
-  background: rgba(0, 0, 0, 0.1);
-}
+    /* 顶部固定定位 */
+    .site-topbar {
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 5%;
+      background: rgba(0, 0, 0, 0.4);
+    }
+    
+    .site-bottombar {
+      margin-top: auto;
+      padding: 20px 0;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+    
+    main {
+      flex: 1;
+      padding-bottom: 20px;
+    }
 
-.card-title {
-  margin: 0;
-  font-size: 1.4rem;
-  color: var(--text-white);
-}
+    .topbar__center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
-.card-content {
-  padding: 20px;
-  max-height: 120px;
-  overflow: hidden;
-  transition: max-height 0.5s ease;
-}
+    /* 移动菜单样式 */
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: var(--glass-dark);
+      backdrop-filter: blur(10px);
+      z-index: 999;
+      padding: 10px 0;
+    }
 
-.card-content.expanded {
-  max-height: 1000px;
-}
+    .mobile-nav.mobile-nav--open {
+      display: block;
+    }
 
-.card-content p {
-  margin-top: 0;
-  line-height: 1.6;
-}
+    .mobile-nav__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
 
-.card-content h3 {
-  margin: 15px 0 5px;
-  color: var(--text-white);
-  font-size: 1.1rem;
-}
+    .mobile-nav__list li {
+      padding: 14px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
 
-.read-more {
-  padding: 12px 20px;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.15);
-  cursor: pointer;
-  color: #ccc;
-  border-top: 1px solid var(--border-color);
-  transition: background 0.3s;
-}
+    .mobile-nav__list a {
+      color: var(--text-white);
+      text-decoration: none;
+      display: block;
+      font-size: 18px;
+      font-weight: bold;
+    }
 
-.read-more:hover {
-  background: rgba(0, 0, 0, 0.25);
-}
+    @media (min-width: 768px) {
+      body { padding-top: 70px; }
+      .site-topbar { padding: 15px 8%; height: 60px; }
+      .topbar__logo { height: 35px; }
+      .page-content { padding: 30px 8%; }
+    }
 
-@media (min-width: 768px) {
-  body { padding-top: 70px; }
-  .site-topbar { padding: 15px 8%; height: 60px; }
-  .topbar__logo { height: 35px; }
-  .page-content { padding: 30px 8%; }
-  
-  .page-links ul {
-    gap: 30px;
-  }
-}
-
-@media (max-width: 600px) {
-  .page-links ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .card-content {
-    padding: 15px;
-  }
-}
-</style>
+    @media (max-width: 600px) {
+      .card-content {
+        padding: 15px;
+      }
+    }
+  </style>
 </head>
 <body>
 
