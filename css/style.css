@@ -48,24 +48,24 @@ img {
 }
 
 /* ===== 布局工具类 ===== */
-.layout-flex { display: flex; }
-.layout-flex-center { 
+.flex { display: flex; }
+.flex-center { 
   display: flex; 
   justify-content: center; 
   align-items: center; 
 }
-.layout-flex-column { flex-direction: column; }
-.layout-flex-wrap { flex-wrap: wrap; }
-.layout-justify-between { justify-content: space-between; }
-.layout-justify-around { justify-content: space-around; }
-.layout-align-center { align-items: center; }
+.flex-column { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }
+.align-center { align-items: center; }
 
-.layout-grid { display: grid; }
-.layout-grid-col-2 { grid-template-columns: repeat(2, 1fr); }
-.layout-grid-col-3 { grid-template-columns: repeat(3, 1fr); }
-.layout-grid-responsive { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
-.layout-gap-sm { gap: var(--spacing-xs); }
-.layout-gap-md { gap: var(--spacing-sm); }
+.grid { display: grid; }
+.grid-col-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-col-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-responsive { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+.gap-sm { gap: var(--spacing-xs); }
+.gap-md { gap: var(--spacing-sm); }
 
 .container {
   width: 100%;
@@ -85,15 +85,28 @@ img {
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.top-bar__row {
+.top-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 8px 16px;
 }
 
-/* 分享按钮 */
-.top-bar__share {
+/* 加大汉堡菜单图标 */
+.hamburger {
+  font-size: 35px;
+  cursor: pointer;
+  min-width: 50px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4361ee;
+  font-weight: bold;
+}
+
+/* 加大分享图标 */
+.share {
   font-size: 35px;
   cursor: pointer;
   min-width: 50px;
@@ -104,19 +117,19 @@ img {
   color: #4361ee;
 }
 
-.top-bar__center {
+.center-box {
   text-align: center;
   flex: 1;
   margin: 0 10px;
 }
 
-.top-bar__logo {
+.logo {
   height: 30px;
   display: block;
   margin: 0 auto;
 }
 
-.top-bar__slogan {
+.slogan {
   font-size: 16px;
   margin: 3px 0 0;
   color: var(--text-dark);
@@ -128,81 +141,19 @@ img {
   35% { opacity: 0.35; }
 }
 
-
-/* ===== 汉堡菜单组件（修正版，区分 top-bar 与 menu） ===== */
+/* 汉堡菜单展开内容 - 改为透明背景 */
 .menu {
-  background: transparent; /* 展开菜单背景全透明 */
-  box-shadow: none;
+  display: none;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  text-align: left;
+  padding: 15px 0;
+  border-top: 1px solid rgba(67, 97, 238, 0.3);
 }
 
-/* 菜单项按钮：每个文字加框，玻璃磨砂效果 */
-.menu__link {
-  display: block;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border-radius: 12px;
-  padding: 10px 15px;
-  color: #4361ee;   /* 保持宝石蓝 */
-  font-weight: bold;
-  text-align: center;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-/* 悬停时的效果 */
-.menu__link:hover {
-  background: rgba(255, 255, 255, 0.35);
-  color: #2a4cc8;
-}
-
-
-.menu--show {
+.menu.show {
   display: block;
   animation: slideDown 0.3s ease;
-}
-
-.menu__button {
-  font-size: 35px;
-  cursor: pointer;
-  min-width: 50px;
-  min-height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #4361ee;
-  font-weight: bold;
-}
-
-.menu__list {
-  list-style: none;
-  margin: 0;
-  padding: 0 20px;
-}
-
-.menu__item {
-  padding: 16px 15px;
-  border-bottom: 1px solid rgba(67, 97, 238, 0.1);
-}
-
-.menu__item:last-child {
-  border-bottom: none;
-}
-
-.menu__link {
-  text-decoration: none;
-  color: #4361ee;
-  font-weight: bold;
-  display: block;
-  min-height: 50px;
-  display: flex;
-  align-items: center;
-  font-size: 18px;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.menu__link:hover {
-  color: #2a4cc8;
-  transform: translateX(5px);
 }
 
 @keyframes slideDown {
@@ -214,6 +165,38 @@ img {
     opacity: 1; 
     transform: translateY(0); 
   }
+}
+
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 20px;
+}
+
+.menu li {
+  padding: 16px 15px;
+  border-bottom: 1px solid rgba(67, 97, 238, 0.1);
+}
+
+.menu li:last-child {
+  border-bottom: none;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: #4361ee;
+  font-weight: bold;
+  display: block;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.menu li a:hover {
+  color: #2a4cc8;
+  transform: translateX(5px);
 }
 
 /* ===== 最新动态 ===== */
@@ -274,13 +257,15 @@ img {
 }
 
 /* ===== 系列卡片样式 ===== */
+/* 系列卡片布局 */
 .series-overview {
     display: grid;
     gap: 20px;
     padding: 15px;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 最小300px，最大1fr */
 }
 
+/* 系列卡片样式 */
 .series-card {
     display: block;
     background: rgba(0, 0, 0, 0.4);
@@ -289,11 +274,46 @@ img {
     text-decoration: none;
     color: var(--text-white);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: auto;
-    width: 100%;
+    height: auto; /* 固定高度 */
+    width: 100%; /* 宽度自适应网格 */
 }
 
-/*侧边 彩色竖条  */
+.series-card img {
+    width: 100%;
+    height: auto; /* 图片固定高度 */
+    object-fit: cover;
+    display: block;
+}
+
+.series-card-content {
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.6);
+    height: auto; /* 内容区域固定高度 */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.series-card-content h2 {
+    margin: 0 0 8px 0;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--text-white);
+}
+
+.series-card-content p {
+    font-size: 1.4rem;
+    margin: 0 0 12px 0;
+    color: #e0e0e0;
+    line-height: 1.4;
+    flex-grow: 1; /* 描述文字区域可以伸缩 */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* 最多显示3行 */
+    -webkit-box-orient: vertical;
+}
+
+/* 彩色竖条 - 使用边框方案确保不遮挡图片 */
 .series-card[href*="series=a"] {
   border-left: 4px solid #64b5f6;
 }
@@ -317,7 +337,7 @@ img {
 
 .series-card img {
   width: 100%;
-  height: auto;
+  height: autopx;
   object-fit: cover;
   display: block;
 }
@@ -327,14 +347,14 @@ img {
   background: rgba(0, 0, 0, 0.6);
 }
 
-.series-card-title {
+.series-card-content h2 {
   margin: 0 0 8px 0;
   font-size: 1.8rem;
   font-weight: bold;
   color: var(--text-white);
 }
 
-.series-card-desc {
+.series-card-content p {
   font-size: 1.4rem;
   margin: 0 0 12px 0;
   color: #e0e0e0;
@@ -357,23 +377,23 @@ img {
   background: rgba(255, 215, 0, 0.3);
 }
 
-/* ===== 下部3个快捷导航 ===== */
-.compact-nav {
+/* ===== 下部3个导航按钮样式 ===== */
+.compact-nav-links {
   margin: 8px 0;
 }
 
-.compact-nav__container {
+.compact-nav-container {
   display: flex;
   justify-content: row;
   gap: 10px;
   padding: 0 10px;
 }
 
-.compact-nav__item {
+.compact-nav-item {
   flex: 1;
   min-width: auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: center;
   align-items: center;
   text-decoration: none;
   color: var(--text-white);
@@ -385,17 +405,17 @@ img {
   aspect-ratio: 1/1.4;
 }
 
-.compact-nav__item:hover {
+.compact-nav-item:hover {
   background: rgba(0,0,0,0.3);
   transform: translateY(-2px);
 }
 
-.compact-nav__icon {
+.nav-icon {
   font-size: 2rem;
   margin-bottom: 2px;
 }
 
-.compact-nav__text {
+.nav-text {
   font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
@@ -405,7 +425,7 @@ img {
   width: 100%;
 }
 
-.compact-nav__tooltip {
+.nav-tooltip {
   font-size: 0.7rem;
   opacity: 0.8;
   text-align: center;
@@ -414,7 +434,7 @@ img {
 }
 
 /* ===== 底部栏样式 ===== */
-.site-footer {
+.site-bottombar {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -425,23 +445,23 @@ img {
   margin-top: auto;
 }
 
-.site-footer__label {
+.bottombar__label {
   font-weight: bold;
   font-size: 1.5rem;
   color: var(--text-white);
 }
 
-.site-footer__logo {
+.bottombar__logo {
   height: 20px;
   width: auto;
 }
 
-.site-footer:active {
+.site-bottombar:active {
   background: rgba(100, 100, 255, 0.1);
 }
 
-.site-footer:active .site-footer__label,
-.site-footer:active .site-footer__logo {
+.site-bottombar:active .bottombar__label,
+.site-bottombar:active .bottombar__logo {
   transform: scale(0.95);
 }
 
@@ -451,31 +471,31 @@ img {
     padding-top: 55px;
   }
   
-  .top-bar__row {
+  .top-row {
     padding: 6px 12px;
   }
   
-  .top-bar__hamburger {
+  .hamburger {
     font-size: 26px;
     min-width: 45px;
     min-height: 45px;
   }
   
-  .top-bar__share {
+  .share {
     font-size: 24px;
     min-width: 45px;
     min-height: 45px;
   }
   
-  .top-bar__logo {
+  .logo {
     height: 35px;
   }
   
-  .top-bar__slogan {
+  .slogan {
     font-size: 12px;
   }
   
-  .menu__link {
+  .menu li a {
     font-size: 16px;
     min-height: 45px;
   }
@@ -486,12 +506,12 @@ img {
     gap: 10px;
   }
 
-  .compact-nav__container {
+  .compact-nav-container {
     flex-direction: row;
     gap: 8px;
   }
   
-  .compact-nav__item {
+  .compact-nav-item {
     height: 50px;
     aspect-ratio: auto;
     flex-direction: row;
@@ -499,17 +519,17 @@ img {
     padding: 10px;
   }
   
-  .compact-nav__icon {
+  .nav-icon {
     margin-bottom: 0;
     margin-right: 10px;
     font-size: 1.8rem;
   }
   
-  .compact-nav__text {
+  .nav-text {
     font-size: 1.4rem;
   }
   
-  .compact-nav__tooltip {
+  .nav-tooltip {
     display: none;
   }
 }
@@ -519,7 +539,7 @@ img {
     padding-top: 70px;
   }
   
-  .top-bar__row {
+  .top-row {
     padding: 10px 20px;
   }
   
@@ -528,43 +548,43 @@ img {
     padding: 20px 0;
   }
   
-  .menu__list {
+  .menu ul {
     display: flex;
     justify-content: center;
     gap: 25px;
     padding: 0;
   }
   
-  .menu__item {
+  .menu li {
     padding: 0;
     border-bottom: none;
   }
   
-  .menu__link {
+  .menu li a {
     min-height: 60px;
     font-size: 16px;
     padding: 0 20px;
   }
   
-  .menu__link:hover {
+  .menu li a:hover {
     transform: translateY(-2px);
   }
   
-  .compact-nav__tooltip {
+  .nav-tooltip {
     display: block;
   }
 }
 
 @media (min-width: 1024px) {
-  .compact-nav__item {
+  .compact-nav-item {
     padding: 15px 10px;
   }
   
-  .compact-nav__icon {
+  .nav-icon {
     font-size: 2.3rem;
   }
   
-  .compact-nav__text {
+  .nav-text {
     font-size: 1.6rem;
     white-space: normal;
   }
@@ -600,7 +620,7 @@ img {
     transition-duration: 0.01ms !important;
   }
   
-  .menu__link:hover {
+  .menu li a:hover {
     transform: none;
   }
   
@@ -608,7 +628,7 @@ img {
     transform: none;
   }
   
-  .compact-nav__item:hover {
+  .compact-nav-item:hover {
     transform: none;
   }
 }
