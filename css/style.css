@@ -131,12 +131,25 @@ img {
 /* ===== 汉堡菜单组件 ===== */
 
 :root {
-  --menu-link-width: 50px;        /* 定义菜单链接宽度 */
-  --primary-color: #4361ee;        /* 主色调：蓝色 */
-  --primary-hover: #2a4cc8;        /* 悬停颜色：深蓝色 */
+  /* 分开定义两个背景变量 */
+  --topbar-bg: rgba(128, 128, 128, 0.2);      /* 顶部栏背景 */
+  --menu-bg: rgba(0, 0, 0, 0.2);       /* 菜单背景 */
+  --topbar-blur: blur(10px);                  /* 顶部栏模糊度 */
+  --menu-blur: blur(10px);                    /* 菜单模糊度 */
 }
 
-/* ===== 汉堡菜单组件 ===== */
+/* 顶部栏样式 */
+.top-bar {
+  background: var(--topbar-bg);               /* 使用顶部栏背景 */
+  backdrop-filter: var(--topbar-blur);        /* 使用顶部栏模糊 */
+}
+
+/* 汉堡菜单样式 */
+.menu {
+  background: var(--menu-bg);                 /* 使用菜单背景 */
+  backdrop-filter: var(--menu-blur);          /* 使用菜单模糊 */
+}
+
 .menu {
   display: none;                    /* 默认隐藏菜单 */
   background: rgba(255, 255, 255, 0.15); /* 半透明白色背景，15%不透明度 */
