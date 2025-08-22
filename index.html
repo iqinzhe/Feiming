@@ -13,50 +13,79 @@
 </head>
 <body>
 
-<!-- 顶部栏 -->
-<header class="top-bar">
-  <div class="top-bar__row">
-    <div class="top-bar__hamburger" id="hamburger">☰</div>
-    <div class="top-bar__center">
-      <img src="images/logo.png" alt="Logo" class="top-bar__logo">
-      <p class="top-bar__slogan">每次拨弦都是心灵的飞舞共鸣！</p>
+  <!-- 顶部栏 -->
+  <header class="top-bar">
+    <div class="top-bar__row">
+      <!-- 汉堡菜单按钮 -->
+      <div class="menu__button" id="hamburger">
+        ☰
+      </div>
+      
+      <!-- logo + 宣传语 -->
+      <div class="top-bar__center">
+        <img src="images/logo.png" alt="AX斧标贝斯 Logo" class="top-bar__logo">
+        <p class="top-bar__slogan">每次拨弦都是心灵的飞舞共鸣！</p>
+      </div>
+
+      <!-- 分享按钮 -->
+      <div class="top-bar__share" id="shareBtn">
+        ↺
+      </div>
     </div>
-    <div class="top-bar__share" id="shareBtn">↺</div>
-  </div>
-    
-  <!-- 汉堡菜单 -->
-  <nav class="menu" id="menu">
-    <ul class="menu__list">
-      <li class="menu__item"><a href="index.html" class="menu__link">首页</a></li>
-      <li class="menu__item"><a href="products.html" class="menu__link">产品</a></li>
-      <li class="menu__item"><a href="products.html?series=d" class="menu__link">特色</a></li>
-      <li class="menu__item"><a href="pricing.html" class="menu__link">订购</a></li>
-      <li class="menu__item"><a href="support.html" class="menu__link">支持</a></li>
-    </ul>
-  </nav>
-</header>
+
+    <!-- 汉堡菜单展开内容 -->
+    <nav class="menu" id="menu">
+      <ul class="menu__list">
+        <li class="menu__item">
+          <a href="index.html" class="menu__link">首页</a>
+        </li>
+        <li class="menu__item">
+          <a href="products.html" class="menu__link">产品</a>
+        </li>
+        <li class="menu__item">
+          <a href="products.html?series=d" class="menu__link">特色</a>
+        </li>
+        <li class="menu__item">
+          <a href="pricing.html" class="menu__link">订购</a>
+        </li>
+        <li class="menu__item">
+          <a href="support.html" class="menu__link">支持</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
     
   <main>
     <!-- 最新动态 -->
-    <section class="news-section">
+    <section class="latest-news">
       <h3>最新动态</h3>
       <div id="events-preview-container">
         <div class="loading">加载最新动态...</div>
       </div>
-      <a href="events.html" class="news-section__view-all">查看更多动态 →</a>
+      <a href="events.html" class="view-all-news">查看更多动态 →</a>
     </section>
 
     <!-- 系列卡片总览 -->
-    <section class="series-grid" id="seriesOverview"></section>
+    <section class="series-overview" id="seriesOverview"></section>
 
     <!-- 紧凑型导航链接 -->
-<section class="compact-nav" aria-label="快捷导航">
-  <div class="compact-nav__container">
-    <a href="pricing.html" class="compact-nav__item" aria-label="订购产品">
-      <span class="compact-nav__icon" role="img" aria-hidden="true">🛒</span>
-      <span class="compact-nav__text">订购产品</span>
-      <span class="compact-nav__tooltip">订购产品</span>
-    </a>
+    <nav class="compact-nav" aria-label="快捷导航">
+      <div class="compact-nav__container">
+        <a href="pricing.html" class="compact-nav__item" aria-label="订购产品">
+          <span class="compact-nav__icon" role="img" aria-hidden="true">🛒</span>
+          <span class="compact-nav__text">订购产品</span>
+          <span class="compact-nav__tooltip">订购产品</span>
+        </a>
+        <a href="support.html" class="compact-nav__item" aria-label="支持中心">
+          <span class="compact-nav__icon" role="img" aria-hidden="true">🛠️</span>
+          <span class="compact-nav__text">支持中心</span>
+          <span class="compact-nav__tooltip">获取帮助与文档</span>
+        </a>
+        <a href="events.html" class="compact-nav__item" aria-label="官方信息">
+          <span class="compact-nav__icon" role="img" aria-hidden="true">ℹ️</span>
+          <span class="compact-nav__text">官方信息</span>
+          <span class="compact-nav__tooltip">新闻公告</span>
+        </a>
       </div>
     </nav>
   </main>
@@ -80,12 +109,12 @@
     const seriesOverview = document.getElementById("seriesOverview");
     if (seriesOverview) {
       seriesOverview.innerHTML = seriesData.map(series => `
-        <a class="series-card series-card--series-${series.id}" href="products.html?series=${series.id}">
-          <img class="series-card__image" src="images/${series.img}" alt="${series.name}" loading="lazy">
-          <div class="series-card__content">
-            <h2 class="series-card__title">${series.name}</h2>
-            <p class="series-card__description">${series.desc}</p>
-            <span class="series-card__cta">查看全系列</span>
+        <a class="series-card" href="products.html?series=${series.id}">
+          <img src="images/${series.img}" alt="${series.name}" loading="lazy">
+          <div class="series-card-content">
+            <h2 class="series-card-title">${series.name}</h2>
+            <p class="series-card-desc">${series.desc}</p>
+            <div class="series-card-cta">查看全系列</div>
           </div>
         </a>
       `).join("");
@@ -119,11 +148,11 @@
     const previewContainer = document.getElementById("events-preview-container");
     if (previewContainer && latestEvent) {
       previewContainer.innerHTML = `
-        <a href="events.html" class="news-section__card">
-          <div class="news-section__date">${formatDate(latestEvent.date)} | ${latestEvent.location}</div>
+        <a href="events.html" class="news-card">
+          <div class="news-date">${formatDate(latestEvent.date)} | ${latestEvent.location}</div>
           <h4>${latestEvent.title}</h4>
-          <p class="news-section__description">${latestEvent.description}</p>
-          <span class="news-section__read-more">阅读更多</span>
+          <p class="news-desc">${latestEvent.description}</p>
+          <span class="read-more">阅读更多</span>
         </a>
       `;
     }
@@ -132,6 +161,18 @@
       const date = new Date(dateStr);
       return `${date.getFullYear()}年${date.getMonth()+1}月${date.getDate()}日`;
     }
+
+    // 汉堡菜单交互逻辑
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburger = document.getElementById('hamburger');
+      const menu = document.getElementById('menu');
+      
+      if (hamburger && menu) {
+        hamburger.addEventListener('click', function() {
+          menu.classList.toggle('menu--show');
+        });
+      }
+    });
   </script>
 </body>
 </html>
