@@ -1,240 +1,61 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>关于我们 | AX斧标贝斯</title>
-  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-  <link rel="manifest" href="/icons/manifest.json">
-  <link href="/css/style.css" rel="stylesheet">
-  <link rel="stylesheet" href="global.css">
-  <style>
-    /* === 基础样式 === */
-    body {
-      font-family: 'Helvetica', 'Arial', sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #0ABAB5);
-      background-attachment: fixed;
-      color: #f8f8f8;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    
-    /* 关于页面特有样式 */
-    .page-content {
-      flex: 1;
-      padding: 30px 20px;
-      margin-top: 80px;
-    }
-    
-    .about-section {
-      max-width: 900px;
-      margin: 0 auto;
-      background: rgba(255, 255, 255, 0.12);
-      padding: 40px;
-      border-radius: 16px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .about-section h1 {
-      color: #ffffff;
-      text-align: center;
-      margin-bottom: 30px;
-      font-size: 2.5rem;
-      font-weight: 400;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-      position: relative;
-      padding-bottom: 15px;
-    }
-    
-    .about-section h1::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 3px;
-      background: linear-gradient(90deg, #0ABAB5, #1a2a6c);
-      border-radius: 3px;
-    }
-    
-    .about-section p {
-      line-height: 1.8;
-      margin-bottom: 25px;
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 1.1rem;
-    }
-    
-    .about-section strong {
-      color: #ffffff;
-      font-weight: 600;
-    }
-    
-    .about-section ul {
-      padding-left: 20px;
-      margin-bottom: 40px;
-    }
-    
-    .about-section li {
-      margin-bottom: 15px;
-      color: rgba(255, 255, 255, 0.9);
-      position: relative;
-      padding-left: 30px;
-      line-height: 1.6;
-    }
-    
-    .about-section li::before {
-      content: "🎸";
-      position: absolute;
-      left: 0;
-      top: 0;
-      font-size: 1.2rem;
-    }
-    
-    .contact-info {
-      margin-top: 40px;
-      padding-top: 30px;
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    
-    .contact-info p {
-      margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-    }
-    
-    .contact-info p::before {
-      content: "📞";
-      margin-right: 10px;
-      font-size: 1.2rem;
-    }
-    
-    .contact-info p:last-child::before {
-      content: "📍";
-    }
-
-    /* 顶部导航 */
-    .top-nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 5%;
-      background: rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(10px);
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-    }
-    
-    .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: white;
-      text-decoration: none;
-    }
-    
-    .nav-links {
-      display: flex;
-      gap: 20px;
-    }
-    
-    .nav-links a {
-      color: rgba(255, 255, 255, 0.8);
-      text-decoration: none;
-      transition: color 0.3s;
-      font-size: 1rem;
-    }
-    
-    .nav-links a:hover {
-      color: #0ABAB5;
-    }
-    
-    /* 底部栏 */
-    .footer {
-      text-align: center;
-      padding: 30px 0;
-      margin-top: 50px;
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 0.9rem;
-      background: rgba(0, 0, 0, 0.2);
-    }
-    
-    /* 返回顶部按钮 */
-    .back-to-top {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: linear-gradient(45deg, #0ABAB5, #1a2a6c);
-      color: white;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      box-shadow: 0 4px 15px rgba(10, 186, 181, 0.3);
-      transition: all 0.3s ease;
-      z-index: 99;
-    }
-    
-    .back-to-top:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 7px 20px rgba(10, 186, 181, 0.5);
-    }
-    
-    /* 响应式设计 */
-    @media (max-width: 768px) {
-      .page-content {
-        padding: 20px 15px;
-        margin-top: 70px;
-      }
-      
-      .about-section {
-        padding: 25px;
-      }
-      
-      .about-section h1 {
-        font-size: 2rem;
-      }
-      
-      .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 15px;
-      }
-      
-      .top-nav {
-        flex-direction: column;
-        gap: 15px;
-        padding: 10px 5%;
-      }
-    }
-  </style>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>AX斧标贝斯 | 首页</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="manifest" href="/icons/manifest.json">
+    <link href="/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="global.css">
 </head>
 <body>
 
-<!-- 顶部导航 -->
-<div class="top-nav">
-  <a href="index.html" class="logo">AX 斧标</a>
-  <div class="nav-links">
-    <a href="index.html">首页</a>
-    <a href="products.html">产品</a>
-    <a href="events.html">动态</a>
-    <a href="support.html">支持</a>
-    <a href="about.html" style="color: #0ABAB5;">关于</a>
-  </div>
-</div>
+<body class="ax-gradient-bg">
+
+  <!-- 顶部栏 -->
+  <header class="top-bar">
+    <div class="top-bar__row">
+      <!-- 汉堡菜单按钮 -->
+      <div class="menu__button" id="hamburger">
+        ☰
+      </div>
+      
+      <!-- logo + 宣传语 -->
+      <div class="top-bar__center">
+        <img src="images/logo.png" alt="AX斧标贝斯 Logo" class="top-bar__logo">
+        <p class="top-bar__slogan">每次拨弦都是心灵的飞舞共鸣！</p>
+      </div>
+
+      <!-- 分享按钮 -->
+      <div class="top-bar__share" id="shareBtn">
+        ↺
+      </div>
+    </div>
+
+    <!-- 汉堡菜单展开内容 -->
+    <nav class="menu" id="menu">
+      <ul class="menu__list">
+        <li class="menu__item">
+          <a href="index.html" class="menu__link">首页</a>
+        </li>
+        <li class="menu__item">
+          <a href="products.html" class="menu__link">产品</a>
+        </li>
+        <li class="menu__item">
+          <a href="products.html?series=d" class="menu__link">特色</a>
+        </li>
+        <li class="menu__item">
+          <a href="pricing.html" class="menu__link">订购</a>
+        </li>
+        <li class="menu__item">
+          <a href="support.html" class="menu__link">支持</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
 
 <!-- 关于页面专属内容 -->
 <main class="page-content">
@@ -257,25 +78,12 @@
   </div>
 </main>
 
-<!-- 返回顶部按钮 -->
-<a href="#" class="back-to-top">↑</a>
-
 <!-- 底部栏 -->
-<div class="footer">
-  <p>© 2025 AX斧标BASS · 匠心制作 · 非凡音色</p>
-</div>
+<footer class="site-bottombar" id="footerToTop">
+  <div class="bottombar__label">返回顶部</div>
+  <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
+</footer>
 
-<script>
-  // 返回顶部功能
-  document.querySelector('.back-to-top').addEventListener('click', function(e) {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-  
-  // 移动菜单功能 (如果需要的话)
-  // document.getElementById('topbarMenuBtn').addEventListener('click', function() {
-  //   document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
-  // });
-</script>
+<script src="/js/main.js"></script>
 </body>
 </html>
