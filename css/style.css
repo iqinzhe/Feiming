@@ -168,15 +168,14 @@ img { max-width: 100%; height: auto; display: block; }
 @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
 /* ==================================================
-   最新动态
+   最新动态卡片样式
    ================================================== */
-/* 最新动态卡片样式 */
 .news-card {
   display: block;
   text-decoration: none;
   color: inherit;
   padding: 20px;
-  background: white;
+  background: transparent;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
