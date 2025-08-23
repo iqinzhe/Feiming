@@ -85,7 +85,6 @@ img { max-width: 100%; height: auto; display: block; }
    ================================================== */
 .menu {
   display: none;
-  background: transparent !important;
   backdrop-filter: none !important;
   border: 0 !important;
   padding: 8px 0;
@@ -111,8 +110,6 @@ img { max-width: 100%; height: auto; display: block; }
   margin: 0;
   list-style: none;
 }
-
-.menu__item { border: 0 !important; padding: 0 !important; margin: 0; background: transparent !important; }
 
 /* 每个导航项：自适应宽度 + 宝石蓝文字 */
 .menu__link {
