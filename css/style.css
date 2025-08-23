@@ -30,7 +30,6 @@ body {
   font-size: 1.5rem;
   line-height: 1.5;
   color: var(--text-white);
-  background: var(--neutral-gray);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
