@@ -95,7 +95,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .top-bar__center { text-align: center; flex: 1; margin: 0 10px; }
 .top-bar__logo { height: 30px; display: block; margin: 0 auto; }
-.top-bar__slogan { font-size: 16px; margin: 2px 0 0; color: #4361ee;; animation: breathing 2s infinite; }
+.top-bar__slogan { font-size: 16px; margin: 2px 0 0; color: #4361ee; animation: breathing 2s infinite; }
 
 @keyframes breathing { 0%, 100% { opacity: 0.8; } 35% { opacity: 0.35; } }
 
@@ -165,13 +165,58 @@ img { max-width: 100%; height: auto; display: block; }
 /* ==================================================
    最新动态
    ================================================== */
-.latest-news { background: rgba(0,0,0,0.2); padding: 7px; margin: 5px 0 20px; border-radius: 8px; height: 180px; overflow: hidden; position: relative; }
-.news-card { display: block; padding: 10px; border-radius: 6px; color: inherit; text-decoration: none; transition: background 0.2s; }
-.news-card:hover { background: rgba(255,255,255,0.05); }
-.news-date { font-weight: bold; color: #ccc; margin-bottom: 1px; }
-.read-more { color: #4dabf7; text-decoration: none; font-size: 12px; display: inline-block; margin-top: 2px; }
-.news-desc { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; line-height: 1.4; max-height: calc(1.4em * 2); }
-.view-all-news { position: absolute; bottom: 10px; right: 10px; color: #4dabf7; text-decoration: none; font-size: 14px; }
+.latest-news { 
+    background: rgba(0,0,0,0.2); 
+    padding: 7px; 
+    margin: 5px 0; 
+    border-radius: 8px; 
+    height: 180px; 
+    overflow: hidden; 
+    position: relative; 
+    line-height: 1.2; /* 增加整体行高 */
+}
+
+.news-card { 
+    display: block; 
+    padding: 12px 10px 8px; /* 增加上下内边距 */
+    border-radius: 6px; 
+    color: inherit; 
+    text-decoration: none; 
+    transition: background 0.2s; 
+    margin-bottom: 6px; /* 增加卡片间距 */
+}
+
+.news-card:hover { 
+    background: rgba(255,255,255,0.05); 
+}
+
+.news-date { 
+    font-weight: normal; /* 移除加粗 */
+    color: #aaa; /* 调整为更柔和的颜色 */
+    margin-bottom: 0px; /* 增加底部间距 */
+    font-family: 'Helvetica', 'Arial', sans-serif; /* 使用更优雅的字体 */
+    font-size: 13px; /* 调整字体大小 */
+    letter-spacing: 0.2px; /* 增加字母间距 */
+}
+
+.read-more { 
+    color: #4dabf7; 
+    text-decoration: none; 
+    font-size: 12px; 
+    display: inline-block; 
+    margin-top: 3px; /* 增加顶部间距 */
+}
+
+.news-desc { 
+    display: -webkit-box; 
+    -webkit-line-clamp: 2; 
+    -webkit-box-orient: vertical; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    line-height: 1.5; /* 增加行高提高可读性 */
+    max-height: calc(1.5em * 2); /* 配合行高调整 */
+    margin-bottom: 3px; /* 增加底部间距 */
+}
 
 /* ==================================================
    系列卡片样式
