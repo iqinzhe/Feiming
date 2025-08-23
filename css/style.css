@@ -95,7 +95,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .top-bar__center { text-align: center; flex: 1; margin: 0 10px; }
 .top-bar__logo { height: 30px; display: block; margin: 0 auto; }
-.top-bar__slogan { font-size: 16px; margin: 3px 0 0; color: var(--text-dark); animation: breathing 2s infinite; }
+.top-bar__slogan { font-size: 16px; margin: 3px 0 0; color: #4361ee;; animation: breathing 2s infinite; }
 
 @keyframes breathing { 0%, 100% { opacity: 0.8; } 35% { opacity: 0.35; } }
 
