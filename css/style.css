@@ -2,7 +2,7 @@
    全局样式与变量
    ================================================== */
 :root {
-  --primary-color: #4361ee;         /* 宝石蓝：品牌主色，汉堡图标、菜单文字 */
+  --primary-color: #4361ee;         /*菜单文字 */
   --secondary-color: #7209b7;
   --neutral-gray: rgb(128, 128, 128);
   --glass-dark: rgba(0, 0, 0, 0.3);
@@ -96,8 +96,8 @@ img { max-width: 100%; height: auto; display: block; }
 .top-bar__center { text-align: center; flex: 1; margin: 0 10px; }
 .top-bar__logo { height: 30px; display: block; margin: 0 auto; }
 .top-bar__slogan { font-size: 16px; margin: 2px 0 0; animation: breathing 2s infinite; }
-.top-bar__center .top-bar__slogan {
-    color: #4361ee;
+top-bar__slogan {
+    color: white;
     font-weight: 500; /* 可选：增加一点字重让文字更清晰 */
     text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9); /* 可选：增加文字阴影提升可读性 */
 }
