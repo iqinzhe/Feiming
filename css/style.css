@@ -261,7 +261,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .compact-nav__container {
   display: flex;
-  justify-content: center;
+  justify-content: row;
   gap: 10px;
   padding: 0 10px;
   flex-wrap: wrap;
