@@ -168,7 +168,7 @@ img { max-width: 100%; height: auto; display: block; }
 .latest-news { 
     background: rgba(0,0,0,0.2); 
     padding: 7px; 
-    margin: 5px 0 5px; 
+    margin: 5px 0; 
     border-radius: 8px; 
     height: 180px; 
     overflow: hidden; 
@@ -178,12 +178,12 @@ img { max-width: 100%; height: auto; display: block; }
 
 .news-card { 
     display: block; 
-    padding: 12px 10px 10px; /* 增加上下内边距 */
+    padding: 12px 10px 8px; /* 增加上下内边距 */
     border-radius: 6px; 
     color: inherit; 
     text-decoration: none; 
     transition: background 0.2s; 
-    margin-bottom: 8px; /* 增加卡片间距 */
+    margin-bottom: 6px; /* 增加卡片间距 */
 }
 
 .news-card:hover { 
@@ -193,10 +193,10 @@ img { max-width: 100%; height: auto; display: block; }
 .news-date { 
     font-weight: normal; /* 移除加粗 */
     color: #aaa; /* 调整为更柔和的颜色 */
-    margin-bottom: 1px; /* 增加底部间距 */
+    margin-bottom: 0px; /* 增加底部间距 */
     font-family: 'Helvetica', 'Arial', sans-serif; /* 使用更优雅的字体 */
     font-size: 13px; /* 调整字体大小 */
-    letter-spacing: 0.3px; /* 增加字母间距 */
+    letter-spacing: 0.2px; /* 增加字母间距 */
 }
 
 .read-more { 
@@ -204,7 +204,7 @@ img { max-width: 100%; height: auto; display: block; }
     text-decoration: none; 
     font-size: 12px; 
     display: inline-block; 
-    margin-top: 5px; /* 增加顶部间距 */
+    margin-top: 3px; /* 增加顶部间距 */
 }
 
 .news-desc { 
@@ -215,7 +215,7 @@ img { max-width: 100%; height: auto; display: block; }
     text-overflow: ellipsis; 
     line-height: 1.5; /* 增加行高提高可读性 */
     max-height: calc(1.5em * 2); /* 配合行高调整 */
-    margin-bottom: 5px; /* 增加底部间距 */
+    margin-bottom: 3px; /* 增加底部间距 */
 }
 
 /* ==================================================
