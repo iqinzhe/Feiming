@@ -71,7 +71,7 @@ img { max-width: 100%; height: auto; display: block; }
   width: 100%;
   z-index: 1000;
   backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(10, 10, 10, 0.5);
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
