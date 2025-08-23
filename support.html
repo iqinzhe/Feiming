@@ -9,6 +9,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
 <link rel="manifest" href="/icons/manifest.json">
   <link href="../css/style.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="global.css">
   <style>
 
     /* ===== 全局标准样式 ===== */
@@ -74,49 +75,112 @@
       font-size: 24px;
     }
 
-  <!-- 顶部栏 -->
-  <header class="top-bar">
-    <div class="top-bar__row">
-      <!-- 汉堡菜单按钮 -->
-      <div class="menu__button" id="hamburger">
-        ☰
-      </div>
-      
-      <!-- logo + 宣传语 -->
-      <div class="top-bar__center">
-        <img src="images/logo.png" alt="AX斧标贝斯 Logo" class="top-bar__logo">
-        <p class="top-bar__slogan">每次拨弦都是心灵的飞舞共鸣！</p>
-      </div>
+/* 顶部固定定位 */
+.site-topbar {
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  right: 0;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 5%;
+}
+.site-bottombar {
+  margin-top: auto;
+  padding: 20px 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+main {
+  flex: 1;
+  padding-bottom: 20px;
+}
 
-      <!-- 分享按钮 -->
-      <div class="top-bar__share" id="shareBtn">
-        ↺
-      </div>
-    </div>
+.topbar__center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
-    <!-- 汉堡菜单展开内容 -->
-    <nav class="menu" id="menu">
-      <ul class="menu__list">
-        <li class="menu__item">
-          <a href="index.html" class="menu__link">首页</a>
-        </li>
-        <li class="menu__item">
-          <a href="products.html" class="menu__link">产品</a>
-        </li>
-        <li class="menu__item">
-          <a href="products.html?series=d" class="menu__link">特色</a>
-        </li>
-        <li class="menu__item">
-          <a href="pricing.html" class="menu__link">订购</a>
-        </li>
-        <li class="menu__item">
-          <a href="support.html" class="menu__link">支持</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-    
+/* 移动菜单样式 */
+.mobile-nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--glass-dark);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+  padding: 10px 0;
+}
+
+.mobile-nav.mobile-nav--open {
+  display: block;
+}
+
+.mobile-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-nav__list li {
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.mobile-nav__list a {
+  color: var(--text-white);
+  text-decoration: none;
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  body { padding-top: 70px; }
+  .site-topbar { padding: 15px 8%; height: 60px; }
+  .topbar__logo { height: 35px; }
+  .page-content { padding: 30px 8%; }
+  
+  .page-links ul {
+    gap: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-links ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+</style>
+</head>
+<body>
+
 <body class="ax-gradient-bg">
+
+<!-- 标准顶部栏 -->
+<header class="site-topbar">
+  <div class="topbar__left">
+    <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
+  </div>
+  <div class="topbar__center">
+    <a href="../index.html">
+      <img class="topbar__logo" src="../images/logo.png" alt="AX Guitar Logo"/>
+    </a>
+  </div>
+  <div class="topbar__right">
+    <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
+    <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
+  </div>
   
   <nav class="mobile-nav" id="mobileNav" aria-label="主导航">
     <ul class="mobile-nav__list">
@@ -156,7 +220,7 @@
     <div class="support-card">
       <h2><span class="icon">ℹ️</span>通用信息</h2>
       <p>获取法律条款和品牌声明。。。</p>
-      <a href="info.html">详细信息 →</a>
+      <a href="information.html">详细信息 →</a>
     </div>
   </div>
 </main>
