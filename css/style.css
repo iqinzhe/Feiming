@@ -2,7 +2,7 @@
    全局样式与变量
    ================================================== */
 :root {
-  --primary-color: #4361ee;         /*菜单文字 */
+  --primary-color: #4361ee;         /* 宝石蓝：品牌主色，汉堡图标、菜单文字 */
   --secondary-color: #7209b7;
   --neutral-gray: rgb(128, 128, 128);
   --glass-dark: rgba(0, 0, 0, 0.3);
@@ -71,7 +71,7 @@ img { max-width: 100%; height: auto; display: block; }
   width: 100%;
   z-index: 1000;
   backdrop-filter: blur(10px);
-  background: rgba(10, 10, 10, 0.1);
+  background: rgba(255, 255, 255, 0.6);
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
@@ -95,12 +95,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .top-bar__center { text-align: center; flex: 1; margin: 0 10px; }
 .top-bar__logo { height: 30px; display: block; margin: 0 auto; }
-.top-bar__slogan { font-size: 16px; margin: 2px 0 0; animation: breathing 2s infinite; }
-top-bar__slogan {
-    color: white;
-    font-weight: 500; /* 可选：增加一点字重让文字更清晰 */
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9); /* 可选：增加文字阴影提升可读性 */
-}
+.top-bar__slogan { font-size: 16px; margin: 2px 0 0; color: #4361ee;; animation: breathing 2s infinite; }
 
 @keyframes breathing { 0%, 100% { opacity: 0.8; } 35% { opacity: 0.35; } }
 
@@ -168,66 +163,15 @@ top-bar__slogan {
 @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
 /* ==================================================
-   最新动态卡片样式
+   最新动态
    ================================================== */
-.news-card {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  padding: 20px;
-  background: transparent;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.news-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-}
-
-.news-date {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 8px; /* 控制日期与标题的间距 */
-  display: block;
-}
-
-.news-card h4 {
-  font-size: 18px;
-  margin: 0 0 12px 0; /* 控制标题与描述的间距 */
-  color: #2c3e50;
-  font-weight: 600;
-  line-height: 1.4;
-}
-
-.news-desc {
-  font-size: 15px;
-  line-height: 1.6;
-  color: #555;
-  margin-bottom: 16px;
-}
-
-.read-more {
-  color: #4361ee;
-  font-weight: 500;
-  font-size: 14px;
-}
-
-/* 加载状态样式 */
-.loading {
-  text-align: center;
-  padding: 40px;
-  color: #666;
-}
-
-.view-all-news {
-  display: inline-block;
-  margin-top: 20px;
-  color: #4361ee;
-  text-decoration: none;
-  font-weight: 500;
-}
+.latest-news { background: rgba(0,0,0,0.2); padding: 7px; margin: 5px 0 20px; border-radius: 8px; height: 180px; overflow: hidden; position: relative; }
+.news-card { display: block; padding: 10px; border-radius: 6px; color: inherit; text-decoration: none; transition: background 0.2s; }
+.news-card:hover { background: rgba(255,255,255,0.05); }
+.news-date { font-weight: bold; color: #ccc; margin-bottom: 1px; }
+.read-more { color: #4dabf7; text-decoration: none; font-size: 12px; display: inline-block; margin-top: 2px; }
+.news-desc { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; line-height: 1.4; max-height: calc(1.4em * 2); }
+.view-all-news { position: absolute; bottom: 10px; right: 10px; color: #4dabf7; text-decoration: none; font-size: 14px; }
 
 /* ==================================================
    系列卡片样式
@@ -261,7 +205,7 @@ top-bar__slogan {
 
 .compact-nav__container {
   display: flex;
-  justify-content: row;
+  justify-content: center;
   gap: 10px;
   padding: 0 10px;
   flex-wrap: wrap;
@@ -368,4 +312,3 @@ top-bar__slogan {
   * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   .menu__link:hover, .series-card:hover, .compact-nav__item:hover { transform: none; }
 }
-
