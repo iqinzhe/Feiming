@@ -368,3 +368,52 @@ img { max-width: 100%; height: auto; display: block; }
   * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   .menu__link:hover, .series-card:hover, .compact-nav__item:hover { transform: none; }
 }
+
+/* ==================================================
+   针对彩色背景的文字颜色优化 在文件末尾添加以下代码：
+   ================================================== */
+body.ax-gradient-bg .top-bar__slogan {
+    color: #4361ee !important;
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
+}
+
+body.ax-gradient-bg .news-card h4 {
+    color: #2c3e50 !important;
+}
+
+body.ax-gradient-bg .news-desc {
+    color: #4a5568 !important;
+}
+
+body.ax-gradient-bg .series-card-title {
+    color: #ffffff !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+body.ax-gradient-bg .series-card-desc {
+    color: #e2e8f0 !important;
+}
+
+body.ax-gradient-bg .compact-nav__text {
+    color: #ffffff !important;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+body.ax-gradient-bg .site-footer__label {
+    color: #ffffff !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* 2. 文字阴影工具类 */
+.text-with-shadow {
+    text-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.3),
+        0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.text-with-light-shadow {
+    text-shadow: 
+        0 1px 3px rgba(255, 255, 255, 0.8),
+        0 0 15px rgba(255, 255, 255, 0.4);
+}
