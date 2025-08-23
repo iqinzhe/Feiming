@@ -168,12 +168,12 @@ img { max-width: 100%; height: auto; display: block; }
 .latest-news { 
     background: rgba(0,0,0,0.2); 
     padding: 7px; 
-    margin: 5px 0 20px; 
+    margin: 5px 0 5px; 
     border-radius: 8px; 
     height: 180px; 
     overflow: hidden; 
     position: relative; 
-    line-height: 1.6; /* 增加整体行高 */
+    line-height: 1.2; /* 增加整体行高 */
 }
 
 .news-card { 
