@@ -168,7 +168,7 @@ img { max-width: 100%; height: auto; display: block; }
 .latest-news { background: rgba(0,0,0,0.2); padding: 7px; margin: 5px 0 20px; border-radius: 8px; height: 180px; overflow: hidden; position: relative; }
 .news-card { display: block; padding: 10px; border-radius: 6px; color: inherit; text-decoration: none; transition: background 0.2s; }
 .news-card:hover { background: rgba(255,255,255,0.05); }
-.news-date { font-weight: bold; color: #ccc; margin-bottom: 2px; }
+.news-date { font-weight: bold; color: #ccc; margin-bottom: 1px; }
 .read-more { color: #4dabf7; text-decoration: none; font-size: 12px; display: inline-block; margin-top: 2px; }
 .news-desc { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; line-height: 1.4; max-height: calc(1.4em * 2); }
 .view-all-news { position: absolute; bottom: 10px; right: 10px; color: #4dabf7; text-decoration: none; font-size: 14px; }
