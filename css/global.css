@@ -46,7 +46,7 @@ p {
 
 /* === 链接样式 === */
 a {
-  color:  #4361ee !important; /* 使用品牌色中的青色作为链接色 */
+  color:  #4361ee !important; /* 宝石蓝 */
   text-decoration: none;
   transition: color 0.3s ease;
 }
