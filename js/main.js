@@ -1,40 +1,57 @@
-/* ==================================================
-   汉堡菜单控制
-   ================================================== */
-const hamburger = document.getElementById("hamburger"); // 对应 index.html 里的 id="hamburger"
-const menu = document.querySelector(".menu");
+/**
+ * AX Guitar 网站核心功能
+ * 功能包含：菜单控制、搜索、分享、返回顶部
+ */
 
-// 点击汉堡按钮：展开/收起菜单
-if (hamburger && menu) {
-  hamburger.addEventListener("click", () => {
-    menu.classList.toggle("menu--show");
+// DOM加载完成后执行
+document.addEventListener('DOMContentLoaded', function() {
+  initMobileMenu();
+  setupShare();
+  setupBackToTop();
+});
+
+// 移动菜单控制 - 修复汉堡菜单功能
+function initMobileMenu() {
+  const hamburger = document.getElementById('hamburger');
+  const menu = document.getElementById('menu');
+  
+  if (hamburger && menu) {
+    hamburger.addEventListener('click', function() {
+      menu.classList.toggle('show');
+      console.debug('菜单状态:', menu.classList.contains('show'));
+    });
+  }
+}
+
+// 分享功能 - 修复分享按钮功能
+function setupShare() {
+  const shareBtn = document.getElementById('shareBtn');
+  
+  shareBtn?.addEventListener('click', function() {
+    try {
+      if (navigator.share) {
+        navigator.share({
+          title: document.title,
+          url: location.href
+        });
+      } else {
+        alert('请手动复制链接分享: ' + location.href);
+      }
+    } catch (e) {
+      console.error('分享失败:', e);
+      alert('分享功能出错，请重试');
+    }
   });
 }
 
-// 点击页面其他地方时，自动关闭菜单
-document.addEventListener("click", (e) => {
-  if (
-    menu.classList.contains("menu--show") &&
-    !menu.contains(e.target) &&
-    !hamburger.contains(e.target)
-  ) {
-    menu.classList.remove("menu--show");
-  }
-});
-
-// 页面滚动时，自动收起菜单（防止遮挡内容）
-window.addEventListener("scroll", () => {
-  if (menu.classList.contains("menu--show")) {
-    menu.classList.remove("menu--show");
-  }
-});
-
-/* ==================================================
-   可扩展功能（后期可加）
-   ================================================== */
-// 例如：点击 ESC 键关闭菜单
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && menu.classList.contains("menu--show")) {
-    menu.classList.remove("menu--show");
-  }
-});
+// 返回顶部
+function setupBackToTop() {
+  const footer = document.getElementById('footerToTop');
+  
+  footer?.addEventListener('click', function() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
