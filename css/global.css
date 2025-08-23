@@ -9,7 +9,7 @@ body {
   padding: 0 20px; /* 页面左右边距 */
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1rem; /* 正文字体大小（16px） */
-  color: #f0f0f0; /* 调整文字颜色以适应深色背景 */
+  color:  #4361ee; /* 调整文字颜色以适应深色背景 */
   max-width: 1200px; /* 限制最大宽度，防止超宽 */
   margin-left: auto;
   margin-right: auto; /* 内容居中 */
