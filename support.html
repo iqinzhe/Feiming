@@ -12,6 +12,12 @@
   <link rel="stylesheet" href="global.css">
   <style>
     /* ===== 支持中心特有样式 ===== */
+    .page-content {
+      flex: 1;
+      padding: 20px 5%;
+      margin-top: 35px;
+    }
+
     .support-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -40,21 +46,14 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      color: #ffffff;
     }
 
     .support-card a {
-      color: #5ed3ce;
       text-decoration: none;
       display: block;
       margin-top: 15px;
       font-weight: bold;
       transition: color 0.3s ease;
-    }
-
-    .support-card a:hover {
-      color: #4a67b3;
-      text-decoration: underline;
     }
 
     .icon {
@@ -127,17 +126,10 @@
     }
 
     .mobile-nav__list a {
-      color: #ffffff;
       text-decoration: none;
       display: block;
       font-size: 18px;
       font-weight: bold;
-    }
-
-    @media (min-width: 768px) {
-      .site-topbar { padding: 15px 8%; height: 60px; }
-      .topbar__logo { height: 35px; }
-      .page-content { padding: 30px 8%; }
     }
 
     @media (max-width: 600px) {
