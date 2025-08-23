@@ -95,7 +95,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .top-bar__center { text-align: center; flex: 1; margin: 0 10px; }
 .top-bar__logo { height: 30px; display: block; margin: 0 auto; }
-.top-bar__slogan { font-size: 16px; margin: 2px 0 0; color: #4361ee; animation: breathing 2s infinite; }
+.top-bar__slogan { font-size: 16px; margin: 2px 0 0; animation: breathing 2s infinite; }
 .top-bar__center .top-bar__slogan {
     color: #4361ee;
     font-weight: 500; /* 可选：增加一点字重让文字更清晰 */
@@ -177,7 +177,7 @@ img { max-width: 100%; height: auto; display: block; }
   padding: 20px;
   background: transparent;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
