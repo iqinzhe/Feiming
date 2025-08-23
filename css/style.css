@@ -64,19 +64,19 @@ img { max-width: 100%; height: auto; display: block; }
    顶部栏样式
    ================================================== */
 .top-bar {
-  position: fixed; /* 固定顶部栏 */
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
+  z-index: 1000;
   backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, 0.6);
-  z-index: 1000;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .top-bar__row {
-  max-width: 1200px; /* 与 container 保持一致宽度 */
-  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -105,17 +105,15 @@ img { max-width: 100%; height: auto; display: block; }
    ================================================== */
 .menu {
   display: none;
-  background: transparent !important;
-  backdrop-filter: none !important;
-  border: 0 !important;
-  padding: 8px 0;
-  position: absolute; /* 确保菜单相对顶部栏展开 */
+  position: absolute;
   top: 100%;
   left: 0;
-  width: 100%;
+  right: 0;
   z-index: 999;
+  background: transparent !important;
+  text-align: center;
+  padding: 8px 0;
 }
-
 .menu--show { display: block; animation: slideDown 0.25s ease; }
 
 .top-bar__hamburger,
