@@ -248,7 +248,7 @@ img { max-width: 100%; height: auto; display: block; }
   margin-top: auto;
   box-sizing: border-box;
 }
-.site-footer__label { font-weight: bold; font-size: 1.5rem; color: var(--text-white); }
+.site-footer__label { font-weight: bold; font-size: 1.2rem; color: var(--text-white); }
 .site-footer__logo { height: 20px; width: auto; }
 .site-footer:active { background: rgba(100, 100, 255, 0.1); }
 .site-footer:active .site-footer__label, .site-footer:active .site-footer__logo { transform: scale(0.95); }
