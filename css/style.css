@@ -1,24 +1,40 @@
 /* ==================================================
+   🎯 样式总览（不改功能，只做美化 & 统一）
+   - 已统一展开类名：.menu--show（无 .show 残留）
+   - 维持原有布局/逻辑，优化观感、层次与可访问性
+   - 重点：暖色系玻璃质感顶部栏、居中且轻量的菜单“标签”按钮
+   ================================================== */
+
+/* ==================================================
    全局样式与变量
    ================================================== */
 :root {
   --primary-color: #4361ee;         /* 宝石蓝：品牌主色，汉堡图标、菜单文字 */
   --secondary-color: #7209b7;
-  --neutral-gray: rgb(128, 128, 128);
+  --neutral-gray: rgb(128, 128, 128); /* 如需全站灰背景，可在 body 上启用 */
   --glass-dark: rgba(0, 0, 0, 0.3);
   --text-white: #fff;
   --text-dark: #212529;
   --text-light: #f8f9fa;
+
   --spacing-xs: 0.8rem;
   --spacing-sm: 1.6rem;
   --spacing-md: 2.4rem;
   --spacing-lg: 3.2rem;
-  --border-radius: 0.8rem;
+
+  --border-radius: 0.8rem;          /* 全局圆角：菜单标签依赖此变量 */
   --shadow: 0 4px 12px rgba(0,0,0,0.1);
   --transition: all 0.3s ease;
-  /* 菜单按钮背景（暖色调，与宝石蓝文字协调） */
+
+  /* 菜单按钮（暖色调，和宝石蓝文字协调） */
   --menu-chip-bg: rgba(240, 230, 210, 0.92);
+  --menu-chip-bg-hover: rgba(240, 230, 210, 0.98);
   --menu-chip-border: rgba(240, 210, 180, 0.6);
+  --menu-chip-shadow: 0 1px 2px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.06);
+
+  /* 顶部栏（暖玻璃） */
+  --topbar-bg: rgba(245, 238, 230, 0.65);       /* 比纯白更柔和、暖 */
+  --topbar-border: 1px solid rgba(120,110,100,0.15);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,12 +46,12 @@ body {
   font-size: 1.5rem;
   line-height: 1.5;
   color: var(--text-white);
- background: transparent !important;
+  background: transparent !important; /* 保留您的设定：透明，便于铺图/视频背景 */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   margin: 0;
-  padding-top: 60px;
+  padding-top: 60px; /* 预留顶部栏高度 */
   overflow-x: hidden;
 }
 
@@ -61,16 +77,20 @@ img { max-width: 100%; height: auto; display: block; }
 .container { width: 100%; max-width: 1200px; padding: var(--spacing-sm); margin: 0 auto; }
 
 /* ==================================================
-   顶部栏样式
+   顶部栏样式（暖色玻璃质感 + 轻描边）
    ================================================== */
 .top-bar {
   position: fixed;
-  top: 0;
-  width: 100%;
+  top: 0; width: 100%;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--topbar-bg);
+  border-bottom: var(--topbar-border);
   z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+}
+@supports not (backdrop-filter: blur(10px)) {
+  .top-bar { background: rgba(245, 238, 230, 0.9); } /* 无毛玻璃时略提亮 */
 }
 
 .top-bar__row { display: flex; align-items: center; justify-content: space-between; padding: 8px 16px; }
@@ -82,7 +102,7 @@ img { max-width: 100%; height: auto; display: block; }
 @keyframes breathing { 0%, 100% { opacity: 0.8; } 35% { opacity: 0.35; } }
 
 /* ==================================================
-   汉堡菜单组件
+   汉堡菜单组件（保持轻量、不遮挡）
    ================================================== */
 .menu {
   display: none;
@@ -101,30 +121,34 @@ img { max-width: 100%; height: auto; display: block; }
   min-height: 50px !important;
   line-height: 1 !important;
 }
+/* 可访问性：键盘导航可见焦点 */
+.top-bar__hamburger:focus-visible,
+.menu__button:focus-visible { outline: 2px solid var(--primary-color); outline-offset: 3px; border-radius: 12px; }
 
-/* 调整：手机端也居中对齐，视觉对称 */
+/* 手机端整体居中对齐，左右边距对称 */
 .menu__list {
   display: flex !important;
   flex-wrap: wrap;
   justify-content: center; /* 关键：菜单项整体居中 */
   gap: 8px;
-  padding: 0 12px;
+  padding: 0 12px; /* 调整为等距留白，视觉对称 */
   margin: 0;
   list-style: none;
 }
 
 .menu__item { border: 0 !important; padding: 0 !important; margin: 0; background: transparent !important; }
 
-/* 每个导航项：自适应宽度 + 宝石蓝文字 */
+/* 每个导航项：自适应宽度 + 宝石蓝文字 + 轻阴影 */
 .menu__link {
   display: inline-flex !important;
   align-items: center;
   height: 36px;
-  padding: 0 14px;
+  padding: 0 14px;            /* 长度随文字自适应 */
   border-radius: var(--border-radius);
   background: var(--menu-chip-bg);
   border: 1px solid var(--menu-chip-border);
-  color: var(--primary-color); /* 改为宝石蓝，与汉堡图标一致 */
+  box-shadow: var(--menu-chip-shadow);
+  color: var(--primary-color); /* 与汉堡图标一致：宝石蓝 */
   font-weight: 600;
   font-size: 1.6rem;
   text-decoration: none;
@@ -133,18 +157,19 @@ img { max-width: 100%; height: auto; display: block; }
   width: max-content;
 }
 
-.menu__link:hover {
-  background: rgba(240, 230, 210, 0.98); /* 与暖色背景协调 */
-  color: var(--primary-color);
-  transform: none !important;
+/* 悬停/按下/聚焦反馈（不改变布局） */
+@media (hover: hover) {
+  .menu__link:hover { background: var(--menu-chip-bg-hover); color: var(--primary-color); }
 }
+.menu__link:active { filter: brightness(0.97); }
+.menu__link:focus-visible { outline: 2px solid var(--primary-color); outline-offset: 2px; }
 
 @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
 /* ==================================================
-   最新动态
+   最新动态（微调阴影与层次）
    ================================================== */
-.latest-news { background: rgba(0,0,0,0.2); padding: 10px; margin: 15px 0; border-radius: 8px; height: 180px; overflow: hidden; position: relative; }
+.latest-news { background: rgba(0,0,0,0.2); padding: 10px; margin: 15px 0; border-radius: 8px; height: 180px; overflow: hidden; position: relative; box-shadow: 0 6px 14px rgba(0,0,0,0.08); }
 .news-card { display: block; padding: 10px; border-radius: 6px; color: inherit; text-decoration: none; transition: background 0.2s; }
 .news-card:hover { background: rgba(255,255,255,0.05); }
 .news-date { font-weight: bold; color: #ccc; margin-bottom: 5px; }
@@ -153,28 +178,45 @@ img { max-width: 100%; height: auto; display: block; }
 .view-all-news { position: absolute; bottom: 10px; right: 10px; color: #4dabf7; text-decoration: none; font-size: 14px; }
 
 /* ==================================================
-   系列卡片样式
+   系列卡片样式（更柔和的浮层感）
    ================================================== */
 .series-overview { display: grid; gap: 20px; padding: 15px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-.series-card { display: block; background: rgba(0, 0, 0, 0.4); border-radius: 8px; overflow: hidden; text-decoration: none; color: var(--text-white); transition: transform 0.3s ease, box-shadow 0.3s ease; height: auto; width: 100%; }
+.series-card {
+  display: block;
+  background: rgba(0, 0, 0, 0.38);
+  border-radius: 12px;          /* 略大圆角，更现代 */
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--text-white);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  height: auto; width: 100%;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
 .series-card[href*="series=a"] { border-left: 4px solid #64b5f6; }
 .series-card[href*="series=b"] { border-left: 4px solid #ba68c8; }
 .series-card[href*="series=c"] { border-left: 4px solid #4dd0e1; }
 .series-card[href*="series=d"] { border-left: 4px solid #aed581; }
-.series-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+.series-card:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(0,0,0,0.2); background: rgba(0, 0, 0, 0.44); }
 .series-card img { width: 100%; height: auto; object-fit: cover; display: block; }
 .series-card-content { padding: 15px; background: rgba(0, 0, 0, 0.6); }
 .series-card-title { margin: 0 0 8px 0; font-size: 1.8rem; font-weight: bold; color: var(--text-white); }
 .series-card-desc { font-size: 1.4rem; margin: 0 0 12px 0; color: #e0e0e0; line-height: 1.4; }
-.series-card-cta { display: inline-block; padding: 8px 16px; background: rgba(255, 215, 0, 0.2); border: 1px solid rgba(255, 215, 0, 0.5); border-radius: 4px; font-size: 1.4rem; font-weight: bold; color: #ffd700; transition: background 0.3s ease; }
+.series-card-cta { display: inline-block; padding: 8px 16px; background: rgba(255, 215, 0, 0.2); border: 1px solid rgba(255, 215, 0, 0.5); border-radius: 6px; font-size: 1.4rem; font-weight: bold; color: #ffd700; transition: background 0.3s ease; }
 .series-card:hover .series-card-cta { background: rgba(255, 215, 0, 0.3); }
 
 /* ==================================================
-   下部3个导航按钮样式
+   下部3个导航按钮样式（更清爽）
    ================================================== */
 .compact-nav { margin: 8px 0; }
 .compact-nav__container { display: flex; gap: 10px; padding: 0 10px; }
-.compact-nav__item { flex: 1; display: flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--text-white); background: rgba(0,0,0,0.2); height: 25px; border-radius: 8px; padding: 1px; transition: all 0.2s ease; aspect-ratio: 1/1.4; }
+.compact-nav__item {
+  flex: 1; display: flex; flex-direction: column; align-items: center;
+  text-decoration: none; color: var(--text-white);
+  background: rgba(0,0,0,0.22);
+  height: 25px; border-radius: 10px; padding: 1px;
+  transition: transform 0.2s ease, background 0.2s ease;
+  aspect-ratio: 1/1.4;
+}
 .compact-nav__item:hover { background: rgba(0,0,0,0.3); transform: translateY(-2px); }
 .compact-nav__icon { font-size: 2rem; margin-bottom: 2px; }
 .compact-nav__text { font-size: 1.2rem; font-weight: bold; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; }
@@ -183,14 +225,15 @@ img { max-width: 100%; height: auto; display: block; }
 /* ==================================================
    底部栏样式
    ================================================== */
-.site-footer { display: flex; justify-content: center; align-items: center; gap: 8px; padding: 12px 15px; cursor: pointer; background: rgba(0, 0, 0, 0.2); margin-top: auto; }
+.site-footer { display: flex; justify-content: center; align-items: center; gap: 8px; padding: 12px 15px; cursor: pointer; background: rgba(0, 0, 0, 0.2); margin-top: auto; transition: background 0.2s ease; }
 .site-footer__label { font-weight: bold; font-size: 1.5rem; color: var(--text-white); }
 .site-footer__logo { height: 20px; width: auto; }
+.site-footer:hover { background: rgba(100, 100, 255, 0.08); }
 .site-footer:active { background: rgba(100, 100, 255, 0.1); }
-.site-footer:active .site-footer__label, .site-footer:active .site-footer__logo { transform: scale(0.95); }
+.site-footer:active .site-footer__label, .site-footer:active .site-footer__logo { transform: scale(0.98); }
 
 /* ==================================================
-   响应式设计
+   响应式设计（维持原逻辑，微调细节）
    ================================================== */
 @media (max-width: 767px) {
   body { padding-top: 55px; }
@@ -212,7 +255,7 @@ img { max-width: 100%; height: auto; display: block; }
   body { padding-top: 70px; }
   .top-bar__row { padding: 10px 20px; }
   .menu { text-align: left; padding: 10px 0; }
-  .menu__list { justify-content: flex-start; gap: 10px; }
+  .menu__list { justify-content: flex-start; gap: 10px; } /* 桌面端左对齐：更专业 */
   .menu__item { padding: 0; border-bottom: none; }
   .menu__link { height: 36px; font-size: 1.6rem; padding: 0 14px; }
   .menu__link:hover { transform: none; }
