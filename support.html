@@ -5,37 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AX支持中心</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-<link rel="manifest" href="/icons/manifest.json">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+  <link rel="manifest" href="/icons/manifest.json">
   <link href="../css/style.css" rel="stylesheet"/>
   <link rel="stylesheet" href="global.css">
   <style>
-
-    /* ===== 内容区样式 ===== */
-    .page-content {
-      flex: 1;
-      padding: 20px 5%;
-      margin-top: 35px;
-    }
-
     /* ===== 支持中心特有样式 ===== */
     .support-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
-      margin: 20x 0;
+      margin: 30px 0;
     }
 
     .support-card {
-      background: rgba(0,0,0,0.2);
-      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
       padding: 25px;
-      transition: transform 0.3s;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
 
     .support-card:hover {
       transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+      background: rgba(255, 255, 255, 0.15);
     }
 
     .support-card h2 {
@@ -43,110 +40,113 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      color: #ffffff;
     }
 
     .support-card a {
-      color: white;
+      color: #5ed3ce;
       text-decoration: none;
       display: block;
       margin-top: 15px;
       font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .support-card a:hover {
+      color: #4a67b3;
+      text-decoration: underline;
     }
 
     .icon {
       font-size: 24px;
     }
 
-/* 顶部固定定位 */
-.site-topbar {
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  right: 0;
-  z-index: 1000;
-  backdrop-filter: blur(5px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 5%;
-}
-.site-bottombar {
-  margin-top: auto;
-  padding: 20px 0;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-main {
-  flex: 1;
-  padding-bottom: 20px;
-}
+    /* 顶部固定定位 */
+    .site-topbar {
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 5%;
+      background: rgba(0, 0, 0, 0.3);
+    }
+    
+    .site-bottombar {
+      margin-top: auto;
+      padding: 20px 0;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+    
+    main {
+      flex: 1;
+      padding-bottom: 20px;
+    }
 
-.topbar__center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
+    .topbar__center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
-/* 移动菜单样式 */
-.mobile-nav {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: var(--glass-dark);
-  backdrop-filter: blur(10px);
-  z-index: 999;
-  padding: 10px 0;
-}
+    /* 移动菜单样式 */
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      z-index: 999;
+      padding: 10px 0;
+    }
 
-.mobile-nav.mobile-nav--open {
-  display: block;
-}
+    .mobile-nav.mobile-nav--open {
+      display: block;
+    }
 
-.mobile-nav__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+    .mobile-nav__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
 
-.mobile-nav__list li {
-  padding: 14px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
+    .mobile-nav__list li {
+      padding: 14px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
 
-.mobile-nav__list a {
-  color: var(--text-white);
-  text-decoration: none;
-  display: block;
-  font-size: 18px;
-  font-weight: bold;
-}
+    .mobile-nav__list a {
+      color: #ffffff;
+      text-decoration: none;
+      display: block;
+      font-size: 18px;
+      font-weight: bold;
+    }
 
-@media (min-width: 768px) {
-  body { padding-top: 70px; }
-  .site-topbar { padding: 15px 8%; height: 60px; }
-  .topbar__logo { height: 35px; }
-  .page-content { padding: 30px 8%; }
-  
-  .page-links ul {
-    gap: 30px;
-  }
-}
+    @media (min-width: 768px) {
+      .site-topbar { padding: 15px 8%; height: 60px; }
+      .topbar__logo { height: 35px; }
+      .page-content { padding: 30px 8%; }
+    }
 
-@media (max-width: 600px) {
-  .page-links ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
-</style>
+    @media (max-width: 600px) {
+      .support-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
-<body>
-
 <body class="ax-gradient-bg">
 
 <!-- 标准顶部栏 -->
@@ -177,7 +177,7 @@ main {
 
 <!-- 信息支持项目 -->
 <main class="page-content">
-<h2>欢迎联络</h2>
+  <h2>欢迎联络</h2>
   <p>我们随时为您提供帮助，请选择您需要的支持类型：</p>
   <div class="support-container">
 
@@ -214,5 +214,16 @@ main {
 </footer>
 
 <script src="/js/main.js"></script>
+<script>
+  // 返回顶部功能
+  document.getElementById('footerToTop').addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // 移动菜单功能
+  document.getElementById('topbarMenuBtn').addEventListener('click', function() {
+    document.getElementById('mobileNav').classList.toggle('mobile-nav--open');
+  });
+</script>
 </body>
 </html>
