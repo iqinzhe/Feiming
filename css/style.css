@@ -68,12 +68,11 @@ img { max-width: 100%; height: auto; display: block; }
   top: 0;
   left: 0;
   right: 0;
+  width: 100%;
   z-index: 1000;
   backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, 0.6);
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
 .top-bar__row {
@@ -109,6 +108,7 @@ img { max-width: 100%; height: auto; display: block; }
   top: 100%;
   left: 0;
   right: 0;
+  width: 100%;
   z-index: 999;
   background: transparent !important;
   text-align: center;
@@ -195,9 +195,12 @@ img { max-width: 100%; height: auto; display: block; }
    ================================================== */
 .compact-nav {
   margin: 8px 0;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .compact-nav__container {
@@ -232,16 +235,18 @@ img { max-width: 100%; height: auto; display: block; }
    底部栏样式
    ================================================== */
 .site-footer {
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
-  padding: 12px 15px;
+  padding: 12px 20px;
   cursor: pointer;
   background: rgba(0, 0, 0, 0.2);
   margin-top: auto;
+  box-sizing: border-box;
 }
 .site-footer__label { font-weight: bold; font-size: 1.5rem; color: var(--text-white); }
 .site-footer__logo { height: 20px; width: auto; }
@@ -270,7 +275,18 @@ img { max-width: 100%; height: auto; display: block; }
 @media (min-width: 768px) {
   body { padding-top: 70px; }
   .top-bar__row { padding: 10px 20px; }
-  .menu { text-align: left; padding: 10px 0; }
+  .menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 999;
+  background: transparent !important;
+  text-align: center;
+  padding: 8px 0;
+}
   .menu__list { justify-content: flex-start; gap: 10px; }
   .menu__item { padding: 0; border-bottom: none; }
   .menu__link { height: 36px; font-size: 1.6rem; padding: 0 14px; }
