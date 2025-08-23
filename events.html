@@ -41,9 +41,23 @@
             border-radius: 6px;
             overflow: hidden;
             box-shadow: 0 2px 10px rgba(128,128,128,0.05);
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             transition: transform 0.3s;
         }
+
+.event-meta {
+    font-weight: normal; /* 日期不加粗 */
+    color: #aaa; /* 使用更柔和的颜色 */
+    margin-bottom: 8px; /* 调整间距 */
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.3px; /* 字母间距 */
+}
+
+.event-description {
+    line-height: 1.5; /* 增加行高 */
+    margin-bottom: 10px; /* 调整间距 */
+}
         .event-card:hover {
             transform: translateY(-3px);
         }
