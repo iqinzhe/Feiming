@@ -193,7 +193,7 @@ img { max-width: 100%; height: auto; display: block; }
 .news-date { 
     font-weight: normal; /* 移除加粗 */
     color: #aaa; /* 调整为更柔和的颜色 */
-    margin-bottom: 5px; /* 增加底部间距 */
+    margin-bottom: 1px; /* 增加底部间距 */
     font-family: 'Helvetica', 'Arial', sans-serif; /* 使用更优雅的字体 */
     font-size: 13px; /* 调整字体大小 */
     letter-spacing: 0.3px; /* 增加字母间距 */
