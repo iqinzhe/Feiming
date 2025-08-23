@@ -193,9 +193,36 @@ img { max-width: 100%; height: auto; display: block; }
 /* ==================================================
    下部3个导航按钮样式
    ================================================== */
-.compact-nav { margin: 8px 0; }
-.compact-nav__container { display: flex; gap: 10px; padding: 0 10px; }
-.compact-nav__item { flex: 1; display: flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--text-white); background: rgba(0,0,0,0.2); height: 25px; border-radius: 8px; padding: 1px; transition: all 0.2s ease; aspect-ratio: 1/1.4; }
+.compact-nav {
+  margin: 8px 0;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.compact-nav__container {
+  display: flex;
+  gap: 10px;
+  padding: 0 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.compact-nav__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-white);
+  background: rgba(0,0,0,0.2);
+  height: 25px;
+  border-radius: 8px;
+  padding: 1px;
+  transition: all 0.2s ease;
+  aspect-ratio: 1/1.4;
+}
+
 .compact-nav__item:hover { background: rgba(0,0,0,0.3); transform: translateY(-2px); }
 .compact-nav__icon { font-size: 2rem; margin-bottom: 2px; }
 .compact-nav__text { font-size: 1.2rem; font-weight: bold; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; }
