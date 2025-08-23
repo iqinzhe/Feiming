@@ -165,7 +165,7 @@ img { max-width: 100%; height: auto; display: block; }
 /* ==================================================
    最新动态
    ================================================== */
-.latest-news { background: rgba(0,0,0,0.2); padding: 7px; margin: 20px 0 5px; border-radius: 8px; height: 180px; overflow: hidden; position: relative; }
+.latest-news { background: rgba(0,0,0,0.2); padding: 7px; margin: 5px 0 20px; border-radius: 8px; height: 180px; overflow: hidden; position: relative; }
 .news-card { display: block; padding: 10px; border-radius: 6px; color: inherit; text-decoration: none; transition: background 0.2s; }
 .news-card:hover { background: rgba(255,255,255,0.05); }
 .news-date { font-weight: bold; color: #ccc; margin-bottom: 2px; }
