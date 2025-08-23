@@ -1,6 +1,7 @@
 /**
  * AX Guitar 网站核心功能
  * 功能包含：菜单控制、搜索、分享、返回顶部
+ * 优化版：添加了点击外部关闭菜单、滚动关闭菜单和ESC键关闭菜单功能
  */
 
 // DOM加载完成后执行
@@ -16,9 +17,37 @@ function initMobileMenu() {
   const menu = document.getElementById('menu');
   
   if (hamburger && menu) {
-    hamburger.addEventListener('click', function() {
+    // 点击汉堡菜单切换显示
+    hamburger.addEventListener('click', function(e) {
+      e.stopPropagation(); // 防止事件冒泡到document
       menu.classList.toggle('show');
       console.debug('菜单状态:', menu.classList.contains('show'));
+    });
+
+    // 点击页面其他地方时，自动关闭菜单
+    document.addEventListener('click', function(e) {
+      if (menu.classList.contains('show') && 
+          !menu.contains(e.target) && 
+          !hamburger.contains(e.target)) {
+        menu.classList.remove('show');
+        console.debug('点击外部，菜单已关闭');
+      }
+    });
+
+    // 页面滚动时，自动收起菜单（防止遮挡内容）
+    window.addEventListener('scroll', function() {
+      if (menu.classList.contains('show')) {
+        menu.classList.remove('show');
+        console.debug('页面滚动，菜单已关闭');
+      }
+    });
+
+    // 点击 ESC 键关闭菜单
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && menu.classList.contains('show')) {
+        menu.classList.remove('show');
+        console.debug('ESC键按下，菜单已关闭');
+      }
     });
   }
 }
