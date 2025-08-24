@@ -2,7 +2,7 @@
    全局样式与变量
    ================================================== */
 :root {
-  --primary-color: #4361ee;         /* 宝石蓝：品牌主色，汉堡图标、菜单文字 */
+  --primary-color: #4361ee;         /* 宝石蓝：菜单文字 */
   --secondary-color: #7209b7;
   --neutral-gray: rgb(128, 128, 128);
   --glass-dark: rgba(0, 0, 0, 0.3);
@@ -72,8 +72,14 @@ img { max-width: 100%; height: auto; display: block; }
   right: 0;
   width: 100%;
   z-index: 1000;
-  backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.6);
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #000000; /* 纯黑色背景 */
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
@@ -92,14 +98,32 @@ img { max-width: 100%; height: auto; display: block; }
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--primary-color);
+  color: #ffffff; /* 改为纯白色 */
 }
 
-.top-bar__center { text-align: center; flex: 1; margin: 0 10px; }
-.top-bar__logo { height: 30px; display: block; margin: 0 auto; }
-.top-bar__slogan { font-size: 16px; margin: 2px 0 0; color: #4361ee; animation: breathing 2s infinite; }
+.top-bar__center { 
+  text-align: center; /* 居中对齐 */
+  flex: 1; /* 弹性布局占比 */
+  margin: 0 10px; /* 左右边距 */
+}
 
-@keyframes breathing { 0%, 100% { opacity: 0.8; } 35% { opacity: 0.35; } }
+.top-bar__logo { 
+  height: 30px; /* logo高度 */
+  display: block; /* 块级显示 */
+  margin: 0 auto; /* 水平居中 */
+}
+.top-bar__slogan {
+  font-size: 16px;
+  margin: 2px 0 0;
+  color: #ffffff; /* 改为纯白色 */
+  animation: breathing 2s infinite; /* 改为3秒循环 */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); /* 黑色阴影 */
+}
+
+@keyframes breathing {
+  0%, 100% { opacity: 1; }    /* 最亮 */
+  50% { opacity: 0.6; }       /* 变暗 */
+}
 
 /* ==================================================
    汉堡菜单组件
@@ -120,7 +144,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .top-bar__hamburger,
 .menu__button {
-  color: var(--primary-color) !important;
+  color: #ffffff !important; /* 改为纯白色 */
   font-size: 35px !important;
   min-width: 50px !important;
   min-height: 50px !important;
