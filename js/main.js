@@ -104,22 +104,31 @@ function setupBackToTop() {
   });
 }
 
-// 设置当前激活的菜单项
+// 设置当前激活的导航菜单项
 function setActiveMenu() {
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   const menuLinks = document.querySelectorAll('.menu__link');
   
   menuLinks.forEach(link => {
-    // 获取链接的文件名
+    // 获取链接的文件名（去除参数）
     const linkHref = link.getAttribute('href');
-    const linkPage = linkHref.split('?')[0]; // 去除参数部分
+    const linkPage = linkHref.split('?')[0];
     
-    if (linkPage === currentPage) {
+    // 特殊处理：特色页面（products.html?series=d）
+    if (linkHref.includes('series=d') && currentPage === 'products.html' && 
+        new URLSearchParams(window.location.search).get('series') === 'd') {
+      link.classList.add('active');
+    }
+    // 普通页面匹配
+    else if (linkPage === currentPage) {
       link.classList.add('active');
     } else {
       link.classList.remove('active');
     }
   });
+  
+  console.debug('当前页面:', currentPage, '已设置激活菜单项');
+}
   
   console.debug('当前页面:', currentPage, '已设置激活菜单项');
 }
