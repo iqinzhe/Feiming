@@ -115,11 +115,6 @@ function setActiveMenu() {
     const linkHref = link.getAttribute('href');
     const linkPage = linkHref.split('?')[0];
     
-    // 特殊处理：特色页面（products.html?series=d）
-    if (linkHref.includes('series=d') && currentPage === 'products.html' && 
-        new URLSearchParams(window.location.search).get('series') === 'd') {
-      link.classList.add('active');
-    }
     // 普通页面匹配
     else if (linkPage === currentPage) {
       link.classList.add('active');
