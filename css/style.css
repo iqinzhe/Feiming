@@ -360,7 +360,7 @@ img { max-width: 100%; height: auto; display: block; }
   justify-content: center;
   text-decoration: none;
   color: var(--text-white);
-  background: rgba(255, 255, 255, 0.1) !important;
+  background: rgba(0, 0, 0, 0.2) !important;
   border-radius: 8px;
   padding: 10px 5px;
   transition: all 0.2s ease;
@@ -379,7 +379,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .compact-nav__text { 
   font-size: 1.2rem; 
-  font-weight: bold; 
+  font-weight: normal; 
   text-align: center; 
   white-space: nowrap; 
   overflow: hidden; 
