@@ -583,7 +583,7 @@ img { max-width: 100%; height: auto; display: block; }
 
   .latest-news {
     height: auto;
-    min-height: 280px;
+    min-height: 230px;
   }
 }
 
