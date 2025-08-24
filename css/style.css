@@ -409,22 +409,17 @@ img { max-width: 100%; height: auto; display: block; }
         }
         
 .compact-nav__item {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    background: var(--menu-chip-bg);        /* 和汉堡菜单一样 */
-    border: 1px solid var(--menu-chip-border); /* 和汉堡菜单一样 */
-    border-radius: var(--border-radius);    /* 保持一致 */
-    padding: 12px 10px;
-    color: var(--primary-color) !important;   /* ✅ 关键一行 */
-    font-weight: 600;
-    font-size: 1.2rem;
-    transition: var(--transition);
+  background: var(--menu-chip-bg);              /* 和汉堡菜单一致 */
+  border: 1px solid var(--menu-chip-border);
+  border-radius: var(--border-radius);
+  padding: 12px 10px;
+  color: var(--primary-color) !important;       /* ✅ 强制覆盖 */
+  font-weight: 600;
+  font-size: 1.2rem;
+  transition: var(--transition);
+  text-decoration: none;
 }
-     
+   
         .compact-nav__item:hover {
             background: var(--hover-color);
             transform: translateY(-3px);
@@ -444,7 +439,7 @@ img { max-width: 100%; height: auto; display: block; }
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
-    color: var(--primary-color) !important;   /* ✅ 关键一行 */
+    color: var(--primary-color) !important;       /* ✅ 强制覆盖 */
 }
    
         .compact-nav__tooltip {
