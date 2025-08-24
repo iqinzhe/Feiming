@@ -419,7 +419,7 @@ img { max-width: 100%; height: auto; display: block; }
     border: 1px solid var(--menu-chip-border); /* 和汉堡菜单一样 */
     border-radius: var(--border-radius);    /* 保持一致 */
     padding: 12px 10px;
-    color: var(--primary-color);            /* 改为和菜单一致的字体颜色 */
+    color: var(--primary-color) !important;   /* ✅ 关键一行 */
     font-weight: 600;
     font-size: 1.2rem;
     transition: var(--transition);
@@ -444,7 +444,7 @@ img { max-width: 100%; height: auto; display: block; }
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
-    color: var(--primary-color);   /* 和汉堡菜单统一 */
+    color: var(--primary-color) !important;   /* ✅ 关键一行 */
 }
    
         .compact-nav__tooltip {
