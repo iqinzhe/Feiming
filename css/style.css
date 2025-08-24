@@ -133,7 +133,11 @@ img { max-width: 100%; height: auto; display: block; }
   padding: 8px 0;
 }
 
-.menu.menu--show { display: block; animation: slideDown 0.25s ease; }
+.menu.show, 
+.menu--show { 
+    display: block; 
+    animation: slideDown 0.25s ease; 
+}
 
 .top-bar__hamburger,
 .menu__button {
