@@ -400,39 +400,7 @@ compact-nav {
   display: none;
 }
 
-/* ===== 底部栏样式 ===== */
-.site-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 15px;
-  cursor: pointer;
-  background: rgba(0, 0, 0, 0.2);
-  margin-top: auto;
-}
-
-.site-footer__label {
-  font-weight: bold;
-  font-size: 1.5rem;
-  color: var(--text-white);
-}
-
-.site-footer__logo {
-  height: 20px;
-  width: auto;
-}
-
-.site-footer:active {
-  background: rgba(100, 100, 255, 0.1);
-}
-
-.site-footer:active .site-footer__label,
-.site-footer:active .site-footer__logo {
-  transform: scale(0.95);
-}
-
-/* ==================================================
+==================================================
    底部栏样式
    ================================================== */
 .site-footer {
