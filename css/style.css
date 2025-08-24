@@ -425,7 +425,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .site-footer:active { 
-  background: rgba(100, 100, 255, 0.1); 
+  background: rgba(0, 0, 0, 0.5); 
 }
 
 .site-footer:active .site-footer__label, 
