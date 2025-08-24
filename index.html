@@ -161,18 +161,6 @@
       const date = new Date(dateStr);
       return `${date.getFullYear()}年${date.getMonth()+1}月${date.getDate()}日`;
     }
-
-    // 汉堡菜单交互逻辑
-    document.addEventListener('DOMContentLoaded', function() {
-      const hamburger = document.getElementById('hamburger');
-      const menu = document.getElementById('menu');
-      
-      if (hamburger && menu) {
-        hamburger.addEventListener('click', function() {
-          menu.classList.toggle('menu--show');
-        });
-      }
-    });
   </script>
 </body>
 </html>
