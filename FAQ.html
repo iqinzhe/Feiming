@@ -5,225 +5,245 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>常见问题 | AX支持中心</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-<link rel="manifest" href="/icons/manifest.json">
-<link href="../css/style.css" rel="stylesheet"/>
-<link rel="stylesheet" href="../css/global.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+  <link rel="manifest" href="/icons/manifest.json">
+  <link href="../css/style.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/global.css">
   <style>
+    /* ===== 全局标准样式 ===== */
+    :root {
+      --neutral-gray: rgb(128, 128, 128);
+      --glass-dark: rgba(0, 0, 0, 0.3);
+      --text-white: #fff;
+    }
 
-/* ===== 全局标准样式 ===== */
-:root {
-  --neutral-gray: rgb(128, 128, 128);
-  --glass-dark: rgba(0, 0, 0, 0.3);
-  --text-white: #fff;
-}
+    body {
+      background: var(--neutral-gray);
+      color: var(--text-white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding-top: 60px;
+    }
 
-body {
-  background: var(--neutral-gray);
-  color: var(--text-white);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  font-family: Arial, sans-serif;
-  margin: 0; /* 移除默认边距 */
-  padding-top: 60px; /* 为固定顶部栏留出空间 */
-}
+    /* ===== 内容区样式 ===== */
+    .page-content {
+      flex: 1;
+      padding: 20px 5%;
+      margin-top: 20px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-/* ===== 内容区样式 ===== */
-.page-content {
-  flex: 1;
-  padding: 20px 5%;
-  margin-top: 20px; /* 增加顶部内边距防止内容被顶部栏遮挡 */
-}
+    .page-content h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #fff;
+    }
 
-.hero {
-  text-align: center;
-  margin-bottom: 40px;
-}
+    /* ===== FAQ样式 ===== */
+    .faq-container {
+      margin-bottom: 40px;
+    }
 
-.hero img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
+    .faq-item {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      margin-bottom: 15px;
+      overflow: hidden;
+    }
 
-.products-overview {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-}
+    .faq-question {
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
 
-.product-card {
-  background: rgba(0,0,0,0.2);
-  padding: 20px;
-  border-radius: 8px;
-  text-align: center;
-}
+    .faq-question:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
 
-.product-card img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 4px;
-}
+    .faq-answer {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      background: rgba(0, 0, 0, 0.1);
+    }
 
-/* 顶部固定定位 */
-.site-topbar {
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  right: 0;
-  z-index: 1000;
-  backdrop-filter: blur(5px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 5%;
-}
-.site-bottombar {
-  margin-top: auto;
-  padding: 20px 0;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-main {
-  flex: 1;
-  padding-bottom: 20px;
-}
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      padding: 15px 20px;
+    }
 
-.topbar__center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
+    .faq-item.active .faq-question span:last-child {
+      transform: rotate(45deg);
+    }
 
-/* 移动菜单样式 */
-.mobile-nav {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: var(--glass-dark);
-  backdrop-filter: blur(10px);
-  z-index: 999;
-  padding: 10px 0;
-}
+    .back-link {
+      display: inline-block;
+      color: #fff;
+      text-decoration: none;
+      margin-top: 20px;
+      padding: 10px 15px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
 
-.mobile-nav.mobile-nav--open {
-  display: block;
-}
-
-.mobile-nav__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.mobile-nav__list li {
-  padding: 14px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-.mobile-nav__list a {
-  color: var(--text-white);
-  text-decoration: none;
-  display: block;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-@media (min-width: 768px) {
-  body { padding-top: 70px; }
-  .site-topbar { padding: 15px 8%; height: 60px; }
-  .topbar__logo { height: 35px; }
-  .page-content { padding: 30px 8%; }
-  
-  .page-links ul {
-    gap: 30px;
-  }
-}
-
-@media (max-width: 600px) {
-  .page-links ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
-</style>
+    .back-link:hover {
+      background: rgba(0, 0, 0, 0.5);
+    }
+  </style>
 </head>
-<body>
-
-<!-- 标准顶部栏 -->
-<header class="site-topbar">
-  <div class="topbar__left">
-    <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
-  </div>
-  
-  <div class="topbar__center">
-    <a href="index.html">
-      <img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
-    </a>
-  </div>
-  
-  <div class="topbar__right">
-    <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
-    <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
-  </div>
-  
-  <!-- 标准导航菜单 -->
-  <nav class="mobile-nav" id="mobileNav" aria-label="主导航">
-    <ul class="mobile-nav__list">
-      <li><a href="index.html">首页</a></li>
-      <li><a href="products.html">产品</a></li>
-      <li><a href="products.html?series=d">特色</a></li>
-      <li><a href="pricing.html">订购</a></li>
-      <li><a href="support.html">支持</a></li>
-    </ul>
-  </nav>
-</header>
 
 <body class="ax-gradient-bg">
-<!-- 页面内容 -->
-<main class="page-content">
-  <h1>常见问题</h1>
-  
-  <div class="faq-container">
-    <div class="faq-item">
-      <div class="faq-question">
-        <span>Q: 如何保养我的AX贝斯？</span>
-        <span>+</span>
+  <!-- 顶部栏 -->
+  <header class="top-bar">
+    <div class="top-bar__row">
+
+      <!-- 汉堡菜单按钮 -->
+      <div class="menu__button" id="hamburger">
+        ☰
       </div>
-      <div class="faq-answer">
-        <p>A: 定期清洁琴身和指板，使用专用琴弦清洁剂，避免极端温度和湿度环境。每6-12个月进行一次专业调校。</p>
+      
+      <!-- logo + 宣传语 -->
+      <div class="top-bar__center">
+        <img src="images/logo.png" alt="AX斧标贝斯 Logo" class="top-bar__logo">
+        <p class="top-bar__slogan">每次拨弦都是心灵的飞舞共鸣！</p>
+      </div>
+
+      <!-- 分享按钮 -->
+      <div class="top-bar__share" id="shareBtn">
+        ⫶
+      </div>
+    </div>
+
+    <!-- 汉堡菜单展开内容 -->
+    <nav class="menu" id="menu">
+      <ul class="menu__list">
+        <li class="menu__item">
+          <a href="index.html" class="menu__link">首页</a>
+        </li>
+        <li class="menu__item">
+          <a href="products.html?series=d" class="menu__link">特色</a>
+        </li>
+        <li class="menu__item">
+          <a href="products.html" class="menu__link">产品</a>
+        </li>
+        <li class="menu__item">
+          <a href="support.html" class="menu__link">支持</a>
+        </li>
+        <li class="menu__item">
+          <a href="pricing.html" class="menu__link">订购</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- 页面内容 -->
+  <main class="page-content">
+    <h1>常见问题</h1>
+    
+    <div class="faq-container">
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Q: 如何保养我的AX贝斯？</span>
+          <span>+</span>
+        </div>
+        <div class="faq-answer">
+          <p>A: 定期清洁琴身和指板，使用专用琴弦清洁剂，避免极端温度和湿度环境。每6-12个月进行一次专业调校。</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Q: 产品保修期是多久？</span>
+          <span>+</span>
+        </div>
+        <div class="faq-answer">
+          <p>A: AX产品提供2年有限保修，涵盖材料和工艺缺陷。人为损坏不在保修范围内。</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Q: 如何调节琴颈曲度？</span>
+          <span>+</span>
+        </div>
+        <div class="faq-answer">
+          <p>A: 使用专业的琴颈调节杆工具，顺时针旋转可增加曲度，逆时针旋转可减少曲度。建议初次调节时寻求专业人士帮助。</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Q: 琴弦应该多久更换一次？</span>
+          <span>+</span>
+        </div>
+        <div class="faq-answer">
+          <p>A: 根据使用频率而定，一般专业乐手每2-4周更换一次，业余玩家每1-3个月更换一次。发现音色变暗或生锈时应立即更换。</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Q: 如何联系客服支持？</span>
+          <span>+</span>
+        </div>
+        <div class="faq-answer">
+          <p>A: 您可以通过service@axguitar.com或客服热线400-888-XXXX联系我们，工作时间为周一至周五9:00-17:00。</p>
+        </div>
       </div>
     </div>
     
-    <div class="faq-item">
-      <div class="faq-question">
-        <span>Q: 产品保修期是多久？</span>
-        <span>+</span>
-      </div>
-      <div class="faq-answer">
-        <p>A: AX产品提供2年有限保修，涵盖材料和工艺缺陷。人为损坏不在保修范围内。</p>
-      </div>
-    </div>
-    
-    <!-- 更多FAQ项目 -->
-  </div>
-  
-  <a href="support.html" class="back-link">← 返回支持中心</a>
-</main>
+    <a href="support.html" class="back-link">← 返回支持中心</a>
+  </main>
 
-<!-- 底部栏 -->
-<footer class="site-bottombar" id="footerToTop">
-  <div class="bottombar__label">返回顶部</div>
-  <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
-</footer>
+  <!-- 底部栏 -->
+  <footer class="site-bottombar" id="footerToTop">
+    <div class="bottombar__label">返回顶部</div>
+    <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
+  </footer>
 
-<script src="/js/main.js"></script>
+  <script src="/js/main.js"></script>
+  <script>
+    // 汉堡菜单交互逻辑
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburger = document.getElementById('hamburger');
+      const menu = document.getElementById('menu');
+      
+      if (hamburger && menu) {
+        hamburger.addEventListener('click', function() {
+          menu.classList.toggle('menu--show');
+        });
+      }
+      
+      // FAQ折叠功能
+      const faqQuestions = document.querySelectorAll('.faq-question');
+      faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+          const faqItem = this.parentElement;
+          faqItem.classList.toggle('active');
+        });
+      });
+      
+      // 返回顶部功能
+      const footerToTop = document.getElementById('footerToTop');
+      if (footerToTop) {
+        footerToTop.addEventListener('click', function() {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+    });
+  </script>
 </body>
 </html>
