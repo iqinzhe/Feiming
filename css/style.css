@@ -346,101 +346,186 @@ img { max-width: 100%; height: auto; display: block; }
   background: rgba(255, 215, 0, 0.3); 
 }
 
-/* ==================================================
-   下部导航按钮样式
-   ================================================== */
-compact-nav {
-  margin: 8px 0;
-}
 
-.compact-nav__container {
-  display: flex;
-  justify-content: row;
-  gap: 10px;
-  padding: 0 10px;
-}
-
-.compact-nav__item {
-  flex: 1;
-  min-width: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none;
-  color: var(--text-white);
-  background: rgba(0,0,0,0.2);
-  height: 25px;
-  border-radius: 8px;
-  padding: 1px;
-  transition: all 0.2s ease;
-  aspect-ratio: 1/1.4;
-}
-
-.compact-nav__item:hover {
-  background: rgba(0,0,0,0.3);
-  transform: translateY(-2px);
-}
-
-.compact-nav__icon {
-  font-size: 2rem;
-  margin-bottom: 2px;
-}
-
-.compact-nav__text {
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 100%;
-}
-
-.compact-nav__tooltip {
-  font-size: 0.7rem;
-  opacity: 0.8;
-  text-align: center;
-  margin-top: 4px;
-  display: none;
-}
-
-==================================================
-   底部栏样式
-   ================================================== */
-.site-footer {
-  width: 100%;
-  max-width: 100%;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 20px;
-  cursor: pointer;
-  background: rgba(0, 0, 0, 0.2);
-  margin-top: auto;
-  box-sizing: border-box;
-}
-
-.site-footer__label { 
-  font-weight: bold; 
-  font-size: 1.2rem; 
-  color: var(--text-white); 
-}
-
-.site-footer__logo { 
-  height: 20px; 
-  width: auto; 
-}
-
-.site-footer:active { 
-  background: rgba(0, 0, 0, 0.5); 
-}
-
-.site-footer:active .site-footer__label, 
-.site-footer:active .site-footer__logo { 
-  transform: scale(0.95); 
-}
+        :root {
+            --text-white: #ffffff;
+            --primary-color: #2563eb;
+            --hover-color: #1d4ed8;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+            color: var(--text-white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #60a5fa 0%, #93c5fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .description {
+            color: #cbd5e1;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        /* ==================================================
+          下部导航按钮样式修复
+        ================================================== */
+        .compact-nav {
+            margin: 20px 0;
+        }
+        
+        .compact-nav__container {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 0 10px;
+        }
+        
+        .compact-nav__item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-white);
+            background: var(--primary-color);
+            border-radius: 10px;
+            padding: 15px 10px;
+            transition: all 0.3s ease;
+            aspect-ratio: 1/1;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+            min-width: 0;
+        }
+        
+        .compact-nav__item:hover {
+            background: var(--hover-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .compact-nav__icon {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+        }
+        
+        .compact-nav__text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+        }
+        
+        .compact-nav__tooltip {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            text-align: center;
+            margin-top: 6px;
+            color: #e2e8f0;
+            display: none;
+        }
+        
+        /* 显示工具提示（可选功能） */
+        .compact-nav__item:hover .compact-nav__tooltip {
+            display: block;
+        }
+        
+        /* ==================================================
+          底部栏样式修复
+        ================================================== */
+        .site-footer {
+            width: 100%;
+            max-width: 100%;
+            margin: 40px 0 0 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            box-sizing: border-box;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .site-footer__label { 
+            font-weight: 600; 
+            font-size: 1.2rem; 
+            color: var(--text-white); 
+        }
+        
+        .site-footer__logo { 
+            height: 24px; 
+            width: auto; 
+            filter: brightness(0) invert(1);
+        }
+        
+        .site-footer:hover { 
+            background: rgba(0, 0, 0, 0.4); 
+        }
+        
+        .site-footer:active { 
+            background: rgba(0, 0, 0, 0.5); 
+        }
+        
+        .site-footer:active .site-footer__label, 
+        .site-footer:active .site-footer__logo { 
+            transform: scale(0.95); 
+        }
+        
+        /* 内容区域样式 */
+        .content {
+            flex: 1;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #93c5fd;
+        }
+        
+        .content p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #cbd5e1;
+        }
 
 /* ==================================================
    响应式设计
@@ -467,19 +552,23 @@ compact-nav {
     padding: 8px 3px;
   }
   
-  .compact-nav__item {
-    padding: 8px 3px;
-    min-height: 50px;
+    .compact-nav__item {
+     flex-direction: row;
+     aspect-ratio: unset;
+     padding: 12px 15px;
+     justify-content: flex-start;
+     gap: 12px;
   }
-  
-  .compact-nav__icon {
-    font-size: 1.4rem;
-    margin-bottom: 2px;
-  }
-  
-  .compact-nav__text {
-    font-size: 1rem;
-  }
+            
+   .compact-nav__icon {
+   margin-bottom: 0;
+   font-size: 1.8rem;
+ }
+            
+ h1 {
+                font-size: 2rem;
+ }
+
 }
 
 @media (min-width: 768px) {
