@@ -66,7 +66,16 @@
     </section>
 
     <!-- 系列卡片总览 -->
-    <section class="series-overview" id="seriesOverview"></section>
+    seriesOverview.innerHTML = seriesData.map(series => {
+  return '<a class="series-card" href="products.html?series=' + series.id + '">' +
+         '<img src="images/' + series.img + '" alt="' + series.name + '" loading="lazy">' +
+         '<div class="series-card-content">' +
+         '<h2 class="series-card-title">' + series.name + '</h2>' +
+         '<p class="series-card-desc">' + series.desc + '</p>' +
+         '<div class="series-card-cta">查看本系列</div>' +
+         '</div>' +
+         '</a>';
+}).join("");
 
     <!-- 紧凑型导航链接 -->
     <nav class="compact-nav" aria-label="快捷导航">
