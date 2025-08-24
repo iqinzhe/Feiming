@@ -6,7 +6,7 @@ html {
 
 body {
   margin: 0;
-  padding: 0 20px; /* 页面左右边距 */
+  padding: var(--top-bar-height) 20px 0 20px; /* 页面左右边距 */
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1rem; /* 正文字体大小（16px） */
   color:  #4361ee; /* 调整文字颜色以适应深色背景 */
