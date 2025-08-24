@@ -116,7 +116,7 @@ function setActiveMenu() {
     const linkPage = linkHref.split('?')[0];
     
     // 普通页面匹配
-    else if (linkPage === currentPage) {
+    if (linkPage === currentPage) {
       link.classList.add('active');
     } else {
       link.classList.remove('active');
