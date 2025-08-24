@@ -30,12 +30,12 @@ body {
   font-size: 1.5rem;
   line-height: 1.5;
   color: var(--text-white);
-  background: transparent !important;
+  background: #000000 !important;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   margin: 0;
-  padding-top: 90px;
+  padding-top: var(--top-bar-height);
   overflow-x: hidden;
 }
 
@@ -128,7 +128,7 @@ img { max-width: 100%; height: auto; display: block; }
   right: 0;
   width: 100%;
   z-index: 999;
-  background: transparent !important;
+  background: #000000 !important;
   text-align: center;
   padding: 8px 0;
 }
@@ -160,7 +160,7 @@ img { max-width: 100%; height: auto; display: block; }
   border: 0 !important; 
   padding: 0 !important; 
   margin: 0 4px;
-  background: transparent !important;
+  background: #000000 !important;
   flex-shrink: 0;
 }
 
@@ -437,7 +437,7 @@ img { max-width: 100%; height: auto; display: block; }
    响应式设计
    ================================================== */
 @media (max-width: 767px) {
-  body { padding-top: 55px; }
+  body { padding-top: var(--top-bar-height); }
   
   .top-bar__row { padding: 6px 12px; }
   .top-bar__hamburger { font-size: 35px; min-width: 45px; min-height: 45px; }
@@ -474,7 +474,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 @media (min-width: 768px) {
-  body { padding-top: 70px; }
+  body { padding-top: var(--top-bar-height); }
   
   .top-bar__row { padding: 10px 20px; }
   
@@ -486,7 +486,7 @@ img { max-width: 100%; height: auto; display: block; }
     right: 0;
     width: 100%;
     z-index: 999;
-    background: transparent !important;
+    background: #000000 !important;
     text-align: center;
     padding: 8px 0;
   }
