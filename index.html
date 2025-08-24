@@ -9,9 +9,9 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
     <link rel="manifest" href="/icons/manifest.json">
     <link href="/css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/global.css">  
+    <link rel="stylesheet" href="global.css">
 </head>
-<body class="ax-gradient-bg">
+<body>
 
   <!-- 顶部栏 -->
   <header class="top-bar">
@@ -54,7 +54,7 @@
       </ul>
     </nav>
   </header>
-
+    
   <main>
     <!-- 最新动态 -->
     <section class="latest-news">
@@ -90,6 +90,14 @@
     </nav>
   </main>
 
+  <!-- 底部栏 -->
+  <footer class="site-footer" id="footerToTop">
+    <span class="site-footer__label">返回顶部</span>
+    <img class="site-footer__logo" src="images/logo.png" alt="AX斧标贝斯 Logo"/>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script>
     const seriesData = [
       {id:'a', name:'Series A', desc:'螺栓固定结构带来的额外弹性和响应，提供高性价比的现代音色。', img:'series-a.jpg'},
       {id:'b', name:'Series B', desc:'高端通颈连体工艺系列，奢华外观与稳定表现。', img:'series-b.jpg'},
@@ -154,11 +162,17 @@
       return `${date.getFullYear()}年${date.getMonth()+1}月${date.getDate()}日`;
     }
 
-<!-- 底部栏 -->
-  <footer class="site-footer" id="footerToTop">
-    <span class="site-footer__label">返回顶部</span>
-    <img class="site-footer__logo" src="images/logo.png" alt="AX斧标贝斯 Logo"/>
-  </footer>
-
-  <script src="/js/main.js"></script>
-  <script>
+    // 汉堡菜单交互逻辑
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburger = document.getElementById('hamburger');
+      const menu = document.getElementById('menu');
+      
+      if (hamburger && menu) {
+        hamburger.addEventListener('click', function() {
+          menu.classList.toggle('menu--show');
+        });
+      }
+    });
+  </script>
+</body>
+</html>
