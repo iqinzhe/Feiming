@@ -464,34 +464,39 @@ img { max-width: 100%; height: auto; display: block; }
         /* ==================================================
           底部栏样式修复
         ================================================== */
-        .site-footer {
-            width: 100%;
-            max-width: 100%;
-            margin: 40px 0 0 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-            padding: 16px 20px;
-            cursor: pointer;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 12px;
-            box-sizing: border-box;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .site-footer__label { 
-            font-weight: 600; 
-            font-size: 1.2rem; 
-            color: var(--text-white); 
-        }
-        
-        .site-footer__logo { 
-            height: 24px; 
-            width: auto; 
-            filter: brightness(0) invert(1);
-        }
-        
+.site-footer {
+    width: 100%;
+    max-width: 100%;   /* 确保不被 body 的 1200px 限制 */
+    margin: 40px 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* 垂直居中对齐 */
+    gap: 12px;
+    padding: 16px 20px;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.site-footer__label { 
+    font-weight: 600; 
+    font-size: 1.2rem; 
+    line-height: 1;        /* 避免文字高度比 logo 高 */
+    color: var(--text-white); 
+    display: flex;
+    align-items: center;   /* 和 logo 高度对齐 */
+}
+
+.site-footer__logo { 
+    height: 24px; 
+    width: auto; 
+    display: flex;
+    align-items: center;   /* 保证和文字 baseline 对齐 */
+    filter: brightness(0) invert(1);
+}
+   
         .site-footer:hover { 
             background: rgba(0, 0, 0, 0.4); 
         }
