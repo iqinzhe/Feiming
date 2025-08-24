@@ -4,134 +4,175 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AX斧标贝斯 | 订单确认</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+  <link rel="manifest" href="/icons/manifest.json">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="../css/global.css">
-  <style>
-    body {
-      background: rgb(128, 128, 128);
-      color: #fff; font-family: Arial, sans-serif;
-      margin: 0; padding-top: 60px;
-      min-height: 100vh; display: flex; flex-direction: column;
-    }
-    main { flex: 1; padding: 20px; max-width: 800px; margin: 0 auto; }
-    .confirm-box { background: rgba(0,0,0,0.3); padding: 30px; border-radius: 8px; margin-top: 20px; }
-    .confirm-box h1 { color: #4dabf7; text-align: center; }
-    .order-id { text-align: center; font-size: 20px; font-weight: bold; margin: 15px 0; color: #ffd43b; }
-    h2 { margin-top: 25px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 5px; }
-    table.order-summary { width: 100%; border-collapse: collapse; margin-top: 10px; background: rgba(255,255,255,0.05); }
-    table.order-summary th, table.order-summary td { border: 1px solid rgba(255,255,255,0.2); padding: 10px; text-align: left; }
-    table.order-summary th { background: rgba(255,255,255,0.1); width: 25%; }
-    .actions { margin-top: 30px; text-align: center; }
-    .actions a, .actions button {
-      display: inline-block; margin: 10px; padding: 10px 20px;
-      border-radius: 4px; text-decoration: none; font-weight: bold; cursor: pointer;
-    }
-    .btn-primary { background: #4dabf7; color: #fff; }
-    .btn-secondary { background: #6c757d; color: #fff; }
-    .btn-warning { background: #ffd43b; color: #000; }
-    .btn-copy {
-      margin-left: 10px; padding: 4px 8px; font-size: 12px;
-      background: #4dabf7; color: #fff; border: none; border-radius: 4px; cursor: pointer;
-    }
-    .btn-copy:hover { background: #339af0; }
-
-/* 顶部固定定位 */
-.site-topbar {
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  right: 0;
-  z-index: 1000;
-  backdrop-filter: blur(5px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 5%;
-}
-.site-bottombar {
-  margin-top: auto;
-  padding: 20px 0;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-main {
-  flex: 1;
-  padding-bottom: 20px;
-}
-
-.topbar__center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-/* 移动菜单样式 */
-.mobile-nav {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: var(--glass-dark);
-  backdrop-filter: blur(10px);
-  z-index: 999;
-  padding: 10px 0;
-}
-
-.mobile-nav.mobile-nav--open {
-  display: block;
-}
-
-.mobile-nav__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.mobile-nav__list li {
-  padding: 14px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-.mobile-nav__list a {
-  color: var(--text-white);
-  text-decoration: none;
-  display: block;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-@media (min-width: 768px) {
-  body { padding-top: 70px; }
-  .site-topbar { padding: 15px 8%; height: 60px; }
-  .topbar__logo { height: 35px; }
-  .page-content { padding: 30px 8%; }
   
-  .page-links ul {
-    gap: 30px;
-  }
-}
-
-@media (max-width: 600px) {
-  .page-links ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
-</style>
+  <style>
+    main { 
+      flex: 1; 
+      padding: 20px; 
+      max-width: 800px; 
+      margin: 80px auto 40px; 
+    }
+    
+    .confirm-box { 
+      background: rgba(0,0,0,0.3); 
+      padding: 30px; 
+      border-radius: 8px; 
+      margin-top: 20px; 
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .confirm-box h1 { 
+      color: #4dabf7; 
+      text-align: center; 
+      margin-top: 0;
+    }
+    
+    .order-id { 
+      text-align: center; 
+      font-size: 20px; 
+      font-weight: bold; 
+      margin: 15px 0; 
+      color: #ffd43b; 
+    }
+    
+    h2 { 
+      margin-top: 25px; 
+      border-bottom: 1px solid rgba(255,255,255,0.3); 
+      padding-bottom: 5px; 
+      color: #fff;
+    }
+    
+    table.order-summary { 
+      width: 100%; 
+      border-collapse: collapse; 
+      margin-top: 10px; 
+      background: rgba(255,255,255,0.05); 
+    }
+    
+    table.order-summary th, table.order-summary td { 
+      border: 1px solid rgba(255,255,255,0.2); 
+      padding: 10px; 
+      text-align: left; 
+      color: #fff;
+    }
+    
+    table.order-summary th { 
+      background: rgba(255,255,255,0.1); 
+      width: 25%; 
+    }
+    
+    .actions { 
+      margin-top: 30px; 
+      text-align: center; 
+    }
+    
+    .actions a, .actions button {
+      display: inline-block; 
+      margin: 10px; 
+      padding: 10px 20px;
+      border-radius: 4px; 
+      text-decoration: none; 
+      font-weight: bold; 
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s;
+    }
+    
+    .btn-primary { 
+      background: #4dabf7; 
+      color: #fff; 
+    }
+    
+    .btn-primary:hover {
+      background: #339af0;
+    }
+    
+    .btn-secondary { 
+      background: #6c757d; 
+      color: #fff; 
+    }
+    
+    .btn-secondary:hover {
+      background: #5a6268;
+    }
+    
+    .btn-warning { 
+      background: #ffd43b; 
+      color: #000; 
+    }
+    
+    .btn-warning:hover {
+      background: #ffc107;
+    }
+    
+    .btn-copy {
+      margin-left: 10px; 
+      padding: 4px 8px; 
+      font-size: 12px;
+      background: #4dabf7; 
+      color: #fff; 
+      border: none; 
+      border-radius: 4px; 
+      cursor: pointer;
+    }
+    
+    .btn-copy:hover { 
+      background: #339af0; 
+    }
+  </style>
 </head>
-<body>
-
-  <header class="site-topbar">
-    <div class="topbar__left"><button id="topbarMenuBtn">☰</button></div>
-    <div class="topbar__center"><a href="index.html"><img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/></a></div>
-    <div class="topbar__right"><button id="topbarSearchBtn">🔍</button><button id="topbarShareBtn">⤴</button></div>
-  </header>
 
 <body class="ax-gradient-bg">
+  <!-- 顶部栏 -->
+  <header class="top-bar">
+    <div class="top-bar__row">
+
+      <!-- 汉堡菜单按钮 -->
+      <div class="menu__button" id="hamburger">
+        ☰
+      </div>
+      
+      <!-- logo + 宣传语 -->
+      <div class="top-bar__center">
+        <img src="images/logo.png" alt="AX斧标贝斯 Logo" class="top-bar__logo">
+        <p class="top-bar__slogan">每次拨弦都是心灵的飞舞共鸣！</p>
+      </div>
+
+      <!-- 分享按钮 -->
+      <div class="top-bar__share" id="shareBtn">
+        ⫶
+      </div>
+    </div>
+
+    <!-- 汉堡菜单展开内容 -->
+    <nav class="menu" id="menu">
+      <ul class="menu__list">
+        <li class="menu__item">
+          <a href="index.html" class="menu__link">首页</a>
+        </li>
+        <li class="menu__item">
+          <a href="products.html?series=d" class="menu__link">特色</a>
+        </li>
+        <li class="menu__item">
+          <a href="products.html" class="menu__link">产品</a>
+        </li>
+        <li class="menu__item">
+          <a href="support.html" class="menu__link">支持</a>
+        </li>
+        <li class="menu__item">
+          <a href="pricing.html" class="menu__link">订购</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
   <main>
     <div class="confirm-box" id="orderBox">
       <h1>订单提交成功 ✅</h1>
@@ -145,68 +186,123 @@ main {
       <table id="orderInfo" class="order-summary"></table>
 
       <div class="actions">
-        <a href="instruments.html" class="btn-secondary">继续浏览系列</a>
+        <a href="products.html" class="btn-secondary">继续浏览系列</a>
         <a href="index.html" class="btn-primary">返回首页</a>
         <button onclick="window.print()" class="btn-warning">打印订单</button>
       </div>
     </div>
   </main>
 
+  <!-- 底部栏 -->
+  <footer class="site-bottombar" id="footerToTop">
+    <div class="bottombar__label">返回顶部</div>
+    <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script>
-    // 订单编号
-    function generateOrderId() {
-      const now = new Date();
-      const year = now.getFullYear();
-      const month = String(now.getMonth()+1).padStart(2, '0');
-      const day = String(now.getDate()).padStart(2, '0');
-      const rand = Math.floor(Math.random() * 900 + 100);
-      return `AX${year}${month}${day}-${rand}`;
-    }
-    document.getElementById("orderId").textContent = "订单编号：" + generateOrderId();
-
-    // 获取URL参数
-    const urlParams = new URLSearchParams(window.location.search);
-    const customerInfoTable = document.getElementById('customerInfo');
-    const orderInfoTable = document.getElementById('orderInfo');
-
-    const customerFields = ["customerName","phone","receiverName","province","city","town","street","number"];
-    const orderFields = ["product","quantity","customization","notes","orderTime"];
-
-    function translateField(key) {
-      const map = {
-        customerName:"订购人姓名", phone:"联系电话",
-        receiverName:"收货人姓名", province:"省", city:"市/县",
-        town:"乡/镇", street:"街道", number:"门牌号",
-        product:"产品型号", quantity:"数量", customization:"改造定制需求",
-        notes:"订单备注", orderTime:"下单时间"
-      };
-      return map[key] || key;
-    }
-
-    function renderTable(table, fields, type) {
-      let html = "";
-      fields.forEach(f => {
-        const value = urlParams.get(f);
-        if (value) html += `<tr><th>${translateField(f)}</th><td>${value}</td></tr>`;
-      });
-
-      if (type === "customer") {
-        const addr = [urlParams.get("province"), urlParams.get("city"), urlParams.get("town"), urlParams.get("street"), urlParams.get("number")]
-          .filter(Boolean).join("");
-        if (addr) {
-          html += `<tr><th>完整收货地址</th>
-            <td>
-              <span id="fullAddress">${addr}</span>
-              <button class="btn-copy" onclick="copyAddress()">复制</button>
-            </td></tr>`;
-        }
+    // 汉堡菜单交互逻辑
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburger = document.getElementById('hamburger');
+      const menu = document.getElementById('menu');
+      
+      if (hamburger && menu) {
+        hamburger.addEventListener('click', function() {
+          menu.classList.toggle('menu--show');
+        });
+      }
+      
+      // 返回顶部功能
+      const footerToTop = document.getElementById('footerToTop');
+      if (footerToTop) {
+        footerToTop.addEventListener('click', function() {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
       }
 
-      table.innerHTML = html || "<tr><td>暂无信息</td></tr>";
-    }
+      // 初始化EmailJS
+      emailjs.init("9mFxGUlwnnrz5WbL7");
+      
+      // 订单编号
+      function generateOrderId() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth()+1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const rand = Math.floor(Math.random() * 900 + 100);
+        return `AX${year}${month}${day}-${rand}`;
+      }
+      
+      document.getElementById("orderId").textContent = "订单编号：" + generateOrderId();
 
-    renderTable(customerInfoTable, customerFields, "customer");
-    renderTable(orderInfoTable, orderFields, "order");
+      // 获取URL参数
+      const urlParams = new URLSearchParams(window.location.search);
+      const customerInfoTable = document.getElementById('customerInfo');
+      const orderInfoTable = document.getElementById('orderInfo');
+
+      const customerFields = ["customerName","phone","receiverName","province","city","town","street","number"];
+      const orderFields = ["product","quantity","customization","notes","orderTime"];
+
+      function translateField(key) {
+        const map = {
+          customerName:"订购人姓名", phone:"联系电话",
+          receiverName:"收货人姓名", province:"省", city:"市/县",
+          town:"乡/镇", street:"街道", number:"门牌号",
+          product:"产品型号", quantity:"数量", customization:"改造定制需求",
+          notes:"订单备注", orderTime:"下单时间"
+        };
+        return map[key] || key;
+      }
+
+      function renderTable(table, fields, type) {
+        let html = "";
+        fields.forEach(f => {
+          const value = urlParams.get(f);
+          if (value) html += `<tr><th>${translateField(f)}</th><td>${value}</td></tr>`;
+        });
+
+        if (type === "customer") {
+          const addr = [urlParams.get("province"), urlParams.get("city"), urlParams.get("town"), urlParams.get("street"), urlParams.get("number")]
+            .filter(Boolean).join("");
+          if (addr) {
+            html += `<tr><th>完整收货地址</th>
+              <td>
+                <span id="fullAddress">${addr}</span>
+                <button class="btn-copy" onclick="copyAddress()">复制</button>
+              </td></tr>`;
+          }
+        }
+
+        table.innerHTML = html || "<tr><td colspan='2'>暂无信息</td></tr>";
+      }
+
+      renderTable(customerInfoTable, customerFields, "customer");
+      renderTable(orderInfoTable, orderFields, "order");
+
+      // 发送订单邮件
+      function sendOrderEmail() {
+        const params = {
+          order_id: document.getElementById("orderId").innerText,
+          customer_name: urlParams.get("customerName") || "未知用户",
+          phone: urlParams.get("phone") || "",
+          product: urlParams.get("product") || "",
+          quantity: urlParams.get("quantity") || "",
+          address: document.getElementById("fullAddress")?.innerText || "未填写",
+          notes: urlParams.get("notes") || ""
+        };
+
+        emailjs.send("service_6q2tc8m", "template_npq8364", params)
+          .then(function(response) {
+            console.log("邮件发送成功", response.status, response.text);
+          }, function(error) {
+            console.error("邮件发送失败", error);
+          });
+      }
+
+      // 页面加载完成后自动发送邮件
+      sendOrderEmail();
+    });
 
     // 复制地址功能
     function copyAddress() {
@@ -218,38 +314,5 @@ main {
       });
     }
   </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <script>
-    (function(){
-      emailjs.init("9mFxGUlwnnrz5WbL7"); // 使用用户提供的 User ID (Public Key)
-    })();
-
-    function sendOrderEmail() {
-      const params = {
-        order_id: document.getElementById("orderId").innerText,
-        customer_name: urlParams.get("customerName") || "未知用户",
-        phone: urlParams.get("phone") || "",
-        product: urlParams.get("product") || "",
-        quantity: urlParams.get("quantity") || "",
-        address: document.getElementById("fullAddress")?.innerText || "未填写",
-        notes: urlParams.get("notes") || ""
-      };
-
-      emailjs.send("service_6q2tc8m", "template_npq8364", params)
-        .then(function(response) {
-          console.log("邮件发送成功", response.status, response.text);
-        }, function(error) {
-          console.error("邮件发送失败", error);
-        });
-    }
-
-    // 页面加载完成后自动发送邮件
-    window.onload = function() {
-      sendOrderEmail();
-    };
-  </script>
 </body>
 </html>
-
-
