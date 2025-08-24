@@ -466,11 +466,11 @@ img { max-width: 100%; height: auto; display: block; }
         ================================================== */
 .site-footer {
     width: 100%;
-    max-width: 100%;   /* 确保不被 body 的 1200px 限制 */
+    max-width: 100%;         /* 确保不受 body 的 1200px 限制 */
     margin: 40px 0 0 0;
     display: flex;
-    justify-content: center;
-    align-items: center; /* 垂直居中对齐 */
+    justify-content: center; /* 水平居中 */
+    align-items: center;     /* 垂直对齐 */
     gap: 12px;
     padding: 16px 20px;
     cursor: pointer;
@@ -483,19 +483,20 @@ img { max-width: 100%; height: auto; display: block; }
 .site-footer__label { 
     font-weight: 600; 
     font-size: 1.2rem; 
-    line-height: 1;        /* 避免文字高度比 logo 高 */
-    color: var(--text-white); 
+    line-height: 1;           /* ✅ 保证文字高度贴合字体本身 */
+    color: #ffffff !important; /* ✅ 强制白色，避免被 global.css 覆盖 */
     display: flex;
-    align-items: center;   /* 和 logo 高度对齐 */
+    align-items: center;       /* ✅ 文字内容垂直居中 */
 }
 
 .site-footer__logo { 
     height: 24px; 
-    width: auto; 
+    width: auto;
     display: flex;
-    align-items: center;   /* 保证和文字 baseline 对齐 */
+    align-items: center;       /* ✅ 与文字保持基线对齐 */
     filter: brightness(0) invert(1);
 }
+
    
         .site-footer:hover { 
             background: rgba(0, 0, 0, 0.4); 
