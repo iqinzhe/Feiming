@@ -1,103 +1,182 @@
 <!DOCTYPE html>
+
 <html lang="zh-CN">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>AX斧标贝斯 | 首页</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-    <link rel="manifest" href="/icons/manifest.json">
-    <link href="css/global.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-</head>
-<body class="ax-gradient-bg">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AX斧标贝斯 | 首页</title>
+<link href="/icons/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="/icons/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="/icons/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="/icons/manifest.json" rel="manifest"/>
+<link href="css/global.css" rel="stylesheet"/>
+<link href="css/style.css" rel="stylesheet"/>
+<style>
+/* === 全局样式（原 style.css 内容 + 修改） === */
 
-  <!-- 顶部栏 -->
-  <header class="top-bar">
-    <div class="top-bar__row">
-      <!-- 汉堡菜单按钮 -->
-      <div class="menu__button" id="hamburger">
+/* 下部导航按钮容器 */
+.compact-nav {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.compact-nav__container {
+  display: flex;
+  gap: 16px;
+}
+
+/* 单个按钮 */
+.compact-nav__item {
+  background: var(--menu-chip-bg);
+  border: 1px solid var(--menu-chip-border);
+  border-radius: var(--border-radius);
+  padding: 12px 20px;
+  color: var(--primary-color) !important;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.compact-nav__item:hover {
+  background: var(--hover-color);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.compact-nav__text {
+  color: var(--primary-color) !important;
+}
+
+/* 底部栏 */
+.site-footer {
+  width: 100vw;
+  max-width: 100vw;
+  margin: 40px 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.site-footer__label {
+  color: #fff;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.site-footer__logo {
+  height: 24px;
+  width: auto;
+  display: block;
+}
+</style></head>
+<body class="ax-gradient-bg">
+<!-- 顶部栏 -->
+<header class="top-bar">
+<div class="top-bar__row">
+<!-- 汉堡菜单按钮 -->
+<div class="menu__button" id="hamburger">
         ☰
       </div>
-      
-      <!-- logo + 宣传语 -->
-      <div class="top-bar__center">
-        <img src="images/logo.png" alt="AX斧标贝斯 Logo" class="top-bar__logo">
-        <p class="top-bar__slogan">每次拨弦都是心灵的飞舞共鸣！</p>
-      </div>
-
-      <!-- 分享按钮 -->
-      <div class="top-bar__share" id="shareBtn">
+<!-- logo + 宣传语 -->
+<div class="top-bar__center">
+<img alt="AX斧标贝斯 Logo" class="top-bar__logo" src="images/logo.png"/>
+<p class="top-bar__slogan">每次拨弦都是心灵的飞舞共鸣！</p>
+</div>
+<!-- 分享按钮 -->
+<div class="top-bar__share" id="shareBtn">
         ⫶
       </div>
-    </div>
+</div>
+<!-- 汉堡菜单展开内容 -->
+<nav class="menu" id="menu">
+<ul class="menu__list">
+<li class="menu__item">
+<a class="menu__link" href="index.html">首页</a>
+</li>
+<li class="menu__item">
+<a class="menu__link" href="products.html">产品</a>
+</li>
+<li class="menu__item">
+<a class="menu__link" href="products.html?series=d">特色</a>
+</li>
+<li class="menu__item">
+<a class="menu__link" href="pricing.html">订购</a>
+</li>
+<li class="menu__item">
+<a class="menu__link" href="support.html">支持</a>
+</li>
+</ul>
+</nav>
+</header>
+<main>
+<!-- 最新动态 -->
+<section class="latest-news">
+<h3>最新动态</h3>
+<div id="events-preview-container">
+<div class="loading">加载最新动态...</div>
+</div>
+<a class="view-all-news" href="events.html">查看更多动态 →</a>
+</section>
+<!-- 系列卡片总览 -->
+<section class="series-overview" id="seriesOverview"></section>
+<!-- 紧凑型导航链接 -->
+<nav aria-label="快捷导航" class="compact-nav">
+<div class="compact-nav__container">
+<a aria-label="订购产品" class="compact-nav__item" href="pricing.html">
+<span aria-hidden="true" class="compact-nav__icon" role="img">🛒</span>
+<span class="compact-nav__text">订购产品</span>
+<span class="compact-nav__tooltip">订购产品</span>
+</a>
+<a aria-label="支持中心" class="compact-nav__item" href="support.html">
+<span aria-hidden="true" class="compact-nav__icon" role="img">🛠️</span>
+<span class="compact-nav__text">支持中心</span>
+<span class="compact-nav__tooltip">获取帮助与文档</span>
+</a>
+<a aria-label="新闻事件" class="compact-nav__item" href="events.html">
+<span aria-hidden="true" class="compact-nav__icon" role="img">ℹ️</span>
+<span class="compact-nav__text">通知公示</span>
+<span class="compact-nav__tooltip">新闻事件</span>
+</a>
+</div>
+</nav>
+</main>
+<!-- 底部栏 -->
 
-    <!-- 汉堡菜单展开内容 -->
-    <nav class="menu" id="menu">
-      <ul class="menu__list">
-        <li class="menu__item">
-          <a href="index.html" class="menu__link">首页</a>
-        </li>
-        <li class="menu__item">
-          <a href="products.html" class="menu__link">产品</a>
-        </li>
-        <li class="menu__item">
-          <a href="products.html?series=d" class="menu__link">特色</a>
-        </li>
-        <li class="menu__item">
-          <a href="pricing.html" class="menu__link">订购</a>
-        </li>
-        <li class="menu__item">
-          <a href="support.html" class="menu__link">支持</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-
-  <main>
-    <!-- 最新动态 -->
-    <section class="latest-news">
-      <h3>最新动态</h3>
-      <div id="events-preview-container">
-        <div class="loading">加载最新动态...</div>
-      </div>
-      <a href="events.html" class="view-all-news">查看更多动态 →</a>
-    </section>
-
-    <!-- 系列卡片总览 -->
-    <section class="series-overview" id="seriesOverview"></section>
-
-    <!-- 紧凑型导航链接 -->
-    <nav class="compact-nav" aria-label="快捷导航">
-      <div class="compact-nav__container">
-        <a href="pricing.html" class="compact-nav__item" aria-label="订购产品">
-          <span class="compact-nav__icon" role="img" aria-hidden="true">🛒</span>
-          <span class="compact-nav__text">订购产品</span>
-          <span class="compact-nav__tooltip">订购产品</span>
-        </a>
-        <a href="support.html" class="compact-nav__item" aria-label="支持中心">
-          <span class="compact-nav__icon" role="img" aria-hidden="true">🛠️</span>
-          <span class="compact-nav__text">支持中心</span>
-          <span class="compact-nav__tooltip">获取帮助与文档</span>
-        </a>
-        <a href="events.html" class="compact-nav__item" aria-label="新闻事件">
-          <span class="compact-nav__icon" role="img" aria-hidden="true">ℹ️</span>
-          <span class="compact-nav__text">通知公示</span>
-          <span class="compact-nav__tooltip">新闻事件</span>
-        </a>
-      </div>
-    </nav>
-  </main>
-
-  <!-- 底部栏 -->
-  <footer class="site-footer" id="footerToTop">
-    <span class="site-footer__label">返回顶部</span>
-    <img class="site-footer__logo" src="images/logo.png" alt="AX斧标贝斯 Logo"/>
-  </footer>
-
-  <script src="/js/main.js"></script>
-  <script>
+<!-- 下部导航按钮 -->
+<nav aria-label="快捷导航" class="compact-nav">
+<div class="compact-nav__container">
+<a class="compact-nav__item" href="pricing.html">
+<span class="compact-nav__icon">🛒</span>
+<span class="compact-nav__text">订购产品</span>
+</a>
+<a class="compact-nav__item" href="support.html">
+<span class="compact-nav__icon">🛠️</span>
+<span class="compact-nav__text">支持中心</span>
+</a>
+<a class="compact-nav__item" href="events.html">
+<span class="compact-nav__icon">ℹ️</span>
+<span class="compact-nav__text">通知公示</span>
+</a>
+</div>
+</nav>
+<footer class="site-footer" id="footerToTop">
+<span class="site-footer__label">返回顶部</span>
+<img alt="AX斧标贝斯 Logo" class="site-footer__logo" src="images/logo.png">
+</img></footer>
+<script src="/js/main.js"></script>
+<script>
     const seriesData = [
       {id:'a', name:'Series A', desc:'螺栓固定结构带来的额外弹性和响应，提供高性价比的现代音色。', img:'series-a.jpg'},
       {id:'b', name:'Series B', desc:'高端通颈连体工艺系列，奢华外观与稳定表现。', img:'series-b.jpg'},
