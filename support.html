@@ -1,187 +1,163 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AX支持中心</title>
-  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-  <link rel="manifest" href="/icons/manifest.json">
-  <link href="../css/style.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="../css/global.css"> 
-  <style>
-    /* ===== 支持中心特有样式 ===== */
-    .page-content {
-      flex: 1;
-      padding: 20px 5%;
-      margin-top: 35px;
-    }
-
-    .support-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      margin: 30px 0;
-    }
-
-    .support-card {
-      background: rgba(255, 255, 255, 0.12);
-      border-radius: 12px;
-      padding: 25px;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    }
-
-    .support-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-      background: rgba(255, 255, 255, 0.15);
-    }
-
-    .support-card h2 {
-      margin-top: 0;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .support-card a {
-      text-decoration: none;
-      display: block;
-      margin-top: 15px;
-      font-weight: bold;
-      transition: color 0.3s ease;
-    }
-
-    .icon {
-      font-size: 24px;
-    }
-
-    /* 顶部固定定位 */
-    .site-topbar {
-      position: fixed; 
-      top: 0; 
-      left: 0; 
-      right: 0;
-      z-index: 1000;
-      backdrop-filter: blur(5px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 5%;
-      background: rgba(0, 0, 0, 0.3);
-    }
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>AX斧标贝斯 | 支持中心</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="manifest" href="/icons/manifest.json">
+    <link href="/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/global.css">
     
-    .site-bottombar {
-      margin-top: auto;
-      padding: 20px 0;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-    }
-    
-    main {
-      flex: 1;
-      padding-bottom: 20px;
-    }
-
-    .topbar__center {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    /* 移动菜单样式 */
-    .mobile-nav {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(10px);
-      z-index: 999;
-      padding: 10px 0;
-    }
-
-    .mobile-nav.mobile-nav--open {
-      display: block;
-    }
-
-    .mobile-nav__list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .mobile-nav__list li {
-      padding: 14px 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .mobile-nav__list a {
-      text-decoration: none;
-      display: block;
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    @media (max-width: 600px) {
-      .support-container {
-        grid-template-columns: 1fr;
+    <style>
+      /* ===== 支持中心特有样式 ===== */
+      .page-content {
+        flex: 1;
+        padding: 20px 5%;
+        margin-top: 35px;
       }
-    }
-  </style>
+
+      .support-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin: 30px 0;
+      }
+
+      .support-card {
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 12px;
+        padding: 25px;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .support-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .support-card h2 {
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .support-card a {
+        text-decoration: none;
+        display: block;
+        margin-top: 15px;
+        font-weight: bold;
+        transition: color 0.3s ease;
+      }
+
+      .icon {
+        font-size: 24px;
+      }
+    </style>
 </head>
+
 <body class="ax-gradient-bg">
+  <!-- 顶部栏 -->
+  <header class="top-bar">
+    <div class="top-bar__row">
 
-<!-- 信息支持项目 -->
-<main class="page-content">
-<h2>欢迎联络</h2>
-  <p>我们随时为您提供帮助，请选择您需要的支持类型：</p>
-  <div class="support-container">
+      <!-- 汉堡菜单按钮 -->
+      <div class="menu__button" id="hamburger">
+        ☰
+      </div>
+      
+      <!-- logo + 宣传语 -->
+      <div class="top-bar__center">
+        <img src="images/logo.png" alt="AX斧标贝斯 Logo" class="top-bar__logo">
+        <p class="top-bar__slogan">每次拨弦都是心灵的飞舞共鸣！</p>
+      </div>
 
-    <div class="support-card">
-      <h2><span class="icon">🎸</span>关于我们</h2>
-      <p>我们做吉他经验的累积过程。。。</p>
-      <a href="about.html">了解更多 →</a>
+      <!-- 分享按钮 -->
+      <div class="top-bar__share" id="shareBtn">
+        ⫶
+      </div>
     </div>
 
-    <div class="support-card">
-      <h2><span class="icon">✉️</span>联系我们</h2>
-      <p>需要直接帮助？通过多种方式联系我们。。。</p>
-      <a href="contact.html">联系方式 →</a>
+    <!-- 汉堡菜单展开内容 -->
+    <nav class="menu" id="menu">
+      <ul class="menu__list">
+        <li class="menu__item">
+          <a href="index.html" class="menu__link">首页</a>
+        </li>
+        <li class="menu__item">
+          <a href="products.html" class="menu__link">产品</a>
+        </li>
+        <li class="menu__item">
+          <a href="products.html?series=d" class="menu__link">特色</a>
+        </li>
+        <li class="menu__item">
+          <a href="pricing.html" class="menu__link">订购</a>
+        </li>
+        <li class="menu__item">
+          <a href="support.html" class="menu__link">支持</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- 信息支持项目 -->
+  <main class="page-content">
+    <h2>欢迎联络</h2>
+    <p>我们随时为您提供帮助，请选择您需要的支持类型：</p>
+    <div class="support-container">
+
+      <div class="support-card">
+        <h2><span class="icon">🎸</span>关于我们</h2>
+        <p>我们做吉他经验的累积过程。。。</p>
+        <a href="about.html">了解更多 →</a>
+      </div>
+
+      <div class="support-card">
+        <h2><span class="icon">✉️</span>联系我们</h2>
+        <p>需要直接帮助？通过多种方式联系我们。。。</p>
+        <a href="contact.html">联系方式 →</a>
+      </div>
+
+      <div class="support-card">
+        <h2><span class="icon">❓</span>常见问题</h2>
+        <p>查找关于AX产品的常见问题解答。。。</p>
+        <a href="FAQ.html">前往FAQ →</a>
+      </div>
+      
+      <div class="support-card">
+        <h2><span class="icon">ℹ️</span>通用信息</h2>
+        <p>获取法律条款和品牌声明。。。</p>
+        <a href="info.html">详细信息 →</a>
+      </div>
     </div>
+  </main>
 
-    <div class="support-card">
-      <h2><span class="icon">❓</span>常见问题</h2>
-      <p>查找关于AX产品的常见问题解答。。。</p>
-      <a href="FAQ.html">前往FAQ →</a>
-    </div>
-    
-    <div class="support-card">
-      <h2><span class="icon">ℹ️</span>通用信息</h2>
-      <p>获取法律条款和品牌声明。。。</p>
-      <a href="info.html">详细信息 →</a>
-    </div>
-  </div>
-</main>
+  <!-- 底部栏 -->
+  <footer class="site-bottombar" id="footerToTop">
+    <div class="bottombar__label">返回顶部</div>
+    <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
+  </footer>
 
-<!-- 底部栏 -->
-<footer class="site-bottombar" id="footerToTop">
-  <div class="bottombar__label">返回顶部</div>
-  <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
-</footer>
-
-<script src="/js/main.js"></script>
-</body>
-</html>
-
+  <script src="/js/main.js"></script>
+  <script>
+    // 汉堡菜单交互逻辑
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburger = document.getElementById('hamburger');
+      const menu = document.getElementById('menu');
+      
+      if (hamburger && menu) {
+        hamburger.addEventListener('click', function() {
+          menu.classList.toggle('menu--show');
+        });
+      }
+    });
+  </script>
 </body>
 </html>
