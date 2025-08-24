@@ -132,12 +132,78 @@
       transform: scale(1.1);
     }
 
+    /* 汉堡菜单样式 */
+    .menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+    }
+
+    .menu--open {
+      display: block;
+    }
+
+    .menu__button--active {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .menu__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .menu__item {
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .menu__link {
+      display: block;
+      padding: 15px 20px;
+      color: white;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .menu__link:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
     /* Responsive */
     @media (min-width: 768px) {
       body { padding-top: 70px; }
       .site-topbar { padding: 15px 8%; height: 60px; }
       .topbar__logo { height: 35px; }
       .page-content { padding: 30px 8%; }
+      
+      /* 在较大屏幕上隐藏汉堡菜单按钮，显示水平菜单 */
+      .menu__button {
+        display: none;
+      }
+      
+      .menu {
+        display: flex;
+        position: static;
+        background: transparent;
+        width: auto;
+      }
+      
+      .menu__list {
+        display: flex;
+        gap: 20px;
+      }
+      
+      .menu__item {
+        border-bottom: none;
+      }
+      
+      .menu__link {
+        padding: 5px 10px;
+      }
     }
   </style>
 </head>
@@ -274,6 +340,29 @@
             console.error('EmailJS发送失败:', error);
           });
       });
+
+      // 汉堡菜单交互功能
+      const hamburger = document.getElementById('hamburger');
+      const menu = document.getElementById('menu');
+      
+      if (hamburger && menu) {
+        // 点击汉堡菜单按钮时切换菜单显示状态
+        hamburger.addEventListener('click', function(event) {
+          event.stopPropagation(); // 阻止事件冒泡
+          menu.classList.toggle('menu--open');
+          hamburger.classList.toggle('menu__button--active');
+        });
+        
+        // 点击菜单外部区域关闭菜单
+        document.addEventListener('click', function(event) {
+          if (menu.classList.contains('menu--open') && 
+              !hamburger.contains(event.target) && 
+              !menu.contains(event.target)) {
+            menu.classList.remove('menu--open');
+            hamburger.classList.remove('menu__button--active');
+          }
+        });
+      }
     });
   </script>
 </body>
