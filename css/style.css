@@ -189,8 +189,10 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .menu__link.active {
-  border: 2px solid #ffffff; /* 白色边框标识当前页面 */
-  background: rgba(255, 255, 255, 0.1); /* 轻微白色背景 */
+  border: 2px solid #ffffff !important; /* 白色边框 */
+  background: rgba(255, 255, 255, 0.15) !important; /* 轻微白色背景 */
+  transform: translateY(-1px); /* 轻微上浮效果 */
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2); /* 白色阴影 */
 }
    
 .menu__link:hover {
