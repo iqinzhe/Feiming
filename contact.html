@@ -14,57 +14,12 @@
   <!-- 引入EmailJS SDK -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script type="text/javascript">
-    // 初始化EmailJS
+    // 初始化EmailJS - ID保持不变
     (function() {
-      emailjs.init('9mFxGUlwnnrz5WbL7'); // 您的EmailJS用户ID
+      emailjs.init('9mFxGUlwnnrz5WbL7');
     })();
   </script>
   <style>
-    :root {
-      --neutral-gray: rgb(128, 128, 128);
-      --glass-dark: rgba(0, 0, 0, 0.3);
-      --text-white: #fff;
-    }
-
-    body {
-      background: var(--neutral-gray);
-      color: var(--text-white);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding-top: 60px;
-    }
-
-    /* Mobile Nav */
-    .mobile-nav {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      background: var(--glass-dark);
-      backdrop-filter: blur(10px);
-      z-index: 90;
-      padding: 10px 0;
-    }
-
-    .mobile-nav.mobile-nav--open {
-      display: block;
-    }
-
-    .mobile-nav__list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .mobile-nav__list li {
-      padding: 12px 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
     /* Main Content */
     .page-content {
       flex: 1;
@@ -184,212 +139,142 @@
       .topbar__logo { height: 35px; }
       .page-content { padding: 30px 8%; }
     }
-
-/* 顶部固定定位 */
-.site-topbar {
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  right: 0;
-  z-index: 1000;
-  backdrop-filter: blur(5px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 5%;
-}
-.site-bottombar {
-  margin-top: auto;
-  padding: 20px 0;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-main {
-  flex: 1;
-  padding-bottom: 20px;
-}
-
-.topbar__center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-/* 移动菜单样式 */
-.mobile-nav {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: var(--glass-dark);
-  backdrop-filter: blur(10px);
-  z-index: 999;
-  padding: 10px 0;
-}
-
-.mobile-nav.mobile-nav--open {
-  display: block;
-}
-
-.mobile-nav__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.mobile-nav__list li {
-  padding: 14px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-.mobile-nav__list a {
-  color: var(--text-white);
-  text-decoration: none;
-  display: block;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-@media (min-width: 768px) {
-  body { padding-top: 70px; }
-  .site-topbar { padding: 15px 8%; height: 60px; }
-  .topbar__logo { height: 35px; }
-  .page-content { padding: 30px 8%; }
-  
-  .page-links ul {
-    gap: 30px;
-  }
-}
-
-@media (max-width: 600px) {
-  .page-links ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
-</style>
+  </style>
 </head>
-<body>
-
-<!-- 顶部导航栏 -->
-<header class="site-topbar">
-  <div class="topbar__left">
-    <button aria-label="菜单" class="topbar__btn" id="topbarMenuBtn">☰</button>
-  </div>
-  <div class="topbar__center">
-    <a href="/index.html">
-      <img class="topbar__logo" src="/images/logo.png" alt="AX Guitar Logo"/>
-    </a>
-  </div>
-  <div class="topbar__right">
-    <button aria-label="搜索" class="topbar__btn" id="topbarSearchBtn">🔍</button>
-    <button aria-label="分享" class="topbar__btn" id="topbarShareBtn">⤴</button>
-  </div>
-  <nav class="mobile-nav" id="mobileNav" aria-label="主导航">
-    <ul class="mobile-nav__list">
-      <li><a href="index.html">首页</a></li>
-      <li><a href="products.html">产品</a></li>
-      <li><a href="products.html?series=d">特色</a></li>
-      <li><a href="pricing.html">订购</a></li>
-      <li><a href="support.html">支持</a></li>
-    </ul>
-  </nav>
-</header>
 
 <body class="ax-gradient-bg">
-<!-- Main Content -->
-<main class="page-content">
-  <div class="contact-header">
-    <h1>联系我们</h1>
-    <p>我们很乐意听取您的意见和建议</p>
-  </div>
-  
-  <div class="contact-methods">
-    <div class="contact-card">
-      <h2>客户服务</h2>
-      <div class="contact-info">
-        <p><strong>电话:</strong> 400-888-XXXX</p>
-        <p><strong>邮箱:</strong> service@axguitar.com</p>
-        <p><strong>工作时间:</strong> 周一至周五 9:00-17:00</p>
+  <!-- 顶部栏 -->
+  <header class="top-bar">
+    <div class="top-bar__row">
+
+      <!-- 汉堡菜单按钮 -->
+      <div class="menu__button" id="hamburger">
+        ☰
+      </div>
+      
+      <!-- logo + 宣传语 -->
+      <div class="top-bar__center">
+        <img src="images/logo.png" alt="AX斧标贝斯 Logo" class="top-bar__logo">
+        <p class="top-bar__slogan">每次拨弦都是心灵的飞舞共鸣！</p>
+      </div>
+
+      <!-- 分享按钮 -->
+      <div class="top-bar__share" id="shareBtn">
+        ⫶
       </div>
     </div>
-  </div>
-  
-  <div class="contact-form">
-    <h2>发送消息</h2>
-    <form id="contactForm">
-      <div class="form-group">
-        <label for="name">您的姓名</label>
-        <input type="text" id="name" name="name" class="form-control" required>
-      </div>
-      <div class="form-group">
-        <label for="phone">联系电话</label>
-        <input type="tel" id="phone" name="phone" class="form-control" required>
-      </div>
-      <div class="form-group">
-        <label for="subject">主题</label>
-        <input type="text" id="subject" name="subject" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="message">留言内容</label>
-        <textarea id="message" name="message" class="form-control" required></textarea>
-      </div>
-      <button type="submit" class="submit-btn"style="margin-left:20px;padding:8px 16px;background:#28a745;color:#fff;border:none;border-radius:4px;cursor:pointer;">发送消息</button>
-      <div id="formMessage" class="form-message"></div>
-    </form>
-  </div>
-  
-  <!-- 社交媒体图标 -->
-  <div class="social-media">
-    <a href="#" class="social-icon">微</a>
-    <a href="#" class="social-icon">信</a>
-    <a href="#" class="social-icon">抖</a>
-    <a href="#" class="social-icon">音</a>
-  </div>
-</main>
 
-<!-- 底部栏 -->
-<footer class="site-bottombar" id="footerToTop">
-  <div class="bottombar__label">返回顶部</div>
-  <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
-</footer>
-
-<script src="/js/main.js"></script>
-<script>
-  // 等待DOM加载完成
-  document.addEventListener('DOMContentLoaded', function() {
-    // 获取表单元素
-    const contactForm = document.getElementById('contactForm');
-    const formMessage = document.getElementById('formMessage');
+    <!-- 汉堡菜单展开内容 -->
+    <nav class="menu" id="menu">
+      <ul class="menu__list">
+        <li class="menu__item">
+          <a href="index.html" class="menu__link">首页</a>
+        </li>
+        <li class="menu__item">
+          <a href="products.html?series=d" class="menu__link">特色</a>
+        </li>
+        <li class="menu__item">
+          <a href="products.html" class="menu__link">产品</a>
+        </li>
+        <li class="menu__item">
+          <a href="support.html" class="menu__link">支持</a>
+        </li>
+        <li class="menu__item">
+          <a href="pricing.html" class="menu__link">订购</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+   
+  <!-- Main Content -->
+  <main class="page-content">
+    <div class="contact-header">
+      <h1>联系我们</h1>
+      <p>我们很乐意听取您的意见和建议</p>
+    </div>
     
-    // 添加表单提交事件监听器
-    contactForm.addEventListener('submit', function(event) {
-      event.preventDefault(); // 阻止表单默认提交行为
+    <div class="contact-methods">
+      <div class="contact-card">
+        <h2>客户服务</h2>
+        <div class="contact-info">
+          <p><strong>电话:</strong> 400-888-XXXX</p>
+          <p><strong>邮箱:</strong> service@axguitar.com</p>
+          <p><strong>工作时间:</strong> 周一至周五 9:00-17:00</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="contact-form">
+      <h2>发送消息</h2>
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="name">您的姓名</label>
+          <input type="text" id="name" name="name" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">联系电话</label>
+          <input type="tel" id="phone" name="phone" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="subject">主题</label>
+          <input type="text" id="subject" name="subject" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="message">留言内容</label>
+          <textarea id="message" name="message" class="form-control" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn" style="margin-left:20px;padding:8px 16px;background:#28a745;color:#fff;border:none;border-radius:4px;cursor:pointer;">发送消息</button>
+        <div id="formMessage" class="form-message"></div>
+      </form>
+    </div>
+    
+    <!-- 社交媒体图标 -->
+    <div class="social-media">
+      <a href="#" class="social-icon">微</a>
+      <a href="#" class="social-icon">信</a>
+      <a href="#" class="social-icon">抖</a>
+      <a href="#" class="social-icon">音</a>
+    </div>
+  </main>
+
+  <!-- 底部栏 -->
+  <footer class="site-bottombar" id="footerToTop">
+    <div class="bottombar__label">返回顶部</div>
+    <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script>
+    // 等待DOM加载完成
+    document.addEventListener('DOMContentLoaded', function() {
+      // 获取表单元素 - ID保持不变
+      const contactForm = document.getElementById('contactForm');
+      const formMessage = document.getElementById('formMessage');
       
-      // 显示发送中状态
-      formMessage.textContent = '发送中...';
-      formMessage.className = 'form-message';
-      formMessage.style.display = 'block';
-      
-      // 使用EmailJS发送邮件
-      emailjs.sendForm('service_6q2tc8m', 'template_4wq6nho', this)
-        .then(function(response) {
-          // 发送成功
-          formMessage.textContent = '消息已成功发送！我们会尽快回复您。';
-          formMessage.className = 'form-message success';
-          contactForm.reset(); // 重置表单
-        }, function(error) {
-          // 发送失败
-          formMessage.textContent = '发送失败，请稍后再试或直接通过邮件联系我们。';
-          formMessage.className = 'form-message error';
-          console.error('EmailJS发送失败:', error);
-        });
+      // 添加表单提交事件监听器
+      contactForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // 阻止表单默认提交行为
+        
+        // 显示发送中状态
+        formMessage.textContent = '发送中...';
+        formMessage.className = 'form-message';
+        formMessage.style.display = 'block';
+        
+        // 使用EmailJS发送邮件 - Service和Template ID保持不变
+        emailjs.sendForm('service_6q2tc8m', 'template_4wq6nho', this)
+          .then(function(response) {
+            // 发送成功
+            formMessage.textContent = '消息已成功发送！我们会尽快回复您。';
+            formMessage.className = 'form-message success';
+            contactForm.reset(); // 重置表单
+          }, function(error) {
+            // 发送失败
+            formMessage.textContent = '发送失败，请稍后再试或直接通过邮件联系我们。';
+            formMessage.className = 'form-message error';
+            console.error('EmailJS发送失败:', error);
+          });
+      });
     });
-  });
-</script>
+  </script>
 </body>
 </html>
