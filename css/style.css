@@ -208,16 +208,28 @@ img { max-width: 100%; height: auto; display: block; }
   padding: 7px; 
   margin: 5px 0; 
   border-radius: 8px; 
-    /* height: 230px;  <-- 去掉这一行 */
-  min-height: 230px;  /* 保留最小高度，内容不满时也不会太矮 *
+  min-height: 230px;  /* 保留最小高度，内容不满时也不会太矮 **/
   overflow: hidden; 
   position: relative; 
   line-height: 1.2;
 }
 
+.latest-news__title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 0 0 8px 0; /* 和新闻列表留出间距 */
+  color: #fff;       /* 保证在深色背景上可读 */
+}
+
+
+.latest-news__title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 0 0 8px 0; /* 和新闻列表留出间距 */
+  color: #fff;       /* 保证在深色背景上可读 */
 .news-card { 
   display: block; 
-  padding: 12px 10px 8px;
+  padding: 8px 10px;
   border-radius: 6px; 
   color: inherit; 
   text-decoration: none; 
@@ -232,7 +244,7 @@ img { max-width: 100%; height: auto; display: block; }
 .news-date { 
   font-weight: normal;
   color: #aaa;
-  margin-bottom: 0px;
+  margin-bottom: 2px;
   font-family: 'Helvetica', 'Arial', sans-serif;
   font-size: 13px;
   letter-spacing: 0.2px;
