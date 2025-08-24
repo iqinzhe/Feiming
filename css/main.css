@@ -556,7 +556,7 @@ img { max-width: 100%; height: auto; display: block; }
   
   .compact-nav {
     padding: 0 15px;
-    background: rgba(0, 0, 0, 0.8) !important;
+    background: rgba(255, 255, 255, 0.2) !important;
   }
   
   .compact-nav__container {
