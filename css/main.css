@@ -447,13 +447,13 @@ img { max-width: 100%; height: auto; display: block; }
   justify-content: center;
   text-decoration: none;
   color: var(--text-white);
-  background: var(--primary-color);
+  background:transparent;
   border-radius: 10px;
   padding: 15px 10px;
   transition: all 0.3s ease;
   aspect-ratio: 1/1;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2);
   min-width: 0;
 }
 
