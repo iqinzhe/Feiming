@@ -34,6 +34,11 @@
         backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.1);
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        position: relative;
+        cursor: pointer;
       }
 
       .support-card:hover {
@@ -47,18 +52,39 @@
         display: flex;
         align-items: center;
         gap: 10px;
+        color: #fff;
       }
 
-      .support-card a {
+      .support-card p {
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 40px; /* 为链接留出空间 */
+      }
+
+      .support-card .card-link {
         text-decoration: none;
         display: block;
         margin-top: 15px;
         font-weight: bold;
         transition: color 0.3s ease;
+        color: #4da6ff;
+        position: absolute;
+        bottom: 25px;
+        left: 25px;
+        right: 25px;
+      }
+
+      .support-card .card-link:hover {
+        color: #80c1ff;
       }
 
       .icon {
         font-size: 24px;
+      }
+
+      /* 为卡片添加点击反馈 */
+      .support-card:active {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
       }
     </style>
 </head>
@@ -92,16 +118,16 @@
           <a href="index.html" class="menu__link">首页</a>
         </li>
         <li class="menu__item">
-          <a href="products.html" class="menu__link">产品</a>
-        </li>
-        <li class="menu__item">
           <a href="products.html?series=d" class="menu__link">特色</a>
         </li>
         <li class="menu__item">
-          <a href="pricing.html" class="menu__link">订购</a>
+          <a href="products.html" class="menu__link">产品</a>
         </li>
         <li class="menu__item">
           <a href="support.html" class="menu__link">支持</a>
+        </li>
+        <li class="menu__item">
+          <a href="pricing.html" class="menu__link">订购</a>
         </li>
       </ul>
     </nav>
@@ -113,29 +139,29 @@
     <p>我们随时为您提供帮助，请选择您需要的支持类型：</p>
     <div class="support-container">
 
-      <div class="support-card">
+      <a href="about.html" class="support-card">
         <h2><span class="icon">🎸</span>关于我们</h2>
         <p>我们做吉他经验的累积过程。。。</p>
-        <a href="about.html">了解更多 →</a>
-      </div>
+        <span class="card-link">了解更多 →</span>
+      </a>
 
-      <div class="support-card">
+      <a href="contact.html" class="support-card">
         <h2><span class="icon">✉️</span>联系我们</h2>
         <p>需要直接帮助？通过多种方式联系我们。。。</p>
-        <a href="contact.html">联系方式 →</a>
-      </div>
+        <span class="card-link">联系方式 →</span>
+      </a>
 
-      <div class="support-card">
+      <a href="FAQ.html" class="support-card">
         <h2><span class="icon">❓</span>常见问题</h2>
         <p>查找关于AX产品的常见问题解答。。。</p>
-        <a href="FAQ.html">前往FAQ →</a>
-      </div>
+        <span class="card-link">前往FAQ →</span>
+      </a>
       
-      <div class="support-card">
+      <a href="info.html" class="support-card">
         <h2><span class="icon">ℹ️</span>通用信息</h2>
         <p>获取法律条款和品牌声明。。。</p>
-        <a href="info.html">详细信息 →</a>
-      </div>
+        <span class="card-link">详细信息 →</span>
+      </a>
     </div>
   </main>
 
@@ -157,6 +183,22 @@
           menu.classList.toggle('menu--show');
         });
       }
+
+      // 为卡片添加点击效果
+      const cards = document.querySelectorAll('.support-card');
+      cards.forEach(card => {
+        card.addEventListener('click', function() {
+          // 添加点击反馈
+          this.style.transform = 'translateY(-2px)';
+          this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+          
+          // 恢复原状
+          setTimeout(() => {
+            this.style.transform = '';
+            this.style.boxShadow = '';
+          }, 150);
+        });
+      });
     });
   </script>
 </body>
