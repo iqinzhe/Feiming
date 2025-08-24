@@ -67,7 +67,7 @@ img { max-width: 100%; height: auto; display: block; }
    ================================================== */
 .top-bar {
   position: fixed;
-  top: 0;
+  top: 0; /* 确保紧贴顶部 */
   left: 0;
   right: 0;
   width: 100%;
@@ -246,7 +246,7 @@ img { max-width: 100%; height: auto; display: block; }
 .series-card:hover .series-card-cta { background: rgba(255, 215, 0, 0.3); }
 
 /* ==================================================
-   下部3个导航按钮样式
+   下部导航按钮样式
    ================================================== */
 .compact-nav {
   margin: 8px 0;
@@ -263,7 +263,9 @@ img { max-width: 100%; height: auto; display: block; }
   justify-content: center;
   gap: 10px;
   padding: 0 10px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* 防止换行 */
+  overflow-x: auto; /* 允许水平滚动 */
+  -webkit-overflow-scrolling: touch; /* 平滑滚动 */
 }
 
 .compact-nav__item {
@@ -280,6 +282,8 @@ img { max-width: 100%; height: auto; display: block; }
   transition: all 0.2s ease;
   text-align: center;
   min-height: 50px;
+  min-width: 90px; /* 设置最小宽度 */
+  flex-shrink: 0; /* 防止被压缩 */
 }
 
 .compact-nav__item:hover { background: rgba(0,0,0,0.3); transform: translateY(-2px); }
@@ -312,21 +316,30 @@ img { max-width: 100%; height: auto; display: block; }
 /* ==================================================
    响应式设计
    ================================================== */
+/* 移动端适配 */
 @media (max-width: 767px) {
-  body { padding-top: 55px; }
-  .top-bar__row { padding: 6px 12px; }
-  .top-bar__hamburger { font-size: 35px; min-width: 45px; min-height: 45px; }
-  .top-bar__share { font-size: 35px; min-width: 45px; min-height: 45px; }
-  .top-bar__logo { height: 35px; }
-  .top-bar__slogan { font-size: 12px; }
-  .menu__link { font-size: 1.6rem; min-height: 25px; }
-  .series-overview { grid-template-columns: 1fr; padding: 10px; gap: 10px; }
-  .compact-nav__container { flex-direction: row; gap: 8px; }
-  .compact-nav__item { height: auto; padding: 8px 5px; }
-  .compact-nav__icon { margin-bottom: 0; margin-right: 6px; font-size: 1.6rem; }
-  .compact-nav__text { font-size: 1.2rem; }
+  .compact-nav__container {
+    flex-direction: row;
+    gap: 8px;
+    justify-content: space-between; /* 平均分布 */
+  }
+  .compact-nav__item {
+    height: auto;
+    padding: 8px 5px;
+    flex: 1; /* 平均分配空间 */
+    min-width: auto; /* 覆盖最小宽度 */
+  }
+  .compact-nav__icon {
+    margin-bottom: 0;
+    margin-right: 6px;
+    font-size: 1.6rem;
+  }
+  .compact-nav__text {
+    font-size: 1.2rem;
+    white-space: nowrap; /* 防止文字换行 */
+  }
   .compact-nav__tooltip { display: none; }
-}
+}}
 
 @media (min-width: 768px) {
   body { padding-top: 70px; }
