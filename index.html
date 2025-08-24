@@ -106,19 +106,29 @@
     ];
 
     // 渲染系列卡片
-    const seriesOverview = document.getElementById("seriesOverview");
-    if (seriesOverview) {
-      seriesOverview.innerHTML = seriesData.map(series => `
-        <a class="series-card" href="products.html?series=${series.id}">
-          <img src="images/${series.img}" alt="${series.name}" loading="lazy">
-          <div class="series-card-content">
-            <h2 class="series-card-title">${series.name}</h2>
-            <p class="series-card-desc">${series.desc}</p>
-            <div class="series-card-cta">查看本系列</div>
-          </div>
-        </a>
-      `).join("");
-    }
+    document.addEventListener('DOMContentLoaded', function() {
+  const seriesOverview = document.getElementById("seriesOverview");
+  if (seriesOverview) {
+    // 确保seriesData存在且有效
+    const seriesData = [
+      {id:'a', name:'Series A', desc:'螺栓固定结构带来的额外弹性和响应，提供高性价比的现代音色。', img:'series-a.jpg'},
+      {id:'b', name:'Series B', desc:'高端通颈连体工艺系列，奢华外观与稳定表现。', img:'series-b.jpg'},
+      {id:'c', name:'Series C', desc:'迷你便携式贝斯，短弦长设计，适合初学者。', img:'series-c.jpg'},
+      {id:'d', name:'Series D', desc:'革命性人体工学扭曲琴颈设计，提升舒适度。', img:'series-d.jpg'}
+    ];
+    
+    seriesOverview.innerHTML = seriesData.map(series => `
+      <a class="series-card" href="products.html?series=${series.id}">
+        <img src="images/${series.img}" alt="${series.name}" loading="lazy">
+        <div class="series-card-content">
+          <h2 class="series-card-title">${series.name}</h2>
+          <p class="series-card-desc">${series.desc}</p>
+          <div class="series-card-cta">查看本系列</div>
+        </div>
+      </a>
+    `).join("");
+  }
+});
 
     // ===== 最新动态预览逻辑 =====
     const events = [
