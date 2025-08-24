@@ -208,7 +208,7 @@ img { max-width: 100%; height: auto; display: block; }
   padding: 7px; 
   margin: 5px 0; 
   border-radius: 8px; 
-  height: 250px; 
+  height: 235px; 
   overflow: hidden; 
   position: relative; 
   line-height: 1.2;
@@ -339,7 +339,7 @@ img { max-width: 100%; height: auto; display: block; }
   max-width: 100%;
   padding: 0 20px;
   box-sizing: border-box;
-  background: rgba(0, 0, 0, 0.7) !important;
+  background: transparent;
   border-radius: 12px;
 }
 
