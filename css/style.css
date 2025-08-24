@@ -395,7 +395,7 @@ img { max-width: 100%; height: auto; display: block; }
         }
         
         /* ==================================================
-          下部导航按钮样式修复
+          下部导航按钮样式
         ================================================== */
         .compact-nav {
             margin: 20px 0;
@@ -408,24 +408,23 @@ img { max-width: 100%; height: auto; display: block; }
             padding: 0 10px;
         }
         
-        .compact-nav__item {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: var(--text-white);
-            background: var(--primary-color);
-            border-radius: 10px;
-            padding: 15px 10px;
-            transition: all 0.3s ease;
-            aspect-ratio: 1/1;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-            min-width: 0;
-        }
-        
+.compact-nav__item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background: var(--menu-chip-bg);        /* 和汉堡菜单一样 */
+    border: 1px solid var(--menu-chip-border); /* 和汉堡菜单一样 */
+    border-radius: var(--border-radius);    /* 保持一致 */
+    padding: 12px 10px;
+    color: var(--primary-color);            /* 改为和菜单一致的字体颜色 */
+    font-weight: 600;
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+     
         .compact-nav__item:hover {
             background: var(--hover-color);
             transform: translateY(-3px);
@@ -437,16 +436,17 @@ img { max-width: 100%; height: auto; display: block; }
             margin-bottom: 8px;
         }
         
-        .compact-nav__text {
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-align: center;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            width: 100%;
-        }
-        
+.compact-nav__text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    color: var(--primary-color);   /* 和汉堡菜单统一 */
+}
+   
         .compact-nav__tooltip {
             font-size: 0.85rem;
             opacity: 0.9;
