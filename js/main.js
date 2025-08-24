@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
   initMobileMenu();
   setupShare();
   setupBackToTop();
-  setActiveMenu(); // 添加当前菜单激活状态
+  setActiveMenu();
+  setupHoverEffects();
 });
 
 // 移动菜单控制 - 修复汉堡菜单功能
@@ -129,9 +130,6 @@ function setActiveMenu() {
   
   console.debug('当前页面:', currentPage, '已设置激活菜单项');
 }
-  
-  console.debug('当前页面:', currentPage, '已设置激活菜单项');
-}
 
 // 添加图标悬停效果
 function setupHoverEffects() {
@@ -156,12 +154,3 @@ function setupHoverEffects() {
     this.style.opacity = '1';
   });
 }
-
-// 在DOM加载完成后也设置悬停效果
-document.addEventListener('DOMContentLoaded', function() {
-  initMobileMenu();
-  setupShare();
-  setupBackToTop();
-  setActiveMenu();
-  setupHoverEffects(); // 添加悬停效果
-});
