@@ -11,24 +11,6 @@
   <link href="../css/style.css" rel="stylesheet"/>
   <link rel="stylesheet" href="../css/global.css">
   <style>
-    /* ===== 全局标准样式 ===== */
-    :root {
-      --neutral-gray: rgb(128, 128, 128);
-      --glass-dark: rgba(0, 0, 0, 0.3);
-      --text-white: #fff;
-    }
-
-    body {
-      background: var(--neutral-gray);
-      color: var(--text-white);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding-top: 60px;
-    }
-
     /* ===== 内容区样式 ===== */
     .page-content {
       flex: 1;
@@ -55,6 +37,8 @@
       border-radius: 8px;
       margin-bottom: 15px;
       overflow: hidden;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .faq-question {
@@ -97,6 +81,8 @@
       background: rgba(0, 0, 0, 0.3);
       border-radius: 4px;
       transition: background 0.3s;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .back-link:hover {
