@@ -3,6 +3,7 @@
  * 功能包含：菜单控制、搜索、分享、返回顶部
  * 优化版：添加了点击外部关闭菜单、滚动关闭菜单和ESC键关闭菜单功能
  * 新增：防止菜单与内容重叠的动态padding调整
+ * 新增：当前页面菜单项激活状态
  */
 
 // DOM加载完成后执行
@@ -10,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initMobileMenu();
   setupShare();
   setupBackToTop();
+  setActiveMenu(); // 添加当前菜单激活状态
 });
 
 // 移动菜单控制 - 修复汉堡菜单功能
@@ -25,7 +27,7 @@ function initMobileMenu() {
       const isOpening = !menu.classList.contains('show');
       menu.classList.toggle('show');
       
-      // 新增：动态调整body的padding-top防止重叠
+      // 动态调整body的padding-top防止重叠
       if (isOpening) {
         document.body.style.paddingTop = `calc(var(--top-bar-height) + ${menuHeight}px)`;
       } else {
@@ -41,7 +43,7 @@ function initMobileMenu() {
           !menu.contains(e.target) && 
           !hamburger.contains(e.target)) {
         menu.classList.remove('show');
-        // 新增：关闭菜单时恢复原始padding
+        // 关闭菜单时恢复原始padding
         document.body.style.paddingTop = 'var(--top-bar-height)';
         console.debug('点击外部，菜单已关闭');
       }
@@ -51,7 +53,7 @@ function initMobileMenu() {
     window.addEventListener('scroll', function() {
       if (menu.classList.contains('show')) {
         menu.classList.remove('show');
-        // 新增：滚动关闭菜单时恢复原始padding
+        // 滚动关闭菜单时恢复原始padding
         document.body.style.paddingTop = 'var(--top-bar-height)';
         console.debug('页面滚动，菜单已关闭');
       }
@@ -61,7 +63,7 @@ function initMobileMenu() {
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && menu.classList.contains('show')) {
         menu.classList.remove('show');
-        // 新增：ESC关闭菜单时恢复原始padding
+        // ESC关闭菜单时恢复原始padding
         document.body.style.paddingTop = 'var(--top-bar-height)';
         console.debug('ESC键按下，菜单已关闭');
       }
@@ -101,3 +103,56 @@ function setupBackToTop() {
     });
   });
 }
+
+// 设置当前激活的菜单项
+function setActiveMenu() {
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const menuLinks = document.querySelectorAll('.menu__link');
+  
+  menuLinks.forEach(link => {
+    // 获取链接的文件名
+    const linkHref = link.getAttribute('href');
+    const linkPage = linkHref.split('?')[0]; // 去除参数部分
+    
+    if (linkPage === currentPage) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
+  
+  console.debug('当前页面:', currentPage, '已设置激活菜单项');
+}
+
+// 添加图标悬停效果
+function setupHoverEffects() {
+  const shareBtn = document.getElementById('shareBtn');
+  const menuBtn = document.getElementById('hamburger');
+  
+  // 分享按钮悬停效果
+  shareBtn?.addEventListener('mouseenter', function() {
+    this.style.opacity = '0.8';
+  });
+  
+  shareBtn?.addEventListener('mouseleave', function() {
+    this.style.opacity = '1';
+  });
+  
+  // 菜单按钮悬停效果
+  menuBtn?.addEventListener('mouseenter', function() {
+    this.style.opacity = '0.8';
+  });
+  
+  menuBtn?.addEventListener('mouseleave', function() {
+    this.style.opacity = '1';
+  });
+}
+
+// 在DOM加载完成后也设置悬停效果
+document.addEventListener('DOMContentLoaded', function() {
+  initMobileMenu();
+  setupShare();
+  setupBackToTop();
+  setActiveMenu();
+  setupHoverEffects(); // 添加悬停效果
+});
