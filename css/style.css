@@ -208,7 +208,7 @@ img { max-width: 100%; height: auto; display: block; }
   padding: 7px; 
   margin: 5px 0; 
   border-radius: 8px; 
-  height: 250px
+  height: 280px
   overflow: hidden; 
   position: relative; 
   line-height: 1.2;
@@ -217,10 +217,9 @@ img { max-width: 100%; height: auto; display: block; }
 .latest-news__title {
   font-size: 1.4rem;
   font-weight: bold;
-  margin: 0 0 8px 0; /* 和新闻列表留出间距 */
+  margin: 1px; /* 和新闻列表留出间距 */
   color: #fff;       /* 保证在深色背景上可读 */
 }
-
 
 .latest-news__title {
   font-size: 1.4rem;
