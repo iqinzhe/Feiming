@@ -19,6 +19,8 @@
   /* 菜单按钮背景（暖色调，与宝石蓝文字协调） */
   --menu-chip-bg: rgba(240, 230, 210, 0.92);
   --menu-chip-border: rgba(240, 210, 180, 0.6);
+  /* 添加一个变量来控制顶部栏高度 */
+  --top-bar-height: 60px;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -35,7 +37,7 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
-  padding-top: 60px;
+  padding-top: var(--top-bar-height);
   overflow-x: hidden;
 }
 
@@ -127,15 +129,23 @@ img { max-width: 100%; height: auto; display: block; }
 
 .menu__list {
   display: flex !important;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
-  gap: 8px;
+  gap: 0;
   padding: 0 12px;
   margin: 0;
   list-style: none;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-.menu__item { border: 0 !important; padding: 0 !important; margin: 0; background: transparent !important; }
+.menu__item { 
+  border: 0 !important; 
+  padding: 0 !important; 
+  margin: 0 4px;
+  background: transparent !important;
+  flex-shrink: 0;
+}
 
 .menu__link {
   display: inline-flex !important;
@@ -173,17 +183,17 @@ img { max-width: 100%; height: auto; display: block; }
     height: 180px; 
     overflow: hidden; 
     position: relative; 
-    line-height: 1.2; /* 增加整体行高 */
+    line-height: 1.2;
 }
 
 .news-card { 
     display: block; 
-    padding: 12px 10px 8px; /* 增加上下内边距 */
+    padding: 12px 10px 8px;
     border-radius: 6px; 
     color: inherit; 
     text-decoration: none; 
     transition: background 0.2s; 
-    margin-bottom: 6px; /* 增加卡片间距 */
+    margin-bottom: 6px;
 }
 
 .news-card:hover { 
@@ -191,12 +201,12 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .news-date { 
-    font-weight: normal; /* 移除加粗 */
-    color: #aaa; /* 调整为更柔和的颜色 */
-    margin-bottom: 0px; /* 增加底部间距 */
-    font-family: 'Helvetica', 'Arial', sans-serif; /* 使用更优雅的字体 */
-    font-size: 13px; /* 调整字体大小 */
-    letter-spacing: 0.2px; /* 增加字母间距 */
+    font-weight: normal;
+    color: #aaa;
+    margin-bottom: 0px;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2px;
 }
 
 .read-more { 
@@ -204,7 +214,7 @@ img { max-width: 100%; height: auto; display: block; }
     text-decoration: none; 
     font-size: 12px; 
     display: inline-block; 
-    margin-top: 3px; /* 增加顶部间距 */
+    margin-top: 3px;
 }
 
 .news-desc { 
@@ -213,9 +223,9 @@ img { max-width: 100%; height: auto; display: block; }
     -webkit-box-orient: vertical; 
     overflow: hidden; 
     text-overflow: ellipsis; 
-    line-height: 1.5; /* 增加行高提高可读性 */
-    max-height: calc(1.5em * 2); /* 配合行高调整 */
-    margin-bottom: 3px; /* 增加底部间距 */
+    line-height: 1.5;
+    max-height: calc(1.5em * 2);
+    margin-bottom: 3px;
 }
 
 /* ==================================================
@@ -259,20 +269,21 @@ img { max-width: 100%; height: auto; display: block; }
 .compact-nav__item {
   flex: 1;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
   text-decoration: none;
   color: var(--text-white);
   background: rgba(0,0,0,0.2);
-  height: 25px;
   border-radius: 8px;
-  padding: 1px;
+  padding: 10px 5px;
   transition: all 0.2s ease;
-  aspect-ratio: 1/1.4;
+  text-align: center;
+  min-height: 50px;
 }
 
 .compact-nav__item:hover { background: rgba(0,0,0,0.3); transform: translateY(-2px); }
-.compact-nav__icon { font-size: 2rem; margin-bottom: 2px; }
+.compact-nav__icon { font-size: 2rem; margin-bottom: 0; margin-right: 8px; }
 .compact-nav__text { font-size: 1.2rem; font-weight: bold; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; }
 .compact-nav__tooltip { font-size: 0.7rem; opacity: 0.8; text-align: center; margin-top: 4px; display: none; }
 
@@ -311,9 +322,9 @@ img { max-width: 100%; height: auto; display: block; }
   .menu__link { font-size: 1.6rem; min-height: 25px; }
   .series-overview { grid-template-columns: 1fr; padding: 10px; gap: 10px; }
   .compact-nav__container { flex-direction: row; gap: 8px; }
-  .compact-nav__item { height: 50px; aspect-ratio: auto; flex-direction: row; justify-content: flex-start; padding: 10px; }
-  .compact-nav__icon { margin-bottom: 0; margin-right: 10px; font-size: 1.8rem; }
-  .compact-nav__text { font-size: 1.4rem; }
+  .compact-nav__item { height: auto; padding: 8px 5px; }
+  .compact-nav__icon { margin-bottom: 0; margin-right: 6px; font-size: 1.6rem; }
+  .compact-nav__text { font-size: 1.2rem; }
   .compact-nav__tooltip { display: none; }
 }
 
@@ -336,6 +347,9 @@ img { max-width: 100%; height: auto; display: block; }
   .menu__item { padding: 0; border-bottom: none; }
   .menu__link { height: 36px; font-size: 1.6rem; padding: 0 14px; }
   .menu__link:hover { transform: none; }
+  .compact-nav__container { justify-content: center; }
+  .compact-nav__item { max-width: 120px; }
+  .compact-nav__icon { margin-right: 8px; font-size: 1.8rem; }
   .compact-nav__tooltip { display: block; }
 }
 
