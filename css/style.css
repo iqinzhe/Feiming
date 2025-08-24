@@ -208,7 +208,8 @@ img { max-width: 100%; height: auto; display: block; }
   padding: 7px; 
   margin: 5px 0; 
   border-radius: 8px; 
-  height: 230px; 
+    /* height: 230px;  <-- 去掉这一行 */
+  min-height: 230px;  /* 保留最小高度，内容不满时也不会太矮 *
   overflow: hidden; 
   position: relative; 
   line-height: 1.2;
