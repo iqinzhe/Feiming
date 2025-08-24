@@ -9,10 +9,10 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
     <link rel="manifest" href="/icons/manifest.json">
     <link href="/css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="global.css">
 </head>
+<body>
 
-<body class="ax-gradient-bg">
   <!-- 顶部栏 -->
   <header class="top-bar">
     <div class="top-bar__row">
@@ -66,16 +66,7 @@
     </section>
 
     <!-- 系列卡片总览 -->
-    seriesOverview.innerHTML = seriesData.map(series => {
-  return '<a class="series-card" href="products.html?series=' + series.id + '">' +
-         '<img src="images/' + series.img + '" alt="' + series.name + '" loading="lazy">' +
-         '<div class="series-card-content">' +
-         '<h2 class="series-card-title">' + series.name + '</h2>' +
-         '<p class="series-card-desc">' + series.desc + '</p>' +
-         '<div class="series-card-cta">查看本系列</div>' +
-         '</div>' +
-         '</a>';
-}).join("");
+    <section class="series-overview" id="seriesOverview"></section>
 
     <!-- 紧凑型导航链接 -->
     <nav class="compact-nav" aria-label="快捷导航">
@@ -105,8 +96,8 @@
     <img class="site-footer__logo" src="images/logo.png" alt="AX斧标贝斯 Logo"/>
   </footer>
 
-  <script src="/js/main.js" defer></script>
-  
+  <script src="/js/main.js"></script>
+  <script>
     const seriesData = [
       {id:'a', name:'Series A', desc:'螺栓固定结构带来的额外弹性和响应，提供高性价比的现代音色。', img:'series-a.jpg'},
       {id:'b', name:'Series B', desc:'高端通颈连体工艺系列，奢华外观与稳定表现。', img:'series-b.jpg'},
@@ -115,29 +106,19 @@
     ];
 
     // 渲染系列卡片
-    document.addEventListener('DOMContentLoaded', function() {
-  const seriesOverview = document.getElementById("seriesOverview");
-  if (seriesOverview) {
-    // 确保seriesData存在且有效
-    const seriesData = [
-      {id:'a', name:'Series A', desc:'螺栓固定结构带来的额外弹性和响应，提供高性价比的现代音色。', img:'series-a.jpg'},
-      {id:'b', name:'Series B', desc:'高端通颈连体工艺系列，奢华外观与稳定表现。', img:'series-b.jpg'},
-      {id:'c', name:'Series C', desc:'迷你便携式贝斯，短弦长设计，适合初学者。', img:'series-c.jpg'},
-      {id:'d', name:'Series D', desc:'革命性人体工学扭曲琴颈设计，提升舒适度。', img:'series-d.jpg'}
-    ];
-    
-    seriesOverview.innerHTML = seriesData.map(series => `
-      <a class="series-card" href="products.html?series=${series.id}">
-        <img src="images/${series.img}" alt="${series.name}" loading="lazy">
-        <div class="series-card-content">
-          <h2 class="series-card-title">${series.name}</h2>
-          <p class="series-card-desc">${series.desc}</p>
-          <div class="series-card-cta">查看本系列</div>
-        </div>
-      </a>
-    `).join("");
-  }
-});
+    const seriesOverview = document.getElementById("seriesOverview");
+    if (seriesOverview) {
+      seriesOverview.innerHTML = seriesData.map(series => `
+        <a class="series-card" href="products.html?series=${series.id}">
+          <img src="images/${series.img}" alt="${series.name}" loading="lazy">
+          <div class="series-card-content">
+            <h2 class="series-card-title">${series.name}</h2>
+            <p class="series-card-desc">${series.desc}</p>
+            <div class="series-card-cta">查看本系列</div>
+          </div>
+        </a>
+      `).join("");
+    }
 
     // ===== 最新动态预览逻辑 =====
     const events = [
@@ -180,6 +161,18 @@
       const date = new Date(dateStr);
       return `${date.getFullYear()}年${date.getMonth()+1}月${date.getDate()}日`;
     }
+
+    // 汉堡菜单交互逻辑
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburger = document.getElementById('hamburger');
+      const menu = document.getElementById('menu');
+      
+      if (hamburger && menu) {
+        hamburger.addEventListener('click', function() {
+          menu.classList.toggle('menu--show');
+        });
+      }
+    });
   </script>
 </body>
 </html>
