@@ -4,205 +4,186 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AX斧标贝斯 | 系列总览</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+  <link rel="manifest" href="/icons/manifest.json">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="../css/global.css">
+  
   <style>
-    body {
-      background: rgb(128, 128, 128);
-      color: #fff;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding-top: 60px;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+    /* ===== 系列卡片样式 ===== */
+    main {
+      max-width: 1200px;
+      margin: 80px auto 40px;
+      padding: 20px;
     }
-    main { flex: 1; padding: 20px; }
-
+    
+    h2 {
+      text-align: center;
+      color: #fff;
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+    
     .series-overview {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 15px;
+      gap: 25px;
     }
+    
     .series-card {
       display: block;
-      background: rgba(0,0,0,0.3);
+      background: rgba(0, 0, 0, 0.3);
       border-radius: 12px;
       overflow: hidden;
       text-decoration: none;
       color: white;
-      transition: transform 0.2s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
+    
     .series-card:hover {
-      transform: scale(1.02);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     }
+    
     .series-card img {
       width: 100%;
-      height: auto;
+      height: 200px;
+      object-fit: cover;
       display: block;
     }
+    
     .series-card-content {
-      padding: 15px;
+      padding: 20px;
     }
+    
+    .series-card-content h2 {
+      text-align: left;
+      margin: 0 0 10px 0;
+      font-size: 1.5rem;
+      color: #fff;
+    }
+    
+    .series-card-content p {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+    
     .series-card-cta {
-      margin-top: 5px;
+      margin-top: 10px;
       font-weight: bold;
       color: #4dabf7;
+      display: inline-block;
+      transition: color 0.3s;
     }
-
-/* 顶部固定定位 */
-.site-topbar {
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  right: 0;
-  z-index: 1000;
-  backdrop-filter: blur(5px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 5%;
-}
-.site-bottombar {
-  margin-top: auto;
-  padding: 20px 0;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-main {
-  flex: 1;
-  padding-bottom: 20px;
-}
-
-.topbar__center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-/* 移动菜单样式 */
-.mobile-nav {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: var(--glass-dark);
-  backdrop-filter: blur(10px);
-  z-index: 999;
-  padding: 10px 0;
-}
-
-.mobile-nav.mobile-nav--open {
-  display: block;
-}
-
-.mobile-nav__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.mobile-nav__list li {
-  padding: 14px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-.mobile-nav__list a {
-  color: var(--text-white);
-  text-decoration: none;
-  display: block;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-@media (min-width: 768px) {
-  body { padding-top: 70px; }
-  .site-topbar { padding: 15px 8%; height: 60px; }
-  .topbar__logo { height: 35px; }
-  .page-content { padding: 30px 8%; }
-  
-  .page-links ul {
-    gap: 30px;
-  }
-}
-
-@media (max-width: 600px) {
-  .page-links ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
+    
+    .series-card:hover .series-card-cta {
+      color: #339af0;
+    }
   </style>
 </head>
-<body>
 
-  <!-- 顶部导航 -->
-  <header class="site-topbar">
-    <div class="topbar__left">
-      <button id="topbarMenuBtn">☰</button>
+<body class="ax-gradient-bg">
+  <!-- 顶部栏 -->
+  <header class="top-bar">
+    <div class="top-bar__row">
+
+      <!-- 汉堡菜单按钮 -->
+      <div class="menu__button" id="hamburger">
+        ☰
+      </div>
+      
+      <!-- logo + 宣传语 -->
+      <div class="top-bar__center">
+        <img src="images/logo.png" alt="AX斧标贝斯 Logo" class="top-bar__logo">
+        <p class="top-bar__slogan">每次拨弦都是心灵的飞舞共鸣！</p>
+      </div>
+
+      <!-- 分享按钮 -->
+      <div class="top-bar__share" id="shareBtn">
+        ⫶
+      </div>
     </div>
-    <div class="topbar__center">
-      <a href="index.html"><img class="topbar__logo" src="images/logo.png" alt="AX Guitar Logo"/></a>
-    </div>
-    <div class="topbar__right">
-      <button id="topbarSearchBtn">🔍</button>
-      <button id="topbarShareBtn">⤴</button>
-    </div>
-    <nav class="mobile-nav" id="mobileNav">
-      <ul class="mobile-nav__list">
-      <li><a href="index.html">首页</a></li>
-      <li><a href="products.html">产品</a></li>
-      <li><a href="products.html?series=d">特色</a></li>
-      <li><a href="pricing.html">订购</a></li>
-      <li><a href="support.html">支持</a></li>
+
+    <!-- 汉堡菜单展开内容 -->
+    <nav class="menu" id="menu">
+      <ul class="menu__list">
+        <li class="menu__item">
+          <a href="index.html" class="menu__link">首页</a>
+        </li>
+        <li class="menu__item">
+          <a href="products.html?series=d" class="menu__link">特色</a>
+        </li>
+        <li class="menu__item">
+          <a href="products.html" class="menu__link">产品</a>
+        </li>
+        <li class="menu__item">
+          <a href="support.html" class="menu__link">支持</a>
+        </li>
+        <li class="menu__item">
+          <a href="pricing.html" class="menu__link">订购</a>
+        </li>
       </ul>
     </nav>
   </header>
 
-<body class="ax-gradient-bg">
   <main>
     <h2>系列总览</h2>
     <div id="seriesOverview" class="series-overview"></div>
   </main>
 
-  <!-- 底部 -->
+  <!-- 底部栏 -->
   <footer class="site-bottombar" id="footerToTop">
-    <div>返回顶部</div>
-    <img src="images/logo.png" alt="AX Guitar Logo"/>
+    <div class="bottombar__label">返回顶部</div>
+    <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
   </footer>
 
   <script src="/js/main.js"></script>
-</body>
-</html>
-
-  <!-- 公共脚本 -->
-  <script src="main.js"></script>
   <script>
-    // 系列信息（封面图 + 简介）
-    const seriesData = [
-      {id:'a', name:'Series A', desc:'经典螺栓固定结构系列', img:'series-a.jpg'},
-      {id:'b', name:'Series B', desc:'高端通颈连体工艺系列', img:'series-b.jpg'},
-      {id:'c', name:'Series C', desc:'迷你便携式贝斯系列', img:'series-c.jpg'},
-      {id:'d', name:'Series D', desc:'革命性人体工学设计', img:'series-d.jpg'}
-    ];
+    // 汉堡菜单交互逻辑
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburger = document.getElementById('hamburger');
+      const menu = document.getElementById('menu');
+      
+      if (hamburger && menu) {
+        hamburger.addEventListener('click', function() {
+          menu.classList.toggle('menu--show');
+        });
+      }
+      
+      // 返回顶部功能
+      const footerToTop = document.getElementById('footerToTop');
+      if (footerToTop) {
+        footerToTop.addEventListener('click', function() {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
 
-    const seriesOverview = document.getElementById("seriesOverview");
+      // 系列信息（封面图 + 简介）
+      const seriesData = [
+        {id:'a', name:'Series A', desc:'经典螺栓固定结构系列', img:'series-a.jpg'},
+        {id:'b', name:'Series B', desc:'高端通颈连体工艺系列', img:'series-b.jpg'},
+        {id:'c', name:'Series C', desc:'迷你便携式贝斯系列', img:'series-c.jpg'},
+        {id:'d', name:'Series D', desc:'革命性人体工学设计', img:'series-d.jpg'}
+      ];
 
-    seriesOverview.innerHTML = seriesData.map(series => `
-      <a class="series-card" href="products.html?series=${series.id}">
-        <img src="images/${series.img}" alt="${series.name}">
-        <div class="series-card-content">
-          <h2>${series.name}</h2>
-          <p>${series.desc}</p>
-          <div class="series-card-cta">查看全系列</div>
-        </div>
-      </a>
-    `).join("");
+      const seriesOverview = document.getElementById("seriesOverview");
+
+      seriesOverview.innerHTML = seriesData.map(series => `
+        <a class="series-card" href="products.html?series=${series.id}">
+          <img src="images/${series.img}" alt="${series.name}">
+          <div class="series-card-content">
+            <h2>${series.name}</h2>
+            <p>${series.desc}</p>
+            <div class="series-card-cta">查看全系列 →</div>
+          </div>
+        </a>
+      `).join("");
+    });
   </script>
 </body>
 </html>
-
