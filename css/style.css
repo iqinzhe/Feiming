@@ -37,7 +37,7 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
-  padding-top: var(--top-bar-height);
+  padding-top: 70px; /* 增加这个值，确保内容在顶部栏下方 */
   overflow-x: hidden;
 }
 
@@ -157,7 +157,7 @@ img { max-width: 100%; height: auto; display: block; }
   border: 1px solid var(--menu-chip-border);
   color: var(--primary-color);
   font-weight: 600;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   text-decoration: none;
   line-height: 1;
   transition: var(--transition);
@@ -260,16 +260,15 @@ img { max-width: 100%; height: auto; display: block; }
 
 .compact-nav__container {
   display: flex;
-  justify-content: center;
-  gap: 10px;
-  padding: 0 10px;
-  flex-wrap: nowrap; /* 防止换行 */
-  overflow-x: auto; /* 允许水平滚动 */
-  -webkit-overflow-scrolling: touch; /* 平滑滚动 */
+  justify-content: space-between; /* 改为空间均匀分布 */
+  gap: 5px; /* 减小间隙 */
+  padding: 0 5px; /* 减小内边距 */
+  flex-wrap: nowrap;
+  overflow-x: hidden; /* 隐藏溢出内容 */
 }
 
 .compact-nav__item {
-  flex: 1;
+  flex: 1; /* 平均分配空间 */
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -278,12 +277,11 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--text-white);
   background: rgba(0,0,0,0.2);
   border-radius: 8px;
-  padding: 10px 5px;
+  padding: 8px 3px; /* 调整内边距 */
   transition: all 0.2s ease;
   text-align: center;
   min-height: 50px;
-  min-width: 90px; /* 设置最小宽度 */
-  flex-shrink: 0; /* 防止被压缩 */
+  min-width: 0; /* 允许缩小 */
 }
 
 .compact-nav__item:hover { background: rgba(0,0,0,0.3); transform: translateY(-2px); }
@@ -315,31 +313,29 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ==================================================
    响应式设计
-   ================================================== */
-/* 移动端适配 */
+   ================================================== 
 @media (max-width: 767px) {
   .compact-nav__container {
-    flex-direction: row;
-    gap: 8px;
-    justify-content: space-between; /* 平均分布 */
+    gap: 3px; /* 更小的间隙 */
+    padding: 0 3px;
   }
+  
   .compact-nav__item {
-    height: auto;
-    padding: 8px 5px;
-    flex: 1; /* 平均分配空间 */
-    min-width: auto; /* 覆盖最小宽度 */
+    padding: 6px 2px;
   }
+  
   .compact-nav__icon {
-    margin-bottom: 0;
-    margin-right: 6px;
-    font-size: 1.6rem;
+    margin-right: 4px; /* 减小图标右边距 */
+    font-size: 1.4rem; /* 稍微减小图标大小 */
   }
+  
   .compact-nav__text {
-    font-size: 1.2rem;
-    white-space: nowrap; /* 防止文字换行 */
+    font-size: 1.1rem; /* 减小文字大小 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
-  .compact-nav__tooltip { display: none; }
-}}
+}
 
 @media (min-width: 768px) {
   body { padding-top: 70px; }
