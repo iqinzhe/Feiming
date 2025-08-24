@@ -146,6 +146,7 @@
             // 可以在此处添加更多活动项目...
         ];
 
+        
         // ======================
         // 逻辑层：渲染活动卡片
         // ======================
@@ -155,7 +156,7 @@
 
             // 1. 按日期降序排序（最新在最前）
             const sortedEvents = [...events].sort((a, b) => {
-                return new Date(b.date) - new Date(a.date); // 日期对象相减实现排序
+                return new Date(b.date) - new Date(a.date);
             });
 
             // 2. 动态生成HTML
@@ -167,10 +168,10 @@
                         <div class="event-content">
                             <h3 class="event-title">${event.title}</h3>
                             <div class="event-meta">
-                                ${formatDate(event.date)} | ${event.location} <!-- 格式化日期显示 -->
+                                ${formatDate(event.date)} | ${event.location}
                             </div>
                             <p class="event-description">${event.description}</p>
-                            <a href="#" class="btn">${event.cta}</a>
+                            <a href="${event.ctaLink}" class="btn">${event.cta} &rarr;</a>
                         </div>
                     </div>
                 `;
@@ -188,6 +189,7 @@
 
         // 页面加载时自动渲染
         window.onload = renderEvents;
+
     </script>
 </body>
 </html>
