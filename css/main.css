@@ -493,7 +493,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* ==================================================
-  底部栏样式修复
+  底部栏样式修复 - 问题1和问题2的解决方案
 ================================================== */
 .site-footer {
   width: 100%;
@@ -520,7 +520,7 @@ img { max-width: 100%; height: auto; display: block; }
 .site-footer__logo { 
   height: 24px; 
   width: auto; 
-  filter: brightness(0) invert(1);
+  /* 移除导致图片变白的filter属性 */
 }
 
 .site-footer:hover { 
