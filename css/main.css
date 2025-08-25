@@ -442,10 +442,10 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .compact-nav__item {
-  border: 0 !important; 
-  padding: 0 !important; 
+  border: 0 
+  padding: 0 
   margin: 0 4px;
-  background: #000000 !important;
+  background: #000000 
   flex-shrink: 0;
 }
 
@@ -604,7 +604,7 @@ img { max-width: 100%; height: auto; display: block; }
   .menu__link { height: 36px; font-size: 1.6rem; padding: 0 14px; }
   .menu__link:hover { transform: none; }
   
-  .compact-nav__container { justify-content: center; }
+  .compact-nav__container { justify-content: flex-start; gap: 10px; }
   .compact-nav__item { max-width: 120px; }
   .compact-nav__icon { margin-right: 8px; font-size: 1.8rem; }
   .compact-nav__tooltip { display: block; }
