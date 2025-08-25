@@ -21,20 +21,20 @@
 }
 
 html {
-  font-size: 16px; /* 基准字体大小：1rem = 16px */
-  line-height: 1.6; /* 基准行距 */
+  font-size: 16px;
+  line-height: 1.6;
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  padding: var(--top-bar-height) 20px 0 20px; /* 页面左右边距 */
+  padding: var(--top-bar-height) 20px 0 20px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 1.5rem;
   color: var(--text-white);
-  max-width: 1200px; /* 限制最大宽度，防止超宽 */
+  max-width: 1200px;
   margin-left: auto;
-  margin-right: auto; /* 内容居中 */
+  margin-right: auto;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -55,42 +55,42 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.3;
   margin-top: 1.2em;
   margin-bottom: 0.6em;
-  color: #ffffff !important; /* 标题使用纯白色提高可读性 */
+  color: #ffffff !important;
 }
 
-h1 { font-size: 1.7rem;   /* 32px */ }
-h2 { font-size: 1.6rem;   /* 28px */ }
-h3 { font-size: 1.5rem;   /* 24px */ }
-h4 { font-size: 1.3rem;   /* 20px */ }
-h5 { font-size: 1.2rem;   /* 18px */ }
-h6 { font-size: 1rem;     /* 16px */ }
+h1 { font-size: 1.7rem; }
+h2 { font-size: 1.6rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.3rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
 
 /* === 段落 === */
 p {
   margin-bottom: 1em;
-  color: rgba(255, 255, 255, 0.9) !important; /* 略微透明的白色，提高可读性 */
+  color: rgba(255, 255, 255, 0.9) !important;
 }
 
 /* === 链接样式 === */
 a {
-  color:  #4361ee !important; /* 宝石蓝 */
+  color: #4361ee !important;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #4a67b3 !important; /* 悬停时使用品牌色中的蓝色 */
+  color: #4a67b3 !important;
   text-decoration: underline;
 }
 
 /* === 小字说明 === */
 .small-text { 
-  font-size: 0.875rem; /* 14px */ 
+  font-size: 0.875rem; 
   color: rgba(255, 255, 255, 0.8);
 }
 
 .tiny-text  { 
-  font-size: 0.75rem;  /* 12px */ 
+  font-size: 0.75rem; 
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -148,6 +148,8 @@ img { max-width: 100%; height: auto; display: block; }
   z-index: 1000;
   background: #000000 !important;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
 .top-bar__row {
@@ -297,8 +299,8 @@ img { max-width: 100%; height: auto; display: block; }
 .latest-news h3 {
   font-size: 1.4rem;
   font-weight: bold;
-  margin: 0 0 8px 0; /* 和新闻列表留出间距 */
-  color: #fff;       /* 保证在深色背景上可读 */
+  margin: 0 0 8px 0;
+  color: #fff;
 }
 
 .news-card { 
@@ -426,31 +428,38 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* ==================================================
-  下部导航按钮同汉堡菜单展开
+   下部导航栏样式 - 修复版
 ================================================== */
 
-.compact-nav__list {
-  display: flex !important;
-  flex-wrap: nowrap;
+.compact-nav {
+  margin: 20px 0;
+  width: 100%;
+}
+
+.compact-nav__container {
+  display: flex;
   justify-content: center;
-  gap: 0;
+  align-items: center;
+  gap: 10px;
   padding: 0 12px;
   margin: 0;
   list-style: none;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .compact-nav__item {
-  border: 0 
-  padding: 0 
+  border: 0;
+  padding: 0;
   margin: 0 4px;
-  background: #000000 
+  background: #000000;
   flex-shrink: 0;
 }
 
 .compact-nav__link {
-  display: inline-flex !important;
+  display: inline-flex;
   align-items: center;
   height: 36px;
   padding: 0 14px;
@@ -467,8 +476,8 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .compact-nav__link.active {
-  border: 2px solid #ffffff !important;
-  background: rgba(255, 255, 255, 0.15) !important;
+  border: 2px solid #ffffff;
+  background: rgba(255, 255, 255, 0.15);
   transform: translateY(-1px);
   box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
 }
@@ -477,16 +486,10 @@ img { max-width: 100%; height: auto; display: block; }
   background: rgba(240, 230, 210, 0.98);
   color: var(--primary-color);
   opacity: 0.8;
-  transition: opacity 0.2s ease;
-}
-
-@keyframes slideDown { 
-  from { opacity: 0; transform: translateY(-10px); } 
-  to { opacity: 1; transform: translateY(0); } 
 }
 
 /* ==================================================
-  底部栏样式修复 - 问题1和问题2的解决方案
+   底部栏样式
 ================================================== */
 .site-footer {
   width: 100%;
@@ -513,7 +516,6 @@ img { max-width: 100%; height: auto; display: block; }
 .site-footer__logo { 
   height: 24px; 
   width: auto; 
-  /* 移除导致图片变白的filter属性 */
 }
 
 .site-footer:hover { 
@@ -549,28 +551,31 @@ img { max-width: 100%; height: auto; display: block; }
   
   .compact-nav {
     padding: 0 15px;
-    background: rgba(255, 255, 255, 0.2) !important;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 15px 0;
   }
   
   .compact-nav__container {
-    gap: 3px;
-    padding: 8px 3px;
+    gap: 5px;
+    padding: 8px 5px;
+    justify-content: space-around;
   }
   
-.compact-nav__item {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center; /* 如果需要垂直居中 */
-  padding: 12px 15px;
-  gap: 12px;
-}
-            
-  .compact-nav__icon {
-    margin-bottom: 0;
-    font-size: 1.8rem;
+  .compact-nav__item {
+    flex: 1;
+    min-width: 0;
+    margin: 0 2px;
   }
-            
+  
+  .compact-nav__link {
+    font-size: 1.1rem;
+    padding: 0 10px;
+    height: 32px;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+  }
+  
   h1 {
     font-size: 2rem;
   }
@@ -604,16 +609,18 @@ img { max-width: 100%; height: auto; display: block; }
   .menu__link { height: 36px; font-size: 1.6rem; padding: 0 14px; }
   .menu__link:hover { transform: none; }
   
-  .compact-nav__container { justify-content: flex-start; gap: 10px; }
-  .compact-nav__item { max-width: 120px; }
-  .compact-nav__icon { margin-right: 8px; font-size: 1.8rem; }
-  .compact-nav__tooltip { display: block; }
+  .compact-nav__container {
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .compact-nav__item {
+    margin: 0 5px;
+  }
 }
 
 @media (min-width: 1024px) {
   .compact-nav__item { padding: 15px 10px; }
-  .compact-nav__icon { font-size: 2.3rem; }
-  .compact-nav__text { font-size: 1.6rem; white-space: normal; }
 }
 
 /* ==================================================
