@@ -288,7 +288,7 @@ img { max-width: 100%; height: auto; display: block; }
   padding: 7px; 
   margin: 5px 0; 
   border-radius: 8px; 
-  height: 235px;
+  height: 230px;
   overflow: hidden; 
   position: relative; 
   line-height: 1.2;
@@ -425,13 +425,68 @@ img { max-width: 100%; height: auto; display: block; }
   background: rgba(255, 215, 0, 0.3); 
 }
 
-/* 显示工具提示（可选功能） */
-.compact-nav__item:hover .compact-nav__tooltip {
-  display: block;
+/* ==================================================
+  下部导航按钮样式修复
+================================================== */
+
+.compact-nav__list {
+  display: flex !important;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 0;
+  padding: 0 12px;
+  margin: 0;
+  list-style: none;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.compact-nav__item {
+  border: 0 !important; 
+  padding: 0 !important; 
+  margin: 0 4px;
+  background: #000000 !important;
+  flex-shrink: 0;
+}
+
+.compact-nav__link {
+  display: inline-flex !important;
+  align-items: center;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: var(--border-radius);
+  background: var(--menu-chip-bg);
+  border: 1px solid var(--menu-chip-border);
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 1.2rem;
+  text-decoration: none;
+  line-height: 1;
+  transition: var(--transition);
+  width: max-content;
+}
+
+.compact-nav__link.active {
+  border: 2px solid #ffffff !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+}
+
+.compact-nav__link:hover {
+  background: rgba(240, 230, 210, 0.98);
+  color: var(--primary-color);
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+@keyframes slideDown { 
+  from { opacity: 0; transform: translateY(-10px); } 
+  to { opacity: 1; transform: translateY(0); } 
 }
 
 /* ==================================================
-  底部栏样式修复 
+  底部栏样式修复 - 问题1和问题2的解决方案
 ================================================== */
 .site-footer {
   width: 100%;
@@ -548,8 +603,10 @@ img { max-width: 100%; height: auto; display: block; }
   .menu__link { height: 36px; font-size: 1.6rem; padding: 0 14px; }
   .menu__link:hover { transform: none; }
   
-  .compact-nav__container { justify-content: row; }
-
+  .compact-nav__container { justify-content: center; }
+  .compact-nav__item { max-width: 120px; }
+  .compact-nav__icon { margin-right: 8px; font-size: 1.8rem; }
+  .compact-nav__tooltip { display: block; }
 }
 
 @media (min-width: 1024px) {
