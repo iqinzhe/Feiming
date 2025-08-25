@@ -506,7 +506,7 @@ img { max-width: 100%; height: auto; display: block; }
    底部栏样式 - 优化版
 ================================================== */
 .site-footer {
-  width: 60%;
+  width: 100%;
   max-width: 100%;
   margin: 30px 0 0 0; /* 减小上边距 */
   display: flex;
