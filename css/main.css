@@ -48,7 +48,7 @@ body.ax-gradient-bg {
     /* 中性灰蒙版 - 调整最后一个参数(5)控制透明度 */
     linear-gradient(rgba(128, 128, 128, 5), rgba(128, 128, 128, 5)),
     /* 原有的美丽渐变 */
-    linear-gradient(135deg, #4a67b3, #d46d6d, #81D8D0) !important;
+    linear-gradient(135deg, #4a67b3, #a57d7d, #7BC4C4) !important;
   background-attachment: fixed !important;
   min-height: 100vh;
   background-blend-mode: overlay; /* 混合模式让效果更自然 */
