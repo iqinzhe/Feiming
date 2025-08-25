@@ -80,12 +80,25 @@ p {
 /* === 链接样式 === */
 /* 统一全站链接字号与导航相同 */
 a {
-  color: #4361ee !important;
+  color: #4361ee;
   text-decoration: none;
   transition: color 0.3s ease;
-  font-size: var(--nav-link-font-size) !important; /* 新增统一字号 */
+  font-size: var(--nav-link-font-size);
 }
 
+a:hover {
+  color: #4a67b3;
+  text-decoration: underline;
+}
+
+/* === 特殊 class 链接样式（覆盖全局） === */
+a[class$="-link"] {
+  color: #ff6600;
+}
+
+a[class$="-link"]:hover {
+  color: #cc3300;
+}
 a:hover {
   color: #4a67b3 !important;
   text-decoration: underline;
