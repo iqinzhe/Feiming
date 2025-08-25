@@ -425,68 +425,6 @@ img { max-width: 100%; height: auto; display: block; }
   background: rgba(255, 215, 0, 0.3); 
 }
 
-/* ==================================================
-  下部导航按钮样式修复
-================================================== */
-.compact-nav {
-  margin: 20px 0;
-}
-
-.compact-nav__container {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 0 10px;
-}
-
-.compact-nav__item {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: var(--text-white);
-  background:transparent;
-  border-radius: 10px;
-  padding: 15px 10px;
-  transition: all 0.3s ease;
-  aspect-ratio: 1/1;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2);
-  min-width: 0;
-}
-
-.compact-nav__item:hover {
-  background: #4a67b3;
-  transform: translateY(-3px);
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.compact-nav__icon {
-  font-size: 2.2rem;
-  margin-bottom: 8px;
-}
-
-.compact-nav__text {
-  font-size: 1.1rem;
-  font-weight: 600;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 100%;
-}
-
-.compact-nav__tooltip {
-  font-size: 0.85rem;
-  opacity: 0.9;
-  text-align: center;
-  margin-top: 6px;
-  color: #e2e8f0;
-  display: none;
-}
-
 /* 显示工具提示（可选功能） */
 .compact-nav__item:hover .compact-nav__tooltip {
   display: block;
