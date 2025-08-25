@@ -38,7 +38,7 @@ body {
   margin-right: auto;
   min-height: 100vh;
   display: flex;
-  flex-direction: center;
+  flex-direction: column;
   overflow-x: hidden;
   background: #000000 !important;
 }
@@ -121,7 +121,7 @@ a:hover {
   border-radius: 12px;
   padding: 25px;
   margin-bottom: 25px;
-  backdrop-filter: white(10px);
+  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
@@ -301,7 +301,7 @@ img { max-width: 100%; height: auto; display: block; }
 .latest-news { 
   background: rgba(0,0,0,0.2); 
   padding: 7px; 
-  margin: 15px 5; 
+  margin: 5px 0; 
   border-radius: 8px; 
   height: 230px;
   overflow: hidden; 
@@ -373,20 +373,19 @@ img { max-width: 100%; height: auto; display: block; }
   display: grid; 
   gap: 20px; 
   padding: 15px; 
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
 }
-  justify-items: center; /* 每个网格里的内容居中 */
-}
+
 .series-card { 
   display: block; 
-  background: rgba(0, 0, 0, 0.5); 
+  background: rgba(0, 0, 0, 0.4); 
   border-radius: 8px; 
   overflow: hidden; 
   text-decoration: none; 
   color: var(--text-white); 
   transition: transform 0.3s ease, box-shadow 0.3s ease; 
   height: auto; 
-  width: 90%; 
+  width: 100%; 
 }
 
 .series-card[href*="series=a"] { border-left: 4px solid #64b5f6; }
@@ -396,7 +395,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .series-card:hover { 
   transform: translateY(-5px); 
-  box-shadow: 0 10px 10px rgba(0,0,0,0.3); 
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3); 
 }
 
 .series-card img { 
@@ -413,7 +412,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .series-card-title { 
   margin: 0 0 8px 0; 
-  font-size: 1.5rem; 
+  font-size: 1.8rem; 
   font-weight: bold; 
   color: var(--text-white); 
 }
@@ -431,7 +430,7 @@ img { max-width: 100%; height: auto; display: block; }
   background: rgba(255, 215, 0, 0.2); 
   border: 1px solid rgba(255, 215, 0, 0.5); 
   border-radius: 4px; 
-  font-size: 1.2rem; 
+  font-size: 1.4rem; 
   font-weight: bold; 
   color: #ffd700; 
   transition: background 0.3s ease; 
@@ -468,7 +467,7 @@ img { max-width: 100%; height: auto; display: block; }
 .compact-nav__item {
   border: 0;
   padding: 0;
-  margin: 1px; /* 减小外边距 */
+  margin: 0 3px; /* 减小外边距 */
   background: transparent; /* 背景改为透明 */
   flex-shrink: 0;
 }
@@ -476,8 +475,8 @@ img { max-width: 100%; height: auto; display: block; }
 .compact-nav__link {
   display: inline-flex;
   align-items: center;
-  height: 40px; /* 稍微增加高度 */
-  padding: 10 20px; /* 增加内边距使按钮更大 */
+  height: 38px; /* 稍微增加高度 */
+  padding: 0 16px; /* 增加内边距使按钮更大 */
   border-radius: var(--border-radius);
   background: var(--menu-chip-bg);
   border: 1px solid var(--menu-chip-border);
