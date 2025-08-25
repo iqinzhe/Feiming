@@ -38,7 +38,7 @@ body {
   margin-right: auto;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: center;
   overflow-x: hidden;
   background: #000000 !important;
 }
