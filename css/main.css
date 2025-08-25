@@ -375,7 +375,8 @@ img { max-width: 100%; height: auto; display: block; }
   padding: 15px; 
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
 }
-
+  justify-items: center; /* 每个网格里的内容居中 */
+}
 .series-card { 
   display: block; 
   background: rgba(0, 0, 0, 0.5); 
