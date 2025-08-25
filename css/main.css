@@ -18,6 +18,7 @@
   --menu-chip-bg: rgba(240, 230, 210, 0.92);
   --menu-chip-border: rgba(240, 210, 180, 0.6);
   --top-bar-height: 60px;
+  --nav-link-font-size: 1.3rem; /* 修复变量位置 */
 }
 
 html {
@@ -39,17 +40,17 @@ body {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
-  background: #000000 !important;
+  background: #000000;
 }
 
 /* === AX品牌渐变背景 with 蒙版 === */
 body.ax-gradient-bg {
   background: 
     /* 中性灰蒙版 - 调整最后一个参数(最大1)控制透明度 */
-    linear-gradient(rgba(128, 128, 128, 1), rgba(128, 128, 128, 1)),
+    linear-gradient(rgba(128, 128, 128, 0.7), rgba(128, 128, 128, 0.7)),
     /* 原有的美丽渐变 */
-    linear-gradient(135deg, #4a67b3, #a57d7d, #7BC4C4) !important;
-  background-attachment: fixed !important;
+    linear-gradient(135deg, #4a67b3, #a57d7d, #7BC4C4);
+  background-attachment: fixed;
   min-height: 100vh;
   background-blend-mode: overlay; /* 混合模式让效果更自然 */
 }
@@ -60,7 +61,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.3;
   margin-top: 1.2em;
   margin-bottom: 0.6em;
-  color: #ffffff !important;
+  color: #ffffff;
 }
 
 h1 { font-size: 1.6rem; }
@@ -73,7 +74,7 @@ h6 { font-size: 1rem; }
 /* === 段落 === */
 p {
   margin-bottom: 1em;
-  color: rgba(255, 255, 255, 0.9) !important;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* === 链接样式 === */
@@ -98,15 +99,10 @@ a[class$="-link"] {
 a[class$="-link"]:hover {
   color: #cc3300;
 }
-a:hover {
-  color: #4a67b3 !important;
-  text-decoration: underline;
-}
---nav-link-font-size: 1.3rem; /* 新增变量统一导航链接字号 */
 
 /* 特定区域链接字号调整 */
 .menu__link {
-  font-size: 1.2rem !important; /* 汉堡菜单保持原有大小 */
+  font-size: 1.2rem; /* 汉堡菜单保持原有大小 */
 }
 
 /* === 小字说明 === */
@@ -120,7 +116,7 @@ a:hover {
   color: rgba(255, 255, 255, 0.7);
 }
 
-/* === 按钮文字 === */
+/* === 全站按钮样式与文字 === */
 .button-text {
   font-size: 1rem;
   font-weight: 600;
@@ -130,7 +126,7 @@ a:hover {
 
 /* === 卡片样式 === */
 .ax-card {
-  background: rgba(255, 255, 255, 0.12) !important;
+  background: rgba(255, 255, 255, 0.12);
   border-radius: 12px;
   padding: 25px;
   margin-bottom: 25px;
@@ -139,15 +135,27 @@ a:hover {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-img { max-width: 100%; height: auto; display: block; }
+img { 
+  max-width: 100%; 
+  height: auto; 
+  display: block; 
+}
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
 
 /* ==================================================
    布局工具类
    ================================================== */
 .layout-flex { display: flex; }
-.layout-flex-center { display: flex; justify-content: center; align-items: center; }
+.layout-flex-center { 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+}
 .layout-flex-column { flex-direction: column; }
 .layout-flex-wrap { flex-wrap: wrap; }
 .layout-justify-between { justify-content: space-between; }
@@ -160,156 +168,15 @@ img { max-width: 100%; height: auto; display: block; }
 .layout-gap-sm { gap: var(--spacing-xs); }
 .layout-gap-md { gap: var(--spacing-sm); }
 
-.container { width: 100%; max-width: 1200px; padding: var(--spacing-sm); margin: 0 auto; }
-
-/* ==================================================
-   顶部栏样式
-   ================================================== */
-.top-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  z-index: 1000;
-  background: #000000 !important;
-  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-}
-
-.top-bar__row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 16px;
-}
-
-.top-bar__share {
-  font-size: 35px;
-  cursor: pointer;
-  min-width: 50px;
-  min-height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-}
-
-.top-bar__center { 
-  text-align: center;
-  flex: 1;
-  margin: 0 10px;
-}
-
-.top-bar__logo { 
-  height: 30px;
-  display: block;
-  margin: 0 auto;
-}
-
-.top-bar__slogan {
-  font-size: 16px;
-  margin: 2px 0 0;
-  color: #ffffff;
-  animation: breathing 2s infinite;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-@keyframes breathing {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
+.container { 
+  width: 100%; 
+  max-width: 1200px; 
+  padding: var(--spacing-sm); 
+  margin: 0 auto; 
 }
 
 /* ==================================================
-   汉堡菜单组件
-   ================================================== */
-.menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  width: 100%;
-  z-index: 999;
-  background: #000000 !important;
-  text-align: center;
-  padding: 8px 0;
-}
-
-.menu.show, 
-.menu--show { 
-    display: block; 
-    animation: slideDown 0.25s ease; 
-}
-
-.top-bar__hamburger,
-.menu__button {
-  color: #ffffff !important;
-  font-size: 35px !important;
-  min-width: 50px !important;
-  min-height: 50px !important;
-  line-height: 1 !important;
-}
-
-.menu__list {
-  display: flex !important;
-  flex-wrap: nowrap;
-  justify-content: center;
-  gap: 0;
-  padding: 0 12px;
-  margin: 0;
-  list-style: none;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.menu__item { 
-  border: 0 !important; 
-  padding: 0 !important; 
-  margin: 0 4px;
-  background: #000000 !important;
-  flex-shrink: 0;
-}
-
-.menu__link {
-  display: inline-flex !important;
-  align-items: center;
-  height: 36px;
-  padding: 0 14px;
-  border-radius: var(--border-radius);
-  background: var(--menu-chip-bg);
-  border: 1px solid var(--menu-chip-border);
-  color: var(--primary-color);
-  font-weight: 600;
-  font-size: 1.2rem;
-  text-decoration: none;
-  line-height: 1;
-  transition: var(--transition);
-  width: max-content;
-}
-
-.menu__link.active {
-  border: 2px solid #ffffff !important;
-  background: rgba(255, 255, 255, 0.15) !important;
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
-}
-
-.menu__link:hover {
-  background: rgba(240, 230, 210, 0.98);
-  color: var(--primary-color);
-  opacity: 0.8;
-  transition: opacity 0.2s ease;
-}
-
-@keyframes slideDown { 
-  from { opacity: 0; transform: translateY(-10px); } 
-  to { opacity: 1; transform: translateY(0); } 
-}
-
-/* ==================================================
-   最新动态
+   固定高度和文字截断功能--首页最新动态卡片栏
    ================================================== */
 .latest-news { 
   background: rgba(0,0,0,0.2); 
@@ -380,7 +247,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* ==================================================
-   系列卡片样式
+   产品系列卡片栏样式--大栏框
    ================================================== */
 .series-overview { 
   display: grid; 
@@ -454,21 +321,167 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* ==================================================
+   顶部栏样式
+   ================================================== */
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #000000;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+.top-bar__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+}
+
+.top-bar__share {
+  font-size: 35px;
+  cursor: pointer;
+  min-width: 50px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.top-bar__center { 
+  text-align: center;
+  flex: 1;
+  margin: 0 10px;
+}
+
+.top-bar__logo { 
+  height: 30px;
+  display: block;
+  margin: 0 auto;
+}
+
+.top-bar__slogan {
+  font-size: 16px;
+  margin: 2px 0 0;
+  color: #ffffff;
+  animation: breathing 2s infinite;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes breathing {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* ==================================================
+   汉堡菜单组件
+   ================================================== */
+.menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 999;
+  background: #000000;
+  text-align: center;
+  padding: 8px 0;
+}
+
+.menu.show, 
+.menu--show { 
+    display: block; 
+    animation: slideDown 0.25s ease; 
+}
+
+.top-bar__hamburger,
+.menu__button {
+  color: #ffffff;
+  font-size: 35px;
+  min-width: 50px;
+  min-height: 50px;
+  line-height: 1;
+}
+
+.menu__list {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 0;
+  padding: 0 12px;
+  margin: 0;
+  list-style: none;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.menu__item { 
+  border: 0; 
+  padding: 0; 
+  margin: 0 4px;
+  background: #000000;
+  flex-shrink: 0;
+}
+
+.menu__link {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: var(--border-radius);
+  background: var(--menu-chip-bg);
+  border: 1px solid var(--menu-chip-border);
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 1.2rem;
+  text-decoration: none;
+  line-height: 1;
+  transition: var(--transition);
+  width: max-content;
+}
+
+.menu__link.active {
+  border: 2px solid #ffffff;
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+}
+
+.menu__link:hover {
+  background: rgba(240, 230, 210, 0.98);
+  color: var(--primary-color);
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+@keyframes slideDown { 
+  from { opacity: 0; transform: translateY(-10px); } 
+  to { opacity: 1; transform: translateY(0); } 
+}
+
+/* ==================================================
    下部导航栏样式 - 优化版
 ================================================== */
 
 .compact-nav {
   margin: 15px 0;
   width: 100%;
-  background: transparent !important; /* 背景改为透明 */
+  background: transparent;
 }
 
 .compact-nav__container {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px; /* 减小间距 */
-  padding: 0 10px; /* 减小左右内边距 */
+  gap: 8px;
+  padding: 0 10px;
   margin: 0;
   list-style: none;
   overflow-x: auto;
@@ -480,22 +493,22 @@ img { max-width: 100%; height: auto; display: block; }
 .compact-nav__item {
   border: 0;
   padding: 0;
-  margin: 0 3px; /* 减小外边距 */
-  background: transparent; /* 背景改为透明 */
+  margin: 0 3px;
+  background: transparent;
   flex-shrink: 0;
 }
 
 .compact-nav__link {
   display: inline-flex;
   align-items: center;
-  height: 38px; /* 稍微增加高度 */
-  padding: 0 16px; /* 增加内边距使按钮更大 */
+  height: 38px;
+  padding: 0 16px;
   border-radius: var(--border-radius);
   background: var(--menu-chip-bg);
   border: 1px solid var(--menu-chip-border);
   color: var(--primary-color);
   font-weight: 600;
-  font-size: var(--nav-link-font-size); /* 使用统一变量 */
+  font-size: var(--nav-link-font-size);
   text-decoration: none;
   line-height: 1;
   transition: var(--transition);
@@ -521,34 +534,34 @@ img { max-width: 100%; height: auto; display: block; }
 .site-footer {
   width: 100%;
   max-width: 100%;
-  margin: 30px 0 0 0; /* 减小上边距 */
+  margin: 30px 0 0 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px; /* 减小间距 */
-  padding: 12px 16px; /* 减小内边距 */
+  gap: 10px;
+  padding: 12px 16px;
   cursor: pointer;
   background: rgba(0, 0, 0, 0.3);
-  border-radius: 10px; /* 稍微减小圆角 */
+  border-radius: 10px;
   box-sizing: border-box;
   border: 1px solid rgba(128, 128, 128, 0.2);
-  height: auto; /* 确保高度自适应 */
-  min-height: 45px; /* 设置最小高度，与顶部栏大致相同 */
+  height: auto;
+  min-height: 45px;
 }
 
 .site-footer__label { 
   font-weight: 600; 
-  font-size: 1.1rem; /* 稍微减小字体 */
+  font-size: 1.1rem;
   color: var(--text-white); 
 }
 
 .site-footer__logo { 
-  height: 20px; /* 减小logo高度 */
+  height: 20px; 
   width: auto; 
 }
 
 .site-footer:hover { 
-  background: rgba(255, 255, 255, 0.25); /* 调整悬停透明度 */
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .site-footer:active { 
@@ -560,19 +573,23 @@ img { max-width: 100%; height: auto; display: block; }
   transform: scale(0.95); 
 }
 
-
 /* ==================================================
    响应式设计
    ================================================== */
 @media (max-width: 767px) {
+  body {
+    padding: var(--top-bar-height) 15px 0 15px;
+    font-size: 1.4rem;
+  }
+  
   .compact-nav {
-    padding: 0 10px; /* 减小内边距 */
-    margin: 10px 0; /* 减小外边距 */
+    padding: 0 10px;
+    margin: 10px 0;
   }
   
   .compact-nav__container {
-    gap: 4px; /* 减小间距 */
-    padding: 6px 3px; /* 减小内边距 */
+    gap: 4px;
+    padding: 6px 3px;
   }
   
   .compact-nav__item {
@@ -580,16 +597,15 @@ img { max-width: 100%; height: auto; display: block; }
   }
   
   .compact-nav__link {
-    font-size: 1.2rem; /* 调整字体大小 */
-    padding: 0 12px; /* 调整内边距 */
-    height: 34px; /* 调整高度 */
+    font-size: 1.2rem;
+    padding: 0 12px;
+    height: 34px;
   }
   
-  /* 底部栏在移动端的调整 */
   .site-footer {
     margin: 20px 0 0 0;
     padding: 10px 12px;
-    min-height: 45px; /* 移动端稍小 */
+    min-height: 45px;
   }
   
   .site-footer__label {
@@ -599,25 +615,43 @@ img { max-width: 100%; height: auto; display: block; }
   .site-footer__logo {
     height: 18px;
   }
+  
+  .series-overview {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 10px;
+  }
+  
+  .series-card-title {
+    font-size: 1.6rem;
+  }
+  
+  .series-card-desc {
+    font-size: 1.3rem;
+  }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   .compact-nav__container {
-    gap: 12px; /* 中等屏幕调整间距 */
+    gap: 12px;
   }
   
   .compact-nav__item {
     margin: 0 4px;
   }
+  
+  .series-overview {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (min-width: 1024px) {
   .compact-nav__item { 
-    padding: 0; /* 移除多余的内边距 */
+    padding: 0;
   }
   
   .compact-nav__link {
-    padding: 0 18px; /* 大屏幕上增加内边距 */
+    padding: 0 18px;
   }
 }
 
@@ -670,8 +704,8 @@ img { max-width: 100%; height: auto; display: block; }
 @media (max-width: 768px) {
   body.ax-gradient-bg {
     background: 
-      linear-gradient(rgba(100, 100, 100, 0.5), rgba(100, 100, 100, 0.5)),
-      linear-gradient(135deg, #4a67b3, #d46d6d, #5ed3ce) !important;
+      linear-gradient(rgba(80, 80, 80, 0.7), rgba(80, 80, 80, 0.7)),
+      linear-gradient(135deg, #4a67b3, #d46d6d, #5ed3ce);
   }
 }
 
@@ -679,7 +713,7 @@ img { max-width: 100%; height: auto; display: block; }
 @media (min-width: 769px) and (max-width: 1024px) {
   body.ax-gradient-bg {
     background: 
-      linear-gradient(rgba(120, 120, 120, 0.4), rgba(120, 120, 120, 0.4)),
-      linear-gradient(135deg, #4a67b3, #d46d6d, #5ed3ce) !important;
+      linear-gradient(rgba(100, 100, 100, 0.6), rgba(100, 100, 100, 0.6)),
+      linear-gradient(135deg, #4a67b3, #d46d6d, #5ed3ce);
   }
 }
