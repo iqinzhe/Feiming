@@ -160,7 +160,7 @@ img { max-width: 100%; height: auto; display: block; }
   width: 100%;
   z-index: 1000;
   background: #000000 !important;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
 }
