@@ -9,8 +9,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
   <link rel="manifest" href="/icons/manifest.json">
-  <link href="/css/style.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="../css/global.css">
+ <link href="css/main.css" rel="stylesheet"/>
   <!-- 引入EmailJS SDK -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script type="text/javascript">
@@ -303,16 +302,15 @@
     </div>
   </main>
 
-  <!-- 底部栏 -->
-  <footer class="site-bottombar" id="footerToTop">
-    <div class="bottombar__label">返回顶部</div>
-    <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
-  </footer>
+<!-- 底部栏 -->
+<footer class="site-footer" id="footerToTop">
+<span class="site-footer__label">返回顶部</span>
+<img alt="AX斧标贝斯 Logo" class="site-footer__logo" src="images/logo.png"/>
+</footer>
+<script src="/js/main.js"></script>
 
-  <script src="/js/main.js"></script>
   <script>
-    // 等待DOM加载完成
-    document.addEventListener('DOMContentLoaded', function() {
+    // 等待DOM加载完成    document.addEventListener('DOMContentLoaded', function() {);
       // 获取表单元素 - ID保持不变
       const contactForm = document.getElementById('contactForm');
       const formMessage = document.getElementById('formMessage');
@@ -340,30 +338,7 @@
             console.error('EmailJS发送失败:', error);
           });
       });
-
-      // 汉堡菜单交互功能
-      const hamburger = document.getElementById('hamburger');
-      const menu = document.getElementById('menu');
-      
-      if (hamburger && menu) {
-        // 点击汉堡菜单按钮时切换菜单显示状态
-        hamburger.addEventListener('click', function(event) {
-          event.stopPropagation(); // 阻止事件冒泡
-          menu.classList.toggle('menu--open');
-          hamburger.classList.toggle('menu__button--active');
-        });
-        
-        // 点击菜单外部区域关闭菜单
-        document.addEventListener('click', function(event) {
-          if (menu.classList.contains('menu--open') && 
-              !hamburger.contains(event.target) && 
-              !menu.contains(event.target)) {
-            menu.classList.remove('menu--open');
-            hamburger.classList.remove('menu__button--active');
-          }
-        });
-      }
-    });
   </script>
 </body>
 </html>
+      

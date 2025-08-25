@@ -8,8 +8,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
     <link rel="manifest" href="/icons/manifest.json">
-    <link href="/css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/global.css">
+    <link href="css/main.css" rel="stylesheet"/>
     
     <style>
     /* 关于页面特有样式 */
@@ -112,25 +111,11 @@
     </div>
   </main>
 
-  <!-- 底部栏 -->
-  <footer class="site-bottombar" id="footerToTop">
-    <div class="bottombar__label">返回顶部</div>
-    <img class="bottombar__logo" src="images/logo.png" alt="AX Guitar Logo"/>
-  </footer>
-
-  <script src="/js/main.js"></script>
-  <script>
-    // 汉堡菜单交互逻辑
-    document.addEventListener('DOMContentLoaded', function() {
-      const hamburger = document.getElementById('hamburger');
-      const menu = document.getElementById('menu');
-      
-      if (hamburger && menu) {
-        hamburger.addEventListener('click', function() {
-          menu.classList.toggle('menu--show');
-        });
-      }
-    });
-  </script>
+<!-- 底部栏 -->
+<footer class="site-footer" id="footerToTop">
+<span class="site-footer__label">返回顶部</span>
+<img alt="AX斧标贝斯 Logo" class="site-footer__logo" src="images/logo.png"/>
+</footer>
+<script src="/js/main.js"></script>
 </body>
 </html>
