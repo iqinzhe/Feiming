@@ -426,7 +426,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* ==================================================
-  下部导航按钮样式修复
+  下部导航按钮同汉堡菜单展开
 ================================================== */
 
 .compact-nav__list {
@@ -557,13 +557,14 @@ img { max-width: 100%; height: auto; display: block; }
     padding: 8px 3px;
   }
   
-  .compact-nav__item {
-     flex-direction: row;
-     aspect-ratio: unset;
-     padding: 12px 15px;
-     justify-content: flex-start;
-     gap: 12px;
-  }
+.compact-nav__item {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; /* 如果需要垂直居中 */
+  padding: 12px 15px;
+  gap: 12px;
+}
             
   .compact-nav__icon {
     margin-bottom: 0;
