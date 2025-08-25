@@ -506,8 +506,8 @@ img { max-width: 100%; height: auto; display: block; }
    底部栏样式 - 优化版
 ================================================== */
 .site-footer {
-  width: 100%;
-  max-width: 100%;
+  width: 30%;
+  max-width: 60%;
   margin: 30px 0 0 0; /* 减小上边距 */
   display: flex;
   justify-content: center;
@@ -520,7 +520,7 @@ img { max-width: 100%; height: auto; display: block; }
   box-sizing: border-box;
   border: 1px solid rgba(128, 128, 128, 0.2);
   height: auto; /* 确保高度自适应 */
-  min-height: 50px; /* 设置最小高度，与顶部栏大致相同 */
+  min-height: 45px; /* 设置最小高度，与顶部栏大致相同 */
 }
 
 .site-footer__label { 
