@@ -644,3 +644,21 @@ img { max-width: 100%; height: auto; display: block; }
   padding: 20px;
   color: rgba(255, 255, 255, 0.7);
 }
+
+/* 手机端加深蒙版提升可读性 */
+@media (max-width: 768px) {
+  body.ax-gradient-bg {
+    background: 
+      linear-gradient(rgba(100, 100, 100, 0.5), rgba(100, 100, 100, 0.5)),
+      linear-gradient(135deg, #4a67b3, #d46d6d, #5ed3ce) !important;
+  }
+}
+
+/* 平板端适中蒙版 */
+@media (min-width: 769px) and (max-width: 1024px) {
+  body.ax-gradient-bg {
+    background: 
+      linear-gradient(rgba(120, 120, 120, 0.4), rgba(120, 120, 120, 0.4)),
+      linear-gradient(135deg, #4a67b3, #d46d6d, #5ed3ce) !important;
+  }
+}
