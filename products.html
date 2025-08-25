@@ -197,85 +197,88 @@
 </footer>
 <script src="/js/main.js"></script>
 
-  <script>
-      // 返回顶部功能
-      const footerToTop = document.getElementById('footerToTop');
-      if (footerToTop) {
-        footerToTop.addEventListener('click', function() {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-      }
-
-      // 产品加载逻辑
-      const seriesOrder = ['a','b','c','d'];
-      const urlParams = new URLSearchParams(window.location.search);
-      const seriesId = urlParams.get('series');
-      const container = document.getElementById('models-container');
-      const navBox = document.getElementById('prevNextNav');
-
-      if (!seriesId) {
-        window.location.href = 'instruments.html';
-        return;
-      }
-
-      // 渲染上一系列/下一系列按钮
-      function renderPrevNext(seriesId) {
-        const idx = seriesOrder.indexOf(seriesId);
-        let html = '';
-
-        if (idx > 0) {
-          const prevId = seriesOrder[idx-1];
-          html += `<a href="products.html?series=${prevId}">← 上一系列</a>`;
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 返回顶部功能
+        const footerToTop = document.getElementById('footerToTop');
+        if (footerToTop) {
+            footerToTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
         }
+
+        // 产品加载逻辑
+        const urlParams = new URLSearchParams(window.location.search);
+        const seriesId = urlParams.get('series');
         
-        if (idx < seriesOrder.length - 1) {
-          const nextId = seriesOrder[idx+1];
-          if (html) html += ' | ';
-          html += `<a href="products.html?series=${nextId}">下一系列 →</a>`;
+        if (!seriesId) {
+            window.location.href = 'instruments.html';
+            return;
         }
 
-        navBox.innerHTML = html;
-      }
+        // 系列顺序
+        const seriesOrder = ['a','b','c','d'];
+        const container = document.getElementById('models-container');
+        const navBox = document.getElementById('prevNextNav');
 
-      // 加载 JSON 数据
-      function loadSeries(seriesId) {
-        container.innerHTML = `<p class="loading">加载中...</p>`;
-        const jsonUrl = `data/${seriesId}.json?t=${Date.now()}`;
+        // 渲染上一系列/下一系列按钮
+        function renderPrevNext(seriesId) {
+            const idx = seriesOrder.indexOf(seriesId);
+            let html = '';
 
-        fetch(jsonUrl)
-          .then(res => {
-            if (!res.ok) throw new Error(`HTTP ${res.status}`);
-            return res.json();
-          })
-          .then(data => {
-            if (!data.series || !data.series[0].models) {
-              throw new Error('数据格式错误：缺少 series 或 models 字段');
+            if (idx > 0) {
+                const prevId = seriesOrder[idx-1];
+                html += `<a href="products.html?series=${prevId}">← 上一系列</a>`;
             }
             
-            const series = data.series[0];
-            renderPrevNext(seriesId);
-            
-            container.innerHTML = series.models.map(m => `
-              <div class="product-card">
-                <img src="${m.image}" alt="${m.name}">
-                <h3>${m.name}</h3>
-                <p>${m.features}</p>
-                <div>
-                  <a class="order-button" href="pricing.html?product=${encodeURIComponent(m.name)}">订购</a>
-                  <a class="detail-button" href="product-detail.html?series=${seriesId}&id=${m.id}">
-                    查看详情
-                  </a>
-                </div>
-              </div>
-            `).join('');
-          })
-          .catch(err => {
-            container.innerHTML = `<p class="error-message">加载失败: ${err.message}</p>`;
-          });
-      }
+            if (idx < seriesOrder.length - 1) {
+                const nextId = seriesOrder[idx+1];
+                if (html) html += ' | ';
+                html += `<a href="products.html?series=${nextId}">下一系列 →</a>`;
+            }
 
-      loadSeries(seriesId);
-    });
-  </script>
+            navBox.innerHTML = html;
+        }
+
+        // 加载 JSON 数据
+        function loadSeries(seriesId) {
+            container.innerHTML = `<p class="loading">加载中...</p>`;
+            const jsonUrl = `data/${seriesId}.json?t=${Date.now()}`;
+
+            fetch(jsonUrl)
+                .then(res => {
+                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                    return res.json();
+                })
+                .then(data => {
+                    if (!data.series || !data.series[0].models) {
+                        throw new Error('数据格式错误：缺少 series 或 models 字段');
+                    }
+                    
+                    const series = data.series[0];
+                    renderPrevNext(seriesId);
+                    
+                    container.innerHTML = series.models.map(m => `
+                        <div class="product-card">
+                            <img src="${m.image}" alt="${m.name}">
+                            <h3>${m.name}</h3>
+                            <p>${m.features}</p>
+                            <div>
+                                <a class="order-button" href="pricing.html?product=${encodeURIComponent(m.name)}">订购</a>
+                                <a class="detail-button" href="product-detail.html?series=${seriesId}&id=${m.id}">
+                                    查看详情
+                                </a>
+                            </div>
+                        </div>
+                    `).join('');
+                })
+                .catch(err => {
+                    container.innerHTML = `<p class="error-message">加载失败: ${err.message}</p>`;
+                });
+        }
+
+        loadSeries(seriesId);
+    }); // 正确的闭合
+</script>
 </body>
 </html>
