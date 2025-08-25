@@ -386,7 +386,7 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--text-white); 
   transition: transform 0.3s ease, box-shadow 0.3s ease; 
   height: auto; 
-  width: 100%; 
+  width: 90%; 
 }
 
 .series-card[href*="series=a"] { border-left: 4px solid #64b5f6; }
