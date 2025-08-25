@@ -332,7 +332,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .news-date { 
   font-weight: normal;
-  color: #aaa;
+  color: #f8f8f8;
   margin-bottom: 2px;
   font-family: 'Helvetica', 'Arial', sans-serif;
   font-size: 13px;
@@ -340,9 +340,9 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .read-more { 
-  color: #4dabf7; 
+  color: #f8f8f8; 
   text-decoration: none; 
-  font-size: 12px; 
+  font-size: 15px; 
   display: inline-block; 
   margin-top: 3px;
 }
@@ -362,7 +362,7 @@ img { max-width: 100%; height: auto; display: block; }
   display: block;
   text-align: right;
   margin-top: 10px;
-  color: #4dabf7;
+  color: #f8f8f8;
   font-size: 14px;
 }
 
