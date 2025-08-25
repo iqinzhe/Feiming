@@ -301,7 +301,7 @@ img { max-width: 100%; height: auto; display: block; }
 .latest-news { 
   background: rgba(0,0,0,0.2); 
   padding: 7px; 
-  margin: 5px 0; 
+  margin: 15px 5; 
   border-radius: 8px; 
   height: 230px;
   overflow: hidden; 
@@ -475,8 +475,8 @@ img { max-width: 100%; height: auto; display: block; }
 .compact-nav__link {
   display: inline-flex;
   align-items: center;
-  height: 38px; /* 稍微增加高度 */
-  padding: 0 16px; /* 增加内边距使按钮更大 */
+  height: 40px; /* 稍微增加高度 */
+  padding: 10 20px; /* 增加内边距使按钮更大 */
   border-radius: var(--border-radius);
   background: var(--menu-chip-bg);
   border: 1px solid var(--menu-chip-border);
