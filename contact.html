@@ -272,6 +272,9 @@
     <div class="contact-form">
       <h2>发送消息</h2>
       <form id="contactForm">
+        <!-- 新增：预约类型隐藏字段 -->
+        <input type="hidden" id="appointmentType" name="appointment_type" value="">
+        
         <div class="form-group">
           <label for="name">您的姓名</label>
           <input type="text" id="name" name="name" class="form-control" required>
@@ -310,8 +313,24 @@
 <script src="/js/main.js"></script>
 
   <script>
-    // 等待DOM加载完成    document.addEventListener('DOMContentLoaded', function() {);
-      // 获取表单元素 - ID保持不变
+    // 等待DOM加载完成
+    document.addEventListener('DOMContentLoaded', function() {
+      // 获取URL参数
+      const urlParams = new URLSearchParams(window.location.search);
+      const appointment = urlParams.get('appointment');
+      
+      // 如果有预约参数，设置隐藏字段的值
+      if (appointment) {
+        document.getElementById('appointmentType').value = appointment;
+        
+        // 自动填充主题
+        const subjectField = document.getElementById('subject');
+        if (subjectField && !subjectField.value) {
+          subjectField.value = '预约咨询：' + appointment;
+        }
+      }
+      
+      // 获取表单元素
       const contactForm = document.getElementById('contactForm');
       const formMessage = document.getElementById('formMessage');
       
@@ -324,7 +343,7 @@
         formMessage.className = 'form-message';
         formMessage.style.display = 'block';
         
-        // 使用EmailJS发送邮件 - Service和Template ID保持不变
+        // 使用EmailJS发送邮件
         emailjs.sendForm('service_6q2tc8m', 'template_4wq6nho', this)
           .then(function(response) {
             // 发送成功
@@ -338,7 +357,7 @@
             console.error('EmailJS发送失败:', error);
           });
       });
+    });
   </script>
 </body>
 </html>
-      
