@@ -18,6 +18,7 @@
   --menu-chip-bg: rgba(240, 230, 210, 0.92);
   --menu-chip-border: rgba(240, 210, 180, 0.6);
   --top-bar-height: 60px;
+  --nav-link-font-size: 1.3rem; /* 新增变量统一导航链接字号 */
 }
 
 html {
@@ -77,15 +78,22 @@ p {
 }
 
 /* === 链接样式 === */
+/* 统一全站链接字号与导航相同 */
 a {
   color: #4361ee !important;
   text-decoration: none;
   transition: color 0.3s ease;
+  font-size: var(--nav-link-font-size) !important; /* 新增统一字号 */
 }
 
 a:hover {
   color: #4a67b3 !important;
   text-decoration: underline;
+}
+
+/* 特定区域链接字号调整 */
+.menu__link {
+  font-size: 1.2rem !important; /* 汉堡菜单保持原有大小 */
 }
 
 /* === 小字说明 === */
@@ -474,7 +482,7 @@ img { max-width: 100%; height: auto; display: block; }
   border: 1px solid var(--menu-chip-border);
   color: var(--primary-color);
   font-weight: 600;
-  font-size: 1.3rem; /* 稍微增大字体 */
+  font-size: var(--nav-link-font-size); /* 使用统一变量 */
   text-decoration: none;
   line-height: 1;
   transition: var(--transition);
