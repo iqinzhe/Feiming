@@ -123,7 +123,7 @@
             
             seriesContainer.innerHTML = seriesData.map(series => `
                 <a class="series-card" href="products.html?series=${series.id}">
-                    <img src="images/${series.img}" alt="${series.name}" class="series-card-img">
+                    <img src="images/${series.img}" alt="${series.name}"
                     <div class="series-card-content">
                         <h2 class="series-card-title">${series.name}</h2>
                         <p class="series-card-desc">${series.desc}</p>
@@ -181,7 +181,7 @@
                     
                     modelsContainer.innerHTML = series.models.map(m => `
                         <div class="product-card">
-                            <img src="${m.image}" alt="${m.name}" class="product-card-img">
+                            <img src="${m.image}" alt="${m.name}"
                             <h3>${m.name}</h3>
                             <p>${m.features}</p>
                             <div>
