@@ -245,50 +245,6 @@ img {
 }
 
 /* ==================================================
-   统一产品系列图片样式 - 自适应高度版本
-   ================================================== */
-.series-card-img,
-.product-card-img {
-  width: 100%;
-  height: auto;
-  max-height: 200px;
-  object-fit: cover;
-  border-radius: 6px;
-}
-
-.series-card,
-.product-card {
-  height: auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.series-card-content {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  padding: 15px;
-}
-
-.product-card {
-  padding: 20px;
-}
-
-@media (max-width: 767px) {
-  .series-card-img,
-  .product-card-img {
-    max-height: 160px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .series-card-img,
-  .product-card-img {
-    max-height: 220px;
-  }
-}
-
-/* ==================================================
    产品系列卡片栏样式--大栏框
    ================================================== */
 .series-overview { 
