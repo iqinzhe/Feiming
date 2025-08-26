@@ -245,44 +245,46 @@ img {
 }
 
 /* ==================================================
-   统一图片样式 - 调整版
+   统一产品系列图片样式 - 自适应高度版本
    ================================================== */
 .series-card-img,
 .product-card-img {
   width: 100%;
-  height: 0;
-  padding-bottom: 60%; /* 控制宽高比 (3:2比例) */
+  height: auto;
+  max-height: 200px;
   object-fit: cover;
-}
-  display: block;
-  transition: transform 0.3s ease;
   border-radius: 6px;
 }
 
-.series-card:hover .series-card-img,
-.product-card:hover .product-card-img {
-  transform: scale(1.03); /* 从1.05减小到1.03，减少溢出 */
-}
-
-/* 确保容器有适当的内边距限制溢出 */
-.series-card-content,
+.series-card,
 .product-card {
-  padding: 15px;
-  overflow: hidden; /* 添加溢出隐藏 */
+  height: auto;
+  display: flex;
+  flex-direction: column;
 }
 
-/* 响应式调整 */
+.series-card-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 15px;
+}
+
+.product-card {
+  padding: 20px;
+}
+
 @media (max-width: 767px) {
   .series-card-img,
   .product-card-img {
-    height: 140px; /* 从150px减小到140px */
+    max-height: 160px;
   }
 }
 
 @media (min-width: 1024px) {
   .series-card-img,
   .product-card-img {
-    height: 200px; /* 从220px减小到200px */
+    max-height: 220px;
   }
 }
 
