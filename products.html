@@ -9,130 +9,6 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
   <link rel="manifest" href="/icons/manifest.json">
   <link href="css/main.css" rel="stylesheet"/>
-
-  <style>
-    /* ===== 型号卡特有样式 ===== */
-    main {
-      max-width: 1200px;
-      margin: 80px auto 40px;
-      padding: 20px;
-    }
-    
-    .nav-links {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 30px;
-      padding: 15px;
-      background: rgba(0, 0, 0, 0.2);
-      border-radius: 8px;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .nav-links a {
-      color: #4dabf7;
-      text-decoration: none;
-      font-weight: bold;
-      padding: 8px 15px;
-      border-radius: 4px;
-      transition: background 0.3s;
-    }
-    
-    .nav-links a:hover {
-      background: rgba(77, 171, 247, 0.1);
-    }
-
-    .models-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-    }
-    
-    .product-card {
-      background: rgba(0, 0, 0, 0.2);
-      padding: 25px;
-      border-radius: 8px;
-      text-align: center;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    
-    .product-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    }
-    
-    .product-card img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 6px;
-      margin-bottom: 15px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    }
-    
-    .product-card h3 {
-      color: #fff;
-      margin-bottom: 10px;
-    }
-    
-    .product-card p {
-      color: rgba(255, 255, 255, 0.8);
-      line-height: 1.5;
-      margin-bottom: 15px;
-    }
-    
-    .order-button {
-      display: inline-block;
-      padding: 10px 20px;
-      background: #4dabf7;
-      color: #fff;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: bold;
-      transition: background 0.3s;
-      margin: 5px;
-    }
-    
-    .order-button:hover {
-      background: #339af0;
-    }
-    
-    .detail-button {
-      display: inline-block;
-      padding: 10px 20px;
-      background: #6c757d;
-      color: #fff;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: bold;
-      transition: background 0.3s;
-      margin: 5px;
-    }
-    
-    .detail-button:hover {
-      background: #5a6268;
-    }
-    
-    .loading, .error-message {
-      text-align: center;
-      padding: 40px;
-      color: #fff;
-      background: rgba(0, 0, 0, 0.2);
-      border-radius: 8px;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .error-message {
-      color: #ff6b6b;
-      background: rgba(255, 107, 107, 0.1);
-      border-color: rgba(255, 107, 107, 0.3);
-    }
-  </style>
 </head>
 
 <body class="ax-gradient-bg">
@@ -278,7 +154,7 @@
         }
 
         loadSeries(seriesId);
-    }); // 正确的闭合
+    });
 </script>
 </body>
 </html>
