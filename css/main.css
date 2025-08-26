@@ -28,9 +28,9 @@ html {
 
 body {
   margin: 0;
-  padding: var(--top-bar-height) 20px 0 20px;
+  padding: var(--top-bar-height) 10px 0 10px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: var(--text-white);
   max-width: 100%;
   margin-left: auto;
