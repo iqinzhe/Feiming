@@ -121,6 +121,82 @@ a[class$="-link"]:hover {
   color: #ffffff;
 }
 
+/* 导航按钮样式 */
+.nav-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 16px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-button:hover {
+    background-color: #555;
+    transform: translateY(-2px);
+    color: white;
+}
+
+.back-button i {
+    margin-right: 6px;
+    font-size: 12px;
+}
+
+.prev-button i {
+    margin-right: 6px;
+    font-size: 12px;
+}
+
+.next-button i {
+    margin-left: 6px;
+    font-size: 12px;
+}
+
+/* 导航容器样式 */
+.prev-next-nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0 10px;
+    margin: 10px 0 5px;
+}
+
+.bottom-series-nav {
+    margin-bottom: 20px;
+}
+
+.back-nav {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* 订购按钮样式（与导航按钮风格一致） */
+.order-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #d32f2f;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+    border: none;
+    cursor: pointer;
+}
+
+.order-button:hover {
+    background-color: #b71c1c;
+    transform: translateY(-2px);
+    color: white;
+}
+
 /* === 卡片样式 === */
 .ax-card {
   background: rgba(255, 255, 255, 0.12);
