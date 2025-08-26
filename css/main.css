@@ -89,13 +89,6 @@ a:hover {
 }
 
 /* === 特殊 class 链接样式（覆盖全局） === */
-a[class ="card-link"] {
-  color: #ff6600;
-}
-
-a[class ="card-link"]:hover {
-  color: #cc3300;
-}
 
 a[class$="-link"] {
   color: #ff6600;
@@ -103,7 +96,6 @@ a[class$="-link"] {
 
 a[class$="-link"]:hover {
   color: #cc3300;
-
 
 /* 特定区域链接字号调整 */
 .menu__link {
