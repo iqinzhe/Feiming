@@ -56,14 +56,20 @@
   </header>
 
   <main>
-    <!-- 导航区域 -->
-    <div class="nav-links">
-      <a href="instruments.html">← 返回系列总览</a>
+    <!-- 导航区域 - 仅在产品列表页面显示 -->
+    <div class="nav-links" id="seriesNav" style="display: none;">
+      <a href="products.html">← 返回系列总览</a>
       <div id="prevNextNav"></div>
     </div>
 
+    <!-- 系列总览 -->
+    <div id="seriesOverview">
+      <h2>系列总览</h2>
+      <div class="series-overview" id="seriesContainer"></div>
+    </div>
+
     <!-- 产品列表 -->
-    <div id="models-container" class="models-container"></div>
+    <div id="models-container" class="models-container" style="display: none;"></div>
   </main>
 
 <!-- 底部栏 -->
@@ -83,42 +89,81 @@
             });
         }
 
-        // 产品加载逻辑
+        // 获取URL参数
         const urlParams = new URLSearchParams(window.location.search);
         const seriesId = urlParams.get('series');
         
+        // 页面元素
+        const seriesOverview = document.getElementById('seriesOverview');
+        const seriesContainer = document.getElementById('seriesContainer');
+        const seriesNav = document.getElementById('seriesNav');
+        const modelsContainer = document.getElementById('models-container');
+        
+        // 系列信息（封面图 + 简介）
+        const seriesData = [
+            {id:'a', name:'Series A', desc:'经典螺栓固定结构系列', img:'series-a.jpg'},
+            {id:'b', name:'Series B', desc:'高端通颈连体工艺系列', img:'series-b.jpg'},
+            {id:'c', name:'Series C', desc:'迷你便携式贝斯系列', img:'series-c.jpg'},
+            {id:'d', name:'Series D', desc:'革命性人体工学设计', img:'series-d.jpg'}
+        ];
+
         if (!seriesId) {
-            window.location.href = 'instruments.html';
-            return;
+            // 显示系列总览
+            showSeriesOverview();
+        } else {
+            // 显示特定系列的产品
+            loadSeriesProducts(seriesId);
         }
 
-        // 系列顺序
-        const seriesOrder = ['a','b','c','d'];
-        const container = document.getElementById('models-container');
-        const navBox = document.getElementById('prevNextNav');
-
-        // 渲染上一系列/下一系列按钮
-        function renderPrevNext(seriesId) {
-            const idx = seriesOrder.indexOf(seriesId);
-            let html = '';
-
-            if (idx > 0) {
-                const prevId = seriesOrder[idx-1];
-                html += `<a href="products.html?series=${prevId}">← 上一系列</a>`;
-            }
+        // 显示系列总览
+        function showSeriesOverview() {
+            seriesOverview.style.display = 'block';
+            modelsContainer.style.display = 'none';
+            seriesNav.style.display = 'none';
             
-            if (idx < seriesOrder.length - 1) {
-                const nextId = seriesOrder[idx+1];
-                if (html) html += ' | ';
-                html += `<a href="products.html?series=${nextId}">下一系列 →</a>`;
-            }
-
-            navBox.innerHTML = html;
+            seriesContainer.innerHTML = seriesData.map(series => `
+                <a class="series-card" href="products.html?series=${series.id}">
+                    <img src="images/${series.img}" alt="${series.name}">
+                    <div class="series-card-content">
+                        <h2 class="series-card-title">${series.name}</h2>
+                        <p class="series-card-desc">${series.desc}</p>
+                        <div class="series-card-cta">查看全系列 →</div>
+                    </div>
+                </a>
+            `).join('');
         }
 
-        // 加载 JSON 数据
-        function loadSeries(seriesId) {
-            container.innerHTML = `<p class="loading">加载中...</p>`;
+        // 加载特定系列的产品
+        function loadSeriesProducts(seriesId) {
+            seriesOverview.style.display = 'none';
+            modelsContainer.style.display = 'grid';
+            seriesNav.style.display = 'flex';
+            
+            // 系列顺序
+            const seriesOrder = ['a','b','c','d'];
+            const navBox = document.getElementById('prevNextNav');
+
+            // 渲染上一系列/下一系列按钮
+            function renderPrevNext(seriesId) {
+                const idx = seriesOrder.indexOf(seriesId);
+                let html = '';
+
+                if (idx > 0) {
+                    const prevId = seriesOrder[idx-1];
+                    html += `<a href="products.html?series=${prevId}">← 上一系列</a>`;
+                }
+                
+                if (idx < seriesOrder.length - 1) {
+                    const nextId = seriesOrder[idx+1];
+                    if (html) html += ' | ';
+                    html += `<a href="products.html?series=${nextId}">下一系列 →</a>`;
+                }
+
+                navBox.innerHTML = html;
+            }
+
+            // 加载 JSON 数据
+            modelsContainer.innerHTML = `<p class="loading">加载中...</p>`;
             const jsonUrl = `data/${seriesId}.json?t=${Date.now()}`;
 
             fetch(jsonUrl)
@@ -134,7 +179,7 @@
                     const series = data.series[0];
                     renderPrevNext(seriesId);
                     
-                    container.innerHTML = series.models.map(m => `
+                    modelsContainer.innerHTML = series.models.map(m => `
                         <div class="product-card">
                             <img src="${m.image}" alt="${m.name}">
                             <h3>${m.name}</h3>
@@ -149,11 +194,9 @@
                     `).join('');
                 })
                 .catch(err => {
-                    container.innerHTML = `<p class="error-message">加载失败: ${err.message}</p>`;
+                    modelsContainer.innerHTML = `<p class="error-message">加载失败: ${err.message}</p>`;
                 });
         }
-
-        loadSeries(seriesId);
     });
 </script>
 </body>
