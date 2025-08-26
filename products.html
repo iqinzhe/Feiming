@@ -58,12 +58,6 @@
   </header>
 
   <main>
-    <!-- 导航区域 - 仅在产品列表页面显示 -->
-    <div class="series-navigation" id="seriesNav" style="display: none;">
-      <!-- 这里移除了"返回系列总览"链接 -->
-      <div id="prevNextNav" class="prev-next-nav"></div>
-    </div>
-
     <!-- 系列总览 -->
     <div id="seriesOverview">
       <h2>系列总览</h2>
@@ -73,7 +67,7 @@
     <!-- 产品列表 -->
     <div id="models-container" class="models-container" style="display: none;"></div>
     
-    <!-- 新增：系列导航放在产品卡片下方 -->
+    <!-- 底部系列导航 -->
     <div id="bottomSeriesNav" class="bottom-series-nav" style="display: none;">
       <div id="bottomPrevNextNav" class="prev-next-nav"></div>
     </div>
@@ -103,7 +97,6 @@
         // 页面元素
         const seriesOverview = document.getElementById('seriesOverview');
         const seriesContainer = document.getElementById('seriesContainer');
-        const seriesNav = document.getElementById('seriesNav');
         const modelsContainer = document.getElementById('models-container');
         const bottomSeriesNav = document.getElementById('bottomSeriesNav');
         
@@ -127,7 +120,6 @@
         function showSeriesOverview() {
             seriesOverview.style.display = 'block';
             modelsContainer.style.display = 'none';
-            if (seriesNav) seriesNav.style.display = 'none';
             if (bottomSeriesNav) bottomSeriesNav.style.display = 'none';
             
             seriesContainer.innerHTML = seriesData.map(series => `
@@ -146,12 +138,10 @@
         function loadSeriesProducts(seriesId) {
             seriesOverview.style.display = 'none';
             modelsContainer.style.display = 'grid';
-            if (seriesNav) seriesNav.style.display = 'flex';
             if (bottomSeriesNav) bottomSeriesNav.style.display = 'block';
             
             // 系列顺序
             const seriesOrder = ['a','b','c','d'];
-            const navBox = document.getElementById('prevNextNav');
             const bottomNavBox = document.getElementById('bottomPrevNextNav');
 
             // 渲染上一系列/下一系列按钮
@@ -174,7 +164,6 @@
                              </a>`;
                 }
 
-                if (navBox) navBox.innerHTML = html;
                 if (bottomNavBox) bottomNavBox.innerHTML = html;
             }
 
@@ -221,19 +210,20 @@
     .prev-next-nav {
         display: flex;
         justify-content: space-between;
-        padding: 20px 0;
-        margin: 20px 0;
+        padding: 15px 0 10px;
+        margin: 10px 0 5px;
     }
     
     .nav-button {
         display: inline-flex;
         align-items: center;
-        padding: 12px 20px;
+        padding: 10px 16px;
         background-color: #333;
         color: white;
         text-decoration: none;
-        border-radius: 30px;
+        border-radius: 25px;
         font-weight: bold;
+        font-size: 14px;
         transition: all 0.3s ease;
     }
     
@@ -243,15 +233,17 @@
     }
     
     .prev-button i {
-        margin-right: 8px;
+        margin-right: 6px;
+        font-size: 12px;
     }
     
     .next-button i {
-        margin-left: 8px;
+        margin-left: 6px;
+        font-size: 12px;
     }
     
     .bottom-series-nav {
-        margin-bottom: 40px;
+        margin-bottom: 20px;
     }
 </style>
 </body>
