@@ -245,7 +245,7 @@ img {
 }
 
 /* ==================================================
-   产品系列卡片栏样式--大栏框
+   产品系列卡片栏样式
    ================================================== */
 .series-overview { 
   display: grid; 
@@ -742,7 +742,7 @@ img {
   box-sizing: border-box;
   border: 1px solid rgba(128, 128, 128, 0.2);
   height: auto;
-  min-height: 45px;
+  min-height: 35px;
 }
 
 .site-footer__label { 
