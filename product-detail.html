@@ -9,6 +9,8 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
   <link rel="manifest" href="/icons/manifest.json">
   <link href="css/main.css" rel="stylesheet"/>
+  <!-- 添加字体图标 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body class="ax-gradient-bg">
@@ -110,7 +112,11 @@
               </div>
               <div class="product-actions">
                 <a class="order-button" href="pricing.html?product=${encodeURIComponent(product.name)}">立即订购</a>
-                <div><a href="products.html?series=${seriesId}" class="back-link">← 返回${series.name}</a></div>
+                <div class="back-nav">
+                  <a href="products.html?series=${seriesId}" class="nav-button back-button">
+                    <i class="fas fa-arrow-left"></i> 返回${series.name}
+                  </a>
+                </div>
               </div>
             `;
           })
