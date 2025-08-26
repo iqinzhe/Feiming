@@ -56,6 +56,12 @@
   </header>
 
   <main>
+    <!-- 导航区域 - 仅在产品列表页面显示 -->
+    <div class="nav-links" id="seriesNav" style="display: none;">
+      <a href="products.html">← 返回系列总览</a>
+      <div id="prevNextNav"></div>
+    </div>
+
     <!-- 系列总览 -->
     <div id="seriesOverview">
       <h2>系列总览</h2>
@@ -113,7 +119,7 @@
         function showSeriesOverview() {
             seriesOverview.style.display = 'block';
             modelsContainer.style.display = 'none';
-            seriesNav.style.display = 'none';
+            if (seriesNav) seriesNav.style.display = 'none';
             
             seriesContainer.innerHTML = seriesData.map(series => `
                 <a class="series-card" href="products.html?series=${series.id}">
@@ -131,7 +137,7 @@
         function loadSeriesProducts(seriesId) {
             seriesOverview.style.display = 'none';
             modelsContainer.style.display = 'grid';
-            seriesNav.style.display = 'flex';
+            if (seriesNav) seriesNav.style.display = 'flex';
             
             // 系列顺序
             const seriesOrder = ['a','b','c','d'];
@@ -153,7 +159,7 @@
                     html += `<a href="products.html?series=${nextId}">下一系列 →</a>`;
                 }
 
-                navBox.innerHTML = html;
+                if (navBox) navBox.innerHTML = html;
             }
 
             // 加载 JSON 数据
