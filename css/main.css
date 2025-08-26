@@ -97,6 +97,14 @@ a[class$="-link"]:hover {
   color: #cc3300;
 }
 
+a[class$="-link"] {
+  color: #ff6600;
+}
+
+a[class$="-link"]:hover {
+  color: #cc3300;
+
+
 /* 特定区域链接字号调整 */
 .menu__link {
   font-size: 1.2rem;
