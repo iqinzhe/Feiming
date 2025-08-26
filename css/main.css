@@ -89,11 +89,11 @@ a:hover {
 }
 
 /* === 特殊 class 链接样式（覆盖全局） === */
-a[class$="-link"] {
+a[class support="-link"] {
   color: #ff6600;
 }
 
-a[class$="-link"]:hover {
+a[class support="-link"]:hover {
   color: #cc3300;
 }
 
