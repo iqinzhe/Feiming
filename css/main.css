@@ -245,6 +245,39 @@ img {
 }
 
 /* ==================================================
+   统一图片样式
+   ================================================== */
+.series-card-img,
+.product-card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+  border-radius: 6px;
+}
+
+.series-card:hover .series-card-img,
+.product-card:hover .product-card-img {
+  transform: scale(1.05);
+}
+
+/* 响应式调整 */
+@media (max-width: 767px) {
+  .series-card-img,
+  .product-card-img {
+    height: 150px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .series-card-img,
+  .product-card-img {
+    height: 220px;
+  }
+}
+
+/* ==================================================
    产品系列卡片栏样式--大栏框
    ================================================== */
 .series-overview { 
