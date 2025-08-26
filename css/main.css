@@ -250,8 +250,10 @@ img {
 .series-card-img,
 .product-card-img {
   width: 100%;
-  height: 180px; /* 从200px减小到180px */
+  height: 0;
+  padding-bottom: 60%; /* 控制宽高比 (3:2比例) */
   object-fit: cover;
+}
   display: block;
   transition: transform 0.3s ease;
   border-radius: 6px;
