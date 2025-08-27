@@ -47,8 +47,8 @@ body.ax-gradient-bg {
 
     /* 线性渐变背景 - 调整最后一个参数(最大1)控制透明度 */
   background: linear-gradient(
-  rgba(200, 200, 200, 1),   /* 浅灰，不透明 */
-  rgba(200, 200, 200, 0.5)  /* 浅灰，半透明 */
+  rgba(128, 128, 128, 0.8),   /* 浅灰，不透明 */
+  rgba(128, 128, 128, 0.5)  /* 浅灰，半透明 */
 );
     /* 原有的美丽渐变 */
     linear-gradient(135deg, #4a67b3, #a57d7d, #7BC4C4) !important;
