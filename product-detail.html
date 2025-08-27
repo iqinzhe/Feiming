@@ -55,20 +55,18 @@
       </ul>
     </nav>
  
-  /* 首页系列总览：改为一列网格 */ body.ax-gradient-bg .series-overview {
+  /* 首页系列总览：改为一列网格 */ body.ax-gradient-bg
+.series-overview {
     display: grid;
     grid-template-columns: repeat(1, 1fr); /* 一行一列 */
-    gap: 5px; /* 卡片间距 */
-    padding: 5px;
     max-width: 1200px;
     margin: 0 auto;
   }
 
   /* 卡片长宽保持比例（注释）无限长 */
-  body.ax-gradient-bg .series-card {
+.series-card {
     display: flex;
     flex-direction: column;
-   /* aspect-ratio: 9 / 14.5;    固定宽高比 3:4，可改为 1/1 或 9/16 */
     background: #fff;
     border-radius: 12px;
     overflow: hidden;
@@ -78,7 +76,8 @@
   }
 
   /* 卡片内容紧凑排列 */
-  body.ax-gradient-bg .series-card-content {
+
+ .series-card-content {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -87,11 +86,11 @@
   }
 
   /* 调标题和描述字号 */
-  body.ax-gradient-bg .series-card-title {
+.series-card-title {
     font-size: 1.2rem;
     margin: 0 0 6px 0;
   }
-  body.ax-gradient-bg .series-card-desc {
+.series-card-desc {
     font-size: 1.2rem;
     line-height: 1.6;
     margin: 0 0 8px 0;
@@ -102,7 +101,7 @@
   }
 
   /* CTA 按钮风格 */
-  body.ax-gradient-bg .series-card-cta {
+.series-card-cta {
     margin-top: auto;
     padding: 3px 3px; /* 内边距 */
     background-color: #000000 /* 同首页导航 */
@@ -118,14 +117,15 @@
   }
   
   /* 添加悬停效果，提高交互性 */
-  body.ax-gradient-bg .series-card-cta:hover {
+
+.series-card-cta:hover {
     background-color: rgba(240, 230, 210, 0.98) /* 悬停时背景加深 */
     transform: translateY(0.2px); /* 轻微上浮效果 */
     color: #4361ee
   }
   
   /* 调整卡片内容区域的内边距，为按钮提供更多空间 */
-  body.ax-gradient-bg .series-card-content {
+.series-card-content {
     flex: 1;
     display: flex;
     flex-direction: column;
