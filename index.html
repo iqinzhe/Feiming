@@ -73,21 +73,25 @@
 
   /* CTA 按钮风格 */
   body.ax-gradient-bg .series-card-cta {
-    font-size: 0.8rem; /* 与描述文字相同大小 */
-    font-weight: 600; /* 适当加粗，提高可读性 */
-    color: #0073e6; /* 保持原有蓝色 */
     margin-top: auto;
     padding: 3px 3px; /* 内边距 */
     background-color: #333; /* 添加轻微背景色 */
-    border-radius: 4px; /* 圆角边框 */
+    color: white; /* 保持原有蓝色 */
+    text-decoration: none;
+    border-radius: 25px; /* 圆角边框 */
     text-align: center; /* 居中文本 */
-    transition: all 0.2s ease; /* 添加过渡效果 */
+    font-weight: bold; /* 适当加粗，提高可读性 */
+    font-size: 0.8rem; /* 与描述文字相同大小 */
+    transition: all 0.3s ease; /* 添加过渡效果 */
+    border: none;
+    cursor: pointer;
   }
   
   /* 添加悬停效果，提高交互性 */
   body.ax-gradient-bg .series-card-cta:hover {
     background-color: #555; /* 悬停时背景加深 */
-    transform: translateY(-1px); /* 轻微上浮效果 */
+    transform: translateY(-2px); /* 轻微上浮效果 */
+    color: white;
   }
   
   /* 调整卡片内容区域的内边距，为按钮提供更多空间 */
