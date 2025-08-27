@@ -1,33 +1,60 @@
 <!DOCTYPE html>
+
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>AX斧标贝斯 | 首页</title>
 <!-- Favicon 基础 (百度/搜狗/360/旧浏览器) -->
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<meta name="baidu-site-verification" content="codeva-8T1MHhl1HK" />
+<link href="/favicon.ico" rel="icon" type="image/x-icon"/>
+<meta content="codeva-8T1MHhl1HK" name="baidu-site-verification"/>
 <!-- 多尺寸 PNG 图标 -->
-<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48x48.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512.png">
-
+<link href="/icons/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="/icons/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="/icons/favicon-48x48.png" rel="icon" sizes="48x48" type="image/png"/>
+<link href="/icons/icon-192.png" rel="icon" sizes="192x192" type="image/png"/>
+<link href="/icons/icon-512.png" rel="icon" sizes="512x512" type="image/png"/>
 <!-- iOS 桌面快捷方式 -->
-<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-
+<link href="/icons/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
 <!-- Windows Edge / Bing 磁贴 -->
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="/icons/mstile-144x144.png">
-
+<meta content="#ffffff" name="msapplication-TileColor"/>
+<meta content="/icons/mstile-144x144.png" name="msapplication-TileImage"/>
 <!-- 移动端浏览器主题色 -->
-<meta name="theme-color" content="#ffffff">
-
+<meta content="#ffffff" name="theme-color"/>
 <!-- PWA manifest.json -->
-<link rel="manifest" href="/manifest.json">
+<link href="/manifest.json" rel="manifest"/>
+<link href="css/main.css" rel="stylesheet"/><style>
+  /* 首页系列总览：改为两列网格 */
+  body.ax-gradient-bg .series-overview {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 每行两列 */
+    gap: 20px; /* 卡片间距 */
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 
-<link href="css/main.css" rel="stylesheet"/></head>
+/* 卡片统一高度，内部内容纵向分布 */
+body.ax-gradient-bg .series-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 保证描述文字和按钮推到下方，布局更均匀 */
+body.ax-gradient-bg .series-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+</style></head>
 <body class="ax-gradient-bg">
 <!-- 顶部栏 -->
 <header class="top-bar">
@@ -48,7 +75,7 @@
 </div>
 <!-- 汉堡菜单展开内容 -->
 <nav class="menu" id="menu">
-<ul class="menu__list">>
+<ul class="menu__list">&gt;
 <li class="menu__item">
 <a class="menu__link" href="products.html?series=d">特色</a>
 </li>
@@ -76,21 +103,21 @@
 <!-- 系列卡片总览 -->
 <section class="series-overview" id="seriesOverview"></section>
 <!-- 下部导航栏 -->
-<nav class="compact-nav" aria-label="下部导航">
-  <ul class="compact-nav__container">
-    <li class="compact-nav__item">
-      <a href="products.html?series=d" class="compact-nav__link">特色</a>
-    </li>
-    <li class="compact-nav__item">
-      <a href="products.html" class="compact-nav__link">产品</a>
-    </li>
-    <li class="compact-nav__item">
-      <a href="support.html" class="compact-nav__link">支持</a>
-    </li>
-    <li class="compact-nav__item">
-      <a href="pricing.html" class="compact-nav__link">订购</a>
-    </li>
-  </ul>
+<nav aria-label="下部导航" class="compact-nav">
+<ul class="compact-nav__container">
+<li class="compact-nav__item">
+<a class="compact-nav__link" href="products.html?series=d">特色</a>
+</li>
+<li class="compact-nav__item">
+<a class="compact-nav__link" href="products.html">产品</a>
+</li>
+<li class="compact-nav__item">
+<a class="compact-nav__link" href="support.html">支持</a>
+</li>
+<li class="compact-nav__item">
+<a class="compact-nav__link" href="pricing.html">订购</a>
+</li>
+</ul>
 </nav>
 <!-- 底部栏 -->
 <footer class="site-footer" id="footerToTop">
@@ -163,5 +190,5 @@
       return `${date.getFullYear()}年${date.getMonth()+1}月${date.getDate()}日`;
     }
   </script>
-</body>
+</main></body>
 </html>
