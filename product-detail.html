@@ -13,60 +13,22 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <style>
 <body class="ax-gradient-bg">
-  <!-- 顶部栏 -->
-  <header class="top-bar">
-    <div class="top-bar__row">
-
-      <!-- 汉堡菜单按钮 -->
-      <div class="menu__button" id="hamburger">
-        ☰
-      </div>
-      
-      <!-- logo + 宣传语 -->
-      <div class="top-bar__center">
-        <img src="images/logo.png" alt="AX斧标贝斯 Logo" class="top-bar__logo">
-        <p class="top-bar__slogan">每次拨弦都是心灵的飞舞共鸣！</p>
-      </div>
-
-      <!-- 分享按钮 -->
-      <div class="top-bar__share" id="shareBtn">
-        ⫶
-      </div>
-    </div>
-
-    <!-- 汉堡菜单展开内容 -->
-    <nav class="menu" id="menu">
-      <ul class="menu__list">
-        <li class="menu__item">
-          <a href="index.html" class="menu__link">首页</a>
-        </li>
-        <li class="menu__item">
-          <a href="products.html?series=d" class="menu__link">特色</a>
-        </li>
-        <li class="menu__item">
-          <a href="products.html" class="menu__link">产品</a>
-        </li>
-        <li class="menu__item">
-          <a href="support.html" class="menu__link">支持</a>
-        </li>
-        <li class="menu__item">
-          <a href="pricing.html" class="menu__link">订购</a>
-        </li>
-      </ul>
-    </nav>
  
-  /* 首页系列总览：改为一列网格 */ body.ax-gradient-bg
-.series-overview {
+  /* 首页系列总览：改为两列网格 */
+  body.ax-gradient-bg .series-overview {
     display: grid;
-    grid-template-columns: repeat(1, 1fr); /* 一行一列 */
+    grid-template-columns: repeat(2, 1fr); /* 每行两列 */
+    gap: 5px; /* 卡片间距 */
+    padding: 5px;
     max-width: 1200px;
     margin: 0 auto;
   }
 
-  /* 卡片长宽保持比例（注释）无限长 */
-.series-card {
+  /* 卡片长宽保持比例 */
+  body.ax-gradient-bg .series-card {
     display: flex;
     flex-direction: column;
+    aspect-ratio: 9 / 14.5;   /* 固定宽高比 3:4，可改为 1/1 或 9/16 */
     background: #fff;
     border-radius: 12px;
     overflow: hidden;
@@ -76,8 +38,7 @@
   }
 
   /* 卡片内容紧凑排列 */
-
- .series-card-content {
+  body.ax-gradient-bg .series-card-content {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -85,23 +46,23 @@
     padding: 10px;
   }
 
-  /* 调标题和描述字号 */
-.series-card-title {
+  /* 调小标题和描述字号 */
+  body.ax-gradient-bg .series-card-title {
     font-size: 1.2rem;
     margin: 0 0 6px 0;
   }
-.series-card-desc {
-    font-size: 1.2rem;
-    line-height: 1.6;
+  body.ax-gradient-bg .series-card-desc {
+    font-size: 0.8rem;
+    line-height: 1.2;
     margin: 0 0 8px 0;
-    /* overflow: hidden;
+    overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 5; /* 最多显示3行 */
-    -webkit-box-orient: vertical; */
+    -webkit-box-orient: vertical;
   }
 
   /* CTA 按钮风格 */
-.series-card-cta {
+  body.ax-gradient-bg .series-card-cta {
     margin-top: auto;
     padding: 3px 3px; /* 内边距 */
     background-color: #000000 /* 同首页导航 */
@@ -115,17 +76,16 @@
     border: none;
     cursor: pointer;
   }
-  
-  /* 添加悬停效果，提高交互性 */
 
-.series-card-cta:hover {
+  /* 添加悬停效果，提高交互性 */
+  body.ax-gradient-bg .series-card-cta:hover {
     background-color: rgba(240, 230, 210, 0.98) /* 悬停时背景加深 */
     transform: translateY(0.2px); /* 轻微上浮效果 */
     color: #4361ee
   }
-  
+
   /* 调整卡片内容区域的内边距，为按钮提供更多空间 */
-.series-card-content {
+  body.ax-gradient-bg .series-card-content {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -133,6 +93,44 @@
     padding: 5px; /* 调整内边距 */
   }
 </style></head>
+
+<body class="ax-gradient-bg">
+<!-- 顶部栏 -->
+<header class="top-bar">
+<div class="top-bar__row">
+<!-- 汉堡菜单按钮 -->
+<div class="menu__button" id="hamburger">
+        ☰
+      </div>
+<!-- logo + 宣传语 -->
+<div class="top-bar__center">
+<img alt="AX斧标贝斯 Logo" class="top-bar__logo" src="images/logo.png"/>
+<p class="top-bar__slogan">每次拨弦都是心灵的飞舞共鸣！</p>
+</div>
+<!-- 分享按钮 -->
+<div class="top-bar__share" id="shareBtn">
+        ⫶
+      </div>
+</div>
+<!-- 汉堡菜单展开内容 -->
+<nav class="menu" id="menu">
+<ul class="menu__list">&gt;
+<li class="menu__item">
+<a class="menu__link" href="products.html?series=d">特色</a>
+</li>
+<li class="menu__item">
+<a class="menu__link" href="products.html">产品</a>
+</li>
+<li class="menu__item">
+<a class="menu__link" href="support.html">支持</a>
+</li>
+<li class="menu__item">
+<a class="menu__link" href="pricing.html">订购</a>
+</li>
+</ul>
+</nav>
+</header>
+<main>
   
   <main>
     <div id="productDetail"></div>
