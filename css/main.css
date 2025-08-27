@@ -44,7 +44,7 @@ body {
 
 /* === AX品牌渐变背景 with 蒙版 === */
 body.ax-gradient-bg {
-
+background:
     /* 线性渐变背景 - 调整最后一个参数(最大1)控制透明度 */
   background: linear-gradient(
   rgba(128, 128, 128, 0.5),   /* 浅灰，不透明 */
