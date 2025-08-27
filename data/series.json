@@ -4,25 +4,31 @@
       "id": "a",
       "name": "Series A",
       "cover": "images/series-a.jpg",
-      "description": "螺栓固定结构带来的额外弹性和响应..."
+      "description": "螺栓固定结构带来的额外弹性和响应，提供高性价比的现代音色。"
     },
     {
       "id": "b",
       "name": "Series B",
       "cover": "images/series-b.jpg",
-      "description": "通颈连体贝斯工艺较为复杂..."
+      "description": "通颈连体贝斯工艺较为复杂，常被视为高端贝斯的标志之一。采用多类型木材拼接琴颈与琴体，更具艺术性，视觉冲击力更强，带来更加奢华的外观。"
     },
     {
       "id": "c",
       "name": "Series C",
       "cover": "images/series-c.jpg",
-      "description": "迷你便携式贝斯，适合初学者..."
+      "description": "我们的C系列迷你BASS BABY采用23.5英寸弦长，整体总长度88cm，总宽度25cm。小巧轻便，易于携带，\n对手小的初学者（或女性）更友好。"
     },
     {
       "id": "d",
       "name": "Series D",
       "cover": "images/series-d.jpg",
-      "description": "人体工学扭曲琴颈设计..."
+      "description": "人体工学扭曲琴颈贝斯经过精心设计，能够顺应手腕和手指的自然运动。与传统琴颈不同，\n它会略微倾斜以适应您的演奏姿势，从而减轻压力并提高舒适度。"
+    }
+    {
+      "id": "e",
+      "name": "Series e",
+      "cover": "images/series-e.jpg",
+      "description": "良好的吉他设计语言在于统一与变化的平衡。我们形体多变适应不同的演奏姿势，又保持固有的设计语言，使整体既独具辨识度。"
     }
   ]
 }
