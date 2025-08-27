@@ -12,12 +12,11 @@
   <!-- 添加字体图标 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <style>
-<body class="ax-gradient-bg">
- 
-  /* 首页系列总览：改为两列网格 */
+
+  /* 首页系列总览：改为单列网格 */
   body.ax-gradient-bg .series-overview {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 每行两列 */
+    grid-template-columns: repeat(1, 1fr); /* 1行1列 */
     gap: 5px; /* 卡片间距 */
     padding: 5px;
     max-width: 1200px;
@@ -28,7 +27,7 @@
   body.ax-gradient-bg .series-card {
     display: flex;
     flex-direction: column;
-    aspect-ratio: 9 / 14.5;   /* 固定宽高比 3:4，可改为 1/1 或 9/16 */
+    aspect-ratio: 1/100;   /* 固定宽高比 3:4，可改为 1/1 或 9/16 */
     background: #fff;
     border-radius: 12px;
     overflow: hidden;
@@ -48,11 +47,11 @@
 
   /* 调小标题和描述字号 */
   body.ax-gradient-bg .series-card-title {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     margin: 0 0 6px 0;
   }
   body.ax-gradient-bg .series-card-desc {
-    font-size: 0.8rem;
+    font-size: 1rem;
     line-height: 1.2;
     margin: 0 0 8px 0;
     overflow: hidden;
