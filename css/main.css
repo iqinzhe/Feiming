@@ -133,7 +133,7 @@ a:hover {
 .order-button {
   display: inline-block;
   padding: 12px 24px;
-  background-color: var(--button-bg-color);
+  background-color: (240, 230, 210, 0.92);
   color: #333 !important;
   text-decoration: none;
   border-radius: 25px;
@@ -146,7 +146,7 @@ a:hover {
 }
 
 .order-button:hover {
-  background-color: rgba(240, 230, 210, 0.98);
+  background-color: rgba(240, 230, 210, 0.92);
   transform: translateY(-2px);
   color: #333 !important;
   text-decoration: none;
