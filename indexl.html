@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AX斧标贝斯 | 首页</title>
+<!-- Favicon 基础 (百度/搜狗/360/旧浏览器) -->
+<link href="/favicon.ico" rel="icon" type="image/x-icon"/>
+<meta content="codeva-8T1MHhl1HK" name="baidu-site-verification"/>
+<!-- 多尺寸 PNG 图标 -->
+<link href="/icons/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="/icons/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="/icons/favicon-48x48.png" rel="icon" sizes="48x48" type="image/png"/>
+<link href="/icons/icon-192.png" rel="icon" sizes="192x192" type="image/png"/>
+<link href="/icons/icon-512.png" rel="icon" sizes="512x512" type="image/png"/>
+<!-- iOS 桌面快捷方式 -->
+<link href="/icons/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<!-- Windows Edge / Bing 磁贴 -->
+<meta content="#ffffff" name="msapplication-TileColor"/>
+<meta content="/icons/mstile-144x144.png" name="msapplication-TileImage"/>
+<!-- 移动端浏览器主题色 -->
+<meta content="#ffffff" name="theme-color"/>
+<!-- PWA manifest.json -->
+<link href="/manifest.json" rel="manifest"/>
+<style>
+/* === 全局清理后的CSS（内联） === */
+/* === 全局基准设置 === */
+:root {
+  --primary-color: #4361ee;
+  --secondary-color: #7209b7;
+  --neutral-gray: rgb(128, 128, 128);
+  --glass-dark: rgba(0, 0, 0, 0.3);
+  --text-white: #fff;
+  --text-dark: #212529;
+  --text-light: #f8f9fa;
+  --spacing-xs: 0.8rem;
+  --spacing-sm: 1.6rem;
+  --spacing-md: 2.4rem;
+  --spacing-lg: 3.2rem;
+  --border-radius: 0.8rem;
+  --shadow: 0 4px 12px rgba(0,0,0,0.1);
+  --transition: all 0.3s ease;
+  --menu-chip-bg: rgba(240, 230, 210, 0.92);
+  --menu-chip-border: rgba(240, 210, 180, 0.6);
+  --top-bar-height: 60px;
+  --nav-link-font-size: 1.2rem;
+}
+
+html {
+  font-size: 16px;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: var(--top-bar-height) 15px 0 15px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.2rem;
+  color: var(--text-white);
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  background: #000000 !important;
+}
+
+body.ax-gradient-bg {
+  background: 
+    linear-gradient(rgba(30, 30, 30, 0.6), rgba(30, 30, 30, 0.6)),
+    linear-gradient(135deg, #4a67b3, #a57d7d, #7BC4C4) !important;
+  background-attachment: fixed !important;
+  min-height: 100vh;
+  background-blend-mode: multiply;
+}
+
+/* === 标题样式 === */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  line-height: 1.3;
+  margin-top: 1.2em;
+  margin-bottom: 0.6em;
+  color: #ffffff !important;
+}
+
+h1 { font-size: 1.6rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.4rem; }
+h4 { font-size: 1.3rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+
+/* === 段落 === */
+p {
+  margin-bottom: 1em;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* === 链接样式 === */
+a {
+  color: #4361ee !important;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: var(--nav-link-font-size) !important;
+}
+
+a:hover {
+  color: #4a67b3 !important;
+  text-decoration: underline;
+}
+
+/* === 小字说明 === */
+.small-text { font-size: 0.875rem; color: rgba(255, 255, 255, 0.8); }
+.tiny-text  { font-size: 0.75rem; color: rgba(255, 255, 255, 0.7); }
+
+/* === 图片 === */
+img { max-width: 100%; height: auto; display: block; }
+
+/* === 重置与工具类 === */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+.layout-flex { display: flex; }
+.layout-flex-center { display: flex; justify-content: center; align-items: center; }
+.layout-flex-column { flex-direction: column; }
+.layout-flex-wrap { flex-wrap: wrap; }
+.layout-justify-between { justify-content: space-between; }
+.layout-justify-around { justify-content: space-around; }
+.layout-align-center { align-items: center; }
+.layout-grid { display: grid; }
+.layout-gap-sm { gap: var(--spacing-xs); }
+.layout-gap-md { gap: var(--spacing-sm); }
+
+.container { width: 100%; max-width: 1200px; padding: var(--spacing-sm); margin: 0 auto; }
+
+/* === 顶部栏样式（保留基础，去掉冲突） === */
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #000000 !important;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+}
+
+.top-bar__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+}
+
+.top-bar__center { text-align: center; flex: 1; margin: 0 10px; }
+.top-bar__logo { height: 30px; display: block; margin: 0 auto; }
+.top-bar__slogan { font-size: 16px; margin: 2px 0 0; color: #ffffff; }
+
+/* === 底部栏基础样式 === */
+.site-footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  border: 1px solid rgba(128, 128, 128, 0.2);
+  height: auto;
+  min-height: 45px;
+}
+
+.site-footer__label { font-weight: 600; font-size: 1.1rem; color: var(--text-white); }
+.site-footer__logo { height: 20px; width: auto; }
+
+/* === 辅助类 === */
+.text-truncate { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.fluid-text { font-size: clamp(1.6rem, 4vw, 2.4rem); }
+.fluid-padding { padding: clamp(1rem, 3vw, 3rem); }
+
+/* === 加载动画 === */
+.loading { text-align: center; padding: 20px; color: rgba(255, 255, 255, 0.7); }
+
+
+
+  /* ================= 首页动态（单列 Grid）================= */
+  .latest-news {
+    display: grid;
+    grid-template-columns: 1fr; /* 单列 */
+    gap: 10px;
+    padding: 10px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .latest-news h3 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+  }
+
+  .news-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  .news-card h4 {
+    margin: 5px 0;
+  }
+
+  .news-desc {
+    font-size: 1rem;
+    line-height: 1.4;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  /* ================= 系列卡片总览 ================= */
+  body.ax-gradient-bg .series-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); /* 自适应列 */
+    gap: 10px; 
+    padding: 10px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  body.ax-gradient-bg .series-card {
+    display: flex;
+    flex-direction: column;
+    aspect-ratio: 3/4;   /* 保持比例 */
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  body.ax-gradient-bg .series-card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  body.ax-gradient-bg .series-card-title {
+    font-size: 1.2rem;
+    margin: 0 0 6px 0;
+  }
+
+  body.ax-gradient-bg .series-card-desc {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin: 0 0 8px 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+  }
+
+  body.ax-gradient-bg .series-card-cta {
+    margin-top: auto;
+    padding: 6px 10px;
+    background-color: #000;
+    color: #4361ee;
+    text-decoration: none;
+    border-radius: 25px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  body.ax-gradient-bg .series-card-cta:hover {
+    background-color: rgba(240,230,210,0.98);
+    transform: translateY(-1px);
+    color: #4361ee;
+  }
+
+  /* ================= 底部导航栏（2行3列 Grid） ================= */
+  .compact-nav__container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 10px;
+    list-style: none;
+    padding: 10px;
+    margin: 0 auto;
+    max-width: 600px;
+  }
+
+  .compact-nav__item {
+    text-align: center;
+  }
+
+  .compact-nav__link {
+    display: block;
+    padding: 10px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-decoration: none;
+    color: #000;
+    font-size: 0.95rem;
+    transition: background 0.3s;
+  }
+
+  .compact-nav__link:hover {
+    background: #f0f0f0;
+  }
+
+  /* ================= 响应式优化 ================= */
+  @media (max-width: 768px) {
+    .series-overview {
+      grid-template-columns: 1fr; /* 手机端单列 */
+    }
+    .compact-nav__container {
+      grid-template-columns: repeat(2, 1fr); /* 手机端两列三行 */
+    }
+  }
+
+</style>
+</head>
+<body class="ax-gradient-bg">
+  <!-- 顶部栏 -->
+  <header class="top-bar">
+    <div class="top-bar__row">
+      <div class="menu__button" id="hamburger">☰</div>
+      <div class="top-bar__center">
+        <img alt="AX斧标贝斯 Logo" class="top-bar__logo" src="images/logo.png"/>
+        <p class="top-bar__slogan">每次拨弦都是心灵的飞舞共鸣！</p>
+      </div>
+      <div class="top-bar__share" id="shareBtn">⫶</div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 最新动态 -->
+    <section class="latest-news">
+      <h3>最新动态</h3>
+      <div id="events-preview-container">
+        <div class="loading">加载最新动态...</div>
+      </div>
+      <a class="view-all-news" href="events.html">查看更多动态 →</a>
+    </section>
+
+    <!-- 系列卡片总览 -->
+    <section class="series-overview" id="seriesOverview"></section>
+
+    <!-- 下部导航栏 -->
+    <nav aria-label="下部导航" class="compact-nav">
+      <ul class="compact-nav__container">
+        <li class="compact-nav__item"><a class="compact-nav__link" href="products.html?series=d">特色产品</a></li>
+        <li class="compact-nav__item"><a class="compact-nav__link" href="pricing.html">在线订购</a></li>
+        <li class="compact-nav__item"><a class="compact-nav__link" href="service.html">售后服务</a></li>
+        <li class="compact-nav__item"><a class="compact-nav__link" href="pricing.about">关于我们</a></li>
+        <li class="compact-nav__item"><a class="compact-nav__link" href="pricing.contact">联系我们</a></li>
+        <li class="compact-nav__item"><a class="compact-nav__link" href="pricing.events">新闻事件</a></li>
+      </ul>
+    </nav>
+  </main>
+
+  <!-- 底部栏 -->
+  <footer class="site-footer" id="footerToTop">
+    <span class="site-footer__label">返回顶部</span>
+    <img alt="AX斧标贝斯 Logo" class="site-footer__logo" src="images/logo.png"/>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>
