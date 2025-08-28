@@ -11,6 +11,245 @@
   <link href="css/main.css" rel="stylesheet"/>
   <!-- 添加字体图标 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* ===== 产品详情网格布局系统 ===== */
+    /* 主容器 - 单列网格布局 */
+    #productDetail {
+      display: grid;
+      grid-template-columns: 1fr; /* 单列布局 */
+      gap: 30px; /* 各部分间距 */
+      max-width: 1200px; /* 最大宽度限制 */
+      margin: 0 auto; /* 居中显示 */
+      padding: 20px;
+    }
+    
+    /* 产品主图区域 - 自适应网格 */
+    .product-hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+    
+    /* 产品图片 - 响应式设计 */
+    .product-hero img {
+      width: 100%;
+      max-height: 500px;
+      object-fit: cover; /* 保持比例填充 */
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    
+    /* 产品标题和描述 */
+    .product-hero h1 {
+      font-size: 2.2rem;
+      margin: 0 0 15px 0;
+      color: #fff;
+      line-height: 1.3;
+    }
+    
+    .product-hero p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #ccc;
+      margin: 0;
+    }
+    
+    /* 规格参数区域 - 网格布局 */
+    .product-specs {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 25px;
+    }
+    
+    .product-specs h3 {
+      font-size: 1.6rem;
+      margin: 0 0 20px 0;
+      color: #fff;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    /* 规格列表 - 自适应网格 */
+    .product-specs ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 自动适应列数 */
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    
+    .product-specs li {
+      padding: 12px 15px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      color: #eee;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    
+    /* 操作按钮区域 - 网格布局 */
+    .product-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      justify-items: center; /* 居中按钮 */
+      padding: 20px 0;
+    }
+    
+    /* 订购按钮 */
+    .order-button {
+      padding: 15px 40px;
+      background-color: #4361ee;
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(67, 97, 238, 0.3);
+    }
+    
+    .order-button:hover {
+      background-color: #3a56d4;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(67, 97, 238, 0.4);
+    }
+    
+    /* 返回导航 */
+    .back-nav {
+      display: grid;
+      grid-template-columns: 1fr;
+      justify-items: center;
+    }
+    
+    .nav-button {
+      padding: 12px 25px;
+      background-color: rgba(240, 230, 210, 0.92);
+      color: #4361ee;
+      text-decoration: none;
+      border-radius: 25px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-button:hover {
+      background-color: rgba(240, 230, 210, 1);
+      transform: translateY(-2px);
+    }
+    
+    /* 错误消息样式 */
+    .error-message {
+      text-align: center;
+      padding: 40px;
+      color: #ff6b6b;
+      font-size: 1.2rem;
+      grid-column: 1 / -1;
+    }
+    
+    /* ===== 响应式设计 ===== */
+    @media (min-width: 768px) {
+      /* 中等屏幕及以上 - 图片和文字并排 */
+      .product-hero {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+      }
+      
+      /* 操作按钮区域 - 两列布局 */
+      .product-actions {
+        grid-template-columns: 1fr 1fr;
+        justify-items: stretch;
+        gap: 30px;
+      }
+      
+      .back-nav {
+        justify-items: end;
+      }
+    }
+    
+    @media (max-width: 767px) {
+      /* 移动端调整 */
+      #productDetail {
+        gap: 20px;
+        padding: 15px;
+      }
+      
+      .product-hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .product-specs {
+        padding: 20px;
+      }
+      
+      .product-specs ul {
+        grid-template-columns: 1fr; /* 单列规格列表 */
+      }
+      
+      .product-specs h3 {
+        font-size: 1.4rem;
+      }
+      
+      .order-button {
+        padding: 12px 30px;
+        font-size: 1.1rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      /* 小屏幕移动端 */
+      .product-hero h1 {
+        font-size: 1.6rem;
+      }
+      
+      .product-hero p {
+        font-size: 1rem;
+      }
+      
+      .product-specs {
+        padding: 15px;
+      }
+      
+      .product-specs li {
+        padding: 10px;
+        font-size: 0.95rem;
+      }
+    }
+    
+    /* ===== 额外内容区域样式 ===== */
+    /* 描述区域 - 适用于可能添加的额外内容 */
+    .product-description {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 25px;
+      line-height: 1.7;
+      color: #ccc;
+    }
+    
+    .product-description h3 {
+      color: #fff;
+      margin-top: 0;
+    }
+    
+    /* 图片画廊 - 适用于多图展示 */
+    .product-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .product-gallery img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+  </style>
 </head>
 
 <body class="ax-gradient-bg">
@@ -98,18 +337,41 @@
             const product = series.models.find(m => m.id === productId);
             if (!product) throw new Error('找不到对应的产品');
 
-            container.innerHTML = `
+            // 构建产品详情HTML
+            let productHTML = `
               <div class="product-hero">
                 <img src="${product.image}" alt="${product.name}">
-                <h1>${product.name}</h1>
-                <p>${product.features}</p>
+                <div>
+                  <h1>${product.name}</h1>
+                  <p>${product.features}</p>
+                </div>
               </div>
               <div class="product-specs">
                 <h3>规格参数</h3>
                 <ul>
                   ${product.specs.map(s => `<li>${s}</li>`).join('')}
                 </ul>
-              </div>
+              </div>`;
+            
+            // 如果有详细描述，添加描述区域
+            if (product.description) {
+              productHTML += `
+                <div class="product-description">
+                  <h3>产品详情</h3>
+                  <p>${product.description}</p>
+                </div>`;
+            }
+            
+            // 如果有额外图片，添加图片画廊
+            if (product.gallery && product.gallery.length > 0) {
+              productHTML += `
+                <div class="product-gallery">
+                  ${product.gallery.map(img => `<img src="${img}" alt="${product.name}">`).join('')}
+                </div>`;
+            }
+            
+            // 添加操作按钮
+            productHTML += `
               <div class="product-actions">
                 <a class="order-button" href="pricing.html?product=${encodeURIComponent(product.name)}">立即订购</a>
                 <div class="back-nav">
@@ -117,8 +379,9 @@
                     <i class="fas fa-arrow-left"></i> 返回${series.name}
                   </a>
                 </div>
-              </div>
-            `;
+              </div>`;
+            
+            container.innerHTML = productHTML;
           })
           .catch(err => {
             container.innerHTML = `<p class="error-message">加载失败: ${err.message}</p>`;
