@@ -11,6 +11,255 @@
   <link href="css/main.css" rel="stylesheet"/>
   <!-- 添加字体图标 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* ===== 网格布局系统 ===== */
+    /* 系列总览网格容器 - 响应式设计 */
+    .series-overview {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 自动适应列数，最小280px */
+      gap: 20px; /* 卡片间距 */
+      padding: 15px;
+      max-width: 1200px; /* 最大宽度限制 */
+      margin: 0 auto; /* 居中显示 */
+    }
+
+    /* 系列卡片样式 - 按比例缩放 */
+    .series-card {
+      display: flex;
+      flex-direction: column;
+      aspect-ratio: 3/4; /* 固定宽高比 3:4 */
+      background: #5e5e5e;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.3s ease, box-shadow 0.3s ease; /* 添加过渡效果 */
+    }
+
+    .series-card:hover {
+      transform: translateY(-5px); /* 悬停时轻微上浮 */
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    /* 系列卡片图片容器 - 保持比例 */
+    .series-card img {
+      width: 100%;
+      height: 60%; /* 图片占卡片高度的60% */
+      object-fit: cover; /* 保持比例填充 */
+    }
+
+    /* 系列卡片内容区域 */
+    .series-card-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* 系列卡片标题 */
+    .series-card-title {
+      font-size: 1.4rem;
+      margin: 0 0 10px 0;
+      color: #fff;
+    }
+
+    /* 系列卡片描述 */
+    .series-card-desc {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin: 0 0 15px 0;
+      color: #ccc;
+      flex-grow: 1; /* 描述区域可扩展 */
+    }
+
+    /* 系列卡片CTA按钮 */
+    .series-card-cta {
+      padding: 10px 15px;
+      background-color: rgba(240, 230, 210, 0.92);
+      color: #4361ee;
+      text-decoration: none;
+      border-radius: 20px;
+      text-align: center;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .series-card-cta:hover {
+      background-color: rgba(240, 230, 210, 1);
+      transform: scale(1.05);
+    }
+
+    /* ===== 产品列表网格 ===== */
+    .models-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 自动适应列数 */
+      gap: 25px; /* 产品卡片间距 */
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* 产品卡片样式 */
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* 产品图片 */
+    .product-card img {
+      width: 100%;
+      height: 200px; /* 固定高度 */
+      object-fit: cover;
+    }
+
+    /* 产品内容区域 */
+    .product-card > div {
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-card h3 {
+      margin: 0 0 10px 0;
+      color: #fff;
+      font-size: 1.3rem;
+    }
+
+    .product-card p {
+      margin: 0 0 15px 0;
+      color: #ccc;
+      line-height: 1.5;
+      flex-grow: 1; /* 让描述区域扩展 */
+    }
+
+    /* 产品按钮容器 */
+    .product-card > div > div {
+      display: flex;
+      gap: 10px; /* 按钮间距 */
+    }
+
+    /* 订购按钮 */
+    .order-button {
+      padding: 8px 15px;
+      background-color: #4361ee;
+      color: white;
+      text-decoration: none;
+      border-radius: 20px;
+      text-align: center;
+      flex: 1;
+      transition: background-color 0.3s;
+    }
+
+    .order-button:hover {
+      background-color: #3a56d4;
+    }
+
+    /* 详情按钮 */
+    .detail-button {
+      padding: 8px 15px;
+      background-color: transparent;
+      color: #4361ee;
+      text-decoration: none;
+      border: 1px solid #4361ee;
+      border-radius: 20px;
+      text-align: center;
+      flex: 1;
+      transition: all 0.3s;
+    }
+
+    .detail-button:hover {
+      background-color: #4361ee;
+      color: white;
+    }
+
+    /* ===== 底部导航 ===== */
+    .bottom-series-nav {
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .prev-next-nav {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .nav-button {
+      padding: 10px 20px;
+      background-color: rgba(240, 230, 210, 0.92);
+      color: #4361ee;
+      text-decoration: none;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s;
+    }
+
+    .nav-button:hover {
+      background-color: rgba(240, 230, 210, 1);
+      transform: translateY(-2px);
+    }
+
+    /* ===== 响应式设计 ===== */
+    @media (max-width: 768px) {
+      /* 移动端调整网格列数 */
+      .series-overview {
+        grid-template-columns: 1fr; /* 单列布局 */
+        gap: 15px;
+        padding: 10px;
+      }
+      
+      .models-container {
+        grid-template-columns: 1fr; /* 单列布局 */
+        gap: 20px;
+        padding: 15px;
+      }
+      
+      /* 调整卡片比例 */
+      .series-card {
+        aspect-ratio: 3/4; /* 保持比例 */
+      }
+      
+      /* 底部导航按钮堆叠 */
+      .prev-next-nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .nav-button {
+        justify-content: center;
+      }
+    }
+
+    /* ===== 辅助样式 ===== */
+    .loading, .error-message {
+      text-align: center;
+      padding: 40px;
+      grid-column: 1 / -1; /* 跨所有列 */
+      color: #ccc;
+    }
+
+    h2 {
+      text-align: center;
+      color: #fff;
+      margin: 20px 0;
+      font-size: 2rem;
+    }
+  </style>
 </head>
 
 <body class="ax-gradient-bg">
@@ -98,13 +347,13 @@
         const bottomSeriesNav = document.getElementById('bottomSeriesNav');
         
         // 系列信息（封面图 + 简介）
-const seriesData = [
-    {id:'a', name:'Series A', desc:'经典螺栓固定结构系列', img:'series-a.jpg'},
-    {id:'b', name:'Series B', desc:'高端通颈连体工艺系列', img:'series-b.jpg'},
-    {id:'c', name:'Series C', desc:'迷你便携式贝斯系列', img:'series-c.jpg'},
-    {id:'d', name:'Series D', desc:'革命性人体工学设计', img:'series-d.jpg'},
-    {id:'e', name:'Series E', desc:'统一与变化平衡的设计语言', img:'series-e.jpg'}
-];
+        const seriesData = [
+            {id:'a', name:'Series A', desc:'经典螺栓固定结构系列', img:'series-a.jpg'},
+            {id:'b', name:'Series B', desc:'高端通颈连体工艺系列', img:'series-b.jpg'},
+            {id:'c', name:'Series C', desc:'迷你便携式贝斯系列', img:'series-c.jpg'},
+            {id:'d', name:'Series D', desc:'革命性人体工学设计', img:'series-d.jpg'},
+            {id:'e', name:'Series E', desc:'统一与变化平衡的设计语言', img:'series-e.jpg'}
+        ];
 
         if (!seriesId) {
             // 显示系列总览
@@ -122,7 +371,7 @@ const seriesData = [
             
             seriesContainer.innerHTML = seriesData.map(series => `
                 <a class="series-card" href="products.html?series=${series.id}">
-                    <img src="images/${series.img}" alt="${series.name}"
+                    <img src="images/${series.img}" alt="${series.name}">
                     <div class="series-card-content">
                         <h2 class="series-card-title">${series.name}</h2>
                         <p class="series-card-desc">${series.desc}</p>
@@ -184,14 +433,16 @@ const seriesData = [
                     
                     modelsContainer.innerHTML = series.models.map(m => `
                         <div class="product-card">
-                            <img src="${m.image}" alt="${m.name}"
-                            <h3>${m.name}</h3>
-                            <p>${m.features}</p>
+                            <img src="${m.image}" alt="${m.name}">
                             <div>
-                                <a class="order-button" href="pricing.html?product=${encodeURIComponent(m.name)}">订购</a>
-                                <a class="detail-button" href="product-detail.html?series=${seriesId}&id=${m.id}">
-                                    查看详情
-                                </a>
+                                <h3>${m.name}</h3>
+                                <p>${m.features}</p>
+                                <div>
+                                    <a class="order-button" href="pricing.html?product=${encodeURIComponent(m.name)}">订购</a>
+                                    <a class="detail-button" href="product-detail.html?series=${seriesId}&id=${m.id}">
+                                        查看详情
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     `).join('');
