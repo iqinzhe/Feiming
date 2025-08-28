@@ -17,7 +17,7 @@
         line-height: 1.6;
         margin: 0;
         padding: 0;
-        background: #e5e5e5;
+        background: #e5e5e5; /* 页面背景色 */
         color: #333;
     }
     .container {
@@ -28,7 +28,7 @@
     h1 {
         text-align: center;
         margin: 40px 0 30px;
-        color: #f8f8f8;
+        color: #333; /* 修改为深色，与白色背景形成对比 */
         font-weight: 300;
         font-size: 2rem;
     }
@@ -36,9 +36,9 @@
     /* === 卡片样式 === */
     .event-card {
         position: relative; /* 为new-badge提供定位基准 */
-        background: #e5e5e5;
+        background: #fff; /* 修改卡片背景为白色，与页面背景区分 */
         border-radius: 6px;
-        overflow: hidden;
+        overflow: visible; /* 修改为visible，避免裁剪角标 */
         box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         margin-bottom: 25px;
         transition: transform 0.3s;
@@ -56,7 +56,7 @@
     .event-description {
         line-height: 1.5; /* 增加行高 */
         margin-bottom: 10px; /* 调整间距 */
-        color: #e5e5e5;
+        color: #555; /* 修改为深灰色，确保可读性 */
     }
     
     .event-card:hover {
@@ -75,7 +75,7 @@
     }
     
     .event-title {
-        color: #ffffff;
+        color: #333; /* 修改为深色，确保可读性 */
         margin-top: 0;
         margin-bottom: 15px;
     }
@@ -83,20 +83,21 @@
     /* === "最新动态"角标样式 === */
     .new-badge {
         position: absolute;
-        top: 15px;
-        right: 15px;
+        top: 10px; /* 调整位置，避免被裁剪 */
+        right: 10px; /* 调整位置，避免被裁剪 */
         background: #e74c3c;
         color: white;
-        padding: 3px 8px;
+        padding: 5px 10px; /* 增加内边距，提高可读性 */
         font-size: 0.8rem;
         border-radius: 3px;
+        z-index: 10; /* 确保角标位于最上层 */
     }
     
     /* === 按钮样式 === */
     .btn {
         display: inline-block;
         padding: 8px 20px;
-        background: rgba(240, 230, 210, 0.92);
+        background: #3498db; /* 修改按钮背景色 */
         color: white;
         text-decoration: none;
         border-radius: 4px;
@@ -105,7 +106,7 @@
     }
     
     .btn:hover {
-        background: rgba(240, 230, 210, 0.98);
+        background: #2980b9; /* 修改按钮悬停色 */
         text-decoration: none;
     }
   </style>
