@@ -22,9 +22,9 @@
 <meta content="#ffffff" name="theme-color"/>
 <!-- PWA manifest.json -->
 <link href="/manifest.json" rel="manifest"/>
-<style>
+<link href="css/main.css" rel="stylesheet"/><style>
 
-  /* ================= 首页动态（单列 Grid）================= */
+  /* ===== 首页动态（单列 Grid）===== */
   .latest-news {
     display: grid;
     grid-template-columns: 1fr; /* 单列 */
@@ -59,20 +59,22 @@
     -webkit-box-orient: vertical;
   }
 
-  /* ================= 系列卡片总览 ================= */
+  /* ===== 系列卡片总览（双列 Grid） ===== */
+  
   body.ax-gradient-bg .series-overview {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); /* 自适应列 */
-    gap: 10px; 
-    padding: 10px;
+    grid-template-columns: repeat(2, 1fr); /* 每行两列 */
+    gap: 5px; /* 卡片间距 */
+    padding: 5px;
     max-width: 1200px;
     margin: 0 auto;
   }
 
+  /* 卡片长宽保持比例 */
   body.ax-gradient-bg .series-card {
     display: flex;
     flex-direction: column;
-    aspect-ratio: 3/4;   /* 保持比例 */
+    aspect-ratio: 9 / 16.5;   /* 固定宽高比 3:4，可改为 1/1 或 9/16 */
     background: #fff;
     border-radius: 12px;
     overflow: hidden;
@@ -81,6 +83,7 @@
     color: inherit;
   }
 
+  /* 卡片内容紧凑排列 */
   body.ax-gradient-bg .series-card-content {
     flex: 1;
     display: flex;
@@ -89,43 +92,54 @@
     padding: 10px;
   }
 
+  /* 调整标题和描述字号 */
   body.ax-gradient-bg .series-card-title {
     font-size: 1.2rem;
     margin: 0 0 6px 0;
   }
-
   body.ax-gradient-bg .series-card-desc {
     font-size: 1rem;
-    line-height: 1.4;
+    line-height: 1.5;
     margin: 0 0 8px 0;
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 5; /* 最多显示3行 */
     -webkit-box-orient: vertical;
   }
 
+  /* CTA 按钮风格 */
   body.ax-gradient-bg .series-card-cta {
     margin-top: auto;
-    padding: 6px 10px;
-    background-color: #000;
-    color: #4361ee;
+    padding: 3px 3px; /* 内边距 */
+    background-color: white; /* 同首页导航 */
+    color: #4361ee; /* 文字宝石栏 */
     text-decoration: none;
-    border-radius: 25px;
-    text-align: center;
-    font-weight: 500;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
+    border-radius: 15px; /* 圆角边框 */
+    text-align: center; /* 居中文本 */
+    font-weight: normal; /* 适当加粗，提高可读性 */
+    font-size: 0.8rem; /* 与描述文字相同大小 */
+    transition: all 0.3s ease; /* 添加过渡效果 */
     border: none;
     cursor: pointer;
   }
-
+  
+  /* 添加悬停效果，提高交互性 */
   body.ax-gradient-bg .series-card-cta:hover {
-    background-color: rgba(240,230,210,0.98);
-    transform: translateY(-1px);
+    background-color: rgba(240, 230, 210, 0.98); /* 悬停时背景加深 */
+    transform: translateY(0.2px); /* 轻微上浮效果 */
     color: #4361ee;
   }
+  
+  /* 调整卡片内容区域的内边距，为按钮提供更多空间 */
+  body.ax-gradient-bg .series-card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px; /* 调整内边距 */
+  }
 
-  /* ================= 底部导航栏（2行3列 Grid） ================= */
+  /* ===== 底部导航栏（2行3列 Grid） ===== */
   .compact-nav__container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -157,7 +171,7 @@
     background: #f0f0f0;
   }
 
-  /* ================= 响应式优化 ================= */
+  /* ===== 响应式优化 ===== */
   @media (max-width: 768px) {
     .series-overview {
       grid-template-columns: 1fr; /* 手机端单列 */
@@ -166,21 +180,45 @@
       grid-template-columns: repeat(2, 1fr); /* 手机端两列三行 */
     }
   }
-
 </style>
 </head>
+
 <body class="ax-gradient-bg">
-  <!-- 顶部栏 -->
-  <header class="top-bar">
-    <div class="top-bar__row">
-      <div class="menu__button" id="hamburger">☰</div>
-      <div class="top-bar__center">
-        <img alt="AX斧标贝斯 Logo" class="top-bar__logo" src="images/logo.png"/>
-        <p class="top-bar__slogan">每次拨弦都是心灵的飞舞共鸣！</p>
+<!-- 顶部栏 -->
+<header class="top-bar">
+<div class="top-bar__row">
+<!-- 汉堡菜单按钮 -->
+<div class="menu__button" id="hamburger">
+        ☰
       </div>
-      <div class="top-bar__share" id="shareBtn">⫶</div>
-    </div>
-  </header>
+<!-- logo + 宣传语 -->
+<div class="top-bar__center">
+<img alt="AX斧标贝斯 Logo" class="top-bar__logo" src="images/logo.png"/>
+<p class="top-bar__slogan">每次拨弦都是心灵的飞舞共鸣！</p>
+</div>
+<!-- 分享按钮 -->
+<div class="top-bar__share" id="shareBtn">
+        ⫶
+      </div>
+</div>
+<!-- 汉堡菜单展开内容 -->
+<nav class="menu" id="menu">
+<ul class="menu__list">
+<li class="menu__item">
+<a class="menu__link" href="products.html?series=d">特色</a>
+</li>
+<li class="menu__item">
+<a class="menu__link" href="products.html">产品</a>
+</li>
+<li class="menu__item">
+<a class="menu__link" href="support.html">支持</a>
+</li>
+<li class="menu__item">
+<a class="menu__link" href="pricing.html">订购</a>
+</li>
+</ul>
+</nav>
+</header>
 
   <main>
     <!-- 最新动态 -->
@@ -201,9 +239,9 @@
         <li class="compact-nav__item"><a class="compact-nav__link" href="products.html?series=d">特色产品</a></li>
         <li class="compact-nav__item"><a class="compact-nav__link" href="pricing.html">在线订购</a></li>
         <li class="compact-nav__item"><a class="compact-nav__link" href="service.html">售后服务</a></li>
-        <li class="compact-nav__item"><a class="compact-nav__link" href="pricing.about">关于我们</a></li>
-        <li class="compact-nav__item"><a class="compact-nav__link" href="pricing.contact">联系我们</a></li>
-        <li class="compact-nav__item"><a class="compact-nav__link" href="pricing.events">新闻事件</a></li>
+        <li class="compact-nav__item"><a class="compact-nav__link" href="about.html">关于我们</a></li>
+        <li class="compact-nav__item"><a class="compact-nav__link" href="contact.html">联系我们</a></li>
+        <li class="compact-nav__item"><a class="compact-nav__link" href="events.html">新闻事件</a></li>
       </ul>
     </nav>
   </main>
