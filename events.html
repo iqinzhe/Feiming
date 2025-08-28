@@ -17,8 +17,9 @@
         line-height: 1.6;
         margin: 0;
         padding: 0;
-        background: #e5e5e5; /* 页面背景色 */
+        background: linear-gradient(135deg, #3498db, #9b59b6); /* 彩色渐变背景 */
         color: #333;
+        min-height: 100vh;
     }
     .container {
         max-width: 800px;
@@ -27,18 +28,19 @@
     }
     h1 {
         text-align: center;
-        margin: 40px 0 30px;
-        color: #333; /* 修改为深色，与白色背景形成对比 */
+        margin: 30px 0; /* 调整边距，避免被裁剪 */
+        color: #fff; /* 白色文字，与彩色背景形成对比 */
         font-weight: 300;
         font-size: 2rem;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.3); /* 添加文字阴影提高可读性 */
     }
 
     /* === 卡片样式 === */
     .event-card {
         position: relative; /* 为new-badge提供定位基准 */
-        background: #fff; /* 修改卡片背景为白色，与页面背景区分 */
+        background: #e5e5e5; /* 栏框内灰色背景 */
         border-radius: 6px;
-        overflow: visible; /* 修改为visible，避免裁剪角标 */
+        overflow: hidden; /* 恢复为hidden，但调整角标位置避免被裁剪 */
         box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         margin-bottom: 25px;
         transition: transform 0.3s;
@@ -46,7 +48,7 @@
 
     .event-meta {
         font-weight: normal; /* 日期不加粗 */
-        color: #aaa; /* 使用更柔和的颜色 */
+        color: #666; /* 使用更柔和的颜色 */
         margin-bottom: 3px; /* 调整间距 */
         font-family: 'Helvetica', 'Arial', sans-serif;
         font-size: 13px;
@@ -56,7 +58,7 @@
     .event-description {
         line-height: 1.5; /* 增加行高 */
         margin-bottom: 10px; /* 调整间距 */
-        color: #555; /* 修改为深灰色，确保可读性 */
+        color: #fff; /* 白色文字 */
     }
     
     .event-card:hover {
@@ -67,7 +69,7 @@
         width: 100%;
         height: auto;
         object-fit: cover;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid #ddd;
     }
     
     .event-content {
@@ -75,7 +77,7 @@
     }
     
     .event-title {
-        color: #333; /* 修改为深色，确保可读性 */
+        color: #fff; /* 白色文字 */
         margin-top: 0;
         margin-bottom: 15px;
     }
@@ -87,8 +89,8 @@
         right: 10px; /* 调整位置，避免被裁剪 */
         background: #e74c3c;
         color: white;
-        padding: 5px 10px; /* 增加内边距，提高可读性 */
-        font-size: 0.8rem;
+        padding: 3px 8px;
+        font-size: 0.7rem; /* 调小2号字体 */
         border-radius: 3px;
         z-index: 10; /* 确保角标位于最上层 */
     }
@@ -97,8 +99,8 @@
     .btn {
         display: inline-block;
         padding: 8px 20px;
-        background: #3498db; /* 修改按钮背景色 */
-        color: white;
+        background: rgba(240, 230, 210, 0.92); /* 恢复原始按钮样式 */
+        color: #333; /* 文字颜色与背景形成对比 */
         text-decoration: none;
         border-radius: 4px;
         font-size: 0.9rem;
@@ -106,7 +108,7 @@
     }
     
     .btn:hover {
-        background: #2980b9; /* 修改按钮悬停色 */
+        background: rgba(240, 230, 210, 0.98); /* 恢复原始悬停样式 */
         text-decoration: none;
     }
   </style>
