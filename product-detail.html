@@ -89,6 +89,32 @@
       line-height: 1.5;
     }
     
+    /* ===== 按钮统一样式 ===== */
+    /* 基础按钮样式 - 所有按钮统一 */
+    .base-button {
+      padding: 12px 25px;
+      background-color: rgba(240, 230, 210, 0.92);
+      color: #4361ee;
+      text-decoration: none;
+      border-radius: 25px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    
+    .base-button:hover {
+      background-color: rgba(240, 230, 210, 1);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    
     /* 操作按钮区域 - 网格布局 */
     .product-actions {
       display: grid;
@@ -98,48 +124,19 @@
       padding: 20px 0;
     }
     
-    /* 订购按钮 */
-    .order-button {
-      padding: 15px 40px;
-      background-color: #4361ee;
-      color: white;
-      text-decoration: none;
-      border-radius: 30px;
-      font-size: 1.2rem;
-      font-weight: bold;
+    /* 系列导航按钮容器 - 水平排列 */
+    .series-nav-container {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      gap: 15px;
+    }
+    
+    /* 系列导航按钮 */
+    .series-nav-button {
+      flex: 1;
       text-align: center;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 10px rgba(67, 97, 238, 0.3);
-    }
-    
-    .order-button:hover {
-      background-color: #3a56d4;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(67, 97, 238, 0.4);
-    }
-    
-    /* 返回导航 */
-    .back-nav {
-      display: grid;
-      grid-template-columns: 1fr;
-      justify-items: center;
-    }
-    
-    .nav-button {
-      padding: 12px 25px;
-      background-color: rgba(240, 230, 210, 0.92);
-      color: #4361ee;
-      text-decoration: none;
-      border-radius: 25px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.3s ease;
-    }
-    
-    .nav-button:hover {
-      background-color: rgba(240, 230, 210, 1);
-      transform: translateY(-2px);
+      max-width: 200px;
     }
     
     /* 错误消息样式 */
@@ -164,10 +161,6 @@
         grid-template-columns: 1fr 1fr;
         justify-items: stretch;
         gap: 30px;
-      }
-      
-      .back-nav {
-        justify-items: end;
       }
     }
     
@@ -194,9 +187,14 @@
         font-size: 1.4rem;
       }
       
-      .order-button {
-        padding: 12px 30px;
-        font-size: 1.1rem;
+      /* 移动端系列导航按钮垂直排列 */
+      .series-nav-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .series-nav-button {
+        max-width: 100%;
       }
     }
     
@@ -216,6 +214,11 @@
       
       .product-specs li {
         padding: 10px;
+        font-size: 0.95rem;
+      }
+      
+      .base-button {
+        padding: 10px 20px;
         font-size: 0.95rem;
       }
     }
@@ -370,14 +373,36 @@
                 </div>`;
             }
             
+            // 系列顺序
+            const seriesOrder = ['a','b','c','d','e'];
+            const currentIndex = seriesOrder.indexOf(seriesId);
+            
+            // 添加上一系列/下一系列导航
+            let seriesNavHTML = '';
+            if (currentIndex > 0) {
+              const prevSeriesId = seriesOrder[currentIndex - 1];
+              seriesNavHTML += `
+                <a href="products.html?series=${prevSeriesId}" class="base-button series-nav-button">
+                  <i class="fas fa-arrow-left"></i> 上一系列
+                </a>`;
+            }
+            
+            if (currentIndex < seriesOrder.length - 1) {
+              const nextSeriesId = seriesOrder[currentIndex + 1];
+              seriesNavHTML += `
+                <a href="products.html?series=${nextSeriesId}" class="base-button series-nav-button">
+                  下一系列 <i class="fas fa-arrow-right"></i>
+                </a>`;
+            }
+            
             // 添加操作按钮
             productHTML += `
               <div class="product-actions">
-                <a class="order-button" href="pricing.html?product=${encodeURIComponent(product.name)}">立即订购</a>
-                <div class="back-nav">
-                  <a href="products.html?series=${seriesId}" class="nav-button back-button">
-                    <i class="fas fa-arrow-left"></i> 返回${series.name}
-                  </a>
+                <a class="base-button" href="pricing.html?product=${encodeURIComponent(product.name)}">
+                  <i class="fas fa-shopping-cart"></i> 立即订购
+                </a>
+                <div class="series-nav-container">
+                  ${seriesNavHTML}
                 </div>
               </div>`;
             
