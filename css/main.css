@@ -139,60 +139,6 @@ p {
   min-width: 140px;
 }
 
-/* ===== 按钮组网格布局 ===== */
-/* 2个按钮水平排列 */
-.button-group-horizontal {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  width: 100%;
-}
-
-/* 3个按钮水平排列 */
-.button-group-horizontal-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  width: 100%;
-}
-
-/* 6个按钮双行三列布局 (2×3) */
-.button-group-grid-2x3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, auto);
-  gap: 10px;
-  width: 100%;
-}
-
-/* 移动端适配 */
-@media (max-width: 767px) {
-  /* 默认情况下，移动端按钮组垂直排列 */
-  .button-group-responsive,
-  .button-group-horizontal,
-  .button-group-horizontal-3,
-  .button-group-asymmetric,
-  .product-card-buttons,
-  .form-buttons {
-    grid-template-columns: 1fr;
-  }
-  
-  /* 特定情况下保持水平排列 */
-  .button-group-horizontal.mobile-horizontal,
-  .button-group-horizontal-3.mobile-horizontal,
-  .button-group-grid-2x3 {
-    grid-template-columns: repeat(3, 1fr);
-    overflow-x: auto;
-    padding-bottom: 5px;
-  }
-  
-  /* 底部导航按钮组保持2×3网格 */
-  .footer-buttons {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, auto);
-    gap: 10px;
-  }
-  
   /* 确保按钮在移动端适当缩小 */
   .base-button,
   .series-card-cta,
