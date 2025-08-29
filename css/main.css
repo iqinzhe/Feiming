@@ -139,19 +139,6 @@ p {
   min-width: 140px;
 }
 
-  /* 确保按钮在移动端适当缩小 */
-  .base-button,
-  .series-card-cta,
-  .order-button,
-  .detail-button,
-  .nav-button {
-    padding: 6px 10px;
-    font-size: 0.8rem;
-    min-width: auto;
-    white-space: nowrap;
-  }
-}
-
 /* === 汉堡菜单优化 === */
 .menu {
   display: none;
@@ -227,42 +214,12 @@ p {
   transition: opacity 0.2s ease;
 }
 
-/* 移动端菜单进一步优化 */
-@media (max-width: 767px) {
-  .menu {
-    max-height: 50px; /* 移动端更小的高度 */
-    padding: 6px 0;
-  }
-  
-  .menu__link {
-    font-size: 0.9rem; /* 移动端字体更小 */
-    padding: 0 10px;
-    height: 32px;
-  }
-  
-  .menu__list {
-    gap: 6px;
-    padding: 0 10px;
-  }
-}
-
 /* 按钮文字 */
 .button-text {
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.5px;
   color: #333;
-}
-
-/* 小字说明 */
-.small-text { 
-  font-size: 0.875rem; 
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.tiny-text  { 
-  font-size: 0.75rem; 
-  color: rgba(255, 255, 255, 0.7);
 }
 
 /* 导航容器样式 */
