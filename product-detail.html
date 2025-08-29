@@ -90,51 +90,67 @@
       line-height: 1.5;
     }
     
-    /* 操作按钮区域 */
-    .product-actions {
-     display: grid;/* 这句必不可少 */
+   /* 操作按钮区域 */
+.product-actions {
+  display: grid; /* 必不可少 */
   grid-template-columns: repeat(3, 1fr);
-  place-items: center;  
+  place-items: center;
   gap: 5px;
   margin-top: auto;
 }
-    
-    /* 系列导航按钮容器 */
-    .series-nav-container {
+
+.product-actions button {
+  padding: 4px 8px;   /* 调整按钮边框与内容之间的间隙 */
+  border-radius: 6px; /* 可选，美化按钮 */
+}
+
+/* 系列导航按钮容器 */
+.series-nav-container {
   display: flex;
   justify-content: center; /* 整体居中 */
-  gap: 5x; /* 按钮之间间距 */
-} 
-     
-    /* ===== 额外内容区域样式 ===== */
-    .product-description {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 12px;
-      padding: 15px;
-      line-height: 1.7;
-      color: #ccc;
-    }
-    
-    .product-description h3 {
-      color: #fff;
-      margin-top: 0;
-    }
-    
-    /* 图片画廊 - 自适应填充 */
-    .product-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 5px;
-      margin-top: 10px;
-    }
-    
-    .product-gallery img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      max-height: 200px;
-      border-radius: 5px;
-    }
+  gap: 5px; /* 按钮之间间距 */
+}
+
+.series-nav-container button {
+  padding: 4px 10px;  /* 缩小内部间隙 */
+  border-radius: 6px;
+}
+
+/* 图标与文字的间距 */
+.product-actions button svg,
+.series-nav-container button svg {
+  margin-right: 4px; /* 图标与文字的距离 */
+}
+
+/* ===== 额外内容区域样式 ===== */
+.product-description {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 15px;
+  line-height: 1.7;
+  color: #ccc;
+}
+
+.product-description h3 {
+  color: #fff;
+  margin-top: 0;
+}
+
+/* 图片画廊 - 自适应填充 */
+.product-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.product-gallery img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  max-height: 200px;
+  border-radius: 5px;
+}
     
     /* ===== 响应式设计 ===== */
     @media (min-width: 768px) {
