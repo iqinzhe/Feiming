@@ -78,7 +78,7 @@ p {
 /* ===== 统一按钮样式 ===== */
 /* 基础按钮样式 - 所有按钮统一 */
 .base-button {
-  padding: 8px 16px; /* 减小内边距 */
+  padding: 5px 10px; /* 减小内边距 */
   background-color: rgba(240, 230, 210, 0.92);
   color: #4361ee;
   text-decoration: none;
