@@ -31,15 +31,17 @@
     gap: 10px;
     padding: 10px;
     max-width: 800px;
-    margin: 0 auto;
+    margin: 0 auto; /* 确保居中 */
     background: rgba(0,0,0,0.2); 
     padding: 7px; 
-    margin: 5px 0; 
+    margin: 5px auto; /* 修改为上下5px，左右auto居中 */
     border-radius: 8px; 
     height: 230px;
     overflow: hidden; 
     position: relative; 
     line-height: 1.2;
+    width: 95%; /* 添加宽度设置，确保居中生效 */
+    box-sizing: border-box; /* 确保padding不会影响宽度计算 */
   }
 
   .latest-news h3 {
@@ -47,6 +49,7 @@
     font-weight: bold;
     margin: 0 0 8px 0;
     color: #fff;
+    text-align: center; /* 标题也居中 */
   }
 
   .news-card { 
@@ -217,6 +220,11 @@
       grid-template-columns: repeat(3, 1fr); /* 3列 */
       grid-template-rows: repeat(2, auto);   /* 2行 */
       max-width: 600px;
+    }
+    
+    /* 确保最新动态栏在移动端也居中 */
+    .latest-news {
+      width: 90%; /* 移动端宽度调整 */
     }
   }
 </style>
