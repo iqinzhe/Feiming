@@ -12,6 +12,144 @@
   <!-- 添加字体图标 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
+    /* ===== 统一按钮样式 ===== */
+    /* 基础按钮样式 - 所有按钮统一 */
+    .base-button {
+      padding: 12px 25px;
+      background-color: rgba(240, 230, 210, 0.92);
+      color: #4361ee;
+      text-decoration: none;
+      border-radius: 25px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    
+    .base-button:hover {
+      background-color: rgba(240, 230, 210, 1);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    
+    /* 系列卡片CTA按钮 */
+    .series-card-cta {
+      padding: 12px 25px;
+      background-color: rgba(240, 230, 210, 0.92);
+      color: #4361ee;
+      text-decoration: none;
+      border-radius: 25px;
+      text-align: center;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      margin-top: auto;
+    }
+    
+    .series-card-cta:hover {
+      background-color: rgba(240, 230, 210, 1);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    
+    /* 产品卡片按钮容器 */
+    .product-card > div > div {
+      display: flex;
+      gap: 10px;
+      margin-top: auto;
+    }
+    
+    /* 订购按钮 */
+    .order-button {
+      padding: 12px 25px;
+      background-color: rgba(240, 230, 210, 0.92);
+      color: #4361ee;
+      text-decoration: none;
+      border-radius: 25px;
+      text-align: center;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      flex: 1;
+    }
+    
+    .order-button:hover {
+      background-color: rgba(240, 230, 210, 1);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    
+    /* 详情按钮 */
+    .detail-button {
+      padding: 12px 25px;
+      background-color: rgba(240, 230, 210, 0.92);
+      color: #4361ee;
+      text-decoration: none;
+      border-radius: 25px;
+      text-align: center;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      flex: 1;
+    }
+    
+    .detail-button:hover {
+      background-color: rgba(240, 230, 210, 1);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    
+    /* 系列导航按钮 */
+    .nav-button {
+      padding: 12px 25px;
+      background-color: rgba(240, 230, 210, 0.92);
+      color: #4361ee;
+      text-decoration: none;
+      border-radius: 25px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    
+    .nav-button:hover {
+      background-color: rgba(240, 230, 210, 1);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    
+    /* 底部导航按钮容器 */
+    .prev-next-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+    }
+    
     /* ===== 网格布局系统 ===== */
     /* 系列总览网格容器 - 响应式设计 */
     .series-overview {
@@ -27,7 +165,7 @@
     .series-card {
       display: flex;
       flex-direction: column;
-      aspect-ratio: 9/16; /* 固定宽高比 3:4 */
+      aspect-ratio: 3/4; /* 固定宽高比 3:4 */
       background: #5e5e5e;
       border-radius: 12px;
       overflow: hidden;
@@ -73,23 +211,6 @@
       margin: 0 0 15px 0;
       color: #ccc;
       flex-grow: 1; /* 描述区域可扩展 */
-    }
-
-    /* 系列卡片CTA按钮 */
-    .series-card-cta {
-      padding: 10px 15px;
-      background-color: rgba(240, 230, 210, 0.92);
-      color: #4361ee;
-      text-decoration: none;
-      border-radius: 20px;
-      text-align: center;
-      font-weight: bold;
-      transition: all 0.3s ease;
-    }
-
-    .series-card-cta:hover {
-      background-color: rgba(240, 230, 210, 1);
-      transform: scale(1.05);
     }
 
     /* ===== 产品列表网格 ===== */
@@ -145,73 +266,11 @@
       flex-grow: 1; /* 让描述区域扩展 */
     }
 
-    /* 产品按钮容器 */
-    .product-card > div > div {
-      display: flex;
-      gap: 10px; /* 按钮间距 */
-    }
-
-    /* 订购按钮 */
-    .order-button {
-      padding: 8px 15px;
-      background-color: #4361ee;
-      color: white;
-      text-decoration: none;
-      border-radius: 20px;
-      text-align: center;
-      flex: 1;
-      transition: background-color 0.3s;
-    }
-
-    .order-button:hover {
-      background-color: #3a56d4;
-    }
-
-    /* 详情按钮 */
-    .detail-button {
-      padding: 8px 15px;
-      background-color: transparent;
-      color: #4361ee;
-      text-decoration: none;
-      border: 1px solid #4361ee;
-      border-radius: 20px;
-      text-align: center;
-      flex: 1;
-      transition: all 0.3s;
-    }
-
-    .detail-button:hover {
-      background-color: #4361ee;
-      color: white;
-    }
-
     /* ===== 底部导航 ===== */
     .bottom-series-nav {
       padding: 20px;
       max-width: 1200px;
       margin: 0 auto;
-    }
-
-    .prev-next-nav {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .nav-button {
-      padding: 10px 20px;
-      background-color: rgba(240, 230, 210, 0.92);
-      color: #4361ee;
-      text-decoration: none;
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.3s;
-    }
-
-    .nav-button:hover {
-      background-color: rgba(240, 230, 210, 1);
-      transform: translateY(-2px);
     }
 
     /* ===== 响应式设计 ===== */
@@ -240,8 +299,9 @@
         gap: 10px;
       }
       
-      .nav-button {
-        justify-content: center;
+      /* 产品卡片按钮垂直排列 */
+      .product-card > div > div {
+        flex-direction: column;
       }
     }
 
@@ -375,7 +435,7 @@
                     <div class="series-card-content">
                         <h2 class="series-card-title">${series.name}</h2>
                         <p class="series-card-desc">${series.desc}</p>
-                        <div class="series-card-cta">查看全系列 →</div>
+                        <div class="series-card-cta">查看全系列 <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </a>
             `).join('');
@@ -438,9 +498,11 @@
                                 <h3>${m.name}</h3>
                                 <p>${m.features}</p>
                                 <div>
-                                    <a class="order-button" href="pricing.html?product=${encodeURIComponent(m.name)}">订购</a>
+                                    <a class="order-button" href="pricing.html?product=${encodeURIComponent(m.name)}">
+                                        <i class="fas fa-shopping-cart"></i> 订购
+                                    </a>
                                     <a class="detail-button" href="product-detail.html?series=${seriesId}&id=${m.id}">
-                                        查看详情
+                                        <i class="fas fa-info-circle"></i> 查看详情
                                     </a>
                                 </div>
                             </div>
