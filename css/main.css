@@ -122,11 +122,11 @@ p {
 
 /* 订购按钮 */
 .order-button {
-  padding: 8px 16px; /* 减小内边距 */
+  padding: 5px 10px; /* 减小内边距 */
   background-color: rgba(240, 230, 210, 0.92);
   color: #4361ee;
   text-decoration: none;
-  border-radius: 20px; /* 减小圆角 */
+  border-radius: 5px; /* 减小圆角 */
   text-align: center;
   font-weight: 600;
   transition: all 0.3s ease;
@@ -141,11 +141,11 @@ p {
 
 /* 详情按钮 */
 .detail-button {
-  padding: 8px 16px; /* 减小内边距 */
+  padding: 5px 10px; /* 减小内边距 */
   background-color: rgba(240, 230, 210, 0.92);
   color: #4361ee;
   text-decoration: none;
-  border-radius: 20px; /* 减小圆角 */
+  border-radius: 5px; /* 减小圆角 */
   text-align: center;
   font-weight: 600;
   transition: all 0.3s ease;
@@ -160,11 +160,11 @@ p {
 
 /* 系列导航按钮 */
 .nav-button {
-  padding: 8px 16px; /* 减小内边距 */
+  padding: 5px 10px; /* 减小内边距 */
   background-color: rgba(240, 230, 210, 0.92);
   color: #4361ee;
   text-decoration: none;
-  border-radius: 20px; /* 减小圆角 */
+  border-radius: 5px; /* 减小圆角 */
   display: inline-flex;
   align-items: center;
   justify-content: center;
