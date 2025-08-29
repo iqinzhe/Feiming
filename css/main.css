@@ -85,7 +85,7 @@ p {
 .order-button,
 .detail-button,
 .nav-button {
-  padding: 8px 16px;
+  padding: 5px 15px;
   background-color: var(--button-bg-color);
   color: var(--button-text-color);
   text-decoration: none;
