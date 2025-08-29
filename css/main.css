@@ -82,11 +82,11 @@ p {
   background-color: rgba(240, 230, 210, 0.92);
   color: #4361ee;
   text-decoration: none;
-  border-radius: 20px; /* 减小圆角 */
+  border-radius: 5px; /* 减小圆角 */
   display: inline-flex;
-  align-items: center;
+  align-items: row;
   justify-content: center;
-  gap: 6px; /* 减小图标间距 */
+  gap: 5px; /* 减小图标间距 */
   transition: all 0.3s ease;
   font-size: 0.9rem; /* 减小字体大小 */
   font-weight: 600;
