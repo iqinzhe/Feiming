@@ -140,7 +140,7 @@ p {
 }
 
 /* ===== 按钮组网格布局 ===== */
-/* 水平按钮组 - 2个按钮 */
+/* 2个按钮水平排列 */
 .button-group-horizontal {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -148,7 +148,7 @@ p {
   width: 100%;
 }
 
-/* 水平按钮组 - 3个按钮 */
+/* 3个按钮水平排列 */
 .button-group-horizontal-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -156,90 +156,99 @@ p {
   width: 100%;
 }
 
-/* 垂直按钮组 */
-.button-group-vertical {
+/* 6个按钮双行三列布局 (2×3) */
+.button-group-grid-2x3 {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, auto);
   gap: 10px;
   width: 100%;
 }
 
-/* 自适应按钮组 - 在大屏幕上水平，小屏幕上垂直 */
-.button-group-responsive {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+/* 移动端适配 */
+@media (max-width: 767px) {
+  /* 默认情况下，移动端按钮组垂直排列 */
+  .button-group-responsive,
+  .button-group-horizontal,
+  .button-group-horizontal-3,
+  .button-group-asymmetric,
+  .product-card-buttons,
+  .form-buttons {
+    grid-template-columns: 1fr;
+  }
+  
+  /* 特定情况下保持水平排列 */
+  .button-group-horizontal.mobile-horizontal,
+  .button-group-horizontal-3.mobile-horizontal,
+  .button-group-grid-2x3 {
+    grid-template-columns: repeat(3, 1fr);
+    overflow-x: auto;
+    padding-bottom: 5px;
+  }
+  
+  /* 底部导航按钮组保持2×3网格 */
+  .footer-buttons {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 10px;
+  }
+  
+  /* 确保按钮在移动端适当缩小 */
+  .base-button,
+  .series-card-cta,
+  .order-button,
+  .detail-button,
+  .nav-button {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    min-width: auto;
+    white-space: nowrap;
+  }
+}
+
+/* === 汉堡菜单优化 === */
+.menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
   width: 100%;
+  z-index: 999;
+  background: #000000 !important;
+  text-align: center;
+  padding: 8px 0;
+  max-height: 60px; /* 限制最大高度 */
+  overflow-x: auto; /* 允许水平滚动 */
+  overflow-y: hidden; /* 禁止垂直滚动 */
 }
 
-/* 不对称按钮组 - 主要按钮更大 */
-.button-group-asymmetric {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 12px;
-  width: 100%;
+.menu.show, 
+.menu--show { 
+  display: block; 
+  animation: slideDown 0.25s ease; 
 }
 
-/* 带间距的按钮容器 */
-.button-container {
-  display: grid;
-  gap: 15px;
-  padding: 20px 0;
+.menu__list {
+  display: flex !important;
+  flex-wrap: nowrap;
+  justify-content: flex-start; /* 改为左对齐以便滚动 */
+  gap: 8px;
+  padding: 0 12px;
+  margin: 0;
+  list-style: none;
+  width: max-content; /* 允许内容决定宽度 */
+  min-width: 100%; /* 但至少占满容器 */
 }
 
-/* 居中的按钮组 */
-.button-group-center {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, max-content));
-  gap: 15px;
-  justify-content: center;
-  padding: 20px 0;
+.menu__item { 
+  border: 0 !important; 
+  padding: 0 !important; 
+  margin: 0;
+  background: #000000 !important;
+  flex-shrink: 0; /* 防止项目被压缩 */
 }
 
-/* 靠右的按钮组 */
-.button-group-end {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, max-content));
-  gap: 15px;
-  justify-content: end;
-  padding: 20px 0;
-}
-
-/* 产品卡片内的按钮组 */
-.product-card-buttons {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: auto;
-  padding-top: 15px;
-}
-
-/* 导航按钮组 */
-.nav-button-group {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 15px;
-  margin: 30px 0;
-}
-
-/* 表单按钮组 */
-.form-buttons {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-top: 30px;
-}
-
-/* 页脚按钮组 */
-.footer-buttons {
-  display: grid;
-  grid-template-columns: repeat(4, auto);
-  gap: 15px;
-  justify-content: center;
-  margin: 20px 0;
-}
-
-/* 汉堡菜单导航链接样式 */
 .menu__link {
   display: inline-flex !important;
   align-items: center;
@@ -250,11 +259,11 @@ p {
   border: 1px solid var(--menu-chip-border);
   color: var(--primary-color);
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1rem; /* 稍微减小字体大小 */
   text-decoration: none;
   line-height: 1;
   transition: var(--transition);
-  width: max-content;
+  white-space: nowrap; /* 防止文字换行 */
 }
 
 .menu__link.active {
@@ -270,6 +279,25 @@ p {
   color: var(--primary-color);
   opacity: 0.8;
   transition: opacity 0.2s ease;
+}
+
+/* 移动端菜单进一步优化 */
+@media (max-width: 767px) {
+  .menu {
+    max-height: 50px; /* 移动端更小的高度 */
+    padding: 6px 0;
+  }
+  
+  .menu__link {
+    font-size: 0.9rem; /* 移动端字体更小 */
+    padding: 0 10px;
+    height: 32px;
+  }
+  
+  .menu__list {
+    gap: 6px;
+    padding: 0 10px;
+  }
 }
 
 /* 按钮文字 */
