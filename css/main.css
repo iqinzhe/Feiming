@@ -85,7 +85,7 @@ p {
 .order-button,
 .detail-button,
 .nav-button {
-  padding: 5px 15px;
+  padding: 5px 12px;
   background-color: var(--button-bg-color);
   color: var(--button-text-color);
   text-decoration: none;
@@ -93,7 +93,7 @@ p {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 5px;
   transition: var(--transition);
   font-size: 0.9rem;
   font-weight: 600;
