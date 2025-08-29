@@ -131,14 +131,14 @@
       flex-grow: 1;
     }
 
-    /* 产品按钮容器 */
-    .product-card > div > div {
-     grid-template-columns: repeat(2, 1fr)；
-     place-items: center;  
-      gap: 5px;
-      margin-top: auto;
-    }
-
+    /* 产品按钮容器 */  
+.product-card > div > div {
+  display:    grid;                     /* 这句必不可少 */
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;  
+  gap: 5px;
+  margin-top: auto;
+}
     /* ===== 底部导航 ===== */
     .bottom-series-nav {
       padding: 20px;
