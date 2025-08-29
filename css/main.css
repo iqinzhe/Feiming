@@ -75,81 +75,104 @@ p {
   color: rgba(255, 255, 255, 0.9) !important;
 }
 
-/* ==================================================
-   导航链接与按钮样式 - 集中管理
-================================================== */
-/* 链接样式 */
-a {
-  color: #4361ee !important;
+/* ===== 统一按钮样式 ===== */
+/* 基础按钮样式 - 所有按钮统一 */
+.base-button {
+  padding: 8px 16px; /* 减小内边距 */
+  background-color: rgba(240, 230, 210, 0.92);
+  color: #4361ee;
   text-decoration: none;
-  transition: color 0.3s ease;
-  font-size: var(--nav-link-font-size) !important;
-}
-
-a:hover {
-  color: #4a67b3 !important;
-  text-decoration: underline;
-}
-
-/* 导航按钮样式 */
-.nav-button {
+  border-radius: 20px; /* 减小圆角 */
   display: inline-flex;
   align-items: center;
-  padding: 10px 16px;
-  background-color: var(--button-bg-color);
-  color: #333 !important;
-  text-decoration: none;
-  border-radius: 25px;
-  font-weight: bold;
-  font-size: 14px;
+  justify-content: center;
+  gap: 6px; /* 减小图标间距 */
   transition: all 0.3s ease;
+  font-size: 0.9rem; /* 减小字体大小 */
+  font-weight: 600;
   border: none;
   cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
-.nav-button:hover {
-  background-color: rgba(240, 230, 210, 0.98);
+.base-button:hover {
+  background-color: rgba(240, 230, 210, 1);
   transform: translateY(-2px);
-  color: #333 !important;
-  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
-.back-button i {
-  margin-right: 6px;
-  font-size: 12px;
-}
-
-.prev-button i {
-  margin-right: 6px;
-  font-size: 12px;
-}
-
-.next-button i {
-  margin-left: 6px;
-  font-size: 12px;
-}
-
-/* 订购按钮样式 */
-.order-button {
-  display: inline-block;
-  padding: 12px 24px;
-  background-color: (240, 230, 210, 0.92);
-  color: #333 !important;
-  text-decoration: none;
-  border-radius: 25px;
-  font-weight: bold;
-  font-size: 16px;
-  transition: all 0.3s ease;
-  margin-bottom: 15px;
-  border: none;
-  cursor: pointer;
-}
-
-.order-button:hover {
+/* 系列卡片CTA按钮 */
+.series-card-cta {
+  padding: 8px 16px; /* 减小内边距 */
   background-color: rgba(240, 230, 210, 0.92);
-  transform: translateY(-2px);
-  color: #333 !important;
+  color: #4361ee;
   text-decoration: none;
+  border-radius: 20px; /* 减小圆角 */
+  text-align: center;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 0.9rem; /* 减小字体大小 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px; /* 减小图标间距 */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  margin-top: auto;
+}
+
+/* 订购按钮 */
+.order-button {
+  padding: 8px 16px; /* 减小内边距 */
+  background-color: rgba(240, 230, 210, 0.92);
+  color: #4361ee;
+  text-decoration: none;
+  border-radius: 20px; /* 减小圆角 */
+  text-align: center;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 0.9rem; /* 减小字体大小 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px; /* 减小图标间距 */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  flex: 1;
+}
+
+/* 详情按钮 */
+.detail-button {
+  padding: 8px 16px; /* 减小内边距 */
+  background-color: rgba(240, 230, 210, 0.92);
+  color: #4361ee;
+  text-decoration: none;
+  border-radius: 20px; /* 减小圆角 */
+  text-align: center;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 0.9rem; /* 减小字体大小 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px; /* 减小图标间距 */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  flex: 1;
+}
+
+/* 系列导航按钮 */
+.nav-button {
+  padding: 8px 16px; /* 减小内边距 */
+  background-color: rgba(240, 230, 210, 0.92);
+  color: #4361ee;
+  text-decoration: none;
+  border-radius: 20px; /* 减小圆角 */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px; /* 减小图标间距 */
+  transition: all 0.3s ease;
+  font-size: 0.9rem; /* 减小字体大小 */
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 /* 汉堡菜单导航链接样式 */
