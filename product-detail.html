@@ -141,16 +141,53 @@
     .product-gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 5px;
-      margin-top: 10px;
+      gap: 15px;
+      margin-top: 20px;
     }
 
     .product-gallery img {
       width: 100%;
       height: auto;
       object-fit: contain;
-      max-height: 200px;
-      border-radius: 5px;
+      max-height: 250px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    
+    .product-gallery img:hover {
+      transform: scale(1.03);
+    }
+    
+    /* 模态窗口样式 */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      overflow: auto;
+    }
+    
+    .modal-content {
+      display: block;
+      margin: auto;
+      max-width: 90%;
+      max-height: 80%;
+      margin-top: 5%;
+    }
+    
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
     }
     
     /* 内容区块样式 */
@@ -302,6 +339,11 @@
       .benefits-grid {
         grid-template-columns: 1fr;
       }
+      
+      .modal-content {
+        max-width: 95%;
+        max-height: 70%;
+      }
     }
     
     .error-message {
@@ -343,6 +385,12 @@
  
   <main>
     <div id="productDetail"></div>
+    
+    <!-- 图片模态窗口 -->
+    <div id="imageModal" class="modal">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="modalImage">
+    </div>
   </main>
 
   <!-- 底部栏 -->
@@ -362,6 +410,23 @@
         });
       }
 
+      // 图片模态窗口功能
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImage');
+      const closeModal = document.getElementsByClassName('close')[0];
+      
+      // 点击关闭按钮
+      closeModal.onclick = function() {
+        modal.style.display = "none";
+      }
+      
+      // 点击模态窗口外部关闭
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+      
       // 加载产品详情
       const urlParams = new URLSearchParams(window.location.search);
       const seriesId = urlParams.get('series');
@@ -398,6 +463,19 @@
                 </ul>
               </div>`;
             
+            // 处理多图片情况
+            if (product.images && product.images.length > 0) {
+              productHTML += `
+                <div class="content-section">
+                  <h3>产品图片</h3>
+                  <div class="product-gallery">
+                    ${product.images.map(img => `
+                      <img src="${img}" alt="${product.name}" onclick="openModal(this)">
+                    `).join('')}
+                  </div>
+                </div>`;
+            }
+            
             // 处理sections中的丰富内容
             if (product.sections && product.sections.length > 0) {
               product.sections.forEach(section => {
@@ -411,7 +489,7 @@
                             <p>${section.content.replace(/\n/g, '<br>')}</p>
                           </div>
                           <div class="image">
-                            <img src="${section.image}" alt="${section.title}">
+                            <img src="${section.image}" alt="${section.title}" onclick="openModal(this)">
                           </div>
                         </div>
                       </div>`;
@@ -438,13 +516,25 @@
                         <h3>${section.title}</h3>
                         <div class="comparison-section">
                           <div class="comparison-item">
-                            <img src="${section.images[0]}" alt="传统琴颈">
+                            <img src="${section.images[0]}" alt="传统琴颈" onclick="openModal(this)">
                             <p>传统琴颈</p>
                           </div>
                           <div class="comparison-item">
-                            <img src="${section.images[1]}" alt="扭曲琴颈">
+                            <img src="${section.images[1]}" alt="扭曲琴颈" onclick="openModal(this)">
                             <p>扭曲琴颈</p>
                           </div>
+                        </div>
+                      </div>`;
+                    break;
+                    
+                  case 'gallery':
+                    productHTML += `
+                      <div class="content-section">
+                        <h3>${section.title}</h3>
+                        <div class="product-gallery">
+                          ${section.images.map(img => `
+                            <img src="${img}" alt="${section.title}" onclick="openModal(this)">
+                          `).join('')}
                         </div>
                       </div>`;
                     break;
@@ -499,6 +589,12 @@
           .catch(err => {
             container.innerHTML = `<p class="error-message">加载失败: ${err.message}</p>`;
           });
+      }
+      
+      // 全局函数，用于打开模态窗口显示大图
+      window.openModal = function(imgElement) {
+        modal.style.display = "block";
+        modalImg.src = imgElement.src;
       }
     });
   </script>
