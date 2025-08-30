@@ -66,14 +66,15 @@
     background: rgba(255,255,255,0.05); 
   }
 
-  .news-date { 
+  .news-date {
     font-weight: normal;
     color: #aaa;
-    margin-bottom: 2px;
+    margin: 0 0 2px 0;  /* 清掉默认margin，只保留下方2px */
     font-family: 'Helvetica', 'Arial', sans-serif;
     font-size: 13px;
     letter-spacing: 0.2px;
-  }
+    line-height: 1.2;   /* 保持和整体一致，避免行距撑开 */
+}
 
   .read-more { 
     color: #4dabf7; 
