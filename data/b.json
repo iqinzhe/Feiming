@@ -8,10 +8,9 @@
       "models": [
         {
           "id": "b1",
-  "name": "连体4弦款",
-  "image": "images/b1.jpg",
-  "images": "images/b11.jpg",
-  ],
+          "name": "连体4弦款",
+          "image": "images/b1.jpg",
+          "images": ["images/b11.jpg", "images/b12.jpg"], // 改为数组，并确保数组格式正确
           "features": "4弦款（通颈一体）：以通颈结构提升振动传递与延音，低频紧致有力，中频穿透；琴颈与琴体过渡顺滑，上把位轻松；经典弦距与拾音布局兼顾拍弦与走位，适合摇滚、放克与流行现场，稳定性与音准维护简单。",
           "specs": [
             "琴体: 桤木",
@@ -22,11 +21,11 @@
           ],
           "ctaColor": "rgba(76,175,80,0.7)"
         },
-  {
+        {
           "id": "b2",
           "name": "连体5弦款",
-          "image": "images/b2.jpg",
-          "image": "images/b12.jpg",
+          "image": "images/b2.jpg", // 主图
+          "images": ["images/b12.jpg"], // 额外的图片用数组
           "features": "5弦款（低B扩展）：在4弦基础上加入低B，音域下探更深；通颈设计带来均衡响应与更长延音，舞台音色更沉稳；加大琴桥与加固指板设计提升下弦张力与清晰度，适合金属、现代流行与录音需求。",
           "specs": [
             "琴体: 桤木",
