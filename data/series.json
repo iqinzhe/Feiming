@@ -16,7 +16,7 @@
 "id": "c",
 "name": "Series C",
 "cover": "images/series-c.jpg",
-"description": "迷你贝斯作为一件能够持续学习练习，并接近标准弦长贝斯音色的乐器，我们的 Series C 经过特别设计。"
+"description": "多音阶混合弦长无头通颈贝斯，兼顾演奏舒适度与音色稳定性。无头结构带来轻量化与舞台平衡，混合弦长确保低频紧致有力，高频清晰灵活。"
 },
 {
 "id": "d",
@@ -28,7 +28,14 @@
 "id": "e",
 "name": "Series E",
 "cover": "images/series-e.jpg",
+"description": "精灵远行系列--以经典 P-Bass、M-Bass 蓝本，缩小至 23.5 英寸弦长，搭配尼龙心铜弦，专为入门学习与旅行演奏设计。"
+},
+{
+"id": "f",
+"name": "Series F",
+"cover": "images/series-f.jpg",
 "description": "良好的吉他设计在于统一与变化的平衡。我们形体多变，适应不同的演奏姿势，又保持固有的设计语言，使整体独具辨识度。"
 }
 ]
+
 }
