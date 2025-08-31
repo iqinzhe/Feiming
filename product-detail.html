@@ -109,23 +109,26 @@
       color: #eee;
     }
 
-    /* 底部按钮区域 */
-    .bottom-series-nav {
-    display: grid;      /* 这句必不可少 */
-    grid-template-columns: repeat(3, 1fr);
-    place-items: center;  
-    gap: 5px;
-    margin-top: auto;
-}
-    .prev-next-nav {
-      display: flex;
-      display: flex;
+/* 系列导航按钮容器 */
+.series-nav-container {
+  display: flex;
   justify-content: center; /* 整体居中 */
-  gap: 20px;               /* 按钮之间间距 */
+  gap: 50px; /* 按钮之间间距 */
+  margin: 10px 0;
 }
-     .prev-next-nav {
-      text-align: right;
-    }
+    
+/* 系列导航按钮容器 */
+.series-nav-container {
+  display: flex;
+  justify-content: center; /* 整体居中 */
+  gap: 50px; /* 按钮之间间距 */
+  margin: 10px 0;
+}
+
+.series-nav-container button {
+  padding: 5px 15px;  /* 缩小内部间隙 */
+  border-radius: 6px;
+}
 
     /* 模态窗口样式 */
     .modal {
