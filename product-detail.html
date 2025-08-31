@@ -109,13 +109,19 @@
       color: #eee;
     }
 
-    /* 立即订购按钮 */
+    /* 按钮容器优化 */
     .product-actions {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      place-items: center;
-      gap: 15px;
-      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+      margin-top: 40px;
+    }
+
+    .order-button-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
     }
 
     /* 系列导航按钮容器 */
@@ -123,7 +129,7 @@
       display: flex;
       justify-content: center;
       gap: 20px;
-      margin-top: 30px;
+      width: 100%;
       flex-wrap: wrap;
     }
 
@@ -156,6 +162,18 @@
       font-size: 40px;
       font-weight: bold;
       cursor: pointer;
+    }
+
+    /* 响应式调整 */
+    @media (max-width: 768px) {
+      .series-nav-container {
+        gap: 10px;
+      }
+      
+      .series-nav-container .base-button {
+        min-width: 120px;
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
@@ -232,27 +250,36 @@
             // 系列导航按钮
             const seriesOrder = ['a','b','c','d','e','f'];
             const currentIndex = seriesOrder.indexOf(seriesId);
-            let seriesNavHTML = '';
+            let orderButtonHTML = '';
+            let navButtonsHTML = '';
 
+            // 立即订购按钮（单独一行）
+            orderButtonHTML = `
+              <div class="order-button-container">
+                <a class="base-button primary large order-button" href="pricing.html?product=${encodeURIComponent(product.name)}">
+                  立即订购
+                </a>
+              </div>`;
+
+            // 导航按钮（另一行）
             if (currentIndex > 0) {
               const prevSeriesId = seriesOrder[currentIndex - 1];
-              seriesNavHTML += `<a href="products.html?series=${prevSeriesId}" class="base-button nav-button">← 上一系列</a>`;
+              navButtonsHTML += `<a href="products.html?series=${prevSeriesId}" class="base-button nav-button">← 上一系列</a>`;
             } else {
-              seriesNavHTML += `<span></span>`;
+              navButtonsHTML += `<span class="placeholder-button"></span>`;
             }
-
-            seriesNavHTML += `<a class="base-button primary order-button" href="pricing.html?product=${encodeURIComponent(product.name)}">立即订购</a>`;
 
             if (currentIndex < seriesOrder.length - 1) {
               const nextSeriesId = seriesOrder[currentIndex + 1];
-              seriesNavHTML += `<a href="products.html?series=${nextSeriesId}" class="base-button nav-button">下一系列 →</a>`;
+              navButtonsHTML += `<a href="products.html?series=${nextSeriesId}" class="base-button nav-button">下一系列 →</a>`;
             } else {
-              seriesNavHTML += `<span></span>`;
+              navButtonsHTML += `<span class="placeholder-button"></span>`;
             }
 
             productHTML += `
               <div class="product-actions">
-                <div class="series-nav-container">${seriesNavHTML}</div>
+                ${orderButtonHTML}
+                <div class="series-nav-container">${navButtonsHTML}</div>
               </div>`;
 
             container.innerHTML = productHTML;
