@@ -24,89 +24,92 @@
 <link href="/manifest.json" rel="manifest"/>
 <link href="css/main.css" rel="stylesheet"/>
 <style>
-  /* ===== 首页动态（单列 Grid）===== */
-  .latest-news {
-    display: grid;
-    grid-template-columns: 1fr; /* 单列 */
-    gap: 10px;
-    padding: 10px;
-    max-width: 1200px;
-    margin: 0 auto;/*居中*/
-    background: rgba(0,0,0,0.2); 
-    padding: 7px; 
-    margin: 5px auto; /* 修改为上下5px，左右auto居中 */
-    border-radius: 8px; 
-    height: 230px;
-    overflow: hidden; 
-    position: relative; 
-    line-height: 1.2;
-    width: 100%; /* 添加宽度设置，确保居中生效 */
-    box-sizing: border-box; /* 确保padding不会影响宽度计算 */
-  }
-  
+/* ===== 首页动态（广告窗口样式，Block 版）===== */
+.latest-news {
+  max-width: 1200px;
+  margin: 5px auto;              /* 上下5px，左右居中 */
+  background: rgba(0,0,0,0.2);   /* 半透明背景 */
+  border-radius: 8px;
+  height: 230px;                 /* 固定高度，可根据需要删掉 */
+  overflow: hidden;
+  position: relative;
+  line-height: 1.2;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 7px;                  /* 内边距 */
+}
+
+/* 标题 */
 .latest-news h3 {
   font-size: 1.4rem;
   font-weight: bold;
-  margin: 10px 0 0 0; /* 调整边距，避免被裁剪 */
+  margin: 10px 0 8px 0;          /* 顶部留点空，下方8px */
   color: #fff;
-  text-align: left;   /* 标题靠左 */
-  padding-left: 25px; /* 加内边距，避免贴边 */
+  text-align: left;              /* 标题靠左 */
+  padding-left: 25px;            /* 左内边距，避免贴边 */
 }
-  .news-card { 
-    display: block; 
-    padding: 8px 10px;
-    border-radius: 6px; 
-    color: inherit; 
-    text-decoration: none; 
-    transition: background 0.2s; 
-    margin-bottom: 5px;
-  }
 
-  .news-card:hover { 
-    background: rgba(255,255,255,0.05); 
-  }
+/* 新闻卡片 */
+.news-card { 
+  display: block; 
+  padding: 8px 10px;
+  border-radius: 6px; 
+  color: inherit; 
+  text-decoration: none; 
+  transition: background 0.2s; 
+  margin-bottom: 5px;
+}
 
+.news-card:hover { 
+  background: rgba(255,255,255,0.05); 
+}
+
+/* 日期 */
 .news-date {
   font-weight: normal;
   color: #aaa;
-  margin: 0 0 2px 0;  /* 只留下面 2px 间距 */
+  margin: 0 0 2px 0;             /* 只留下面 2px 间距 */
   font-family: 'Helvetica', 'Arial', sans-serif;
   font-size: 13px;
   letter-spacing: 0.2px;
   line-height: 1.2;
 }
 
+/* 清掉 h4 和 p 默认间距，避免撑开 */
 .latest-news h4,
 .latest-news p {
-  margin: 0; /* 去掉默认的上下外边距，消除大间隙 */
+  margin: 0;
 }
 
-  .read-more { 
-    color: #4dabf7; 
-    text-decoration: none; 
-    font-size: 12px; 
-    display: inline-block; 
-    margin: 0 10px 0 10px;
-  }
+/* 描述 */
+.news-desc { 
+  display: -webkit-box; 
+  -webkit-line-clamp: 3; 
+  -webkit-box-orient: vertical; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  line-height: 1.5;
+  margin-bottom: 1px;
+}
 
-  .news-desc { 
-    display: -webkit-box; 
-    -webkit-line-clamp: 3; 
-    -webkit-box-orient: vertical; 
-    overflow: hidden; 
-    text-overflow: ellipsis; 
-    line-height: 1.5;
-    max-height: calc(1em * 2);
-    margin-bottom: 1px;
-  }
+/* 阅读更多 */
+.read-more { 
+  color: #4dabf7; 
+  text-decoration: none; 
+  font-size: 12px; 
+  display: inline-block; 
+  margin: 0 10px;
+}
 
-  .view-all-news {
-    display: block;
-    text-align: right;
-    margin-top: 10px;
-    color: #4dabf7;
-    font-size: 14px;
-  }
+/* 底部“查看更多” */
+.view-all-news {
+  display: block;
+  text-align: right;
+  margin-top: 10px;
+  color: #4dabf7;
+  font-size: 14px;
+}
+
 
   /* ===== 系列卡片总览（双列 Grid） ===== */
   body.ax-gradient-bg .series-overview {
