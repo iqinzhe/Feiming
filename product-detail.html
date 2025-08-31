@@ -212,21 +212,19 @@
 
             let productHTML = `
               <div class="product-hero">
-                <img id="mainImage" src="${product.image}" alt="${product.name}">
+                <div>
+                  <img id="mainImage" src="${product.image}" alt="${product.name}" onclick="openModal(this)">
+                  <div class="thumbnail-container">
+                    ${product.images.map((img, i) => `
+                      <img src="${img}" alt="${product.name}" class="${i===0?'active':''}" onclick="setMainImage(this)">
+                    `).join('')}
+                  </div>
+                </div>
                 <div>
                   <h1>${product.name}</h1>
                   <p>${product.features}</p>
                 </div>
               </div>`;
-
-            if (product.images && product.images.length > 0) {
-              productHTML += `
-                <div class="thumbnail-container">
-                  ${product.images.map((img, i) => `
-                    <img src="${img}" alt="${product.name}" class="${i===0?'active':''}" onclick="setMainImage(this)">
-                  `).join('')}
-                </div>`;
-            }
 
             productHTML += `
               <div class="product-specs">
