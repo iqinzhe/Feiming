@@ -43,15 +43,15 @@
     width: 100%; /* 添加宽度设置，确保居中生效 */
     box-sizing: border-box; /* 确保padding不会影响宽度计算 */
   }
-
-  .latest-news h3 {
-    font-size: 1.4rem;
-    font-weight: bold;
-    margin: 0 0 8px 0;
-    color: #fff;
-    text-align: center; /* 标题也居中 */
-  }
-
+  
+.latest-news h3 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+  color: #fff;
+  text-align: left;   /* 标题靠左 */
+  padding-left: 10px; /* 加内边距，避免贴边 */
+}
   .news-card { 
     display: block; 
     padding: 8px 10px;
@@ -66,14 +66,19 @@
     background: rgba(255,255,255,0.05); 
   }
 
-  .news-date {
-    font-weight: normal;
-    color: #aaa;
-    margin: -2px 0 -2px 0;  /* 清掉默认margin，只保留下方2px */
-    font-family: 'Helvetica', 'Arial', sans-serif;
-    font-size: 13px;
-    letter-spacing: 0.2px;
-    line-height: 1.2;   /* 保持和整体一致，避免行距撑开 */
+.news-date {
+  font-weight: normal;
+  color: #aaa;
+  margin: 0 0 2px 0;  /* 只留下面 2px 间距 */
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.2px;
+  line-height: 1.2;
+}
+
+.latest-news h4,
+.latest-news p {
+  margin: 0; /* 去掉默认的上下外边距，消除大间隙 */
 }
 
   .read-more { 
