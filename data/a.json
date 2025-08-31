@@ -22,6 +22,34 @@
             "琴桥: 复古式四弦鞍",
             "弦长: 34\""
           ],
+           {
+              "type": "benefits",
+              "title": "核心优势",
+              "items": [
+                {
+                  "title": "自然手腕位置",
+                  "desc": "减少张力，提高舒适度"
+                },
+                {
+                  "title": "延长演奏时间",
+                  "desc": "长时间演奏不易疲劳"
+                },
+                {
+                  "title": "更好的指板触达",
+                  "desc": "复杂乐句演奏更轻松"
+                },
+                {
+                  "title": "独特工艺",
+                  "desc": "精密设计，精工制作"
+                }
+              ]
+            },
+            {
+              "type": "comparison",
+              "title": "传统琴颈 vs 扭曲琴颈",
+              "images": [
+                "images/d3.jpg",
+                "images/d2.jpg"
           "ctaColor": "rgba(76,175,80,0.7)"
         },
         {
