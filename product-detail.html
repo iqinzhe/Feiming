@@ -110,45 +110,20 @@
     }
 
     /* 底部按钮区域 */
-    .product-actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      align-items: center;
-      margin-top: 20px;
-      gap: 10px;
-    }
-
-    .product-actions a {
-      text-align: center;
-      padding: 10px 20px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-      color: #1e90ff; /* 宝石蓝 */
-      background: transparent;
-    }
-
-    .product-actions a.base-button {
-      background: rgba(255, 255, 255, 0.1);
-      color: #1e90ff; /* 宝石蓝 */
-    }
-
-    .series-nav-container {
+    .bottom-series-nav {
+    display: grid;      /* 这句必不可少 */
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;  
+    gap: 5px;
+    margin-top: auto;
+}
+    .prev-next-nav {
       display: flex;
-      justify-content: space-between;
-      grid-column: span 3;
-      width: 100%;
-    }
-
-    .series-nav-container a {
-      flex: 1;
-    }
-
-    .series-nav-container .prev-button {
-      text-align: left;
-    }
-
-    .series-nav-container .next-button {
+      display: flex;
+  justify-content: center; /* 整体居中 */
+  gap: 20px;               /* 按钮之间间距 */
+}
+     .prev-next-nav {
       text-align: right;
     }
 
