@@ -22,6 +22,7 @@
               "title": "什么是扭曲琴颈？",
               "content": "扭曲琴颈是一种精密工程设计，遵循您手腕和手指的自然运动轨迹。与传统琴颈不同，它会根据您的演奏姿势自动倾斜，减少疲劳感并提高舒适度。",
               "image": "images/d3.jpg",
+              "images": ["images/b12.jpg"],
               "layout": "left"
             },
             {
@@ -50,8 +51,8 @@
               "type": "comparison",
               "title": "传统琴颈 vs 扭曲琴颈",
               "images": [
-                "images/traditional-neck.jpg",
-                "images/D2.jpg"
+                "images/d3.jpg",
+                "images/d2.jpg"
               ]
             }
           ]
