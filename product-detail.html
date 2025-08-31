@@ -9,11 +9,12 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
   <link rel="manifest" href="/icons/manifest.json">
   <link href="css/main.css" rel="stylesheet"/>
-  <!-- 添加字体图标 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    /* ===== 产品详情网格布局系统 ===== */
-    /* 主容器 - 单列网格布局 */
+    body.ax-gradient-bg {
+      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+      font-family: Arial, sans-serif;
+    }
+
     #productDetail {
       display: grid;
       grid-template-columns: 1fr;
@@ -22,16 +23,14 @@
       margin: 0 auto;
       padding: 15px;
     }
-    
-    /* 产品主图区域 - 自适应 */
+
     .product-hero {
       display: grid;
       grid-template-columns: 1fr;
       gap: 20px;
       align-items: start;
     }
-    
-    /* 产品图片 - 自适应填充 */
+
     .product-hero img {
       width: 100%;
       height: auto;
@@ -40,125 +39,123 @@
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
-    
-    /* 产品标题和描述 */
+
     .product-hero h1 {
       font-size: 2.2rem;
       margin: 0 0 15px 0;
       color: #fff;
-      line-height: 1.3;
     }
-    
+
     .product-hero p {
       font-size: 1.1rem;
       line-height: 1.6;
       color: #ccc;
       margin: 0;
     }
-    
-    /* 规格参数区域 - 网格布局 */
+
+    /* 横向轮播容器 */
+    .carousel-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.4s ease;
+    }
+
+    .carousel-track img {
+      width: 100%;
+      max-height: 280px;
+      object-fit: contain;
+      flex-shrink: 0;
+      cursor: pointer;
+      border-radius: 8px;
+      margin: 0 5px;
+    }
+
+    .carousel-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.4);
+      border: none;
+      color: #fff;
+      font-size: 28px;
+      cursor: pointer;
+      padding: 15px;
+      border-radius: 50%;
+      z-index: 2;
+      transition: background 0.3s;
+    }
+
+    .carousel-button:hover {
+      background: rgba(0,0,0,0.6);
+    }
+
+    .carousel-button.left { left: 10px; }
+    .carousel-button.right { right: 10px; }
+
+    @media (max-width: 768px) {
+      .carousel-button {
+        font-size: 32px;
+        padding: 20px;
+      }
+    }
+
+    /* 产品规格 */
     .product-specs {
       background: rgba(255, 255, 255, 0.05);
       border-radius: 12px;
       padding: 25px;
     }
-    
+
     .product-specs h3 {
       font-size: 1.6rem;
       margin: 0 0 20px 0;
       color: #fff;
-      padding-bottom: 10px;
       border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 10px;
     }
-    
-    /* 规格列表 - 自适应网格 */
+
     .product-specs ul {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 12px;
+      list-style: none;
       margin: 0;
       padding: 0;
-      list-style: none;
     }
-    
+
     .product-specs li {
-      padding: 12px 15px;
       background: rgba(255, 255, 255, 0.08);
+      padding: 12px 15px;
       border-radius: 8px;
       color: #eee;
-      font-size: 1rem;
-      line-height: 1.5;
     }
-    
-    /* 立即订购按钮 */
+
     .product-actions {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      place-items: center;
-      gap: 15px;
-      margin-top: auto;
-    }
-
-    .product-actions button {
-      padding: 5px 15px;
-      border-radius: 3px;
-    }
-
-    /* 系列导航按钮容器 */
-    .series-nav-container {
       display: flex;
-      justify-content: center;
-      gap: 50px;
-      margin-top: auto;
-    }
-
-    .series-nav-container button {
-      padding: 5px 15px;
-      border-radius: 6px;
-    }
-
-    /* 图标与文字的间距 */
-    .product-actions button svg,
-    .series-nav-container button svg {
-      margin-right: 5px;
-    }
-
-    /* ===== 额外内容区域样式 ===== */
-    .product-description {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 12px;
-      padding: 15px;
-      line-height: 1.7;
-      color: #ccc;
-    }
-
-    .product-description h3 {
-      color: #fff;
-      margin-top: 0;
-    }
-
-    /* 图片画廊 - 自适应填充 */
-    .product-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 15px;
+      justify-content: space-between;
+      align-items: center;
       margin-top: 20px;
     }
 
-    .product-gallery img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      max-height: 250px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
+    .product-actions a.base-button {
+      padding: 10px 20px;
+      background: #4dabf7;
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
     }
-    
-    .product-gallery img:hover {
-      transform: scale(1.03);
+
+    .series-nav-container a {
+      margin: 0 10px;
+      color: #fff;
+      text-decoration: none;
     }
-    
+
     /* 模态窗口样式 */
     .modal {
       display: none;
@@ -168,10 +165,10 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.9);
+      background-color: rgba(0,0,0,0.9);
       overflow: auto;
     }
-    
+
     .modal-content {
       display: block;
       margin: auto;
@@ -179,7 +176,7 @@
       max-height: 80%;
       margin-top: 5%;
     }
-    
+
     .close {
       position: absolute;
       top: 15px;
@@ -189,245 +186,42 @@
       font-weight: bold;
       cursor: pointer;
     }
-    
-    /* 内容区块样式 */
-    .content-section {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 12px;
-      padding: 25px;
-      margin-bottom: 20px;
-    }
-    
-    .content-section h3 {
-      color: #fff;
-      margin-top: 0;
-      padding-bottom: 10px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    
-    /* 图文并排布局 */
-    .text-with-image {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-      align-items: center;
-    }
-    
-    @media (min-width: 768px) {
-      .text-with-image {
-        grid-template-columns: 1fr 1fr;
-      }
-      
-      .text-with-image.layout-left .content {
-        order: 1;
-      }
-      
-      .text-with-image.layout-left .image {
-        order: 2;
-      }
-    }
-    
-    .text-with-image .image img {
-      width: 100%;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-    
-    /* 优势列表 */
-    .benefits-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
-    }
-    
-    .benefit-item {
-      background: rgba(255, 255, 255, 0.08);
-      padding: 20px;
-      border-radius: 8px;
-    }
-    
-    .benefit-item h4 {
-      color: #fff;
-      margin-top: 0;
-      margin-bottom: 10px;
-    }
-    
-    .benefit-item p {
-      color: #ccc;
-      margin: 0;
-    }
-    
-    /* 对比区域 */
-    .comparison-section {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-    
-    @media (min-width: 768px) {
-      .comparison-section {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-    
-    .comparison-item {
-      text-align: center;
-    }
-    
-    .comparison-item img {
-      width: 100%;
-      max-height: 250px;
-      object-fit: contain;
-      border-radius: 8px;
-    }
-    
-    .comparison-item p {
-      margin-top: 10px;
-      color: #ccc;
-      font-weight: bold;
-    }
-    
-    /* ===== 响应式设计 ===== */
-    @media (min-width: 768px) {
-      .product-hero {
-        grid-template-columns: 2fr 2fr;
-      }
-      
-      .product-actions {
-        grid-template-columns: 1fr 1fr;
-        justify-items: stretch;
-        gap: 30px;
-      }
-    }
-    
-    @media (max-width: 767px) {
-      #productDetail {
-        gap: 20px;
-        padding: 15px;
-      }
-      
-      .product-hero h1 {
-        font-size: 1.8rem;
-      }
-      
-      .product-hero img {
-        max-height: 300px;
-      }
-      
-      .product-specs {
-        padding: 20px;
-      }
-      
-      .product-specs ul {
-        grid-template-columns: 1fr;
-      }
-      
-      .product-specs h3 {
-        font-size: 1.4rem;
-      }
-      
-      .series-nav-container {
-        flex-direction: row;
-        align-items: center;
-      }
-      
-      .product-gallery img {
-        max-height: 150px;
-      }
-      
-      .benefits-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .modal-content {
-        max-width: 95%;
-        max-height: 70%;
-      }
-    }
-    
-    .error-message {
-      color: #ff6b6b;
-      text-align: center;
-      padding: 40px;
-    }
   </style>
 </head>
-
 <body class="ax-gradient-bg">
-  <!-- 顶部栏 -->
   <header class="top-bar">
     <div class="top-bar__row">
-      <!-- 汉堡菜单按钮 -->
       <div class="menu__button" id="hamburger">☰</div>
-      
-      <!-- logo + 宣传语 -->
       <div class="top-bar__center">
         <img src="images/logo.png" alt="AX斧标贝斯 Logo" class="top-bar__logo">
         <p class="top-bar__slogan">每次拨弦都是心灵的飞舞共鸣！</p>
       </div>
-
-      <!-- 分享按钮 -->
       <div class="top-bar__share" id="shareBtn">⫶</div>
     </div>
-
-    <!-- 汉堡菜单展开内容 -->
-    <nav class="menu" id="menu">
-      <ul class="menu__list">
-        <li class="menu__item"><a href="index.html" class="menu__link">首页</a></li>
-        <li class="menu__item"><a href="products.html?series=d" class="menu__link">特色</a></li>
-        <li class="menu__item"><a href="products.html" class="menu__link">产品</a></li>
-        <li class="menu__item"><a href="support.html" class="menu__link">支持</a></li>
-        <li class="menu__item"><a href="pricing.html" class="menu__link">订购</a></li>
-      </ul>
-    </nav>
   </header>
- 
+
   <main>
     <div id="productDetail"></div>
-    
-    <!-- 图片模态窗口 -->
     <div id="imageModal" class="modal">
       <span class="close">&times;</span>
       <img class="modal-content" id="modalImage">
     </div>
   </main>
 
-  <!-- 底部栏 -->
   <footer class="site-footer" id="footerToTop">
     <span class="site-footer__label">返回顶部</span>
     <img alt="AX斧标贝斯 Logo" class="site-footer__logo" src="images/logo.png"/>
   </footer>
-  
-  <script src="/js/main.js"></script>
+
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // 返回顶部功能
-      const footerToTop = document.getElementById('footerToTop');
-      if (footerToTop) {
-        footerToTop.addEventListener('click', function() {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-      }
-
-      // 图片模态窗口功能
       const modal = document.getElementById('imageModal');
       const modalImg = document.getElementById('modalImage');
       const closeModal = document.getElementsByClassName('close')[0];
-      
-      // 点击关闭按钮
-      closeModal.onclick = function() {
-        modal.style.display = "none";
-      }
-      
-      // 点击模态窗口外部关闭
-      window.onclick = function(event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
-        }
-      }
-      
-      // 加载产品详情
+
+      closeModal.onclick = function() { modal.style.display = "none"; };
+      window.onclick = function(event) { if (event.target == modal) modal.style.display = "none"; };
+
       const urlParams = new URLSearchParams(window.location.search);
       const seriesId = urlParams.get('series');
       const productId = urlParams.get('id');
@@ -436,18 +230,12 @@
       if (!seriesId || !productId) {
         container.innerHTML = `<p class="error-message">参数缺失，无法加载产品详情。</p>`;
       } else {
-        const jsonUrl = `data/${seriesId}.json?t=${Date.now()}`;
-        fetch(jsonUrl)
-          .then(res => {
-            if (!res.ok) throw new Error(`HTTP ${res.status}`);
-            return res.json();
-          })
+        fetch(`data/${seriesId}.json?t=${Date.now()}`)
+          .then(res => res.json())
           .then(data => {
             const series = data.series[0];
             const product = series.models.find(m => m.id === productId);
-            if (!product) throw new Error('找不到对应的产品');
 
-            // 构建产品详情HTML
             let productHTML = `
               <div class="product-hero">
                 <img src="${product.image}" alt="${product.name}">
@@ -455,143 +243,50 @@
                   <h1>${product.name}</h1>
                   <p>${product.features}</p>
                 </div>
-              </div>
-              <div class="product-specs">
-                <h3>规格参数</h3>
-                <ul>
-                  ${product.specs.map(s => `<li>${s}</li>`).join('')}
-                </ul>
               </div>`;
-            
-            // 处理多图片情况
+
             if (product.images && product.images.length > 0) {
               productHTML += `
-                <div class="content-section">
-                  <h3>产品图片</h3>
-                  <div class="product-gallery">
-                    ${product.images.map(img => `
-                      <img src="${img}" alt="${product.name}" onclick="openModal(this)">
-                    `).join('')}
+                <div class="carousel-container">
+                  <button class="carousel-button left">&#60;</button>
+                  <div class="carousel-track">
+                    ${product.images.map(img => `<img src="${img}" alt="${product.name}" onclick="openModal(this)">`).join('')}
                   </div>
+                  <button class="carousel-button right">&#62;</button>
                 </div>`;
             }
-            
-            // 处理sections中的丰富内容
-            if (product.sections && product.sections.length > 0) {
-              product.sections.forEach(section => {
-                switch(section.type) {
-                  case 'text-with-image':
-                    productHTML += `
-                      <div class="content-section">
-                        <h3>${section.title}</h3>
-                        <div class="text-with-image ${section.layout ? 'layout-' + section.layout : ''}">
-                          <div class="content">
-                            <p>${section.content.replace(/\n/g, '<br>')}</p>
-                          </div>
-                          <div class="image">
-                            <img src="${section.image}" alt="${section.title}" onclick="openModal(this)">
-                          </div>
-                        </div>
-                      </div>`;
-                    break;
-                    
-                  case 'benefits':
-                    productHTML += `
-                      <div class="content-section">
-                        <h3>${section.title}</h3>
-                        <div class="benefits-grid">
-                          ${section.items.map(item => `
-                            <div class="benefit-item">
-                              <h4>${item.title}</h4>
-                              <p>${item.desc}</p>
-                            </div>
-                          `).join('')}
-                        </div>
-                      </div>`;
-                    break;
-                    
-                  case 'comparison':
-                    productHTML += `
-                      <div class="content-section">
-                        <h3>${section.title}</h3>
-                        <div class="comparison-section">
-                          <div class="comparison-item">
-                            <img src="${section.images[0]}" alt="传统琴颈" onclick="openModal(this)">
-                            <p>传统琴颈</p>
-                          </div>
-                          <div class="comparison-item">
-                            <img src="${section.images[1]}" alt="扭曲琴颈" onclick="openModal(this)">
-                            <p>扭曲琴颈</p>
-                          </div>
-                        </div>
-                      </div>`;
-                    break;
-                    
-                  case 'gallery':
-                    productHTML += `
-                      <div class="content-section">
-                        <h3>${section.title}</h3>
-                        <div class="product-gallery">
-                          ${section.images.map(img => `
-                            <img src="${img}" alt="${section.title}" onclick="openModal(this)">
-                          `).join('')}
-                        </div>
-                      </div>`;
-                    break;
-                }
-              });
-            }
-            
-            // 如果有详细描述，添加描述区域
-            if (product.description) {
-              productHTML += `
-                <div class="product-description">
-                  <h3>产品详情</h3>
-                  <p>${product.description.replace(/\n/g, '<br>')}</p>
-                </div>`;
-            }
-            
-            // 系列顺序
-            const seriesOrder = ['a','b','c','d','e','f'];
-            const currentIndex = seriesOrder.indexOf(seriesId);
-            
-            // 添加上一系列/下一系列导航
-            let seriesNavHTML = '';
-            if (currentIndex > 0) {
-              const prevSeriesId = seriesOrder[currentIndex - 1];
-              seriesNavHTML += `
-                <a href="products.html?series=${prevSeriesId}" class="nav-button prev-button">
-                  <i class="fas fa-arrow-left"></i> 上一系列
-                </a>`;
-            }
-            
-            if (currentIndex < seriesOrder.length - 1) {
-              const nextSeriesId = seriesOrder[currentIndex + 1];
-              seriesNavHTML += `
-                <a href="products.html?series=${nextSeriesId}" class="nav-button next-button">
-                  下一系列 <i class="fas fa-arrow-right"></i>
-                </a>`;
-            }
-            
-            // 添加操作按钮
+
+            productHTML += `
+              <div class="product-specs">
+                <h3>规格参数</h3>
+                <ul>${product.specs.map(s => `<li>${s}</li>`).join('')}</ul>
+              </div>`;
+
             productHTML += `
               <div class="product-actions">
                 <a class="base-button" href="pricing.html?product=${encodeURIComponent(product.name)}">
                   <i class="fas fa-shopping-cart"></i> 立即订购
                 </a>
-                <div class="series-nav-container">
-                  ${seriesNavHTML}
-                </div>
+                <div class="series-nav-container">导航区域</div>
               </div>`;
-            
+
             container.innerHTML = productHTML;
-          })
-          .catch(err => {
-            container.innerHTML = `<p class="error-message">加载失败: ${err.message}</p>`;
+
+            const track = document.querySelector('.carousel-track');
+            const leftBtn = document.querySelector('.carousel-button.left');
+            const rightBtn = document.querySelector('.carousel-button.right');
+            let index = 0;
+
+            function updateCarousel() {
+              const width = track.children[0].offsetWidth + 10;
+              track.style.transform = `translateX(${-index * width}px)`;
+            }
+
+            leftBtn && leftBtn.addEventListener('click', () => { if (index > 0) { index--; updateCarousel(); } });
+            rightBtn && rightBtn.addEventListener('click', () => { if (index < track.children.length - 1) { index++; updateCarousel(); } });
           });
       }
-      
-      // 全局函数，用于打开模态窗口显示大图
+
       window.openModal = function(imgElement) {
         modal.style.display = "block";
         modalImg.src = imgElement.src;
