@@ -109,25 +109,47 @@
       color: #eee;
     }
 
+    /* 底部按钮区域 */
     .product-actions {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
       align-items: center;
       margin-top: 20px;
+      gap: 10px;
+    }
+
+    .product-actions a {
+      text-align: center;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #1e90ff; /* 宝石蓝 */
+      background: transparent;
     }
 
     .product-actions a.base-button {
-      padding: 10px 20px;
-      background: #4dabf7;
-      color: #fff;
-      border-radius: 6px;
-      text-decoration: none;
+      background: rgba(255, 255, 255, 0.1);
+      color: #1e90ff; /* 宝石蓝 */
+    }
+
+    .series-nav-container {
+      display: flex;
+      justify-content: space-between;
+      grid-column: span 3;
+      width: 100%;
     }
 
     .series-nav-container a {
-      margin: 0 10px;
-      color: #fff;
-      text-decoration: none;
+      flex: 1;
+    }
+
+    .series-nav-container .prev-button {
+      text-align: left;
+    }
+
+    .series-nav-container .next-button {
+      text-align: right;
     }
 
     /* 模态窗口样式 */
@@ -239,18 +261,22 @@
 
             if (currentIndex > 0) {
               const prevSeriesId = seriesOrder[currentIndex - 1];
-              seriesNavHTML += `<a href="products.html?series=${prevSeriesId}" class="nav-button prev-button">上一系列</a>`;
+              seriesNavHTML += `<a href="products.html?series=${prevSeriesId}" class="prev-button">上一系列</a>`;
+            } else {
+              seriesNavHTML += `<span></span>`;
             }
+
+            seriesNavHTML += `<a class="base-button" href="pricing.html?product=${encodeURIComponent(product.name)}">立即订购</a>`;
+
             if (currentIndex < seriesOrder.length - 1) {
               const nextSeriesId = seriesOrder[currentIndex + 1];
-              seriesNavHTML += `<a href="products.html?series=${nextSeriesId}" class="nav-button next-button">下一系列</a>`;
+              seriesNavHTML += `<a href="products.html?series=${nextSeriesId}" class="next-button">下一系列</a>`;
+            } else {
+              seriesNavHTML += `<span></span>`;
             }
 
             productHTML += `
               <div class="product-actions">
-                <a class="base-button" href="pricing.html?product=${encodeURIComponent(product.name)}">
-                  <i class="fas fa-shopping-cart"></i> 立即订购
-                </a>
                 <div class="series-nav-container">${seriesNavHTML}</div>
               </div>`;
 
