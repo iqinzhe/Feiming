@@ -22,7 +22,8 @@
             "琴桥: 复古式四弦鞍",
             "弦长: 34\""
           ],
-           {
+          "sections": [
+            {
               "type": "benefits",
               "title": "关键点",
               "items": [
@@ -50,8 +51,11 @@
               "images": [
                 "images/d3.jpg",
                 "images/d2.jpg"
+              ]
+            }
+          ],
           "ctaColor": "rgba(76,175,80,0.7)"
-        }
+        },
         {
           "id": "a2",
           "name": "A2",
