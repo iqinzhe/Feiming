@@ -526,6 +526,79 @@
       }, 300);
     }
 
+    // 渲染内容区块的函数
+    function renderContentSections(sections) {
+      if (!sections || !Array.isArray(sections)) return '';
+      
+      let sectionsHTML = '';
+      
+      sections.forEach(section => {
+        switch(section.type) {
+          case 'text-with-image':
+            sectionsHTML += `
+              <div class="content-section">
+                <div class="text-with-image ${section.layout ? 'layout-' + section.layout : ''}">
+                  <div class="content">
+                    <h3>${section.title}</h3>
+                    <p>${section.content}</p>
+                  </div>
+                  <div class="image">
+                    <img src="${section.image}" alt="${section.title}" onclick="openModal(this)">
+                  </div>
+                </div>
+              </div>
+            `;
+            break;
+            
+          case 'benefits':
+            sectionsHTML += `
+              <div class="content-section">
+                <h3>${section.title}</h3>
+                <div class="benefits-grid">
+                  ${section.items.map(item => `
+                    <div class="benefit-item">
+                      <h4>${item.title}</h4>
+                      <p>${item.desc}</p>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            `;
+            break;
+            
+          case 'comparison':
+            sectionsHTML += `
+              <div class="content-section">
+                <h3>${section.title}</h3>
+                <div class="comparison-section">
+                  ${section.images.map((img, index) => `
+                    <div class="comparison-item">
+                      <img src="${img}" alt="比较图 ${index+1}" onclick="openModal(this)">
+                      <p>${index === 0 ? '传统琴颈' : '扭曲琴颈'}</p>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            `;
+            break;
+            
+          default:
+            // 处理未知类型的内容区块
+            if (section.title && section.content) {
+              sectionsHTML += `
+                <div class="content-section">
+                  <h3>${section.title}</h3>
+                  <p>${section.content}</p>
+                </div>
+              `;
+            }
+            break;
+        }
+      });
+      
+      return sectionsHTML;
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
       const modal = document.getElementById('imageModal');
       const closeModalBtn = document.getElementsByClassName('close')[0];
@@ -566,12 +639,15 @@
               return;
             }
 
+            // 处理图片数据 - 如果没有images数组，使用主图作为默认
+            const productImages = product.images || [product.image];
+            
             let productHTML = `
               <div class="product-hero">
                 <div>
                   <img id="mainImage" src="${product.image}" alt="${product.name}" onclick="openModal(this)">
                   <div class="thumbnail-container">
-                    ${product.images.map((img, i) => `
+                    ${productImages.map((img, i) => `
                       <img src="${img}" alt="${product.name} 缩略图 ${i+1}" class="${i===0?'active':''}" onclick="setMainImage(this)">
                     `).join('')}
                   </div>
@@ -587,6 +663,11 @@
                 <h3>规格参数</h3>
                 <ul>${product.specs.map(s => `<li>${s}</li>`).join('')}</ul>
               </div>`;
+
+            // 渲染额外内容区块（如果有）
+            if (product.sections && product.sections.length > 0) {
+              productHTML += renderContentSections(product.sections);
+            }
 
             // 系列导航按钮
             const seriesOrder = ['a','b','c','d','e','f'];
