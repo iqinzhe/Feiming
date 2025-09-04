@@ -63,13 +63,14 @@
       background: rgba(0, 0, 0, 0.1);
     }
 
+    /* active 状态下仅修改 padding，由 JS 控制 max-height */
     .faq-item.active .faq-answer {
-      max-height: 200px;
       padding: 15px 20px;
     }
 
     .faq-item.active .faq-question span:last-child {
       transform: rotate(45deg);
+      transition: transform 0.3s ease;
     }
 
     .back-link {
@@ -147,11 +148,11 @@
         </div>
         <div class="faq-answer">
           <p>A:</p>
-                <p>1.短弦长 (24.75")：手感软，音色温暖 → Gibson 系列代表。</p>
-                <p>2.长弦长 (25.5")：手感紧，音色清晰 → Fender 系列代表。</p>
-                <p>3.中间值 (25")：兼顾两者 → AX斧标guitar。</p>
-                <p>4.手型小、喜欢推弦 → 短弦长。手型大、低调弦或金属 → 长弦长。</p>
-                <p>5.如果可以，建议亲自试弹，用同规格弦比较不同弦长琴的手感与音色，这比数据更直观。</p>
+          <p>1.短弦长 (24.75")：手感软，音色温暖 → Gibson 系列代表。</p>
+          <p>2.长弦长 (25.5")：手感紧，音色清晰 → Fender 系列代表。</p>
+          <p>3.中间值 (25")：兼顾两者 → AX斧标guitar。</p>
+          <p>4.手型小、喜欢推弦 → 短弦长。手型大、低调弦或金属 → 长弦长。</p>
+          <p>5.如果可以，建议亲自试弹，用同规格弦比较不同弦长琴的手感与音色，这比数据更直观。</p>
         </div>
       </div>
       
@@ -192,9 +193,9 @@
         </div>
         <div class="faq-answer">
           <p>A:</p>
-                <p>1.低把位测试：按 F 大横按和弦 → 看舒适度？如果手腕很紧 → 弧度可能太平。</p>
-                <p>2.高把位推弦测试：12 品以上推全音，看是否闷音？如果容易闷 → 弧度可能太小。</p>
-                <p>3.观察弦距：偏平弧度更适合超低弦距（<1.2mm）圆弧度适合中高弦距（1.5mm~2.0mm）。</p>
+          <p>1.低把位测试：按 F 大横按和弦 → 看舒适度？如果手腕很紧 → 弧度可能太平。</p>
+          <p>2.高把位推弦测试：12 品以上推全音，看是否闷音？如果容易闷 → 弧度可能太小。</p>
+          <p>3.观察弦距：偏平弧度更适合超低弦距（<1.2mm）圆弧度适合中高弦距（1.5mm~2.0mm）。</p>
         </div>
       </div>
     </div>
@@ -202,30 +203,44 @@
     <a href="support.html" class="back-link">← 返回支持中心</a>
   </main>
 
-<!-- 底部栏 -->
-<footer class="site-footer" id="footerToTop">
-<span class="site-footer__label">返回顶部</span>
-<img alt="AX斧标贝斯 Logo" class="site-footer__logo" src="images/logo.png"/>
-</footer>
-<script src="/js/main.js"></script>
+  <!-- 底部栏 -->
+  <footer class="site-footer" id="footerToTop">
+    <span class="site-footer__label">返回顶部</span>
+    <img alt="AX斧标贝斯 Logo" class="site-footer__logo" src="images/logo.png"/>
+  </footer>
 
-<script>  
-    // FAQ折叠功能
-    const faqQuestions = document.querySelectorAll('.faq-question');
-    faqQuestions.forEach(question => {
-      question.addEventListener('click', function() {
-        const faqItem = this.parentElement;
-        faqItem.classList.toggle('active');
-      });
+<script>
+  // FAQ 动态高度折叠功能
+  document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+      const faqItem = question.parentElement;
+      const answer = faqItem.querySelector('.faq-answer');
+
+      if (faqItem.classList.contains('active')) {
+        // 收起
+        answer.style.maxHeight = '0px';
+        faqItem.classList.remove('active');
+      } else {
+        // 展开前先关闭其他已展开的
+        document.querySelectorAll('.faq-item.active').forEach(openItem => {
+          const openAnswer = openItem.querySelector('.faq-answer');
+          openAnswer.style.maxHeight = '0px';
+          openItem.classList.remove('active');
+        });
+        // 展开当前
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        faqItem.classList.add('active');
+      }
     });
-    
-    // 返回顶部功能
-    const footerToTop = document.getElementById('footerToTop');
-    if (footerToTop) {
-      footerToTop.addEventListener('click', function() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    }
+  });
+
+  // 返回顶部功能
+  const footerToTop = document.getElementById('footerToTop');
+  if (footerToTop) {
+    footerToTop.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 </script>
 </body>
 </html>
